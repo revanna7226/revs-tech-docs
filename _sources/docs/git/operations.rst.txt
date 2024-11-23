@@ -207,7 +207,16 @@ Unstage staged files
 
 .. code-block:: bash
 
+    # lists local branches
     git branch
+
+    # lists local branches and remote tracking branches
+    git branch -a
+
+    # lists remote branches available
+    git ls-remote
+
+    # git create local-tracking branch and
 
 
 6. `git clone <url> <new-folder-name>` used to clone the project

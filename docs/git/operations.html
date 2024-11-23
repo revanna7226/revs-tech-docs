@@ -66,6 +66,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="github.html">Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="github-deepdive.html">GitHub Collaboration and Contribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assignment.html">Git Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">References</a></li>
 </ul>
@@ -265,7 +266,16 @@ git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w
 <ol class="arabic simple" start="5">
 <li><p><cite>git branch</cite> shows branches present in this repository and also we can see which is the active branch indicated by asterisk.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># lists local branches</span>
+git<span class="w"> </span>branch
+
+<span class="c1"># lists local branches and remote tracking branches</span>
+git<span class="w"> </span>branch<span class="w"> </span>-a
+
+<span class="c1"># lists remote branches available</span>
+git<span class="w"> </span>ls-remote
+
+<span class="c1"># git create local-tracking branch and</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">

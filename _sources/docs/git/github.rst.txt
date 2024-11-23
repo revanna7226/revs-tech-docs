@@ -66,16 +66,74 @@ PAT input to Windows will be stored in Windows Credential Manager and it can be 
 
 Local - Remote Workflows
 ------------------------
+1. Local Branch
+~~~~~~~~~~~~~~~
+A branch in Local repository on our Computer.
 
-Remote Tracking branch is local copy of remote branch. which sits in between local and remote branches.
+2. Remote Tracking Branch
+~~~~~~~~~~~~~~~~~~~~~~~~~
+These are branches fetched from remote repositories, prefixed with the remote name (e.g., origin/main).
+Remote Tracking branch is local read only copy of remote branch(not to be edited). which sits in between local and remote branches. This branch will be created when we push local branch to master for the first time.
+There will be no connection between Local and Remote branch and every communication (i.e push & pull, pull = fetch + merge) happens through Remote Tracking Branch.
+
+Example: remotes/origin/master
+
+.. note:: 
+  git fetch command updates this branch.
+
+.. code-block:: bash
+
+  # to delete remote tracking branches
+  git branch --delete --remote origin/feature
+
+  # to delete remote branch from remote server
+  git push origin --delete feature
+
+3. Local Tracking Branch
+~~~~~~~~~~~~~~~~~~~~~~~~
+This branch is Local reference to remote tracking branch(to be edited).
+
+.. code-block:: bash
+
+  git branch -a
+  * feature
+    master
+    remotes/origin/feature
+    remotes/origin/feature-remote
+    remotes/origin/master
+
+  # create local tracking branch from remote trackign branch
+  # git branch --track <local-tracking-branch> <remote-tracking-branch>
+  git branch --track feature-remote origin/feature-remote
+
+  # to list local branch and remote tracking branch in details
+  git branch -vv
+
+.. warning:: Local tracking branch name should be same as remote tracking branch.
+
+
+1. Remote Branch
+~~~~~~~~~~~~~~~~
+A branch on the Remote server/ GitHub. which is connected to remote tracking branch. Which has the same info of Remote Tracking Branch.
+
+.. warning:: 
+
+  Remote repository's name i.e 'origin' and branch name must always be added.
+
 
 .. code-block:: bash
 
     # list all branches in local
     git branch
 
-    # list all local branches and remote tracking branches
+    # list all local branches and tracking branches
     git branch -a
+
+    # lists only remote branches
+    git branch -r
+
+    # lists only local branches
+    git branch -l
 
     # to list all remote branches of the repo
     git ls-remote

@@ -25,7 +25,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Git Assignments" href="assignment.html" />
+    <link rel="next" title="GitHub Collaboration and Contribution" href="github-deepdive.html" />
     <link rel="prev" title="Git Operations" href="operations.html" /> 
 </head>
 
@@ -56,10 +56,17 @@
 <li class="toctree-l2"><a class="reference internal" href="operations.html">Git Operations</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Github</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#personal-access-token">Personal Access Token</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#local-remote-workflows">Local - Remote Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-remote-workflows">Local - Remote Workflows</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#local-branch">1. Local Branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remote-tracking-branch">2. Remote Tracking Branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-tracking-branch">3. Local Tracking Branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remote-branch">1. Remote Branch</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#branch-types">Branch Types</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="github-deepdive.html">GitHub Collaboration and Contribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="assignment.html">Git Assignments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference.html">References</a></li>
 </ul>
@@ -153,12 +160,69 @@ git<span class="w"> </span>pull
 </section>
 <section id="local-remote-workflows">
 <h2>Local - Remote Workflows<a class="headerlink" href="#local-remote-workflows" title="Link to this heading"></a></h2>
-<p>Remote Tracking branch is local copy of remote branch. which sits in between local and remote branches.</p>
+<section id="local-branch">
+<h3>1. Local Branch<a class="headerlink" href="#local-branch" title="Link to this heading"></a></h3>
+<p>A branch in Local repository on our Computer.</p>
+</section>
+<section id="remote-tracking-branch">
+<h3>2. Remote Tracking Branch<a class="headerlink" href="#remote-tracking-branch" title="Link to this heading"></a></h3>
+<p>These are branches fetched from remote repositories, prefixed with the remote name (e.g., origin/main).
+Remote Tracking branch is local read only copy of remote branch(not to be edited). which sits in between local and remote branches. This branch will be created when we push local branch to master for the first time.
+There will be no connection between Local and Remote branch and every communication (i.e push &amp; pull, pull = fetch + merge) happens through Remote Tracking Branch.</p>
+<p>Example: remotes/origin/master</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>git fetch command updates this branch.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to delete remote tracking branches</span>
+git<span class="w"> </span>branch<span class="w"> </span>--delete<span class="w"> </span>--remote<span class="w"> </span>origin/feature
+
+<span class="c1"># to delete remote branch from remote server</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--delete<span class="w"> </span>feature
+</pre></div>
+</div>
+</section>
+<section id="local-tracking-branch">
+<h3>3. Local Tracking Branch<a class="headerlink" href="#local-tracking-branch" title="Link to this heading"></a></h3>
+<p>This branch is Local reference to remote tracking branch(to be edited).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>-a
+*<span class="w"> </span>feature
+<span class="w">  </span>master
+<span class="w">  </span>remotes/origin/feature
+<span class="w">  </span>remotes/origin/feature-remote
+<span class="w">  </span>remotes/origin/master
+
+<span class="c1"># create local tracking branch from remote trackign branch</span>
+<span class="c1"># git branch --track &lt;local-tracking-branch&gt; &lt;remote-tracking-branch&gt;</span>
+git<span class="w"> </span>branch<span class="w"> </span>--track<span class="w"> </span>feature-remote<span class="w"> </span>origin/feature-remote
+
+<span class="c1"># to list local branch and remote tracking branch in details</span>
+git<span class="w"> </span>branch<span class="w"> </span>-vv
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Local tracking branch name should be same as remote tracking branch.</p>
+</div>
+</section>
+<section id="remote-branch">
+<h3>1. Remote Branch<a class="headerlink" href="#remote-branch" title="Link to this heading"></a></h3>
+<p>A branch on the Remote server/ GitHub. which is connected to remote tracking branch. Which has the same info of Remote Tracking Branch.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Remote repository’s name i.e ‘origin’ and branch name must always be added.</p>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># list all branches in local</span>
 git<span class="w"> </span>branch
 
-<span class="c1"># list all local branches and remote tracking branches</span>
+<span class="c1"># list all local branches and tracking branches</span>
 git<span class="w"> </span>branch<span class="w"> </span>-a
+
+<span class="c1"># lists only remote branches</span>
+git<span class="w"> </span>branch<span class="w"> </span>-r
+
+<span class="c1"># lists only local branches</span>
+git<span class="w"> </span>branch<span class="w"> </span>-l
 
 <span class="c1"># to list all remote branches of the repo</span>
 git<span class="w"> </span>ls-remote
@@ -172,6 +236,7 @@ git<span class="w"> </span>ls-remote
 <p>git merge -&gt; merges the remote tracking branches to local branches</p>
 </div>
 </section>
+</section>
 <section id="branch-types">
 <h2>Branch Types<a class="headerlink" href="#branch-types" title="Link to this heading"></a></h2>
 <img alt="../../_images/branch-types.png" src="../../_images/branch-types.png" />
@@ -184,7 +249,7 @@ git<span class="w"> </span>ls-remote
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="operations.html" class="btn btn-neutral float-left" title="Git Operations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="assignment.html" class="btn btn-neutral float-right" title="Git Assignments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="github-deepdive.html" class="btn btn-neutral float-right" title="GitHub Collaboration and Contribution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

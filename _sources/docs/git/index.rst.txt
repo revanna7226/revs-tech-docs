@@ -11,7 +11,7 @@ Git & GitHub - The Practical Guide
      - Discord
    * - `Git & GitHub - The Practical Guide <https://www.udemy.com/course/git-github-practical-guide>`_
      - `Maximilian Schwarzmüller <https://cognizant.udemy.com/user/academind>`_
-     - `My Notes on Github <https://github.com/revanna7226/design-patterns>`_
+     - `My Github Repo <https://github.com/revanna7226/udemy-git-course>`_
      - `Community Link <https://academind.com/community/>`_
 
 .. toctree::
@@ -21,5 +21,6 @@ Git & GitHub - The Practical Guide
    installation
    operations
    github
+   github-deepdive
    assignment
    reference
