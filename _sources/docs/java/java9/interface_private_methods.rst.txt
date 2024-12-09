@@ -1,0 +1,2 @@
+Private Methods in Interfaces
+=============================

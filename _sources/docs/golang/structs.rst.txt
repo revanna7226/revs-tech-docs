@@ -1,0 +1,124 @@
+Struct in Go
+-------------
+
+Struct is a datastructure in Go. Collection of properties that are related togethet.
+
+.. code-block:: go
+
+    package main
+
+    // defining a struct in go
+    type person struct {
+        firstName string
+        lastname string
+    }
+
+    func main() {
+        // creating struct var
+        var alex person
+        fmt.Println(alex) // {}
+        fmt.Println("%+v", alex) // {firstName, lastname}
+
+        // creating struct values
+        // Option #1
+        alex := person{"Alex", "Anderson"}
+
+        // Option #2
+        alex := person{firstName:"Alex", lastname:"Anderson"}
+
+        fmt.Println(alex) // {Alex Anderson}
+
+        // reassignment
+        alex.firstName = "Alen"
+    }
+
+Default values
+==============
+.. list-table:: Default values of struct property
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Type
+     - Zero Value
+   * - string
+     - ""
+   * - int
+     - 0
+   * - float
+     - 0
+   * - bool
+     - false
+
+Embedding struct
+================
+
+.. code-block:: Go
+
+    type contactInfo struct {
+        email   string
+        zipCode int
+    }
+
+    type person struct {
+        firstName string
+        lastName  string
+        contactInfo
+    }
+
+    func main() {
+        jim := person{
+            firstName: "Jim",
+            lastName:  "Party",
+            contactInfo: contactInfo{
+                email:   "jim@gmail.com",
+                zipCode: 94000,
+            },
+        }
+
+        fmt.Printf("%+v", jim)
+    }
+
+Structs with Receiver Function
+==============================
+
+.. code-block:: go
+
+    func main() {
+        alex := { ... }
+
+        alex.updateName("Alexander")
+        alex.print()
+    }
+
+    // does not update the object
+    func (p person) updateName(newFirstName string) {
+	    p.firstName = newFirstName
+    }
+
+    func (p person) print() {
+	    fmt.Printf("%+v", p)
+    }
+
+.. warning:: Pass by Value will copy the object and change it's value rather than updating actual object.
+
+Pointers in Struct
+==================
+
+.. code-block:: go
+
+    func main() {
+        alexPointer := &alex
+        alexPointer.updateName("Alexander")
+        alex.print()
+    }
+
+    // *person -> This is a type description - it means we're working with a pointer to a person
+    func (pointerToPerson *person) updateName(newFirstName string) {
+        // *pointerToPerson -> This is an operator - it means we want to manipulate the value the pointer is referencing
+        (*pointerToPerson).firstName = newFirstName
+    }
+
+.. note:: 
+
+    - &variable -> Give me the memory address of the value this variable is pointing at
+    - *pointer -> Give me the value this memory address is pointing at
