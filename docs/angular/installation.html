@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sphinx Setup &mdash; My Tech Notes 1.0 documentation</title>
+  <title>Setting up Angular on Local Machine &mdash; My Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -24,8 +24,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Java" href="../java/index.html" />
-    <link rel="prev" title="Python Installation" href="installation.html" /> 
+    <link rel="next" title="Proxy Server Configuration" href="proxyServer.html" />
+    <link rel="prev" title="Angular" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,13 +51,15 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../java_design_principle/index.html">Java Design Patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Python Installation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Sphinx Setup</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../java/index.html">Java</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../golang/index.html">Golang</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Angular</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxyServer.html">Proxy Server Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../node/index.html">Node.js</a></li>
 </ul>
 
         </div>
@@ -74,10 +76,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Python</a></li>
-      <li class="breadcrumb-item active">Sphinx Setup</li>
+          <li class="breadcrumb-item"><a href="index.html">Angular</a></li>
+      <li class="breadcrumb-item active">Setting up Angular on Local Machine</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/docs/python/sphinx.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/docs/angular/installation.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -85,36 +87,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="sphinx-setup">
-<h1>Sphinx Setup<a class="headerlink" href="#sphinx-setup" title="Link to this heading"></a></h1>
-<ol class="arabic simple">
-<li><p>Create a virtual environment and activate it.</p></li>
-<li><p>Install Sphinx, Sphinx Read the Docs extension and other extensions.</p></li>
-</ol>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip3<span class="w"> </span>install<span class="w"> </span>sphinx
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx_rtd_theme
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx_code_tabs
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx_copybutton
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx-tabs
-pip3<span class="w"> </span>install<span class="w"> </span>recommonmark
-pip3<span class="w"> </span>install<span class="w"> </span>nbsphinx
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx-markdown-tables
-pip3<span class="w"> </span>install<span class="w"> </span>pandoc
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx-reredirects
-pip3<span class="w"> </span>install<span class="w"> </span>sphinxcontrib.asciinema
-pip3<span class="w"> </span>install<span class="w"> </span>sphinxemoji
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx-autobuild
-pip3<span class="w"> </span>install<span class="w"> </span>sphinx-multiversion
-</pre></div>
-</div>
-<ol class="arabic simple">
-<li><p>Create HTML documentation.</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># iOS and Unix based Systems</span>
-make<span class="w"> </span>html
+  <section id="setting-up-angular-on-local-machine">
+<h1>Setting up Angular on Local Machine<a class="headerlink" href="#setting-up-angular-on-local-machine" title="Link to this heading"></a></h1>
+<p>Use npx to Run a Specific Angular CLI Version Without Installing Globally</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># check the version of Angular CLI</span>
+npx<span class="w"> </span>@angular/cli<span class="w"> </span>--version
+npm<span class="w"> </span>show<span class="w"> </span>@angular/cli<span class="w"> </span>versions<span class="w"> </span>--json
 
-<span class="c1"># Windows</span>
-.<span class="se">\m</span>ake.bat<span class="w"> </span>html
+npm<span class="w"> </span>install<span class="w"> </span>@angular/cli@15<span class="w"> </span>--save-dev
+npx<span class="w"> </span>ng<span class="w"> </span>version
+
+npx<span class="w"> </span>@angular/cli@15<span class="w"> </span>new<span class="w"> </span>my-angular15-app
+npx<span class="w"> </span>@angular/cli@16<span class="w"> </span>new<span class="w"> </span>my-angular16-app
+
+npx<span class="w"> </span>ng<span class="w"> </span>serve<span class="w"> </span>--port<span class="o">=</span><span class="m">4500</span>
 </pre></div>
 </div>
 </section>
@@ -123,8 +109,8 @@ make<span class="w"> </span>html
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="installation.html" class="btn btn-neutral float-left" title="Python Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../java/index.html" class="btn btn-neutral float-right" title="Java" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Angular" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="proxyServer.html" class="btn btn-neutral float-right" title="Proxy Server Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

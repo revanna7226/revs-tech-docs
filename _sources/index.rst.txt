@@ -10,3 +10,5 @@ Revs Notes
    docs/python/index
    docs/java/index
    docs/golang/index
+   docs/angular/index
+   docs/node/index

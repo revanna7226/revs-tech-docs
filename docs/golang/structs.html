@@ -24,6 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Maps in Go" href="maps.html" />
     <link rel="prev" title="Testing in go" href="testing.html" /> 
 </head>
 
@@ -61,10 +62,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#embedding-struct">Embedding struct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#structs-with-receiver-function">Structs with Receiver Function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pointers-in-struct">Pointers in Struct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pointers-shortcut">Pointers shortcut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gotchas-of-pointer">Gotchas of pointer</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="maps.html">Maps in Go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html">Interface</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../node/index.html">Node.js</a></li>
 </ul>
 
         </div>
@@ -227,6 +234,54 @@
 </ul>
 </div>
 </section>
+<section id="pointers-shortcut">
+<h2>Pointers shortcut<a class="headerlink" href="#pointers-shortcut" title="Link to this heading"></a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ~alexPointer := &amp;alex~</span>
+<span class="w">    </span><span class="nx">alex</span><span class="p">.</span><span class="nx">updateName</span><span class="p">(</span><span class="s">&quot;Alexander&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">alex</span><span class="p">.</span><span class="nb">print</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// *person -&gt; This is a type description - it means we&#39;re working with a pointer to a person</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">pointerToPerson</span><span class="w"> </span><span class="o">*</span><span class="nx">person</span><span class="p">)</span><span class="w"> </span><span class="nx">updateName</span><span class="p">(</span><span class="nx">newFirstName</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// *pointerToPerson -&gt; This is an operator - it means we want to manipulate the value the pointer is referencing</span>
+<span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="nx">pointerToPerson</span><span class="p">).</span><span class="nx">firstName</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">newFirstName</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="gotchas-of-pointer">
+<h2>Gotchas of pointer<a class="headerlink" href="#gotchas-of-pointer" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>With ‘value types’ in Go, we have to worry about pointers if we want to pass a value to a function and modify the original value inside the function</p></li>
+<li><p>When we create a slice, Go will automatically create which two data structures. An Array and a structure that records the length of the slice, the capacity of the slice and a reference to the underlying array.</p></li>
+</ul>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Data Types</p></th>
+<th class="head"><p>Types</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Value Types</p></td>
+<td><p>int, float, string, bool and structs</p></td>
+<td><p>Use pointers to change these things in a function. With ‘value types’ in Go, we have to worry about pointers if we want to pass a value to a function and modify the original value inside the function</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reference Types</p></td>
+<td><p>slices, maps, channels, pointers and functions</p></td>
+<td><p>With ‘reference types’ in Go, do not we have to worry about pointers if we want to pass a value to a function and modify the original value inside the function</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="_static/go/images/sliceinfunction.png" src="_static/go/images/sliceinfunction.png" />
+</section>
 </section>
 
 
@@ -234,6 +289,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="testing.html" class="btn btn-neutral float-left" title="Testing in go" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="maps.html" class="btn btn-neutral float-right" title="Maps in Go" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

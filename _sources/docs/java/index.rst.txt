@@ -7,5 +7,6 @@ Java
 
    introduction
    java9/index
+   maven/index
 
 

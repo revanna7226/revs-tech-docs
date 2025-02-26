@@ -22,3 +22,5 @@ Golang
    cards
    testing
    structs
+   maps
+   interface

@@ -21,17 +21,15 @@ Sphinx Setup
     pip3 install sphinx-autobuild
     pip3 install sphinx-multiversion
 
-3. Test Example
+1. Create HTML documentation.
 
 .. code-block:: bash
 
-    mkdir folter
+    # iOS and Unix based Systems
+    make html
 
-
-
-.. warning:: 
-    
-    Warning Test
+    # Windows
+    .\make.bat html
 
 
 
