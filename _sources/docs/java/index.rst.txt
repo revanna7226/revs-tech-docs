@@ -8,5 +8,7 @@ Java
    introduction
    java9/index
    maven/index
+   design_patterns/index
+   spring/index
 
 

@@ -1,0 +1,8 @@
+Useful Resources & Links
+========================
+
+- World Wide Web Consortium (W3C) CSS Working Groups: https://www.w3.org/TR/tr-groups-all#tr_Cascading_Style_Sheets__CSS__Working_Group
+
+- Download Visual Studio Code: https://code.visualstudio.com/
+
+- Download Google Chrome: https://www.google.com/intl/en/chrome/
