@@ -5,8 +5,9 @@ Revs Notes
    :maxdepth: 4
    :caption: Topics 
    
-   docs/git/index
    docs/python/index
+   docs/database/index
+   docs/git/index
    docs/java/index
    docs/golang/index
    docs/angular/index
