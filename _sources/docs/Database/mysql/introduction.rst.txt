@@ -12,7 +12,7 @@ MySQL
 
 
 MySQL Command Line Client
-========================= 
+-----------------------------------------------
 
 1. Login to MYSQL using the command line client:
    

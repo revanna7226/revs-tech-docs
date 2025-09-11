@@ -7,3 +7,4 @@ Angular
 
    installation
    proxyServer
+   rxJs

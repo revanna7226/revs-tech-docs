@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git Operations &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Github" href="github.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aws/index.html">AWS Certifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Udemy Courses</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Git &amp; GitHub - The Practical Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Git Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#understanding-merge-types">Understanding Merge Types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#fast-forward">1. Fast-Forward</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#non-fast-forward">2. Non Fast-Forward</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#rebase">3. Rebase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#handling-merge-conflicts">Handling Merge Conflicts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cherry-pick">Cherry Pick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#understanding-tagging">Understanding Tagging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="github.html">Github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="github-deepdive.html">GitHub Collaboration and Contribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="assignment.html">Git Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference.html">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Udemy Courses</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Git &amp; GitHub - The Practical Guide</a></li>
+      <li class="breadcrumb-item active">Git Operations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/udemy/git/operations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="git-operations">
+<h1>Git Operations<a class="headerlink" href="#git-operations" title="Link to this heading"></a></h1>
+<p>Git Repo -&gt; Staging Area + Commit Folder</p>
+<p>Turn a directory into git repository or make directory managed by git.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
+</pre></div>
+</div>
+<p>To explore our commit history with git log. To exit this menu, please press “q” and confirm this with Enter on your keyboard.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+</pre></div>
+</div>
+<p>To Switch to specific commit</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># shows the commit history</span>
+git<span class="w"> </span>log
+
+<span class="c1"># take a commit id from the logs and use in the below command.</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;commit_id&gt;
+
+<span class="c1"># to switch back to branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>master
+</pre></div>
+</div>
+<p>Deleting working directory files</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># this command deletes the file and stages for commit.</span>
+<span class="c1"># this equal to (manual delete + git add )</span>
+git<span class="w"> </span>rm<span class="w"> </span>&lt;files/folder&gt;
+</pre></div>
+</div>
+<p>Undoing or revert unstaged changes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to undo perticular file</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;file&gt;
+<span class="c1"># recommanded</span>
+git<span class="w"> </span>restore<span class="w"> </span>&lt;file&gt;
+
+<span class="c1"># to undo all changes which are unstaged</span>
+git<span class="w"> </span>checkout<span class="w"> </span>.
+<span class="c1"># recommanded</span>
+git<span class="w"> </span>restore<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Delete untracked files</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># this lists all files which are untracked and picked up for delete</span>
+<span class="c1"># flags: d delete, n list</span>
+git<span class="w"> </span>clean<span class="w"> </span>-dn
+
+<span class="c1"># this deletes all untracked files</span>
+<span class="c1"># flags: d delete, f force</span>
+git<span class="w"> </span>clean<span class="w"> </span>-df
+</pre></div>
+</div>
+<p>Undoing or reverting staged changes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unstage single or all files</span>
+git<span class="w"> </span>reset<span class="w"> </span>&lt;file&gt;
+git<span class="w"> </span>reset<span class="w"> </span>.
+
+<span class="c1"># revert a file or all files</span>
+git<span class="w"> </span>restore<span class="w"> </span>&lt;file&gt;
+git<span class="w"> </span>restore<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Deleting or undo commits with git reset</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># delete last one commit and stay changes in staged area</span>
+git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>HEAD~1
+
+<span class="c1"># delete last commit and remove all files permanently</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+</pre></div>
+</div>
+<p>Commmands to see which are files are tracking by git</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>ls-files
+</pre></div>
+</div>
+<p>Deleting a branch</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># only if it has already been fully merged into its upstream branch</span>
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>&lt;branch&gt;
+
+<span class="c1"># force deletes the branch, regardless of its merge status</span>
+git<span class="w"> </span>branch<span class="w"> </span>-D<span class="w"> </span>&lt;branch-name&gt;<span class="w"> </span><span class="o">[</span>&lt;branch-name&gt;<span class="o">]</span>
+</pre></div>
+</div>
+<p>Committing detached HEAD changes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+<span class="c1"># checkout to any commit</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;commit-hash&gt;
+
+<span class="c1"># do some changes</span>
+git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;commit message&#39;</span>
+
+<span class="c1"># you are in detached head</span>
+git<span class="w"> </span>branch
+<span class="c1"># create a new branch for detached head</span>
+git<span class="w"> </span>branch<span class="w"> </span>detached-head
+
+git<span class="w"> </span>switch<span class="w"> </span>master
+
+git<span class="w"> </span>merge<span class="w"> </span>detached-head
+
+git<span class="w"> </span>branch<span class="w"> </span>-D<span class="w"> </span>detached-head
+</pre></div>
+</div>
+<p>bringing lost data back with <em>git reflog</em></p>
+<p>A log of all project changes made including deleted commits</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># deletes last commit changes and files</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1
+
+<span class="c1"># shows the activity of git operations done in the repo</span>
+git<span class="w"> </span>reflog
+
+<span class="c1"># use hex id of the last commit in the reflog activity list</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>&lt;hash-code&gt;
+
+<span class="c1"># --- delete branch and restore</span>
+<span class="c1"># create a branch, do some changes and commit all the changes.</span>
+<span class="c1"># delete the branch</span>
+git<span class="w"> </span>branch<span class="w"> </span>-D<span class="w"> </span>&lt;branch-name&gt;
+
+<span class="c1"># get activity list</span>
+git<span class="w"> </span>reflog
+
+<span class="c1"># checkout to last commit of the branch, you will be in the detached HEAD</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;hash-code&gt;
+
+<span class="c1"># create new branch for detached head changes</span>
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>&lt;branch&gt;
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><cite>git status</cite> is used to list all new or modified files that haven’t yet been committed</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>status
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><cite>git add &lt;file-name&gt;</cite> to update what will be committed or staged</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># stage a single file, or multile files by separating file names by comma</span>
+git<span class="w"> </span>add<span class="w"> </span>&lt;file-name&gt;
+git<span class="w"> </span>add<span class="w"> </span>&lt;file1&gt;,&lt;file2&gt;
+
+<span class="c1"># stage all changes at once shot</span>
+git<span class="w"> </span>add<span class="w"> </span>*
+</pre></div>
+</div>
+<p>Unstage staged files</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unstage single file</span>
+git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>&lt;file&gt;
+
+<span class="c1"># unstage all files</span>
+git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>.
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><cite>git commit -m “write commit message”</cite> is used to commit changes</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;write commit message&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><cite>git push origin main</cite> is used to push the project to GitHub main branch</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><cite>git branch</cite> shows branches present in this repository and also we can see which is the active branch indicated by asterisk.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># lists local branches</span>
+git<span class="w"> </span>branch
+
+<span class="c1"># lists local branches and remote tracking branches</span>
+git<span class="w"> </span>branch<span class="w"> </span>-a
+
+<span class="c1"># lists remote branches available</span>
+git<span class="w"> </span>ls-remote
+
+<span class="c1"># git create local-tracking branch and</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p><cite>git clone &lt;url&gt; &lt;new-folder-name&gt;</cite> used to clone the project</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone master branch to local</span>
+git<span class="w"> </span>clone<span class="w"> </span>&lt;url&gt;<span class="w"> </span>&lt;new-folder-name&gt;
+
+<span class="c1"># clone a perticular branch to local</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>&lt;branch&gt;<span class="w"> </span>&lt;repo-url&gt;<span class="w"> </span>&lt;new-folder-name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p><cite>git branch &lt;new-branch-name&gt;</cite> used to create new branch</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch<span class="w"> </span>&lt;new-branch-name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p><cite>git checkout &lt;branch-name&gt;</cite> used to switch from one branch to another branch</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># switch to existing branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;branch-name&gt;
+
+<span class="c1"># Aletrnative</span>
+git<span class="w"> </span>switch<span class="w"> </span>&lt;branch-name&gt;
+
+<span class="c1"># create new branch and switch to it</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;branch-name&gt;
+
+<span class="c1"># Aletrnative</span>
+git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>&lt;branch-name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p><cite>git diff</cite> compare the changes</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>diff
+</pre></div>
+</div>
+<ol class="arabic" start="10">
+<li><p>Use git stash when you want to record the current state of the working directory and the index, but want to go back to a clean working directory.
+<a class="reference external" href="https://git-scm.com/docs/git-stash">https://git-scm.com/docs/git-stash</a></p>
+<p>Temporary storage for unstaged and uncommitted changes</p>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># push the intermediate changes with index reference</span>
+git<span class="w"> </span>stash
+
+<span class="c1"># push the intermediate changes with a message</span>
+git<span class="w"> </span>stash<span class="w"> </span>push<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;message to temp save&quot;</span>
+
+<span class="c1"># to check for all the stashes</span>
+git<span class="w"> </span>stash<span class="w"> </span>list
+
+<span class="c1"># to load a perticular changes use index to load</span>
+git<span class="w"> </span>stash<span class="w"> </span>apply<span class="w"> </span>&lt;stash-index&gt;
+
+<span class="c1"># to load a perticular changes with index and drop the stash</span>
+git<span class="w"> </span>stash<span class="w"> </span>pop<span class="w"> </span>&lt;stash-index&gt;
+
+<span class="c1"># to remove a stash with an index</span>
+git<span class="w"> </span>stash<span class="w"> </span>drop<span class="w"> </span>&lt;stash-index&gt;
+
+<span class="c1"># need to check what is it</span>
+git<span class="w"> </span>stash<span class="w"> </span>clear
+</pre></div>
+</div>
+<section id="understanding-merge-types">
+<h2>Understanding Merge Types<a class="headerlink" href="#understanding-merge-types" title="Link to this heading"></a></h2>
+<p>Combining commits from different branches by creating a new merge commit
+(recursive) or by moving the HEAD (fast-forward)</p>
+<p>There are two types of merge mainly we use in our day to day activities.</p>
+<section id="fast-forward">
+<h3>1. Fast-Forward<a class="headerlink" href="#fast-forward" title="Link to this heading"></a></h3>
+<p>Only possible when there are no commits in the master after feature branch was created.</p>
+<p><em>Merge</em> moves HEAD forward but does not create new commit.</p>
+<img alt="../../../_images/ff-merge.png" src="../../../_images/ff-merge.png" />
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>branch
+<span class="c1"># master</span>
+<span class="c1"># feature</span>
+
+<span class="c1"># switch to master branch and run merge command</span>
+git<span class="w"> </span>merge<span class="w"> </span>feature
+
+<span class="c1"># no commits required</span>
+</pre></div>
+</div>
+<p>If you don’t want to have intermediate commits which is done in the feature branch do SQUASH commit.</p>
+<p>Explicite commit is required here for merge action.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># squashes all the commits and adds the whole changes done in the feature to staging</span>
+git<span class="w"> </span>merge<span class="w"> </span>--squash<span class="w"> </span>feature
+
+<span class="c1"># commit the changes with appropriate message</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;merged feature with master: feature -- is added&#39;</span>
+</pre></div>
+</div>
+<p>master -&gt; m1    m2     merged(HEAD, master)</p>
+</section>
+<section id="non-fast-forward">
+<h3>2. Non Fast-Forward<a class="headerlink" href="#non-fast-forward" title="Link to this heading"></a></h3>
+<p>Additional commits in both master and feature branch after fetaure branch was created</p>
+<p>Additional (merge) commit is created in master branch</p>
+<img alt="../../../_images/non-ff-recursive.png" src="../../../_images/non-ff-recursive.png" />
+<p>There are four types of Non Fast-Forward merge</p>
+<ol class="arabic simple">
+<li><p>Recursive -&gt; mainly used</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># explicitely mentioning --no-ff</span>
+git<span class="w"> </span>merge<span class="w"> </span>--no-ff<span class="w"> </span>feature
+
+<span class="c1"># below command applies recursive non fast forward</span>
+<span class="c1"># when there are commits in master after feature was created</span>
+git<span class="w"> </span>merge<span class="w"> </span>feature
+
+git<span class="w"> </span>merge<span class="w"> </span>--squash<span class="w"> </span>feature
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Octopus</p></li>
+<li><p>Ours</p></li>
+<li><p>Subtree</p></li>
+</ol>
+</section>
+<section id="rebase">
+<h3>3. Rebase<a class="headerlink" href="#rebase" title="Link to this heading"></a></h3>
+<p>Change the base (i.e. the parent commit) of commits in another branch</p>
+<p>m3 becomes new base commit for commit created in feature branch.</p>
+<p>rebase master to feature branch</p>
+<p>merge rebase feature into master</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>rebase does not move commits instead it creates new commits.</p>
+<p>Never rebase commits outside your repository.</p>
+<p><strong>Remember</strong>: Rebasing re-writes code history!</p>
+</div>
+<img alt="../../../_images/rebase.png" src="../../../_images/rebase.png" />
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># switch to feature</span>
+git<span class="w"> </span>switch<span class="w"> </span>feature
+
+<span class="c1"># run rebase in feature branch</span>
+git<span class="w"> </span>rebase<span class="w"> </span>master
+</pre></div>
+</div>
+<div class="admonition-when-to-apply-rebase admonition">
+<p class="admonition-title">When to Apply Rebase?</p>
+<p><strong>New commits in master branch while working in feature branch</strong></p>
+<p>Feature relies on additional commits in master branch</p>
+<p>Rebase master into feature branch</p>
+<p>—</p>
+<p>Feature is finished – Implementation into master without merge commit</p>
+<p>Rebase master into feature + (fast-forward) merge feature into master</p>
+</div>
+</section>
+</section>
+<section id="handling-merge-conflicts">
+<h2>Handling Merge Conflicts<a class="headerlink" href="#handling-merge-conflicts" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>merge<span class="w"> </span>feature
+
+<span class="c1"># when conflicts occurs, we need to resolves the conflicts and commit</span>
+<span class="c1"># other wise wwe can abort the merge</span>
+
+git<span class="w"> </span>merge<span class="w"> </span>--abort
+
+<span class="c1"># which shows the commits which are have merge conflicts</span>
+git<span class="w"> </span>log<span class="w"> </span>--merge
+</pre></div>
+</div>
+</section>
+<section id="cherry-pick">
+<h2>Cherry Pick<a class="headerlink" href="#cherry-pick" title="Link to this heading"></a></h2>
+<p>Copy commit including the changes made only in this commit as HEAD to other
+branch</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># commit hash code from another branch</span>
+git<span class="w"> </span>cherry-pick<span class="w"> </span>&lt;commit-hash&gt;
+</pre></div>
+</div>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Merge vs Rebase vs Cherry-Pick</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 33.0%" />
+<col style="width: 33.0%" />
+<col style="width: 34.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Merge (non fast-forward)</p></th>
+<th class="head"><p>Rebase</p></th>
+<th class="head"><p>Cherry-Pick</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Create merge commit</p></td>
+<td><p>Change single commit‘s parent</p></td>
+<td><p>Add specific commit to branch (HEAD)</p></td>
+</tr>
+<tr class="row-odd"><td><p>New commit</p></td>
+<td><p>New commit ID(s)</p></td>
+<td><p>Copies commit with new ID</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="understanding-tagging">
+<h2>Understanding Tagging<a class="headerlink" href="#understanding-tagging" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to add tag</span>
+git<span class="w"> </span>tag<span class="w"> </span>&lt;version_1.0&gt;<span class="w"> </span>&lt;commit_hash&gt;
+
+<span class="c1"># to list tags</span>
+git<span class="w"> </span>tag
+
+<span class="c1"># to show tags info</span>
+git<span class="w"> </span>show<span class="w"> </span><span class="m">1</span>.0
+
+<span class="c1"># checkout to tag</span>
+git<span class="w"> </span>checkout<span class="w"> </span><span class="m">1</span>.0
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="github.html" class="btn btn-neutral float-right" title="Github" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

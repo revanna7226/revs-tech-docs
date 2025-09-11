@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RxJs &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Node.js" href="../node/index.html" />
+    <link rel="prev" title="Proxy Server Configuration" href="proxyServer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../golang/index.html">Golang</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Angular</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxyServer.html">Proxy Server Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RxJs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interview-questions">Interview Questions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../udemy/index.html">Udemy Courses</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Angular</a></li>
+      <li class="breadcrumb-item active">RxJs</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/angular/rxJs.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rxjs">
+<h1>RxJs<a class="headerlink" href="#rxjs" title="Link to this heading"></a></h1>
+<section id="interview-questions">
+<h2>Interview Questions<a class="headerlink" href="#interview-questions" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Q: What is RxJs?</strong></p>
+<blockquote>
+<div><p>A: RxJs stands for Reactive Extenstions for Javascript. It’s a reactive programmig library that Angular uses heavily for handling asynchronous data streams.
+Instead of dealing with callbacks and promises everywhere, Angular leverages RxJs to unify async workflows.</p>
+</div></blockquote>
+</li>
+<li><p><strong>Q: What are Observables and Observers?</strong></p>
+<blockquote>
+<div><p>A: An <strong>Observable</strong> is a function that produce a stream of data that can emit multiple values over time.</p>
+<p>It can emit:</p>
+<ul class="simple">
+<li><p>next → data values (one or many, synchronous or asynchronous)</p></li>
+<li><p>error → an error if something goes wrong</p></li>
+<li><p>complete → a completion signal (no more values will be sent)</p></li>
+</ul>
+<p>Observable is the producer of data (values come over time).</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Observable</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">observable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Observable</span><span class="p">(</span><span class="nx">subscriber</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="nx">subscriber</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">);</span>
+<span class="nx">subscriber</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="s1">&#39;World&#39;</span><span class="p">);</span>
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">subscriber</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="s2">&quot;Third Value (after 2s)&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">subscriber</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>An <strong>Observer</strong> is an object that subscribes to an Observable to receive those emitted values.</p>
+<p>It has three optional methods:</p>
+<ul class="simple">
+<li><p>next(value) → called each time a value is emitted</p></li>
+<li><p>error(err) → called if the observable throws an error</p></li>
+<li><p>complete() → called when the observable is done</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">observer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">next</span><span class="o">:</span><span class="w"> </span><span class="kt">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">complete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Done&#39;</span><span class="p">)</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p><strong>Subscribe</strong>:</p>
+<ul class="simple">
+<li><p>subscribe() is the bridge that connects an Observer to an Observable.</p></li>
+<li><p>Without subscribe(), an Observable is just a definition (nothing runs).</p></li>
+<li><p>When you call .subscribe(observer), the Observable starts producing values and delivers them to the Observer.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">observable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">observer</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Received:<span class="w"> </span>First<span class="w"> </span>Value
+Received:<span class="w"> </span>Second<span class="w"> </span>Value
+Received:<span class="w"> </span>Third<span class="w"> </span>Value<span class="w"> </span><span class="o">(</span>after<span class="w"> </span>2s<span class="o">)</span>
+Completed!
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Q: How to unsubscribe in RxJs?</strong></p>
+<p>A: Unsubscribing is crucial because Observables (like HTTP, router events, valueChanges, etc.) can keep emitting values and hold memory if not stopped</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The Subscription Object:</p></li>
+</ol>
+<ul class="simple">
+<li><p>When you call .subscribe(), RxJS returns a Subscription object.</p></li>
+<li><p>This object has an .unsubscribe() method that stops receiving further values.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;@angular/core&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">interval</span><span class="p">,</span><span class="w"> </span><span class="nx">Subscription</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;app-demo&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;Check console for interval values&lt;/p&gt;`</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DemoComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">subscription</span><span class="o">!:</span><span class="w"> </span><span class="nx">Subscription</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">source$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// emits every 1s</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">source$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Interval:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">);</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">ngOnDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Important: Clean up</span>
+<span class="w">        </span><span class="c1">// Prevents memory leaks when the component is destroyed.</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Unsubscribed&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Unsubscribing from Multiple Observables</p></li>
+</ol>
+<ul class="simple">
+<li><p>If you have multiple subscriptions, you can: Use Subscription.add()</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">subs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subscription</span><span class="p">();</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">subs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">obs1</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(...));</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">subs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">obs2</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(...));</span>
+<span class="p">...</span>
+<span class="nx">ngOnDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">subs</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">();</span><span class="w"> </span><span class="c1">// clears all</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>takeUntil Operator (Recommended)</p></li>
+</ol>
+<ul class="simple">
+<li><p>Instead of manually unsubscribing everywhere, you can use takeUntil() with a Subject to auto-unsubscribe.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Subject</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">takeUntil</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DemoComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="nx">destroy$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">someObservable$</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">takeUntil</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">ngOnDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span><span class="w"> </span><span class="c1">// triggers completion</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span><span class="w"> </span><span class="c1">// optional cleanup</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Async Pipe (Best Practice in Templates)</p></li>
+</ol>
+<ul class="simple">
+<li><p>If you’re just displaying observable values in a template, use Angular’s async pipe — it automatically subscribes/unsubscribes for you.</p></li>
+</ul>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- html --&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ timer$ | async }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// typescript</span>
+<span class="nx">timer$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// No need to unsubscribe manually</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Q: Explain the concepts of RxJs operators in Angular</strong></p>
+<p>A: In Angular, <strong>RxJS operators</strong> are the <em>real power tools</em> that let you transform, filter, and combine <strong>Observables</strong>. Let’s go step by step:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>What are RxJS Operators?</p>
+<ul class="simple">
+<li><p>An <strong>operator</strong> is simply a <strong>function</strong> that takes an <strong>Observable</strong> as input and returns a <strong>new Observable</strong> as output.</p></li>
+<li><p>Operators let you <strong>transform</strong> the data stream, <strong>filter</strong> values, <strong>combine</strong> multiple streams, or <strong>handle errors</strong>.</p></li>
+<li><p>They are <strong>pure functions</strong> → they don’t modify the original Observable, but create a new one.</p></li>
+</ul>
+<p>👉 Think of operators as <strong>pipes in plumbing</strong>:</p>
+<ul class="simple">
+<li><p>Water (data) flows through the pipe (Observable).</p></li>
+<li><p>Along the way, filters, transformers, or splitters (operators) change the water (data stream).</p></li>
+</ul>
+</li>
+<li><p>Types of Operators</p>
+<blockquote>
+<div><p>Operators in RxJS are grouped into categories:</p>
+<ol class="arabic simple">
+<li><p><strong>Creation operators</strong> → Create new observables</p>
+<ul class="simple">
+<li><p><cite>of</cite>, <cite>from</cite>, <cite>interval</cite>, <cite>timer</cite></p></li>
+</ul>
+</li>
+<li><p><strong>Transformation operators</strong> → Change the data</p>
+<ul class="simple">
+<li><p><cite>map</cite>, <cite>mergeMap</cite>, <cite>switchMap</cite>, <cite>concatMap</cite></p></li>
+</ul>
+</li>
+<li><p><strong>Filtering operators</strong> → Allow/deny certain values</p>
+<ul class="simple">
+<li><p><cite>filter</cite>, <cite>take</cite>, <cite>debounceTime</cite>, <cite>distinctUntilChanged</cite></p></li>
+</ul>
+</li>
+<li><p><strong>Combination operators</strong> → Merge multiple streams</p>
+<ul class="simple">
+<li><p><cite>merge</cite>, <cite>combineLatest</cite>, <cite>forkJoin</cite>, <cite>concat</cite></p></li>
+</ul>
+</li>
+<li><p><strong>Error handling operators</strong></p>
+<ul class="simple">
+<li><p><cite>catchError</cite>, <cite>retry</cite>, <cite>retryWhen</cite></p></li>
+</ul>
+</li>
+<li><p><strong>Utility operators</strong></p>
+<ul class="simple">
+<li><p><cite>tap</cite>, <cite>finalize</cite>, <cite>delay</cite></p></li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>How Operators Work (Pipeable Operators)</p>
+<ul class="simple">
+<li><p>In modern RxJS (and Angular), operators are <strong>pipeable</strong> → used inside <cite>.pipe()</cite>.</p></li>
+</ul>
+<p>👉 Example (transform + filter):</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">map</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs/operators&#39;</span><span class="p">;</span>
+
+<span class="k">of</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">filter</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// allow only even numbers</span>
+<span class="w">    </span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span><span class="w">         </span><span class="c1">// multiply by 10</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">20</span>
+<span class="m">40</span>
+</pre></div>
+</div>
+</li>
+<li><p>RxJS Operators in Angular (Practical Use Cases)</p>
+<blockquote>
+<div><p>Example 1: HTTP Request Transformation</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">User</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">map</span><span class="p">(</span><span class="nx">users</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">user</span><span class="p">.</span><span class="nx">active</span><span class="p">)),</span><span class="w"> </span><span class="c1">// only active users</span>
+<span class="w">    </span><span class="nx">tap</span><span class="p">(</span><span class="nx">activeUsers</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Active Users:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">activeUsers</span><span class="p">))</span><span class="w"> </span><span class="c1">// log for debugging</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Example 2: Handling Search with <cite>debounceTime</cite></p>
+<ul class="simple">
+<li><p>Prevents making an HTTP call on every keystroke.</p></li>
+</ul>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">searchForm</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;query&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">valueChanges</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">300</span><span class="p">),</span><span class="w">              </span><span class="c1">// wait for typing to pause</span>
+<span class="w">    </span><span class="nx">distinctUntilChanged</span><span class="p">(),</span><span class="w">          </span><span class="c1">// ignore duplicate values</span>
+<span class="w">    </span><span class="nx">switchMap</span><span class="p">(</span><span class="nx">query</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`/api/search?q=</span><span class="si">${</span><span class="nx">query</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">results</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">searchResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">results</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Example 3: Combining Streams</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">combineLatest</span><span class="p">([</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">authService</span><span class="p">.</span><span class="nx">user$</span><span class="p">,</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">settingsService</span><span class="p">.</span><span class="nx">theme$</span>
+<span class="p">]).</span><span class="nx">subscribe</span><span class="p">(([</span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="nx">theme</span><span class="p">])</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;User:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Theme:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">theme</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>🔑 Summary</p>
+<ul class="simple">
+<li><p><strong>RxJS Operators</strong> = functions to <strong>manipulate observable streams</strong>.</p></li>
+<li><p>They are used inside <cite>.pipe()</cite> in Angular.</p></li>
+<li><p>Categories: Creation, Transformation, Filtering, Combination, Error handling, Utility.</p></li>
+<li><p>Angular heavily uses operators in <strong>HTTP calls, Reactive Forms, Routing events, async data flows</strong>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Q: Which are the operators you used in Angular from RxJS?</strong></p>
+<p>A: <strong>cheat sheet of the Top 10 Most Common RxJS Operators</strong> you’ll use in Angular apps, with short explanations and code examples.</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">map</span></code> → Transform each emitted value</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="o">&lt;</span><span class="nx">User</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;/api/users&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">map</span><span class="p">(</span><span class="nx">users</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">users</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">u</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">u</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span><span class="w"> </span><span class="c1">// extract just names</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">names</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">names</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter</span></code> → Allow only certain values</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">of</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">filter</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">val</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span><span class="w"> </span><span class="c1">// 2, 4</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tap</span></code> → Side effects (debugging/logging)</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/data&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">tap</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;HTTP Request Sent&#39;</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">switchMap</span></code> → Cancel previous observable, switch to new one (useful for HTTP search)</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">valueChanges</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">300</span><span class="p">),</span>
+<span class="w">    </span><span class="nx">distinctUntilChanged</span><span class="p">(),</span>
+<span class="w">    </span><span class="nx">switchMap</span><span class="p">(</span><span class="nx">query</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`/api/search?q=</span><span class="si">${</span><span class="nx">query</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">results</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">results</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mergeMap</span></code> → Flatten observables (all inner subscriptions run in parallel)</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">from</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">mergeMap</span><span class="p">(</span><span class="nx">id</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`/api/user/</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">concatMap</span></code> → Flatten observables (queue, one after another)</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">from</span><span class="p">([</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">concatMap</span><span class="p">(</span><span class="nx">id</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`/api/user/</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">debounceTime</span></code> → Wait before emitting (useful in forms/search)</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="nx">valueChanges</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">debounceTime</span><span class="p">(</span><span class="mf">500</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">value</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Typed:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distinctUntilChanged</span></code> → Ignore duplicate values</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">of</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">distinctUntilChanged</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">val</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1, 2, 3</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">take</span></code> / <code class="docutils literal notranslate"><span class="pre">takeUntil</span></code> → Limit or auto-unsubscribe</p>
+<blockquote>
+<div><div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">take</span><span class="p">(</span><span class="mf">3</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">val</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span><span class="w"> </span><span class="c1">// 0, 1, 2</span>
+</pre></div>
+</div>
+<p>With Angular component cleanup:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">private</span><span class="w"> </span><span class="nx">destroy$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Subject</span><span class="o">&lt;</span><span class="ow">void</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">takeUntil</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">))</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">val</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span>
+
+<span class="nx">ngOnDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">.</span><span class="nx">next</span><span class="p">();</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">destroy$</span><span class="p">.</span><span class="nx">complete</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">catchError</span></code> → Handle errors gracefully</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/maybe-fails&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="w">    </span><span class="nx">catchError</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">of</span><span class="p">([]);</span><span class="w"> </span><span class="c1">// return fallback observable</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>🔑 Quick Reference</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Use Case in Angular</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">map</span></code></p></td>
+<td><p>Transform data (e.g., extract fields from HTTP result)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">filter</span></code></p></td>
+<td><p>Ignore unwanted values</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tap</span></code></p></td>
+<td><p>Debugging/logging side effects</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">switchMap</span></code></p></td>
+<td><p>Live search, cancel previous requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mergeMap</span></code></p></td>
+<td><p>Parallel HTTP requests</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">concatMap</span></code></p></td>
+<td><p>Sequential HTTP requests</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">debounceTime</span></code></p></td>
+<td><p>Reduce frequency of events (forms, search)</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><code class="docutils literal notranslate"><span class="pre">distinctUntilChanged</span></code> | Ignore duplicate values (form inputs, router params)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">takeUntil</span></code></p></td>
+<td><p>Auto-unsubscribe on component destroy</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">catchError</span></code></p></td>
+<td><p>Handle API or stream errors</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Q: How to install RxJs?</strong></p>
+<p>A: Angular already includes <strong>RxJS</strong> by default because the framework itself depends on it.</p>
+<p>When you create a new Angular app with the CLI (<code class="docutils literal notranslate"><span class="pre">ng</span> <span class="pre">new</span> <span class="pre">my-app</span></code>), you’ll see <code class="docutils literal notranslate"><span class="pre">rxjs</span></code> listed in <code class="docutils literal notranslate"><span class="pre">package.json</span></code>.</p>
+<p>👉 If you want to update or reinstall it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>rxjs
+</pre></div>
+</div>
+<p>👉 To install a specific version (e.g., RxJS 7.8.1, which Angular 17 uses):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>rxjs@7.8.1
+</pre></div>
+</div>
+</li>
+<li><p><strong>Q: What is a Callback in JavaScript?</strong></p>
+<p>A: A callback is a function that you pass as an argument to another function, so that it can be executed later (after some task is completed).</p>
+<p><strong>In short:</strong> <em>“Call me back when you’re done.”</em></p>
+<ol class="arabic">
+<li><p>Simple Example (Synchronous Callback)</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">name</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">callback</span><span class="p">();</span><span class="w"> </span><span class="c1">// call the function passed in</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">sayBye</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Goodbye!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Passing sayBye as a callback</span>
+<span class="nx">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">sayBye</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Hello Alice
+Goodbye!
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">sayBye</span></code> is the callback function.</p>
+</div></blockquote>
+</li>
+<li><p>Asynchronous Callback (Real Use Case: setTimeout)</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Start&quot;</span><span class="p">);</span>
+
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;This runs later (async)&quot;</span><span class="p">);</span>
+<span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;End&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Start
+End
+This runs later (async)
+</pre></div>
+</div>
+<p>Here, the arrow function inside <code class="docutils literal notranslate"><span class="pre">setTimeout</span></code> is a callback executed after 2 seconds.</p>
+</div></blockquote>
+</li>
+<li><p>Why Do We Need Callbacks?</p>
+<blockquote>
+<div><p><strong>Event handling</strong> – Reacting to user actions.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;btn&quot;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Button clicked!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p><em>(Here the function is a callback for the click event.)</em></p>
+<p><strong>Async operations</strong> – Handling results after time-consuming tasks like API calls, file reads, or timers.</p>
+</div></blockquote>
+</li>
+<li><p>Callback Hell (Problem with Callbacks)</p>
+<blockquote>
+<div><p>When you nest too many callbacks, code becomes hard to read and maintain:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">getUser</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getOrders</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">orders</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">getOrderDetails</span><span class="p">(</span><span class="nx">orders</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="w"> </span><span class="nx">details</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">details</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>This deeply nested style is called <em>callback hell</em>.</p>
+</div></blockquote>
+</li>
+<li><p>Summary</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>A callback is a function passed into another function to be executed later.</p></li>
+<li><p>Used in both synchronous (function execution order) and asynchronous (API calls, events, timers) contexts.</p></li>
+<li><p>They can lead to callback hell, which is why <strong>Promises</strong> and <strong>async/await</strong> were introduced to make async code cleaner.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Q: What is Promises in Javascript?</strong></p>
+<blockquote>
+<div><p>A: Promises and async/await in JavaScript</p>
+<ol class="arabic">
+<li><p>Promises in JavaScript</p>
+<blockquote>
+<div><p>A <strong>Promise</strong> represents a value that may be available <strong>now, later, or never</strong>.
+It has 3 states:</p>
+<ul class="simple">
+<li><p><strong>Pending</strong> → initial state (waiting)</p></li>
+<li><p><strong>Fulfilled</strong> → completed successfully (resolved)</p></li>
+<li><p><strong>Rejected</strong> → failed (error)</p></li>
+</ul>
+<p>Example: Promise</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Data fetched!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Error fetching data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// Using the promise</span>
+<span class="nx">fetchData</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">))</span><span class="w">   </span><span class="c1">// &quot;Data fetched!&quot;</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span><span class="w"> </span><span class="c1">// If rejected</span>
+</pre></div>
+</div>
+<p>👉 <code class="docutils literal notranslate"><span class="pre">.then()</span></code> handles success, <code class="docutils literal notranslate"><span class="pre">.catch()</span></code> handles errors.</p>
+</div></blockquote>
+</li>
+<li><p>async/await in JavaScript</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">async/await</span></code> is <strong>syntactic sugar</strong> built on top of Promises.
+It allows you to write asynchronous code that <strong>looks synchronous</strong>, making it easier to read.</p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">async</span></code> function <strong>always returns a Promise</strong>.</p></li>
+<li><p>Inside it, <code class="docutils literal notranslate"><span class="pre">await</span></code> pauses execution until the Promise is resolved or rejected.</p></li>
+</ul>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Data fetched!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">reject</span><span class="p">(</span><span class="s2">&quot;Error fetching data&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">2000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">}</span>
+
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">();</span><span class="w"> </span><span class="c1">// wait until resolved</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span><span class="w">              </span><span class="c1">// &quot;Data fetched!&quot;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span><span class="w">             </span><span class="c1">// handles rejection</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">getData</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Real Use Case: API Call with fetch</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Using Promise</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/posts/1&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Using async/await</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getPost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/posts/1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">getPost</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>👉 Same thing, but <code class="docutils literal notranslate"><span class="pre">async/await</span></code> looks cleaner and easier to follow.</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Promises vs async/await</p>
+<blockquote>
+<div><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p><strong>Promise</strong></p></th>
+<th class="head"><p><strong>async/await</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Syntax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.then()</span></code>, <code class="docutils literal notranslate"><span class="pre">.catch()</span></code></p></td>
+<td><p>Looks synchronous with <code class="docutils literal notranslate"><span class="pre">await</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Readability</p></td>
+<td><p>Can get messy with chains</p></td>
+<td><p>More readable, structured</p></td>
+</tr>
+<tr class="row-even"><td><p>Error handling</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.catch()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">try...catch</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Parallel execution</p></td>
+<td><p>Easy with <code class="docutils literal notranslate"><span class="pre">Promise.all()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">Promise.all()</span></code> also works</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p>Summary</p>
+<ul class="simple">
+<li><p><strong>Promises</strong> handle async results using <code class="docutils literal notranslate"><span class="pre">.then()</span></code> and <code class="docutils literal notranslate"><span class="pre">.catch()</span></code>.</p></li>
+<li><p><strong>async/await</strong> is a cleaner way to work with Promises.</p></li>
+<li><p>Both solve <strong>callback hell</strong> and make async programming manageable.</p></li>
+</ul>
+</li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>Q: Difference between Callbacks, Promises and Observables of RxJs?</strong></p>
+<p>A:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Callbacks vs Promises vs Observables</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p><strong>Callbacks</strong></p></th>
+<th class="head"><p><strong>Promises</strong></p></th>
+<th class="head"><p><strong>Observables (RxJS)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Definition</p></td>
+<td><p>Function passed into another function to be executed later.</p></td>
+<td><p>Represents a single future value (success or failure).</p></td>
+<td><p>Represents a stream of values (0, 1, many, or infinite).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Execution</p></td>
+<td><p>Manual invocation inside the function.</p></td>
+<td><p>Eager: starts immediately when created.</p></td>
+<td><p>Lazy: nothing happens until <code class="docutils literal notranslate"><span class="pre">subscribe()</span></code> is called.</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of Values</p></td>
+<td><p>Many, but requires nesting.</p></td>
+<td><p>Only one value (or error).</p></td>
+<td><p>Multiple values over time.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cancellation</p></td>
+<td><p>Hard to manage.</p></td>
+<td><p>Not cancellable once started.</p></td>
+<td><p>Cancellable via <code class="docutils literal notranslate"><span class="pre">unsubscribe()</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Error Handling</p></td>
+<td><p>Must be handled manually in callback logic.</p></td>
+<td><p>Handled via <code class="docutils literal notranslate"><span class="pre">.catch()</span></code>.</p></td>
+<td><p>Handled via <code class="docutils literal notranslate"><span class="pre">error</span></code> callback or operators.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Readability</p></td>
+<td><p>Can lead to “callback hell” with nested functions.</p></td>
+<td><p>Cleaner than callbacks, but still chained.</p></td>
+<td><p>More powerful but requires learning operators.</p></td>
+</tr>
+<tr class="row-even"><td><p>Use Cases</p></td>
+<td><p>Event listeners, timers, simple async tasks.</p></td>
+<td><p>Single async operation like API request, file read.</p></td>
+<td><p>Streams of events, live updates, WebSockets, user input streams.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Q: What is Push/Reactive vs Pull/Imperative?</strong></p>
+<p>A: Push (Reactive) vs Pull (Imperative)</p>
+<ol class="arabic">
+<li><p>Pull / Imperative Model</p>
+<blockquote>
+<div><p>👉 <strong>You (the consumer) ask for the data when you need it.</strong>
+The <strong>consumer controls</strong> when and how values are received.</p>
+<ul class="simple">
+<li><p>The <strong>producer is passive</strong> and only provides a value when requested.</p></li>
+<li><p>The <strong>consumer pulls</strong> values.</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Function example</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">getValue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mf">42</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">getValue</span><span class="p">();</span><span class="w"> </span><span class="c1">// You &quot;pull&quot; the value</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span><span class="w">       </span><span class="c1">// 42</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Iterator example</span>
+<span class="kd">function</span><span class="o">*</span><span class="w"> </span><span class="nx">numbers</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">yield</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">yield</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span>
+<span class="w">    </span><span class="k">yield</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// 2</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Push / Reactive Model</p>
+<blockquote>
+<div><p>👉 <strong>The producer sends data whenever it’s ready.</strong>
+The <strong>producer controls</strong> when and how values are delivered.</p>
+<ul class="simple">
+<li><p>The <strong>consumer subscribes</strong> and waits.</p></li>
+<li><p>The <strong>producer pushes</strong> values to the consumer.</p></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Callback example</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">callback</span><span class="p">(</span><span class="s2">&quot;Data ready!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span><span class="w"> </span><span class="c1">// &quot;Data ready!&quot; is pushed</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Promise example</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://jsonplaceholder.typicode.com/posts/1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Observable (RxJS) example</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">interval</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;rxjs&#39;</span><span class="p">;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">obs$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">interval</span><span class="p">(</span><span class="mf">1000</span><span class="p">);</span><span class="w"> </span><span class="c1">// emits 0,1,2,3...</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">subscription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">obs$</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">val</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">val</span><span class="p">));</span>
+
+<span class="c1">// Later you can stop it</span>
+<span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">subscription</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">(),</span><span class="w"> </span><span class="mf">5000</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Key Difference (Summary)</p></li>
+</ol>
+<p>A:</p>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Push vs Pull</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 26.3%" />
+<col style="width: 36.8%" />
+<col style="width: 36.8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p><strong>Pull / Imperative</strong></p></th>
+<th class="head"><p><strong>Push / Reactive</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Who controls flow?</p></td>
+<td><p>Consumer asks for data</p></td>
+<td><p>Producer sends data when ready</p></td>
+</tr>
+<tr class="row-odd"><td><p>Consumer’s role</p></td>
+<td><p>Actively requests values</p></td>
+<td><p>Subscribes and waits for values</p></td>
+</tr>
+<tr class="row-even"><td><p>Producer’s role</p></td>
+<td><p>Passive (waits for request)</p></td>
+<td><p>Active (decides when to emit)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Examples</p></td>
+<td><p>Functions, Iterators</p></td>
+<td><p>Callbacks, Promises, Observables</p></td>
+</tr>
+<tr class="row-even"><td><p>Number of values</p></td>
+<td><p>Usually one at a time</p></td>
+<td><p>One, many, or infinite over time</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p>Summary</p>
+<ul class="simple">
+<li><p><strong>Pull</strong> = Consumer is in charge → “Give me data when I ask.”</p></li>
+<li><p><strong>Push</strong> = Producer is in charge → “Here’s data whenever I have it.”</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="proxyServer.html" class="btn btn-neutral float-left" title="Proxy Server Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../node/index.html" class="btn btn-neutral float-right" title="Node.js" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
