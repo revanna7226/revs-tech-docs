@@ -30,7 +30,7 @@ In the above configuration:
 Configure proxy configuration in “serve” section of `angular.json` file.
 
 .. code-block:: javascript
-    // angular.json
+
     “serve”: {
         “builder”: “@angular-devkit/build-angular:dev-server”,
         “options”: {

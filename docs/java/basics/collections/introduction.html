@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="List Interface" href="list.html" />
+    <link rel="prev" title="Core Java Concepts" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Core Java Concepts</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collections</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#java-collections-interfaces">Java Collections Interfaces</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#collection-interfaces-and-classes">Collection Interfaces and Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#map-interface">Map Interface</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#map-interfaces-and-classes">Map Interfaces and Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#collections-vs-map-in-java">Collections vs Map in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="list.html">List Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="set.html">Set Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map.html">Map Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interview/index.html">Java Interview Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spring/index.html">Spring Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aitools/index.html">AI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Core Java Concepts</a></li>
+      <li class="breadcrumb-item active">Collections</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/java/basics/collections/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collections">
+<h1>Collections<a class="headerlink" href="#collections" title="Link to this heading"></a></h1>
+<p>A collection in Java is a group of individual objects that are treated as a single unit. In Java, a separate framework named the “Collection Framework” was defined in JDK 1.2, which contains all the Java Collection Classes and interfaces.</p>
+<p>In Java, the Collection interface (java.util.Collection) and Map interface (java.util.Map) are the two main “root” interfaces of Java collection classes.</p>
+<p><strong>Fundamentals of Java Collection Framework</strong></p>
+<ul class="simple">
+<li><p>It can resize on it’s own when elements are added or removed.</p></li>
+<li><p>Any instance/object added to collection is casted to Object class and stored in the collection.</p></li>
+<li><p>When an instance/object is retrieved from the collection, it needs to be cast back to its original type.</p></li>
+<li><p>It can hold heterogeneous objects (objects of different types).</p></li>
+</ul>
+<p><strong>Needed for a Collection Framework</strong></p>
+<p>Before the Collection Framework (before JDK 1.2), Java used Arrays, Vectors, and Hashtables to group objects, but they lacked a common interface. Each had a separate implementation, making usage inconsistent and harder for developers to learn and maintain.</p>
+<p><strong>Advantages of the Java Collection Framework</strong></p>
+<p>Since the lack of a collection framework gave rise many disadvantages, the following are the advantages of the collection framework.</p>
+<ol class="arabic simple">
+<li><p>Consistent API: Interfaces like List, Set, and Map have common methods across classes (ArrayList, LinkedList, etc.).</p></li>
+<li><p>Less Coding Effort: Developers focus on usage, not designing data structures—supports OOP abstraction.</p></li>
+<li><p>Better Performance: Offers fast, reliable implementations of data structures, improving speed and quality of code.</p></li>
+</ol>
+<section id="java-collections-interfaces">
+<h2>Java Collections Interfaces<a class="headerlink" href="#java-collections-interfaces" title="Link to this heading"></a></h2>
+<p>The collection framework contains multiple interfaces where every interface is used to store a specific type of data. The following are the interfaces present in the framework.</p>
+<section id="collection-interfaces-and-classes">
+<h3>Collection Interfaces and Classes<a class="headerlink" href="#collection-interfaces-and-classes" title="Link to this heading"></a></h3>
+<p>The Collection interface extends Iterable and serves as the root, defining common methods inherited by all collection classes. The collection framework contains multiple interfaces where every interface is used to store a specific type of data.</p>
+<ul class="simple">
+<li><p>Iterable (root interface)</p>
+<ul>
+<li><p>Collection (extends Iterable)</p>
+<ul>
+<li><p>List (ordered, allows duplicates)</p>
+<ul>
+<li><p>ArrayList</p></li>
+<li><p>LinkedList</p></li>
+<li><p>Vector</p>
+<ul>
+<li><p>Stack</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Set (no duplicates, unordered/ordered depending on implementation)</p>
+<ul>
+<li><p>HashSet</p>
+<ul>
+<li><p>LinkedHashSet</p></li>
+</ul>
+</li>
+<li><p>TreeSet</p></li>
+</ul>
+</li>
+<li><p>Queue (FIFO order, but variations possible)</p>
+<ul>
+<li><p>PriorityQueue</p></li>
+<li><p>ArrayDeque</p></li>
+<li><p>LinkedList (also implements List)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol class="arabic">
+<li><p><strong>Iterable Interface</strong></p>
+<p>Iterable interface is the root of the Collection Framework. It is extended by the Collection interface, making all collections inherently iterable. Its primary purpose is to provide an Iterator to traverse elements, defined by its single abstract method iterator().</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Iterable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">iterator</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Collection Interface</strong></p>
+<p>Collection interface extends Iterable and serves as the foundation of the Collection Framework.
+It defines common methods like add(), remove(), and clear(), ensuring consistency and reusability across all collection implementations.</p>
+</li>
+<li><p><strong>List Interface</strong></p>
+<p>List interface extends the Collection interface and represents an ordered collection that allows duplicate elements.
+It is implemented by classes like ArrayList, Vector, and Stack.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">List</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">al</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">List</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">List</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="c1">// Where T is the type of the object</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Queue Interface</strong></p>
+<p>The Queue interface follows the FIFO (First-In, First-Out) principle, where elements are processed in the order they are added—similar to a real-world queue (e.g., ticket booking). It is used when order matters. Classes like PriorityQueue and ArrayDeque implement this interface, allowing queue objects to be instantiated accordingly.</p>
+<p>For example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Queue</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Queue</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>The most frequently used implementation of the queue interface is the PriorityQueue.</p>
+</li>
+<li><p><strong>Deque Interface</strong>
+Deque interface extends Queue and allows insertion and removal of elements from both ends. It is implemented by classes like ArrayDeque, which can be used to instantiate a Deque object.</p>
+<p>For example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Deque</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>The class which implements the deque interface is ArrayDeque.</p>
+</li>
+<li><p><strong>Set Interface</strong></p>
+<p>Set interface represents an unordered collection that stores only unique elements (no duplicates). It’s implemented by classes like HashSet, TreeSet, and LinkedHashSet, and can be instantiated using any of these
+For example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Set</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedHashSet</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Set</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Sorted Set Interface</strong></p>
+<p>Sorted Set interface extends Set and maintains elements in sorted order. It includes additional methods for range views and ordering. It is implemented by the TreeSet class.</p>
+<p>For example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">SortedSet</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeSet</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="p">();</span>
+<span class="n">Where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">object</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>The class which implements the sorted set interface is TreeSet.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="map-interface">
+<h2>Map Interface<a class="headerlink" href="#map-interface" title="Link to this heading"></a></h2>
+<p>Map is a data structure that supports the key-value pair for mapping the data.
+This interface doesn’t support duplicate keys because the same key cannot have multiple mappings,
+however, it allows duplicate values in different keys.
+A map is useful if there is data and we wish to perform operations on the basis of the key.
+This map interface is implemented by various classes like HashMap, TreeMap, etc.
+Since all the subclasses implement the map, we can instantiate a map object with any of these classes.</p>
+<section id="map-interfaces-and-classes">
+<h3>Map Interfaces and Classes<a class="headerlink" href="#map-interfaces-and-classes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Map (key–value pairs, no duplicate keys)</p>
+<ul>
+<li><p>HashMap</p>
+<ul>
+<li><p>LinkedHashMap</p></li>
+</ul>
+</li>
+<li><p>Hashtable</p></li>
+<li><p>TreeMap</p></li>
+<li><p>WeakHashMap</p></li>
+<li><p>IdentityHashMap</p></li>
+<li><p>ConcurrentHashMap</p></li>
+</ul>
+</li>
+<li><p>SortedMap (sub-interface of Map)</p>
+<ul>
+<li><p>TreeMap</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="collections-vs-map-in-java">
+<h1>Collections vs Map in Java<a class="headerlink" href="#collections-vs-map-in-java" title="Link to this heading"></a></h1>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Difference between Collection and Map</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 45.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Collection</p></th>
+<th class="head"><p>Map</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Definition</p></td>
+<td><p>A group of individual objects treated as a single unit.</p></td>
+<td><p>An object that maps keys to values (key–value pairs).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interface</p></td>
+<td><p>Root interface is <code class="docutils literal notranslate"><span class="pre">Collection</span></code> (extends <code class="docutils literal notranslate"><span class="pre">Iterable</span></code>).</p></td>
+<td><p>Root interface is <code class="docutils literal notranslate"><span class="pre">Map</span></code> (separate from <code class="docutils literal notranslate"><span class="pre">Collection</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>Elements</p></td>
+<td><p>Stores only elements (objects).</p></td>
+<td><p>Stores entries (key–value pairs).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Uniqueness</p></td>
+<td><p>Allows duplicate elements depending on implementation (e.g., <code class="docutils literal notranslate"><span class="pre">List</span></code> allows duplicates, <code class="docutils literal notranslate"><span class="pre">Set</span></code> does not).</p></td>
+<td><p>Keys must be unique, but values can be duplicated.</p></td>
+</tr>
+<tr class="row-even"><td><p>Access</p></td>
+<td><p>Access elements directly (via index in <code class="docutils literal notranslate"><span class="pre">List</span></code> or iteration in <code class="docutils literal notranslate"><span class="pre">Set</span></code>/<code class="docutils literal notranslate"><span class="pre">Queue</span></code>).</p></td>
+<td><p>Access values using keys.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Examples</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">List</span></code> (ArrayList, LinkedList), <code class="docutils literal notranslate"><span class="pre">Set</span></code> (HashSet, TreeSet), <code class="docutils literal notranslate"><span class="pre">Queue</span></code> (PriorityQueue).</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashMap</span></code>, <code class="docutils literal notranslate"><span class="pre">TreeMap</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedHashMap</span></code>, <code class="docutils literal notranslate"><span class="pre">Hashtable</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Null Handling</p></td>
+<td><p>Many implementations allow multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values (e.g., <code class="docutils literal notranslate"><span class="pre">List</span></code>).</p></td>
+<td><p>At most one <code class="docutils literal notranslate"><span class="pre">null</span></code> key allowed in <code class="docutils literal notranslate"><span class="pre">HashMap</span></code>; multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values allowed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Usage</p></td>
+<td><p>Suitable when only values are needed without unique keys.</p></td>
+<td><p>Suitable when data must be stored and retrieved using unique keys.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Core Java Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="list.html" class="btn btn-neutral float-right" title="List Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

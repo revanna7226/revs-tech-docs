@@ -6,6 +6,7 @@ Revs Notes
    :caption: Topics 
    
    docs/python/index
+   docs/cloud/index
    docs/database/index
    docs/ide/index
    docs/java/index

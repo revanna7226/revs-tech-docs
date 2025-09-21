@@ -51,6 +51,7 @@
               <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">Cloud</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../database/index.html">Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ide/index.html">IDEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../java/index.html">Java</a></li>
@@ -66,10 +67,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../node/index.html">Node.js</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../webui/index.html">Web technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../aitools/index.html">AI Tools</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../udemy/index.html">Udemy Courses</a></li>
 </ul>
 
         </div>
@@ -126,6 +125,21 @@
 </dd>
 </dl>
 <p>Configure proxy configuration in “serve” section of <cite>angular.json</cite> file.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="err">“</span><span class="nx">serve</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="err">“</span><span class="nx">builder</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="err">“@</span><span class="nx">angular</span><span class="o">-</span><span class="nx">devkit</span><span class="o">/</span><span class="nx">build</span><span class="o">-</span><span class="nx">angular</span><span class="o">:</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span><span class="err">”</span><span class="p">,</span>
+<span class="w">    </span><span class="err">“</span><span class="nx">options</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">“</span><span class="nx">browserTarget</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="err">“</span><span class="nx">proxy</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="nx">angular</span><span class="o">:</span><span class="nx">build</span><span class="err">”</span><span class="p">,</span>
+<span class="w">        </span><span class="err">“</span><span class="nx">proxyConfig</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="err">“</span><span class="nx">proxy</span><span class="p">.</span><span class="nx">conf</span><span class="p">.</span><span class="nx">js</span><span class="err">”</span><span class="p">,</span>
+<span class="w">        </span><span class="err">“</span><span class="nx">port</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="mf">4200</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">“</span><span class="nx">configurations</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">“</span><span class="nx">production</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="err">“</span><span class="nx">browserTarget</span><span class="err">”</span><span class="o">:</span><span class="w"> </span><span class="err">“</span><span class="nx">proxy</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="nx">angular</span><span class="o">:</span><span class="nx">build</span><span class="o">:</span><span class="nx">production</span><span class="err">”</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 

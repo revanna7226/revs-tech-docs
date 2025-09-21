@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>List Interface &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Set Interface" href="set.html" />
+    <link rel="prev" title="Collections" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Core Java Concepts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#collections-vs-map-in-java">Collections vs Map in Java</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">List Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arraylist">ArrayList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vector">Vector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#linkedlist">LinkedList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arraylist-vs-vector-vs-linkedlist">ArrayList vs Vector vs LinkedList</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="set.html">Set Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="map.html">Map Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../interview/index.html">Java Interview Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../spring/index.html">Spring Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aitools/index.html">AI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Core Java Concepts</a></li>
+      <li class="breadcrumb-item active">List Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/java/basics/collections/list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="list-interface">
+<h1>List Interface<a class="headerlink" href="#list-interface" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>A List is an ordered collection (also known as a sequence).</p></li>
+<li><p>built on Linear data structure.</p></li>
+<li><p>Lists can contain duplicate elements.</p></li>
+<li><p>List allows null elements.</p></li>
+<li><p>Elements in a List prserves the order of insertion and can be accessed by their integer index (position in the list).</p></li>
+<li><p>Lists can be resized dynamically as elements are added or removed.</p></li>
+<li><p>Lists can be iterated using loops or iterators.</p></li>
+<li><p>Lists can be converted to arrays and vice versa.</p></li>
+<li><p>Lists can be sorted and shuffled using utility methods from the Collections class.</p></li>
+<li><p>Lists can be synchronized for thread-safe operations using Collections.synchronizedList().</p></li>
+<li><p>Lists can be created using the List.of() method for immutable lists in Java 9 and later versions.</p></li>
+</ul>
+<section id="arraylist">
+<h2>ArrayList<a class="headerlink" href="#arraylist" title="Link to this heading"></a></h2>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p><code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> is a resizable array implementation of the <code class="docutils literal notranslate"><span class="pre">List</span></code> interface
+in the Java Collection Framework. Unlike arrays, the size of an
+<code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> grows dynamically as elements are added or removed.</p>
+</aside>
+<aside class="topic">
+<p class="topic-title">Key Features</p>
+<ul class="simple">
+<li><p>Implements the <code class="docutils literal notranslate"><span class="pre">List</span></code> interface.</p></li>
+<li><p>Allows <strong>duplicate elements</strong>.</p></li>
+<li><p>Maintains <strong>insertion order</strong>.</p></li>
+<li><p>ArrayList class implements 3 marker interfaces: <strong>Serializable</strong>, <strong>Cloneable</strong>, and <strong>RandomAccess</strong>.</p></li>
+<li><p>Allows <strong>null elements</strong>.</p></li>
+<li><p>Provides <strong>random access</strong> (like arrays).</p></li>
+<li><p>Not synchronized (use <code class="docutils literal notranslate"><span class="pre">Collections.synchronizedList</span></code> for thread-safety).</p></li>
+<li><p>Default capacity is <strong>10</strong>, grows automatically when needed. NewCapacity = (OldCapacity * 3)/2 + 1.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Hierarchy</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Collection</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">List</span></code></dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayList</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Constructors</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayList()</span></code> → Creates an empty list with default capacity (10).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayList(int</span> <span class="pre">initialCapacity)</span></code> → Creates an empty list with the specified initial capacity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayList(Collection</span> <span class="pre">c)</span></code> → Creates a list containing the elements of the specified collection.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Code Examples</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ArrayListExample</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create an ArrayList</span>
+<span class="w">        </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fruits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add elements</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Banana&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Mango&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Banana&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// allows duplicates</span>
+
+<span class="w">        </span><span class="c1">// Insert &quot;Cherry&quot; at index 2 (between Banana and Mango)</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cherry&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Access elements</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;First fruit: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fruits</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Iterate using for-each</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fruit</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">fruits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">fruit</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Remove element</span>
+<span class="w">        </span><span class="n">fruits</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Mango&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;After removal: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fruits</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Size of ArrayList</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Size: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fruits</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">First</span> <span class="n">fruit</span><span class="p">:</span> <span class="n">Apple</span>
+<span class="n">Apple</span>
+<span class="n">Banana</span>
+<span class="n">Cherry</span>
+<span class="n">Mango</span>
+<span class="n">Banana</span>
+<span class="n">After</span> <span class="n">removal</span><span class="p">:</span> <span class="p">[</span><span class="n">Apple</span><span class="p">,</span> <span class="n">Banana</span><span class="p">,</span> <span class="n">Cherry</span><span class="p">,</span>  <span class="n">Banana</span><span class="p">]</span>
+<span class="n">Size</span><span class="p">:</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Advantages</p>
+<ul class="simple">
+<li><p>Dynamic resizing.</p></li>
+<li><p>Fast random access (<code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for <code class="docutils literal notranslate"><span class="pre">get</span></code>).</p></li>
+<li><p>Easy to use and widely supported.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Limitations</p>
+<ul class="simple">
+<li><p>Insertion and deletion in the middle is slower (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>).</p></li>
+<li><p>Not synchronized (must be handled explicitly in multithreaded environments).</p></li>
+<li><p>If ArrayList grows beyond its capacity, it creates a new array and copies all elements, which can be costly in terms of performance.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">When to Use</p>
+<ul class="simple">
+<li><p>When you need a dynamic array that can grow and shrink.</p></li>
+<li><p>When you need fast random access to elements.</p></li>
+<li><p>When you need to maintain the order of elements and allow duplicates.</p></li>
+<li><p>When you do not require frequent insertions and deletions in the middle of the list.</p></li>
+<li><p>When you are working in a single-threaded environment or can manage synchronization manually.</p></li>
+<li><p>When you need to frequently convert between arrays and lists.</p></li>
+</ul>
+</aside>
+</section>
+<section id="vector">
+<h2>Vector<a class="headerlink" href="#vector" title="Link to this heading"></a></h2>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p><code class="docutils literal notranslate"><span class="pre">Vector</span></code> is a legacy class in the Java Collection Framework. It implements
+a <strong>growable array</strong> of objects, similar to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code>, but with one
+major difference — <code class="docutils literal notranslate"><span class="pre">Vector</span></code> is <strong>synchronized</strong>, making it thread-safe
+for multi-threaded environments.</p>
+</aside>
+<aside class="topic">
+<p class="topic-title">Key Features</p>
+<ul class="simple">
+<li><p>Implements the <code class="docutils literal notranslate"><span class="pre">List</span></code> interface.</p></li>
+<li><p>Allows <strong>duplicate elements</strong>.</p></li>
+<li><p>Maintains <strong>insertion order</strong>.</p></li>
+<li><p>Provides <strong>random access</strong> like arrays.</p></li>
+<li><p><strong>Synchronized</strong> → safe for multithreaded use.</p></li>
+<li><p>Slower than <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> in single-threaded applications due to synchronization overhead.</p></li>
+<li><p>Default capacity is <strong>10</strong>, doubles automatically when capacity is exceeded.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Hierarchy</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Collection</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">List</span></code></dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vector</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Constructors</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Vector()</span></code> → Creates an empty vector with initial capacity 10.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vector(int</span> <span class="pre">initialCapacity)</span></code> → Creates an empty vector with specified capacity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vector(int</span> <span class="pre">initialCapacity,</span> <span class="pre">int</span> <span class="pre">capacityIncrement)</span></code> → Creates a vector with specified capacity and increment step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vector(Collection</span> <span class="pre">c)</span></code> → Creates a vector containing the elements of the specified collection.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Code Example</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Vector</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VectorExample</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create a Vector</span>
+<span class="w">        </span><span class="n">Vector</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">languages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add elements</span>
+<span class="w">        </span><span class="n">languages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Java&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">languages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Python&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">languages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;C++&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">languages</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Java&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// allows duplicates</span>
+
+<span class="w">        </span><span class="c1">// Access element</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;First Language: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">languages</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+
+<span class="w">        </span><span class="c1">// Iterate using for-each</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">lang</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">languages</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lang</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Remove element</span>
+<span class="w">        </span><span class="n">languages</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;C++&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;After removal: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">languages</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Check capacity and size</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Capacity: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">languages</span><span class="p">.</span><span class="na">capacity</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Size: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">languages</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">First</span> <span class="n">Language</span><span class="p">:</span> <span class="n">Java</span>
+<span class="n">Java</span>
+<span class="n">Python</span>
+<span class="n">C</span><span class="o">++</span>
+<span class="n">Java</span>
+<span class="n">After</span> <span class="n">removal</span><span class="p">:</span> <span class="p">[</span><span class="n">Java</span><span class="p">,</span> <span class="n">Python</span><span class="p">,</span> <span class="n">Java</span><span class="p">]</span>
+<span class="n">Capacity</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">Size</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Use Cases</p>
+<ul class="simple">
+<li><p><strong>Multi-threaded applications</strong> where thread-safety is required.</p></li>
+<li><p>Legacy applications built before <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> (pre-Java 2).</p></li>
+<li><p>When frequent random access is needed along with synchronization.</p></li>
+<li><p>Suitable for small datasets in concurrent environments.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Advantages</p>
+<ul class="simple">
+<li><p>Thread-safe due to synchronization.</p></li>
+<li><p>Maintains insertion order.</p></li>
+<li><p>Provides dynamic resizing.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Limitations</p>
+<ul class="simple">
+<li><p>Slower compared to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> because of synchronization overhead.</p></li>
+<li><p>Considered a <strong>legacy class</strong>; in modern applications, prefer
+<code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> (single-threaded) or <code class="docutils literal notranslate"><span class="pre">CopyOnWriteArrayList</span></code> (thread-safe alternative).</p></li>
+</ul>
+</aside>
+</section>
+<section id="linkedlist">
+<h2>LinkedList<a class="headerlink" href="#linkedlist" title="Link to this heading"></a></h2>
+<aside class="topic">
+<p class="topic-title">Overview</p>
+<p><code class="docutils literal notranslate"><span class="pre">LinkedList</span></code> is a part of the Java Collection Framework. It implements
+the <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Deque</span></code> interfaces, providing a <strong>doubly-linked list</strong>
+data structure. Unlike <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> (which uses a dynamic array),
+<code class="docutils literal notranslate"><span class="pre">LinkedList</span></code> uses nodes, where each node stores data and references to
+the next and previous nodes.</p>
+</aside>
+<aside class="topic">
+<p class="topic-title">Key Features</p>
+<ul class="simple">
+<li><p>Implements <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Deque</span></code> interfaces.</p></li>
+<li><p>Allows <strong>duplicate elements</strong>.</p></li>
+<li><p>Maintains <strong>insertion order</strong>.</p></li>
+<li><p>Provides efficient insertion and deletion operations (<code class="docutils literal notranslate"><span class="pre">O(1)</span></code> for adding/removing at ends).</p></li>
+<li><p>Slower random access compared to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code> for <code class="docutils literal notranslate"><span class="pre">get</span></code>).</p></li>
+<li><p>Can be used as a <strong>List</strong>, <strong>Queue</strong>, or <strong>Deque</strong>.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Hierarchy</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Iterable</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Collection</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">List</span></code></dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinkedList</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Queue</span></code></dt><dd><ul>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Deque</span></code></dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinkedList</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Constructors</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LinkedList()</span></code> → Creates an empty linked list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinkedList(Collection</span> <span class="pre">c)</span></code> → Creates a linked list containing the elements of the specified collection.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Code Example</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.LinkedList</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LinkedListExample</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Create a LinkedList</span>
+<span class="w">        </span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Add elements</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Dog&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Cat&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Horse&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;Dog&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// allows duplicates</span>
+
+<span class="w">        </span><span class="c1">// Add elements at first and last</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">addFirst</span><span class="p">(</span><span class="s">&quot;Elephant&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="s">&quot;Tiger&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Access elements</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;First animal: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">animals</span><span class="p">.</span><span class="na">getFirst</span><span class="p">());</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Last animal: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">animals</span><span class="p">.</span><span class="na">getLast</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Iterate using for-each</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">animal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">animals</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">animal</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Remove elements</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="s">&quot;Cat&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">removeFirst</span><span class="p">();</span>
+<span class="w">        </span><span class="n">animals</span><span class="p">.</span><span class="na">removeLast</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;After removals: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">animals</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Size of LinkedList</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Size: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">animals</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">First</span> <span class="n">animal</span><span class="p">:</span> <span class="n">Elephant</span>
+<span class="n">Last</span> <span class="n">animal</span><span class="p">:</span> <span class="n">Tiger</span>
+<span class="n">Elephant</span>
+<span class="n">Dog</span>
+<span class="n">Cat</span>
+<span class="n">Horse</span>
+<span class="n">Dog</span>
+<span class="n">Tiger</span>
+<span class="n">After</span> <span class="n">removals</span><span class="p">:</span> <span class="p">[</span><span class="n">Dog</span><span class="p">,</span> <span class="n">Horse</span><span class="p">,</span> <span class="n">Dog</span><span class="p">]</span>
+<span class="n">Size</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</aside>
+<aside class="topic">
+<p class="topic-title">Use Cases</p>
+<ul class="simple">
+<li><p>When frequent insertions and deletions are required (especially in the middle of the list).</p></li>
+<li><p>Useful for <strong>queue</strong> and <strong>deque</strong> implementations.</p></li>
+<li><p>Suitable for applications where traversal is mostly sequential rather than random access.</p></li>
+<li><p>Can be used to implement <strong>stacks, queues, and double-ended queues</strong>.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Advantages</p>
+<ul class="simple">
+<li><p>Faster insertions and deletions compared to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code>.</p></li>
+<li><p>Can function as both <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Deque</span></code>.</p></li>
+<li><p>No memory wastage like array resizing.</p></li>
+</ul>
+</aside>
+<aside class="topic">
+<p class="topic-title">Limitations</p>
+<ul class="simple">
+<li><p>Slower random access compared to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> (must traverse nodes).</p></li>
+<li><p>Higher memory overhead (extra references for previous and next nodes).</p></li>
+<li><p>Not synchronized (must use <code class="docutils literal notranslate"><span class="pre">Collections.synchronizedList</span></code> or
+concurrent alternatives for thread safety).</p></li>
+</ul>
+</aside>
+</section>
+<section id="arraylist-vs-vector-vs-linkedlist">
+<h2>ArrayList vs Vector vs LinkedList<a class="headerlink" href="#arraylist-vs-vector-vs-linkedlist" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Difference between ArrayList, Vector and LinkedList</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>ArrayList</p></th>
+<th class="head"><p>Vector</p></th>
+<th class="head"><p>LinkedList</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Definition</p></td>
+<td><p>A resizable array implementation of <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p></td>
+<td><p>A legacy synchronized implementation of <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p></td>
+<td><p>A doubly-linked list implementation of <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Deque</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Thread Safety</p></td>
+<td><p>Not synchronized (must use <code class="docutils literal notranslate"><span class="pre">Collections.synchronizedList</span></code>).</p></td>
+<td><p>Synchronized (thread-safe).</p></td>
+<td><p>Not synchronized.</p></td>
+</tr>
+<tr class="row-even"><td><p>Performance</p></td>
+<td><p>Faster in single-threaded environments due to no synchronization overhead.</p></td>
+<td><p>Slower than <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> because every method is synchronized.</p></td>
+<td><p>Efficient for frequent insertions and deletions, slower for random access.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Access</p></td>
+<td><p>Provides fast random access (<code class="docutils literal notranslate"><span class="pre">O(1)</span></code>).</p></td>
+<td><p>Provides fast random access (<code class="docutils literal notranslate"><span class="pre">O(1)</span></code>).</p></td>
+<td><p>Random access is slower (<code class="docutils literal notranslate"><span class="pre">O(n)</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p>Insertion/Deletion</p></td>
+<td><p>Slower (shifting required if in middle).</p></td>
+<td><p>Slower (synchronized + shifting required).</p></td>
+<td><p>Faster (only node links are updated).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Memory Usage</p></td>
+<td><p>Less memory overhead (just array storage).</p></td>
+<td><p>Similar to <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> but with synchronization overhead.</p></td>
+<td><p>Higher memory usage (extra node references).</p></td>
+</tr>
+<tr class="row-even"><td><p>Null Handling</p></td>
+<td><p>Allows multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values.</p></td>
+<td><p>Allows multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values.</p></td>
+<td><p>Allows multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Use Cases</p></td>
+<td><p>Best for fast lookups and iteration in non-threaded apps.</p></td>
+<td><p>Suitable for multi-threaded apps needing synchronized list.</p></td>
+<td><p>Best for apps with frequent insertions/deletions (queues, deques).</p></td>
+</tr>
+<tr class="row-even"><td><p>Legacy/Modern</p></td>
+<td><p>Modern class (preferred over <code class="docutils literal notranslate"><span class="pre">Vector</span></code>).</p></td>
+<td><p>Legacy class (introduced in Java 1.0).</p></td>
+<td><p>Modern class, versatile as <code class="docutils literal notranslate"><span class="pre">List</span></code> and <code class="docutils literal notranslate"><span class="pre">Deque</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Collections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="set.html" class="btn btn-neutral float-right" title="Set Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

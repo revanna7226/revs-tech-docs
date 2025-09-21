@@ -9,7 +9,7 @@ Maven Commands
 .. code-block:: bash
     
     # Build the project
-    mvn clean install
+    mvn clean install -U
 
     # Build the project without running tests
     mvn clean install -DskipTests

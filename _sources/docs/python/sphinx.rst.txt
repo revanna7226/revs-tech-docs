@@ -20,6 +20,7 @@ Sphinx Setup
     pip3 install sphinxemoji
     pip3 install sphinx-autobuild
     pip3 install sphinx-multiversion
+    pip3 install rst2pdf
 
 1. Create HTML documentation.
 
