@@ -50,6 +50,16 @@ Docker Commands
       # Alternative command to list images
       docker image ls
 
+#. Search docker images on Docker Hub:
+
+   .. code-block:: bash
+
+      # Search for an image (e.g., openjdk)
+      docker search openjdk
+
+      # Search with a filter (e.g., official images only)
+      docker search --filter=is-official=true openjdk      
+
 #. Pull a Docker image from a registry:
 
    .. code-block:: bash
@@ -60,21 +70,36 @@ Docker Commands
         # Pull a specific version of an image (e.g., Ubuntu 20.04)
         docker pull ubuntu:20.04
 
-#. Run a Docker container:
+#. Create and start docker containers:
 
    .. code-block:: bash
     
-        # Run a container in interactive mode with a terminal
-        docker run -it ubuntu /bin/bash
-    
-        # Run a container in detached mode (in the background)
-        docker run -d nginx
-    
-        # Run a container with port mapping (host:container)
-        docker run -p 8080:80 nginx
-    
-        # Run a container with volume mapping (host:container)
-        docker run -v /host/path:/container/path ubuntu
+        # Create a container without starting it
+        docker create --name <container_name> ubuntu
+
+        # Start an existing container
+        docker start <container_name>    
+
+#. Run a Docker container:
+
+   .. code-block:: bash
+
+         # Create and start a container with a specific name
+         docker run --name <container_name> -d ubuntu    
+      
+         # Run a container in interactive mode with a terminal
+         docker run -it ubuntu /bin/bash
+         # Type /exit or Ctrl+D to exit the container shell
+         # The container will stop when you exit the shell
+      
+         # Run a container in detached mode (in the background)
+         docker run -d nginx
+      
+         # Run a container with port mapping (host:container)
+         docker run -p 8080:80 nginx
+      
+         # Run a container with volume mapping (host:container)
+         docker run -v /host/path:/container/path ubuntu
 
 #. Stop a running Docker container:
 

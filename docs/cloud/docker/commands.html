@@ -146,6 +146,15 @@ docker<span class="w"> </span>image<span class="w"> </span>ls
 </pre></div>
 </div>
 </li>
+<li><p>Search docker images on Docker Hub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search for an image (e.g., openjdk)</span>
+docker<span class="w"> </span>search<span class="w"> </span>openjdk
+
+<span class="c1"># Search with a filter (e.g., official images only)</span>
+docker<span class="w"> </span>search<span class="w"> </span>--filter<span class="o">=</span>is-official<span class="o">=</span><span class="nb">true</span><span class="w"> </span>openjdk
+</pre></div>
+</div>
+</li>
 <li><p>Pull a Docker image from a registry:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pull the latest version of an image (e.g., Ubuntu)</span>
 docker<span class="w"> </span>pull<span class="w"> </span>ubuntu
@@ -155,9 +164,23 @@ docker<span class="w"> </span>pull<span class="w"> </span>ubuntu:20.04
 </pre></div>
 </div>
 </li>
+<li><p>Create and start docker containers:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a container without starting it</span>
+docker<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>ubuntu
+
+<span class="c1"># Start an existing container</span>
+docker<span class="w"> </span>start<span class="w"> </span>&lt;container_name&gt;
+</pre></div>
+</div>
+</li>
 <li><p>Run a Docker container:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a container in interactive mode with a terminal</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create and start a container with a specific name</span>
+docker<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>&lt;container_name&gt;<span class="w"> </span>-d<span class="w"> </span>ubuntu
+
+<span class="c1"># Run a container in interactive mode with a terminal</span>
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ubuntu<span class="w"> </span>/bin/bash
+<span class="c1"># Type /exit or Ctrl+D to exit the container shell</span>
+<span class="c1"># The container will stop when you exit the shell</span>
 
 <span class="c1"># Run a container in detached mode (in the background)</span>
 docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>nginx

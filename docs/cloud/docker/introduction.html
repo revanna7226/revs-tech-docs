@@ -56,7 +56,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Dockers</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-architecture">Docker Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dockerizing-a-simple-java-application">Dockerizing a Simple Java Application</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#build-image-of-a-java-application-manually">Build Image of a Java application Manually:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#build-image-of-a-java-application-using-dockerfile">Build Image of a Java application using Dockerfile:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#dockerizing-a-spring-app-which-uses-mysql-database">Dockerizing a Spring App which uses MySQL Database</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="commands.html">Docker Commands</a></li>
 </ul>
 </li>
@@ -100,6 +109,192 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>Docker tutorialspoint: <a class="reference external" href="https://www.tutorialspoint.com/docker/index.htm/">Link Notes</a></p>
+<section id="docker-architecture">
+<h2>Docker Architecture<a class="headerlink" href="#docker-architecture" title="Link to this heading"></a></h2>
+<img alt="https://media.geeksforgeeks.org/wp-content/uploads/20221205115118/Architecture-of-Docker.png" class="align-center" src="https://media.geeksforgeeks.org/wp-content/uploads/20221205115118/Architecture-of-Docker.png" />
+<dl class="simple">
+<dt>Docker Daemon:</dt><dd><ul class="simple">
+<li><p>The Docker Daemon is a background service that manages Docker containers, images, networks, and storage volumes.</p></li>
+<li><p>It listens for Docker API requests and performs the requested operations.</p></li>
+</ul>
+</dd>
+<dt>Docker Client:</dt><dd><ul class="simple">
+<li><p>The Docker Client is a command-line interface (CLI) that allows users to interact with the Docker Daemon.</p></li>
+<li><p>Users can run Docker commands using the Docker Client, which sends requests to the Docker Daemon.</p></li>
+</ul>
+</dd>
+<dt>Docker Registries:</dt><dd><ul class="simple">
+<li><p>Docker Registries are repositories where Docker images are stored and distributed.</p></li>
+<li><p>The most popular public registry is Docker Hub, but private registries can also be set up.</p></li>
+</ul>
+</dd>
+<dt>Docker Images:</dt><dd><ul class="simple">
+<li><p>Docker Images are read-only templates that contain the instructions for creating a Docker container.</p></li>
+<li><p>They include the application code, runtime, libraries, and dependencies needed to run the application.</p></li>
+</ul>
+</dd>
+<dt>Docker Containers:</dt><dd><ul class="simple">
+<li><p>Docker Containers are lightweight, standalone, and executable packages that include everything needed to run a piece of software.</p></li>
+<li><p>Containers are created from Docker Images and can be started, stopped, and deleted as needed.</p></li>
+</ul>
+</dd>
+<dt>Dockerfile:</dt><dd><ul class="simple">
+<li><p>A Dockerfile is a text file that contains a set of instructions for building a Docker Image.</p></li>
+<li><p>It specifies the base image, application code, dependencies, and configuration needed to create the image.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="dockerizing-a-simple-java-application">
+<h2>Dockerizing a Simple Java Application<a class="headerlink" href="#dockerizing-a-simple-java-application" title="Link to this heading"></a></h2>
+<section id="build-image-of-a-java-application-manually">
+<h3>Build Image of a Java application Manually:<a class="headerlink" href="#build-image-of-a-java-application-manually" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run a base image (e.g., OpenJDK)</span>
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>openjdk:21-ea-oracle<span class="w"> </span>/bin/bash
+
+<span class="c1"># Inside the container, create a directory for the application</span>
+mkdir<span class="w"> </span>/app
+
+<span class="c1"># Copy the Jar into the container</span>
+docker<span class="w"> </span>cp<span class="w"> </span>target/docker-demo.jar<span class="w"> </span>&lt;container_id&gt;:/app
+
+<span class="c1"># Create an image from the container</span>
+docker<span class="w"> </span>commit<span class="w"> </span>&lt;container_id&gt;<span class="w"> </span>revannarsn/docker-demo:v1
+
+<span class="c1"># Create a image from the container with a specific command</span>
+docker<span class="w"> </span>commit<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;CMD [&quot;java&quot;,&quot;-jar&quot;,&quot;/app/docker-demo.jar&quot;]&#39;</span><span class="w"> </span>&lt;container_id&gt;<span class="w"> </span>revannarsn/docker-demo:v2
+
+<span class="c1"># Run the newly created image</span>
+<span class="c1"># mention port mapping using -p &lt;host_port&gt;:&lt;container_port&gt;</span>
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>revannarsn/docker-demo:v2
+
+<span class="c1"># Access the application in a web browser or via curl</span>
+curl<span class="w"> </span>http://localhost:8080
+</pre></div>
+</div>
+</section>
+<section id="build-image-of-a-java-application-using-dockerfile">
+<h3>Build Image of a Java application using Dockerfile:<a class="headerlink" href="#build-image-of-a-java-application-using-dockerfile" title="Link to this heading"></a></h3>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use an official OpenJDK runtime as a parent image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">openjdk:21-ea-oracle</span>
+
+<span class="c"># Set the working directory in the container</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy the application JAR file into the container at /app</span>
+<span class="k">COPY</span><span class="w"> </span>target/docker-demo.jar<span class="w"> </span>/app/docker-demo.jar
+
+<span class="c"># Make port 8080 available to the world outside this container</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
+
+<span class="c"># Run the application when the container launches</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;java&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-jar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/app/docker-demo.jar&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the Docker image from the Dockerfile</span>
+docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>revannarsn/docker-demo:v3<span class="w"> </span>.
+
+<span class="c1"># Run the newly created image</span>
+<span class="c1"># mention port mapping using -p &lt;host_port&gt;:&lt;container_port&gt;</span>
+docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span>revannarsn/docker-demo:v3
+
+<span class="c1"># Access the application in a web browser or via curl</span>
+curl<span class="w"> </span>http://localhost:8080
+</pre></div>
+</div>
+</section>
+<section id="dockerizing-a-spring-app-which-uses-mysql-database">
+<h3>Dockerizing a Spring App which uses MySQL Database<a class="headerlink" href="#dockerizing-a-spring-app-which-uses-mysql-database" title="Link to this heading"></a></h3>
+<p>Spring Boot application.properties:</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">spring.application.name</span><span class="o">=</span><span class="s">student-app</span>
+<span class="na">server.port</span><span class="o">=</span><span class="s">8091</span>
+
+<span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:mysql://mysql:3306/studentdb</span>
+<span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">revsgn</span>
+<span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">revsgn123</span>
+<span class="na">spring.jpa.hibernate.ddl-auto</span><span class="o">=</span><span class="s">create</span>
+<span class="na">spring.h2.console.enabled</span><span class="o">=</span><span class="s">true</span>
+<span class="na">spring.jpa.show-sql</span><span class="o">=</span><span class="s">true</span>
+<span class="na">spring.jpa.properties.hibernate.dialect</span><span class="o">=</span><span class="s">org.hibernate.dialect.MySQL8Dialect</span>
+<span class="na">spring.sql.init.mode</span><span class="o">=</span><span class="s">always</span>
+<span class="na">spring.sql.init.platform</span><span class="o">=</span><span class="s">mysql</span>
+<span class="na">spring.jpa.defer-datasource-initialization</span><span class="o">=</span><span class="s">true</span>
+</pre></div>
+</div>
+<p>Dockerfile for Spring App:</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="c"># Use an official OpenJDK runtime as a parent image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">openjdk:21-ea-oracle</span>
+
+<span class="c"># Set the working directory in the container</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+
+<span class="c"># Copy the application JAR file into the container at /app</span>
+<span class="k">COPY</span><span class="w"> </span>target/student-app.jar<span class="w"> </span>/app/student-app.jar
+
+<span class="c"># Make port 8080 available to the world outside this container</span>
+<span class="k">EXPOSE</span><span class="w"> </span><span class="s">8091</span>
+
+<span class="c"># Run the application when the container launches</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;java&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-jar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/app/student-app.jar&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Docker Compose file to run both Spring App and MySQL Database:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8091:8091&quot;</span>
+<span class="w">      </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+
+<span class="w">   </span><span class="nt">mysql</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:8.0</span>
+<span class="w">      </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">studentdb</span>
+<span class="w">         </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revsgn</span>
+<span class="w">         </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revsgn123</span>
+<span class="w">      </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3308:3306&quot;</span>
+
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_revs_data:/var/lib/mysql/data</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">postgres_revs_data</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>In Docker Compose version 3.8, if you do not explicitly define any networks,
+Docker Compose automatically creates a default network named [project-name]_default for the whole application.
+All services in the Compose file are connected to this default network and can communicate using their service names as hostnames.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the created networks</span>
+docker<span class="w"> </span>network<span class="w"> </span>ls
+
+<span class="c1"># Example output:</span>
+NETWORK<span class="w"> </span>ID<span class="w">     </span>NAME<span class="w">                  </span>DRIVER<span class="w">    </span>SCOPE
+...
+8ff3f46e9e98<span class="w">   </span>appnet<span class="w">                </span>bridge<span class="w">    </span><span class="nb">local</span>
+8ff3f46e9e98<span class="w">   </span>student-app_default<span class="w">   </span>bridge<span class="w">    </span><span class="nb">local</span>
+</pre></div>
+</div>
+<p>Build and Run using Docker Compose:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and start the containers in detached mode</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+
+<span class="c1"># Check the running containers</span>
+docker<span class="w"> </span>ps
+
+<span class="c1"># Access the Spring App in a web browser or via curl</span>
+curl<span class="w"> </span>http://localhost:8091/students
+
+<span class="c1"># To stop the containers</span>
+docker-compose<span class="w"> </span>down
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
