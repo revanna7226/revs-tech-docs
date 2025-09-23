@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functional Interfaces in Java &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Java 9" href="../java9/index.html" />
+    <link rel="prev" title="Optional in Java" href="optional.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interview/index.html">Java Interview Questions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Java 8</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="streams.html">Stream API in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="common_stream_ops.html">Common Stream Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="optional.html">Optional in Java</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Functional Interfaces in Java</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#what-is-a-functional-interface">What is a Functional Interface?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#why-functional-interfaces">Why Functional Interfaces?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples-of-functional-interfaces">Examples of Functional Interfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-functional-interface">Creating a Functional Interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-functional-interface-with-lambda">Using Functional Interface with Lambda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#built-in-functional-interfaces-examples">Built-in Functional Interfaces (Examples)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#predicate">Predicate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#function">Function</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#consumer">Consumer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#supplier">Supplier</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#runnable">Runnable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#callable">Callable</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bifunction">BiFunction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#biconsumer">BiConsumer</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#unaryoperator">UnaryOperator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#binaryoperator">BinaryOperator</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bipredicate">BiPredicate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#comparator">Comparator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spring/index.html">Spring Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Java 8</a></li>
+      <li class="breadcrumb-item active">Functional Interfaces in Java</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/java/java8/functional_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="functional-interfaces-in-java">
+<h1>Functional Interfaces in Java<a class="headerlink" href="#functional-interfaces-in-java" title="Link to this heading"></a></h1>
+<section id="what-is-a-functional-interface">
+<h2>What is a Functional Interface?<a class="headerlink" href="#what-is-a-functional-interface" title="Link to this heading"></a></h2>
+<p>A <strong>Functional Interface</strong> in Java is an interface that has <strong>exactly one abstract method</strong> (SAM = <em>Single Abstract Method</em>).</p>
+<ul class="simple">
+<li><p>Introduced in <strong>Java 8</strong> to support <strong>Lambda Expressions</strong> and <strong>Method References</strong>.</p></li>
+<li><p>Can still have any number of <strong>default methods</strong> and <strong>static methods</strong>.</p></li>
+<li><p>Annotated with <code class="docutils literal notranslate"><span class="pre">&#64;FunctionalInterface</span></code> (optional but recommended).</p></li>
+</ul>
+</section>
+<section id="why-functional-interfaces">
+<h2>Why Functional Interfaces?<a class="headerlink" href="#why-functional-interfaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Enable <strong>lambda expressions</strong> and <strong>method references</strong></p></li>
+<li><p>Reduce boilerplate code</p></li>
+<li><p>Improve readability</p></li>
+<li><p>Encourage functional programming style in Java</p></li>
+</ul>
+</section>
+<section id="examples-of-functional-interfaces">
+<h2>Examples of Functional Interfaces<a class="headerlink" href="#examples-of-functional-interfaces" title="Link to this heading"></a></h2>
+<p>Java provides many built-in ones in the <code class="docutils literal notranslate"><span class="pre">java.util.function</span></code> package:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Predicate&lt;T&gt;</span> <span class="pre">-</span> <span class="pre">test()</span></code> – test condition returning boolean</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Function&lt;T,</span> <span class="pre">R&gt;</span> <span class="pre">-</span> <span class="pre">apply()</span></code> – takes input <code class="docutils literal notranslate"><span class="pre">T</span></code>, returns output <code class="docutils literal notranslate"><span class="pre">R</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Consumer&lt;T&gt;</span> <span class="pre">-</span> <span class="pre">accept()</span></code> – takes input <code class="docutils literal notranslate"><span class="pre">T</span></code>, returns nothing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Supplier&lt;T&gt;</span> <span class="pre">-</span> <span class="pre">get()</span></code> – returns <code class="docutils literal notranslate"><span class="pre">T</span></code> (no input)</p></li>
+</ul>
+<p>You can also <strong>create your own</strong>.</p>
+</section>
+<section id="creating-a-functional-interface">
+<h2>Creating a Functional Interface<a class="headerlink" href="#creating-a-functional-interface" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@FunctionalInterface</span>
+<span class="kd">interface</span> <span class="nc">MyFunctionalInterface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// You can still add default/static methods</span>
+<span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hello from default method!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sayHi</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hi from static method!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="using-functional-interface-with-lambda">
+<h2>Using Functional Interface with Lambda<a class="headerlink" href="#using-functional-interface-with-lambda" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FunctionalInterfaceDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Using lambda expression</span>
+<span class="w">        </span><span class="n">MyFunctionalInterface</span><span class="w"> </span><span class="n">greeter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hello, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">greeter</span><span class="p">.</span><span class="na">greet</span><span class="p">(</span><span class="s">&quot;Revs&quot;</span><span class="p">);</span><span class="w">   </span><span class="c1">// Hello, Revs</span>
+<span class="w">        </span><span class="n">greeter</span><span class="p">.</span><span class="na">sayHello</span><span class="p">();</span><span class="w">        </span><span class="c1">// Hello from default method!</span>
+<span class="w">        </span><span class="n">MyFunctionalInterface</span><span class="p">.</span><span class="na">sayHi</span><span class="p">();</span><span class="w"> </span><span class="c1">// Hi from static method!</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="built-in-functional-interfaces-examples">
+<h2>Built-in Functional Interfaces (Examples)<a class="headerlink" href="#built-in-functional-interfaces-examples" title="Link to this heading"></a></h2>
+<section id="predicate">
+<h3>Predicate<a class="headerlink" href="#predicate" title="Link to this heading"></a></h3>
+<p>Checks a condition and returns boolean.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.Predicate</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PredicateDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">startsWithR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;R&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">startsWithR</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;Revs&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// true</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">startsWithR</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;Java&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="function">
+<h3>Function<a class="headerlink" href="#function" title="Link to this heading"></a></h3>
+<p>Takes input and produces output.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.Function</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FunctionDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lengthFunc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">lengthFunc</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="s">&quot;Java&quot;</span><span class="p">));</span><span class="w">  </span><span class="c1">// 4</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="consumer">
+<h3>Consumer<a class="headerlink" href="#consumer" title="Link to this heading"></a></h3>
+<p>Consumes input, returns nothing.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.Consumer</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ConsumerDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">printer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Printing: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">printer</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Printing: Hello World</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="supplier">
+<h3>Supplier<a class="headerlink" href="#supplier" title="Link to this heading"></a></h3>
+<p>Supplies values without input.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.Supplier</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SupplierDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">randomValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">random</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">randomValue</span><span class="p">.</span><span class="na">get</span><span class="p">());</span><span class="w"> </span><span class="c1">// e.g. 0.8231</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>Apart from <code class="docutils literal notranslate"><span class="pre">Consumer</span></code>, <code class="docutils literal notranslate"><span class="pre">Predicate</span></code>, <code class="docutils literal notranslate"><span class="pre">Supplier</span></code> and <code class="docutils literal notranslate"><span class="pre">Function</span></code>, Java provides many other <strong>functional interfaces</strong>. Some are older (like <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> and <code class="docutils literal notranslate"><span class="pre">Callable</span></code>), and many are available in the <code class="docutils literal notranslate"><span class="pre">java.util.function</span></code> package.</p>
+</div>
+</section>
+<section id="runnable">
+<h3>Runnable<a class="headerlink" href="#runnable" title="Link to this heading"></a></h3>
+<p>Represents a task that can be executed without input and without returning a result.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RunnableDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Runnable</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Running a task!&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">thread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+<span class="w">        </span><span class="n">thread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// Running a task!</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="callable">
+<h3>Callable<a class="headerlink" href="#callable" title="Link to this heading"></a></h3>
+<p>It is similar to <code class="docutils literal notranslate"><span class="pre">Runnable</span></code> but with some key differences:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Callable</span></code> can <strong>return a result</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Callable</span></code> can <strong>throw checked exceptions</strong>.</p></li>
+<li><p>Designed to work with <code class="docutils literal notranslate"><span class="pre">ExecutorService</span></code> for concurrent task execution.</p></li>
+</ul>
+<p>Defined in <code class="docutils literal notranslate"><span class="pre">java.util.concurrent</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.Callable</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CallableDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">task</span><span class="p">.</span><span class="na">call</span><span class="p">());</span><span class="w"> </span><span class="c1">// 42</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="bifunction">
+<h3>BiFunction<a class="headerlink" href="#bifunction" title="Link to this heading"></a></h3>
+<p>Takes <strong>two inputs</strong> and produces a result.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.BiFunction</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BiFunctionDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BiFunction</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">adder</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span><span class="w"> </span><span class="c1">// 15</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="biconsumer">
+<h3>BiConsumer<a class="headerlink" href="#biconsumer" title="Link to this heading"></a></h3>
+<p>Takes <strong>two inputs</strong> and returns nothing.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.BiConsumer</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BiConsumerDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BiConsumer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">printer</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; is &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; years old.&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">printer</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="s">&quot;Revs&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span><span class="w"> </span><span class="c1">// Revs is 30 years old.</span>
+
+<span class="w">        </span><span class="c1">// Example with Map</span>
+<span class="w">        </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;basant&quot;</span><span class="p">,</span><span class="mi">5000</span><span class="p">);</span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;santosh&quot;</span><span class="p">,</span><span class="mi">15000</span><span class="p">);</span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;javed&quot;</span><span class="p">,</span><span class="mi">12000</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">forEach</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="s">&quot;,&quot;</span><span class="o">+</span><span class="n">v</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="unaryoperator">
+<h3>UnaryOperator<a class="headerlink" href="#unaryoperator" title="Link to this heading"></a></h3>
+<p>A specialization of <code class="docutils literal notranslate"><span class="pre">Function&lt;T,</span> <span class="pre">R&gt;</span></code> where input and output are the <strong>same type</strong>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.UnaryOperator</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UnaryOperatorDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">toUpper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">toUpper</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="s">&quot;java&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// JAVA</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="binaryoperator">
+<h3>BinaryOperator<a class="headerlink" href="#binaryoperator" title="Link to this heading"></a></h3>
+<p>A specialization of <code class="docutils literal notranslate"><span class="pre">BiFunction&lt;T,</span> <span class="pre">T,</span> <span class="pre">T&gt;</span></code> where inputs and output are the <strong>same type</strong>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.function.BinaryOperator</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BinaryOperatorDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">BinaryOperator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">multiply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">multiply</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span><span class="w"> </span><span class="c1">// 20</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="bipredicate">
+<h3>BiPredicate<a class="headerlink" href="#bipredicate" title="Link to this heading"></a></h3>
+<p>Takes <strong>two inputs</strong> and returns a boolean.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">biPredicate</span><span class="o">=</span><span class="k">new</span><span class="w"> </span><span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">biPredicate</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;madam&quot;</span><span class="p">,</span><span class="s">&quot;madam&quot;</span><span class="p">));</span>
+
+
+<span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">equalsPredicate</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w">  </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="n">s1</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+<span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lengthPredicate</span><span class="o">=</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">s1</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">==</span><span class="n">s2</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+
+<span class="kt">boolean</span><span class="w"> </span><span class="n">output</span><span class="o">=</span><span class="n">lengthPredicate</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">equalsPredicate</span><span class="p">).</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;madam&quot;</span><span class="p">,</span><span class="s">&quot;madam&quot;</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;output : &quot;</span><span class="o">+</span><span class="n">output</span><span class="p">);</span>
+
+<span class="kt">boolean</span><span class="w"> </span><span class="n">orOutput</span><span class="o">=</span><span class="n">lengthPredicate</span><span class="p">.</span><span class="na">or</span><span class="p">(</span><span class="n">equalsPredicate</span><span class="p">).</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">,</span><span class="s">&quot;def&quot;</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;orOutput : &quot;</span><span class="o">+</span><span class="n">orOutput</span><span class="p">);</span>
+
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">equalsPredicate</span><span class="p">.</span><span class="na">test</span><span class="p">(</span><span class="s">&quot;madam&quot;</span><span class="p">,</span><span class="s">&quot;madam&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="comparator">
+<h3>Comparator<a class="headerlink" href="#comparator" title="Link to this heading"></a></h3>
+<p>Represents a comparison function that compares two objects.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Comparator</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Arrays</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ComparatorDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Zara&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Revs&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Anjali&quot;</span><span class="p">};</span>
+
+<span class="w">        </span><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">names</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">names</span><span class="p">));</span><span class="w"> </span><span class="c1">// [Anjali, Revs, Zara]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="optional.html" class="btn btn-neutral float-left" title="Optional in Java" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../java9/index.html" class="btn btn-neutral float-right" title="Java 9" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

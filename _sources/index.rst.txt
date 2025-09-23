@@ -3,6 +3,7 @@ Revs Notes
 
 .. toctree::
    :maxdepth: 4
+   :hidden:
    :caption: Topics 
    
    docs/python/index
