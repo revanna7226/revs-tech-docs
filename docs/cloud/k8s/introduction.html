@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Kubernetes &mdash; Revs Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -49,9 +49,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">Cloud</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Kubernetes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">K8s Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java</a></li>
@@ -78,7 +88,7 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Cloud</a></li>
           <li class="breadcrumb-item"><a href="index.html">Kubernetes</a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">Kubernetes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/docs/cloud/k8s/introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,7 +98,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="kubernetes">
+<h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Link to this heading"></a></h1>
+<p><cite>Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications.</cite></p>
+<p>It groups containers into logical units (pods) for easy management and discovery, providing self-healing,
+flexible networking, and load balancing.</p>
+<p>Key concepts</p>
+<dl class="simple">
+<dt>Pod:</dt><dd><ul class="simple">
+<li><p>The smallest deployable unit, usually encapsulating one or more containers sharing storage, networking, and specification.</p></li>
+</ul>
+</dd>
+<dt>Service:</dt><dd><ul class="simple">
+<li><p>Set of Pods with stable endpoints used for Service Discovery and Load balancing</p></li>
+<li><p>ensures communication inside the cluster using internal DNS.</p></li>
+</ul>
+</dd>
+<dt>Ingress:</dt><dd><ul class="simple">
+<li><p>Set of rules for routing external HTTPS traffic to services within the cluster;</p></li>
+<li><p>enables SSL termination, path-based routing, and virtual hosting.</p></li>
+</ul>
+</dd>
+<dt>Cluster:</dt><dd><ul class="simple">
+<li><p>A set of machines running Kubernetes managed workloads, providing resources, networking, and scheduling for applications.</p></li>
+</ul>
+</dd>
+<dt>Deployment:</dt><dd><ul class="simple">
+<li><p>Defines the desired state for application replicas, facilitates rolling updates and rollbacks.</p></li>
+</ul>
+</dd>
+<dt>Networking:</dt><dd><ul class="simple">
+<li><p>Kubernetes ensures that all pods can communicate with each other across nodes using cluster networking.</p></li>
+<li><p>Services provide a stable network identity, typically reached by DNS names.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
 
            </div>
           </div>

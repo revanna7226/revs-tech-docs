@@ -9,6 +9,10 @@ Docker Architecture
 .. image:: https://media.geeksforgeeks.org/wp-content/uploads/20221205115118/Architecture-of-Docker.png
    :align: center
 
+Docker:
+    - Docker is an open-source containerization platform that allows developers to create, deploy, and manage applications inside lightweight, portable, and self-sufficient containers
+    - It simplifies the process of developing, shipping, and running applications by abstracting them from the underlying infrastructure, making them run seamlessly regardless of the host environment.
+
 Docker Daemon: 
     - The Docker Daemon is a background service that manages Docker containers, images, networks, and storage volumes. 
     - It listens for Docker API requests and performs the requested operations.

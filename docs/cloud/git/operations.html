@@ -72,6 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="reference.html">References</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
@@ -116,12 +117,25 @@
   <section id="git-operations">
 <h1>Git Operations<a class="headerlink" href="#git-operations" title="Link to this heading"></a></h1>
 <p>Git Repo -&gt; Staging Area + Commit Folder</p>
+<p>Git Configurations</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;revanna7226&quot;</span>
+
+git<span class="w"> </span>config<span class="w"> </span>user.name
+
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;revanna@email.com&quot;</span>
+
+git<span class="w"> </span>config<span class="w"> </span>--list
+
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>&lt;repo_name&gt;/origin<span class="w"> </span>&lt;repo_url&gt;
+</pre></div>
+</div>
 <p>Turn a directory into git repository or make directory managed by git.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
 </pre></div>
 </div>
 <p>To explore our commit history with git log. To exit this menu, please press “q” and confirm this with Enter on your keyboard.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+git<span class="w"> </span>log<span class="w"> </span>--one-line
 </pre></div>
 </div>
 <p>To Switch to specific commit</p>

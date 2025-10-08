@@ -4,6 +4,23 @@ Git Operations
 
 Git Repo -> Staging Area + Commit Folder
 
+Git Configurations
+
+.. code-block:: bash
+
+    git config --global user.name "revanna7226"
+
+    git config user.name
+
+    git config --global user.email "revanna@email.com"
+
+    git config --list
+
+    git remote add <repo_name>/origin <repo_url>
+
+
+
+
 Turn a directory into git repository or make directory managed by git.
 
 .. code-block:: bash
@@ -15,6 +32,7 @@ To explore our commit history with git log. To exit this menu, please press "q" 
 .. code-block:: bash
 
     git log
+    git log --one-line
 
 To Switch to specific commit
 

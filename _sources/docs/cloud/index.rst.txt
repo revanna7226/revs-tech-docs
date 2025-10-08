@@ -8,6 +8,7 @@ Cloud
    :glob:
 
    git/index
+   ms/index
    aws/index
    k8s/index
    docker/index
