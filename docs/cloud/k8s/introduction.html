@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="K8s Commands" href="commands.html" />
+    <link rel="next" title="Installation and Configs" href="configs.html" />
     <link rel="prev" title="Kubernetes" href="index.html" /> 
 </head>
 
@@ -53,9 +53,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Kubernetes</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Kubernetes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Kubernetes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#kubernetes-cluster-architecture">Kubernetes Cluster Architecture:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-concepts">Key concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="configs.html">Installation and Configs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="commands.html">K8s Commands</a></li>
 </ul>
 </li>
@@ -100,11 +106,47 @@
              
   <section id="kubernetes">
 <h1>Kubernetes<a class="headerlink" href="#kubernetes" title="Link to this heading"></a></h1>
-<p><cite>Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications.</cite></p>
-<p>It groups containers into logical units (pods) for easy management and discovery, providing self-healing,
-flexible networking, and load balancing.</p>
-<p>Key concepts</p>
+<ul class="simple">
+<li><p><cite>Kubernetes is an open-source platform for automating deployment, scaling, and management of containerized applications.</cite></p></li>
+<li><p>It groups containers into logical units (pods) for easy management and discovery, providing self-healing,
+flexible networking, and load balancing.</p></li>
+<li><p>K8s is maintained and licensed by <cite>Cloud Native Computing Foundation (CNCF)</cite>.</p></li>
+</ul>
 <dl class="simple">
+<dt>Kubernetes on Public Clouds:</dt><dd><ul class="simple">
+<li><p>Google Cloud : Google Kubernetes Engine</p></li>
+<li><p>Amazon AWS: Elastic Container Service</p></li>
+<li><p>Microsoft Azure: Azure Kubernetes Service</p></li>
+</ul>
+</dd>
+</dl>
+<section id="kubernetes-cluster-architecture">
+<h2>Kubernetes Cluster Architecture:<a class="headerlink" href="#kubernetes-cluster-architecture" title="Link to this heading"></a></h2>
+<p>Click <a class="reference external" href="https://kubernetes.io/docs/concepts/architecture/">here</a> to know more on Kubernetes Architecture</p>
+<img alt="https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg" class="align-center" src="https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg" />
+</section>
+<section id="key-concepts">
+<h2>Key concepts<a class="headerlink" href="#key-concepts" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Cluster:</dt><dd><ul class="simple">
+<li><p>A set of machines running Kubernetes managed workloads, providing resources, networking, and scheduling for applications.</p></li>
+</ul>
+</dd>
+<dt>Namespace:</dt><dd><ul class="simple">
+<li><p>Namespaces in Kubernetes provide a way to logically partition and isolate groups of resources within a single cluster.</p></li>
+<li><p>They help organize cluster resources into virtual sub-clusters, which is especially useful when multiple teams or projects share the same Kubernetes cluster.</p></li>
+</ul>
+</dd>
+<dt>Deployment:</dt><dd><ul class="simple">
+<li><p>A Deployment is a higher-level Kubernetes abstraction that manages ReplicaSets and the pods they control.</p></li>
+<li><p>Defines the desired state for application replicas, facilitates rolling updates and rollbacks.</p></li>
+</ul>
+</dd>
+<dt>ReplicaSet:</dt><dd><ul class="simple">
+<li><p>A ReplicaSet ensures that a specified number of identical pod replicas are always running in a Kubernetes cluster.</p></li>
+<li><p>If a pod fails or is deleted, the ReplicaSet automatically creates a new one to maintain the desired count.</p></li>
+</ul>
+</dd>
 <dt>Pod:</dt><dd><ul class="simple">
 <li><p>The smallest deployable unit, usually encapsulating one or more containers sharing storage, networking, and specification.</p></li>
 </ul>
@@ -119,14 +161,6 @@ flexible networking, and load balancing.</p>
 <li><p>enables SSL termination, path-based routing, and virtual hosting.</p></li>
 </ul>
 </dd>
-<dt>Cluster:</dt><dd><ul class="simple">
-<li><p>A set of machines running Kubernetes managed workloads, providing resources, networking, and scheduling for applications.</p></li>
-</ul>
-</dd>
-<dt>Deployment:</dt><dd><ul class="simple">
-<li><p>Defines the desired state for application replicas, facilitates rolling updates and rollbacks.</p></li>
-</ul>
-</dd>
 <dt>Networking:</dt><dd><ul class="simple">
 <li><p>Kubernetes ensures that all pods can communicate with each other across nodes using cluster networking.</p></li>
 <li><p>Services provide a stable network identity, typically reached by DNS names.</p></li>
@@ -134,13 +168,14 @@ flexible networking, and load balancing.</p>
 </dd>
 </dl>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Kubernetes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="commands.html" class="btn btn-neutral float-right" title="K8s Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="configs.html" class="btn btn-neutral float-right" title="Installation and Configs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

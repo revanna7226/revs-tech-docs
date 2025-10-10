@@ -6,4 +6,7 @@ Kubernetes
    :caption: Contents
 
    introduction
-   commands
+   configs
+   dashboard-web
+   components_commands
+   components

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>K8s Commands &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>K8s Componets and Commands &mdash; Revs Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Dockers" href="../docker/index.html" />
+    <link rel="next" title="K8s commands:" href="components.html" />
     <link rel="prev" title="Kubernetes Dashboard" href="dashboard-web.html" /> 
 </head>
 
@@ -59,7 +59,8 @@
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Kubernetes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configs.html">Installation and Configs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="dashboard-web.html">Kubernetes Dashboard</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">K8s Commands</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">K8s Componets and Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html">K8s commands:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
@@ -91,9 +92,9 @@
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Cloud</a></li>
           <li class="breadcrumb-item"><a href="index.html">Kubernetes</a></li>
-      <li class="breadcrumb-item active">K8s Commands</li>
+      <li class="breadcrumb-item active">K8s Componets and Commands</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/cloud/k8s/commands.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/docs/cloud/k8s/components_commands.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,8 +102,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="k8s-commands">
-<h1>K8s Commands<a class="headerlink" href="#k8s-commands" title="Link to this heading"></a></h1>
+  <section id="k8s-componets-and-commands">
+<h1>K8s Componets and Commands<a class="headerlink" href="#k8s-componets-and-commands" title="Link to this heading"></a></h1>
 <p>Basic K8s commands:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gives the details of the deployment.</span>
@@ -328,64 +329,229 @@ kubectl<span class="w"> </span>port-forward<span class="w"> </span>svc/myhttpd-s
 to the service’s port 80 inside the cluster.</p></li>
 </ul>
 </dd>
-</dl>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcloud<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>project<span class="w"> </span>my-kubernetes-project-304910
-gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>get-credentials<span class="w"> </span>my-cluster<span class="w"> </span>--zone<span class="w"> </span>us-central1-c<span class="w"> </span>--project<span class="w"> </span>my-kubernetes-project-304910
-
-<span class="c1"># create deployement</span>
-kubectl<span class="w"> </span>create<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>--image<span class="o">=</span>in28min/hello-world-rest-api:0.0.1.RELEASE
-
-<span class="c1"># to check deployments</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>deployment
-
-<span class="c1"># expose the deloyment to outside world, Kubernetes service will get created</span>
-kubectl<span class="w"> </span>expose<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>--type<span class="o">=</span>LoadBalancer<span class="w"> </span>--port<span class="o">=</span><span class="m">8080</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>services
-kubectl<span class="w"> </span>get<span class="w"> </span>services<span class="w"> </span>--watch
-
-curl<span class="w"> </span><span class="m">35</span>.184.204.214:8080/hello-world
-
-kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>--replicas<span class="o">=</span><span class="m">3</span>
-
-gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>resize<span class="w"> </span>my-cluster<span class="w"> </span>--node-pool<span class="w"> </span>default-pool<span class="w"> </span>--num-nodes<span class="o">=</span><span class="m">2</span><span class="w"> </span>--zone<span class="o">=</span>us-central1-c
-
-kubectl<span class="w"> </span>autoscale<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>--max<span class="o">=</span><span class="m">4</span><span class="w"> </span>--cpu-percent<span class="o">=</span><span class="m">70</span>
-kubectl<span class="w"> </span>get<span class="w"> </span>hpa
-
-<span class="c1"># Configuratios for Microservices</span>
-kubectl<span class="w"> </span>create<span class="w"> </span>configmap<span class="w"> </span>hello-world-config<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">RDS_DB_NAME</span><span class="o">=</span>todos
-kubectl<span class="w"> </span>get<span class="w"> </span>configmap
-kubectl<span class="w"> </span>describe<span class="w"> </span>configmap<span class="w"> </span>hello-world-config
-
-kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>hello-world-secrets-1<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">RDS_PASSWORD</span><span class="o">=</span>dummytodos
-kubectl<span class="w"> </span>get<span class="w"> </span>secret
-kubectl<span class="w"> </span>describe<span class="w"> </span>secret<span class="w"> </span>hello-world-secrets-1
-
-<span class="c1"># is used to create or update resources in a Kubernetes cluster by applying the configurations defined in the deployment.yaml file.</span>
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>deployment.yaml
-
-gcloud<span class="w"> </span>container<span class="w"> </span>node-pools<span class="w"> </span>list<span class="w"> </span>--zone<span class="o">=</span>us-central1-c<span class="w"> </span>--cluster<span class="o">=</span>my-cluster
-kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-o<span class="w"> </span>wide
-
-kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>hello-world-rest-api<span class="o">=</span>in28min/hello-world-rest-api:0.0.2.RELEASE
-
-kubectl<span class="w"> </span>get<span class="w"> </span>services
-kubectl<span class="w"> </span>get<span class="w"> </span>replicasets
-kubectl<span class="w"> </span>get<span class="w"> </span>pods
-
-kubectl<span class="w"> </span>delete<span class="w"> </span>pod<span class="w"> </span>hello-world-rest-api-58dc9d7fcc-8pv7r
-
-kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api<span class="w"> </span>--replicas<span class="o">=</span><span class="m">1</span>
-
-kubectl<span class="w"> </span>get<span class="w"> </span>replicasets
-
-gcloud<span class="w"> </span>projects<span class="w"> </span>list
-kubectl<span class="w"> </span>delete<span class="w"> </span>service<span class="w"> </span>hello-world-rest-api
-kubectl<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>hello-world-rest-api
-
-gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span class="w"> </span>delete<span class="w"> </span>my-cluster<span class="w"> </span>--zone<span class="w"> </span>us-central1-c
+<dt>Rolling Updates:</dt><dd><blockquote>
+<div><ul class="simple">
+<li><p>Rolling updates in Kubernetes (K8s) are a deployment strategy designed to update applications with zero downtime.</p></li>
+<li><p>This strategy incrementally replaces the current Pods running an application with new Pods that contain the updated version.</p></li>
+<li><p>Kubernetes manages the update by creating new Pods, waiting for them to become healthy and ready, then terminating old Pods in a controlled manner.</p></li>
+<li><p>The rolling update is the default and most common deployment strategy in Kubernetes, ideal for services needing high availability during frequent updates.</p></li>
+<li><p>It incrementally replaces Pods, ensuring that at least some Pods are always available to serve user traffic.</p></li>
+</ul>
+</div></blockquote>
+<p>The rolling update strategy is configured in the Deployment YAML file under the spec.strategy field.
+This includes the type RollingUpdate and parameters maxSurge and maxUnavailable to control the update pace:</p>
+<ul class="simple">
+<li><p>maxSurge: The maximum number (or percentage) of pods allowed above the desired replicas during the update.</p></li>
+<li><p>maxUnavailable: The maximum number (or percentage) of pods that can be unavailable during the update.</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mywebserver</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">   </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">      </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">         </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">   </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">   </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">      </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">           </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myhttpd</span>
+<span class="w">             </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">             </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">           </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </pre></div>
 </div>
+</dd>
+<dt>Rollbacks:</dt><dd><ul class="simple">
+<li><p>Rollbacks</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment
+deployment.apps/mywebserver
+<span class="c1"># REVISION  CHANGE-CAUSE</span>
+<span class="c1"># 2         &lt;none&gt;</span>
+<span class="c1"># 3         &lt;none&gt;</span>
+
+<span class="c1"># To see the changes in the revison</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span><span class="nb">history</span><span class="w"> </span>deployment<span class="w"> </span>mywebserver<span class="w"> </span>--revision<span class="o">=</span><span class="m">2</span>
+<span class="c1">#&gt;&gt; shows the revison changes</span>
+
+<span class="c1"># rollout to previous revision</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment<span class="w"> </span>mywebserver
+
+<span class="c1"># rollout to specified revision</span>
+kubectl<span class="w"> </span>rollout<span class="w"> </span>undo<span class="w"> </span>deployment<span class="w"> </span>mywebserver<span class="w"> </span>--to-revision<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</dd>
+<dt>Scaling:</dt><dd><ul class="simple">
+<li><p>Manula and auto Scaling</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># manual scaling</span>
+kubectl<span class="w"> </span>scale<span class="w"> </span>deployment<span class="w"> </span>mywebserver<span class="w"> </span>--replicas<span class="o">=</span><span class="m">20</span>
+</pre></div>
+</div>
+</dd>
+<dt>Volumes:</dt><dd><ul class="simple">
+<li><p>emptyDir</p></li>
+<li><p>nfs</p></li>
+<li><p>hostPath</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mywebserver</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">   </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">      </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">         </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">   </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">   </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">      </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myhttpd</span>
+<span class="w">              </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">              </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">              </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">                    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">         </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">              </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--privileged<span class="w"> </span>--pid<span class="o">=</span>host<span class="w"> </span>justincormack/nsenter1
+</pre></div>
+</div>
+</dd>
+<dt>ConfigMap:</dt><dd><ul class="simple">
+<li><p>application configurations</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># demo-configmap.yml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">initdb.sql</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">select * from product;</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">create table coupon();</span>
+<span class="w">   </span><span class="nt">keys</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sbdhgbfhbskdjfnjsndkjbsdj</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">bdfhbsdfbsbdfjksndnsdjnsldgn</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># webserver.yml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mywebserver</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">   </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="w">      </span><span class="nt">rollingUpdate</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">         </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">   </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">   </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">      </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myhttpd</span>
+<span class="w">              </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">              </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">              </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">                    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap-vol</span>
+<span class="w">                    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/config</span>
+<span class="w">         </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">              </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">                  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap-vol</span>
+<span class="w">              </span><span class="nt">configMap</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap</span>
+</pre></div>
+</div>
+</dd>
+<dt>Secret:</dt><dd><ul class="simple">
+<li><p>to store secrets in K8s cluster</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span><span class="w"> </span><span class="c1"># orbitory key-value pair</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">userName</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">cmV2c2duCg==</span><span class="w"> </span><span class="c1">#  echo &quot;revsgn&quot; | base64</span>
+<span class="w">   </span><span class="nt">password</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">cmV2c2duCg==</span><span class="w"> </span><span class="c1">#  echo &quot;revsgn&quot; | base64</span>
+</pre></div>
+</div>
+<p>How to use secrete?</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="l l-Scalar l-Scalar-Plain">template</span><span class="p p-Indicator">:</span>
+<span class="w">   </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">   </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myhttpd</span>
+<span class="w">           </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd</span>
+<span class="w">           </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">               </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">           </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<span class="w">               </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">                 </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">               </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap-vol</span>
+<span class="w">                 </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/config</span>
+<span class="w">               </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-vol</span>
+<span class="w">                 </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/secret</span>
+<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demovol</span>
+<span class="w">           </span><span class="nt">hostPath</span><span class="p">:</span>
+<span class="w">               </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+<span class="w">               </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Directory</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap-vol</span>
+<span class="w">           </span><span class="nt">configMap</span><span class="p">:</span>
+<span class="w">               </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-configmap</span>
+<span class="w">         </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret-vol</span>
+<span class="w">           </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">               </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo-secret</span>
+</pre></div>
+</div>
+</dd>
+</dl>
 </section>
 
 
@@ -393,7 +559,7 @@ gcloud<span class="w"> </span>container<span class="w"> </span>clusters<span cla
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="dashboard-web.html" class="btn btn-neutral float-left" title="Kubernetes Dashboard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../docker/index.html" class="btn btn-neutral float-right" title="Dockers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="components.html" class="btn btn-neutral float-right" title="K8s commands:" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

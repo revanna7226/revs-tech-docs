@@ -1,4 +1,4 @@
-K8s Commands
+K8s Componets and Commands
 ==========================
 
 Basic K8s commands:
@@ -235,65 +235,233 @@ Service:
     - Now, opening http://localhost:8080 in your browser will route traffic from your local port 8080 
       to the service's port 80 inside the cluster.
 
+Rolling Updates:
+    - Rolling updates in Kubernetes (K8s) are a deployment strategy designed to update applications with zero downtime. 
+    - This strategy incrementally replaces the current Pods running an application with new Pods that contain the updated version. 
+    - Kubernetes manages the update by creating new Pods, waiting for them to become healthy and ready, then terminating old Pods in a controlled manner.
+    - The rolling update is the default and most common deployment strategy in Kubernetes, ideal for services needing high availability during frequent updates. 
+    - It incrementally replaces Pods, ensuring that at least some Pods are always available to serve user traffic.
+
+   The rolling update strategy is configured in the Deployment YAML file under the spec.strategy field. 
+   This includes the type RollingUpdate and parameters maxSurge and maxUnavailable to control the update pace:
+
+   - maxSurge: The maximum number (or percentage) of pods allowed above the desired replicas during the update.
+   - maxUnavailable: The maximum number (or percentage) of pods that can be unavailable during the update.
+
+   .. code-block:: yaml
+
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+         name: mywebserver
+      spec:
+         replicas: 10
+         strategy:
+            type: RollingUpdate
+            rollingUpdate:
+               maxSurge: 3
+               maxUnavailable: 4
+         selector:
+            matchLabels:
+               app: httpd
+         template:
+            metadata:
+               labels:
+               app: httpd
+            spec:
+               containers:
+                 - name: myhttpd
+                   image: httpd
+                   ports:
+                 - containerPort: 80
+
+Rollbacks:
+   -  Rollbacks
+
+   .. code-block:: bash
+
+      kubectl rollout history deployment
+      deployment.apps/mywebserver
+      # REVISION  CHANGE-CAUSE
+      # 2         <none>
+      # 3         <none>
+
+      # To see the changes in the revison
+      kubectl rollout history deployment mywebserver --revision=2
+      #>> shows the revison changes
+
+      # rollout to previous revision
+      kubectl rollout undo deployment mywebserver
+
+      # rollout to specified revision
+      kubectl rollout undo deployment mywebserver --to-revision=1
+
+Scaling:
+   - Manula and auto Scaling
+
+   .. code-block:: bash
+
+      # manual scaling
+      kubectl scale deployment mywebserver --replicas=20
+
+Volumes:
+   - emptyDir
+   - nfs
+   - hostPath
+
+   .. code-block:: yaml
+
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+         name: mywebserver
+      spec:
+         replicas: 10
+         strategy:
+            type: RollingUpdate
+            rollingUpdate:
+               maxSurge: 3
+               maxUnavailable: 4
+         selector:
+            matchLabels:
+               app: httpd
+         template:
+            metadata:
+               labels:
+                  app: httpd
+            spec:
+               containers:
+                  - name: myhttpd
+                    image: httpd
+                    ports:
+                        - containerPort: 80
+                    volumeMounts:
+                        - name: demovol
+                          mountPath: /data
+               volumes:
+                  - name: demovol
+                    hostPath:
+                        path: /data
+                        type: Directory
+
+   .. code-block:: bash
+
+      docker run -it --rm --privileged --pid=host justincormack/nsenter1
+
+
+ConfigMap:
+   - application configurations
+
+   .. code-block:: yaml
+
+      # demo-configmap.yml
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+         name: demo-configmap
+      data:
+         initdb.sql:
+            select * from product;
+            create table coupon();
+         keys:
+            sbdhgbfhbskdjfnjsndkjbsdj
+            bdfhbsdfbsbdfjksndnsdjnsldgn
+
+   .. code-block:: yaml
+
+      # webserver.yml
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+         name: mywebserver
+      spec:
+         replicas: 10
+         strategy:
+            type: RollingUpdate
+            rollingUpdate:
+               maxSurge: 3
+               maxUnavailable: 4
+         selector:
+            matchLabels:
+               app: httpd
+         template:
+            metadata:
+               labels:
+                  app: httpd
+            spec:
+               containers:
+                  - name: myhttpd
+                    image: httpd
+                    ports:
+                        - containerPort: 80
+                    volumeMounts:
+                        - name: demovol
+                          mountPath: /data
+                        - name: demo-configmap-vol
+                          mountPath: /data/config
+               volumes:
+                  - name: demovol
+                    hostPath:
+                        path: /data
+                        type: Directory
+                  - name: demo-configmap-vol
+                    configMap:
+                        name: demo-configmap
 
 
 
+Secret:
+   - to store secrets in K8s cluster
+
+   .. code-block:: yaml
+
+      apiVersion: v1
+      kind: Secret
+      metadata:
+         name: demo-secret
+      type: Opaque # orbitory key-value pair
+      data:
+         userName: 
+            cmV2c2duCg== #  echo "revsgn" | base64
+         password: 
+            cmV2c2duCg== #  echo "revsgn" | base64
+
+   How to use secrete?
+      
+   .. code-block:: yaml
+
+         .
+         .
+         .
+         template:
+            metadata:
+               labels:
+                  app: httpd
+            spec:
+               containers:
+                  - name: myhttpd
+                    image: httpd
+                    ports:
+                        - containerPort: 80
+                    volumeMounts:
+                        - name: demovol
+                          mountPath: /data
+                        - name: demo-configmap-vol
+                          mountPath: /data/config
+                        - name: demo-secret-vol
+                          mountPath: /data/secret
+               volumes:
+                  - name: demovol
+                    hostPath:
+                        path: /data
+                        type: Directory
+                  - name: demo-configmap-vol
+                    configMap:
+                        name: demo-configmap
+                  - name: demo-secret-vol
+                    secret:
+                        secretName: demo-secret
+
+   
 
 
-.. code-block:: bash
-
-    gcloud config set project my-kubernetes-project-304910
-    gcloud container clusters get-credentials my-cluster --zone us-central1-c --project my-kubernetes-project-304910
-    
-    # create deployement
-    kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
-
-    # to check deployments
-    kubectl get deployment
-    
-    # expose the deloyment to outside world, Kubernetes service will get created
-    kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
-    kubectl get services
-    kubectl get services --watch
-    
-    curl 35.184.204.214:8080/hello-world
-    
-    kubectl scale deployment hello-world-rest-api --replicas=3
-    
-    gcloud container clusters resize my-cluster --node-pool default-pool --num-nodes=2 --zone=us-central1-c
-    
-    kubectl autoscale deployment hello-world-rest-api --max=4 --cpu-percent=70
-    kubectl get hpa
-    
-    # Configuratios for Microservices
-    kubectl create configmap hello-world-config --from-literal=RDS_DB_NAME=todos
-    kubectl get configmap
-    kubectl describe configmap hello-world-config
-    
-    kubectl create secret generic hello-world-secrets-1 --from-literal=RDS_PASSWORD=dummytodos
-    kubectl get secret
-    kubectl describe secret hello-world-secrets-1
-    
-    # is used to create or update resources in a Kubernetes cluster by applying the configurations defined in the deployment.yaml file.
-    kubectl apply -f deployment.yaml
-    
-    gcloud container node-pools list --zone=us-central1-c --cluster=my-cluster
-    kubectl get pods -o wide
-    
-    kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
-    
-    kubectl get services
-    kubectl get replicasets
-    kubectl get pods
-    
-    kubectl delete pod hello-world-rest-api-58dc9d7fcc-8pv7r
-    
-    kubectl scale deployment hello-world-rest-api --replicas=1
-    
-    kubectl get replicasets
-    
-    gcloud projects list
-    kubectl delete service hello-world-rest-api
-    kubectl delete deployment hello-world-rest-api
-    
-    gcloud container clusters delete my-cluster --zone us-central1-c
