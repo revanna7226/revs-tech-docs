@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Data JPA — Query Hints &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Spring Security" href="../../security/index.html" />
+    <link rel="prev" title="Auditing with Spring Security" href="auditing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../interview/index.html">Java Interview Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Spring Data JPA — Query Hints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
+          <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
+      <li class="breadcrumb-item active">Spring Data JPA — Query Hints</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/queryhints.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spring-data-jpa-query-hints">
+<h1>Spring Data JPA — Query Hints<a class="headerlink" href="#spring-data-jpa-query-hints" title="Link to this heading"></a></h1>
+<p><strong>Query Hints</strong> in Spring Data JPA are used to provide additional instructions (or “hints”)
+to the underlying JPA provider (such as Hibernate) about how a query should be executed.
+These hints can influence query performance, caching, locking, and other execution behaviors.</p>
+<p>Spring Data JPA supports query hints via the <code class="docutils literal notranslate"><span class="pre">&#64;QueryHints</span></code> annotation or directly through
+<code class="docutils literal notranslate"><span class="pre">&#64;QueryHint</span></code> on repository methods.</p>
+<dl class="simple">
+<dt>They are commonly used for:</dt><dd><ul class="simple">
+<li><p>Enabling/disabling query caching</p></li>
+<li><p>Making queries read-only</p></li>
+<li><p>Controlling fetch size or timeout</p></li>
+<li><p>Applying database-specific optimizations</p></li>
+<li><p>Overriding default persistence provider settings</p></li>
+</ul>
+</dd>
+</dl>
+<p>You can use both JPA standard hints and vendor-specific hints (e.g., Hibernate-specific).</p>
+<p>Inspect the statistics of your query to see if query hints can help improve performance.</p>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="c1"># application.properties</span>
+<span class="na">spring.jpa.properties.hibernate.generate_statistics</span><span class="o">=</span><span class="s">true</span>
+<span class="na">logging.level.org.hibernate.stat</span><span class="o">=</span><span class="s">debug</span>
+</pre></div>
+</div>
+<dl>
+<dt>Basic Usage:</dt><dd><p>Spring Data JPA allows you to define query hints at the repository method level using
+the <code class="docutils literal notranslate"><span class="pre">&#64;QueryHints</span></code> annotation (a container for one or more <code class="docutils literal notranslate"><span class="pre">&#64;QueryHint</span></code> annotations).</p>
+<dl class="simple">
+<dt>Each <code class="docutils literal notranslate"><span class="pre">&#64;QueryHint</span></code> has two attributes:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> — the name/key of the hint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> — the corresponding hint value</p></li>
+</ul>
+</dd>
+</dl>
+<ol class="arabic">
+<li><p>Example (Read-Only Query):</p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.data.jpa.repository.JpaRepository</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.data.jpa.repository.QueryHints</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.QueryHint</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">EmployeeRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@QueryHints</span><span class="p">(</span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_READ_ONLY</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDepartment</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p>The query result is marked as <strong>read-only</strong>, meaning Hibernate will not track changes to the entities.</p></li>
+<li><p>This can improve performance for large queries when updates are not required.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HINT_READ_ONLY</span></code> is specific to Hibernate (vendor-specific).</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>Example (Enable Second-Level Cache):</p>
+<blockquote>
+<div><p>If you have configured a second-level cache (e.g., EHCache or Caffeine),
+you can instruct Hibernate to use it for a particular query:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.data.jpa.repository.QueryHints</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.QueryHint</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ProductRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Product</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@QueryHints</span><span class="p">({</span>
+<span class="w">        </span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_CACHEABLE</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_CACHE_REGION</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;productQueries&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByCategory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">category</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Explanation:
+- <code class="docutils literal notranslate"><span class="pre">HINT_CACHEABLE</span></code> enables query caching.
+- <code class="docutils literal notranslate"><span class="pre">HINT_CACHE_REGION</span></code> specifies the cache region to store query results.
+- Query caching should be used carefully as it increases memory usage.</p>
+</div></blockquote>
+</li>
+<li><p>Example (Timeout and Fetch Size):</p>
+<blockquote>
+<div><p>You can also define query execution hints such as fetch size or timeout.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@QueryHints</span><span class="p">({</span>
+<span class="w">        </span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_FETCH_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;50&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_TIMEOUT</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;5000&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HINT_FETCH_SIZE</span></code> tells the database driver how many rows to fetch in each batch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HINT_TIMEOUT</span></code> defines the query timeout (in milliseconds).</p></li>
+<li><p>These can help optimize performance in large data queries.</p></li>
+</ul>
+</dd>
+</dl>
+<p>JPA Standard Hints vs Vendor-Specific Hints:</p>
+<dl class="simple">
+<dt>There are <strong>two main types</strong> of query hints</dt><dd><ol class="arabic simple">
+<li><p><strong>JPA Standard Hints</strong> — defined in <code class="docutils literal notranslate"><span class="pre">javax.persistence.QueryHints</span></code> (portable across JPA providers)</p></li>
+<li><p><strong>Vendor-Specific Hints</strong> — provided by the implementation (e.g., Hibernate)</p></li>
+</ol>
+</dd>
+</dl>
+<p>Common Standard Hints:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Hint Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">javax.persistence.query.timeout</span></code></p></td>
+<td><p>Query timeout in milliseconds</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">javax.persistence.fetchgraph</span></code></p></td>
+<td><p>Apply a named entity graph</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">javax.persistence.loadgraph</span></code></p></td>
+<td><p>Load an entity graph partially</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">javax.persistence.cache.retrieveMode</span></code></p></td>
+<td><p>Defines cache retrieval behavior</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">javax.persistence.cache.storeMode</span></code></p></td>
+<td><p>Defines cache storage behavior</p></td>
+</tr>
+</tbody>
+</table>
+<p>Common Hibernate-Specific Hints:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Hint Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.readOnly</span></code></p></td>
+<td><p>Marks query results as read-only</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.cacheable</span></code></p></td>
+<td><p>Enables query caching</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.cacheRegion</span></code></p></td>
+<td><p>Sets a specific cache region</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.fetchSize</span></code></p></td>
+<td><p>Fetch batch size for JDBC</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.timeout</span></code></p></td>
+<td><p>Query timeout (in seconds)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">org.hibernate.comment</span></code></p></td>
+<td><p>Adds a comment to the SQL (for debugging)</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</li>
+<li><p>Example (Entity Graphs with Query Hints):</p>
+<blockquote>
+<div><p>Entity graphs can be combined with query hints to customize fetching strategies.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@EntityGraph</span><span class="p">(</span><span class="n">attributePaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;department&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;projects&quot;</span><span class="p">})</span>
+<span class="nd">@QueryHints</span><span class="p">(</span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_READ_ONLY</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAll</span><span class="p">();</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;EntityGraph</span></code> tells JPA which relationships to eagerly fetch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;QueryHint</span></code> ensures read-only results.</p></li>
+<li><p>This combination provides both performance and fine-grained control over fetching.</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>Using &#64;Query with Query Hints:</p>
+<blockquote>
+<div><p>You can apply query hints to custom JPQL or native queries as well.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT e FROM Employee e WHERE e.department = :dept&quot;</span><span class="p">)</span>
+<span class="nd">@QueryHints</span><span class="p">(</span><span class="nd">@QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_READ_ONLY</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getEmployeesByDept</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">&quot;dept&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p>Works the same way for custom queries.</p></li>
+<li><p>Hints influence the query behavior during execution, not the query structure.</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+<li><p>Dynamic Query Hints (Programmatic):</p>
+<blockquote>
+<div><p>If you create queries programmatically using <code class="docutils literal notranslate"><span class="pre">EntityManager</span></code>, you can set hints dynamically:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PersistenceContext</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">EntityManager</span><span class="w"> </span><span class="n">em</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findReadOnlyEmployees</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TypedQuery</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">em</span><span class="p">.</span><span class="na">createQuery</span><span class="p">(</span><span class="s">&quot;SELECT e FROM Employee e&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Employee</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="w">    </span><span class="n">query</span><span class="p">.</span><span class="na">setHint</span><span class="p">(</span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_READ_ONLY</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">query</span><span class="p">.</span><span class="na">getResultList</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setHint()</span></code> can be called on any JPA query before execution.</p></li>
+<li><p>Useful for dynamic or conditional hints.</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+<dt>Best Practices:</dt><dd><ul class="simple">
+<li><p>Use query hints sparingly — only when tuning is required.</p></li>
+<li><p>Avoid vendor-specific hints if portability across JPA providers is needed.</p></li>
+<li><p>Prefer read-only hints for queries that don’t modify entities.</p></li>
+<li><p>Use second-level caching only for frequently executed and stable queries.</p></li>
+<li><p>Always measure performance impact before and after applying hints.</p></li>
+</ul>
+</dd>
+<dt>References:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/aredZWI4Tz0?si=qcFz_9sSRNtGykWA">Youtube Video</a></p></li>
+<li><p><a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-hints">Spring Data JPA Reference Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#hql-query-hints">Hibernate Query Hints Documentation</a></p></li>
+<li><p><a class="reference external" href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence Specification</a></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="auditing.html" class="btn btn-neutral float-left" title="Auditing with Spring Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../security/index.html" class="btn btn-neutral float-right" title="Spring Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

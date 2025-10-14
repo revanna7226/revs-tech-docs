@@ -176,9 +176,12 @@ Docker Commands
     
         # Tag an image with a new name and tag
         docker tag <image_id_or_name> myrepo/myimage:latest
-
         # Tag an image for pushing to a specific registry
         docker tag <image_id_or_name> myregistry.com/myrepo/myimage:latest
+
+        # Example: Tagging an image for Docker Hub
+        docker tag coupon-service:0.0.1 revannarsn/coupon-service:0.0.1
+        docker push revannarsn/coupon-service:0.0.1
 
 #. Push a Docker image to a registry:
 

@@ -12,3 +12,4 @@ Cloud
    aws/index
    k8s/index
    docker/index
+   helm/index

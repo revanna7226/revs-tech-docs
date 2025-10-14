@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Database" href="../../database/index.html" />
+    <link rel="next" title="Tasks" href="tasks.html" />
     <link rel="prev" title="Introduction" href="introduction.html" /> 
 </head>
 
@@ -53,13 +53,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Dockers</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Docker Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tasks.html">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker-compose.html">Docker Compose</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../helm/index.html">Helm Charts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
@@ -259,9 +263,12 @@ docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </
 <li><p>Tag a Docker image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tag an image with a new name and tag</span>
 docker<span class="w"> </span>tag<span class="w"> </span>&lt;image_id_or_name&gt;<span class="w"> </span>myrepo/myimage:latest
-
 <span class="c1"># Tag an image for pushing to a specific registry</span>
 docker<span class="w"> </span>tag<span class="w"> </span>&lt;image_id_or_name&gt;<span class="w"> </span>myregistry.com/myrepo/myimage:latest
+
+<span class="c1"># Example: Tagging an image for Docker Hub</span>
+docker<span class="w"> </span>tag<span class="w"> </span>coupon-service:0.0.1<span class="w"> </span>revannarsn/coupon-service:0.0.1
+docker<span class="w"> </span>push<span class="w"> </span>revannarsn/coupon-service:0.0.1
 </pre></div>
 </div>
 </li>
@@ -423,7 +430,7 @@ docker<span class="w"> </span>stack<span class="w"> </span>rm<span class="w"> </
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../database/index.html" class="btn btn-neutral float-right" title="Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="tasks.html" class="btn btn-neutral float-right" title="Tasks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

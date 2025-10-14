@@ -35,6 +35,16 @@ Pods:
         #  fetches the details of the pod named firstpod and outputs the entire resource definition in YAML format.
         kubectl get pod/firstpod -o yaml
 
+    Check the Pod Logs and Events:
+
+    .. code-block:: bash
+
+        # Check logs of the pod
+        kubectl logs <pod-name> --previous
+
+        # Check events in the cluster
+        kubectl get events
+
     Creating Pod using Yaml File.
 
     .. code-block:: yaml
