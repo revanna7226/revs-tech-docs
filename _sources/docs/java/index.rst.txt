@@ -7,7 +7,6 @@ Java
 
    introduction
    basics/index
-   interview/index
    java8/index
    java9/index
    maven/index

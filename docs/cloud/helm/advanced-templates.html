@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Chart Topics &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Advanced Chart Topics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/cloud/helm/advanced-templates.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-chart-topics">
+<h1>Advanced Chart Topics<a class="headerlink" href="#advanced-chart-topics" title="Link to this heading"></a></h1>
+<ol class="arabic simple">
+<li><p>Adding Dependencies to Charts:</p></li>
+</ol>
+<blockquote>
+<div><p>Helm charts can depend on other charts. This is useful for including
+common components, such as databases or monitoring tools, in your
+application.</p>
+<p>To add a dependency, you need to define it in the <cite>Chart.yaml</cite> file
+of your chart. Here is an example of how to add a dependency:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;14.8.8&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+</pre></div>
+</div>
+<p>After defining the dependency, you need to run the following
+command to update the dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm<span class="w"> </span>dependency<span class="w"> </span>update<span class="w"> </span>mychart/
+</pre></div>
+</div>
+<p>This will download the specified version of the Redis chart and
+place it in the <cite>charts/</cite> directory of your chart.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Using version constraints:</p></li>
+</ol>
+<blockquote>
+<div><p>When specifying dependencies, you can use version constraints to
+ensure that your chart uses a compatible version of the dependency.
+Helm supports semantic versioning, and you can use operators like
+<cite>&gt;=</cite>, <cite>&lt;=</cite>, <cite>~</cite>, and <cite>^</cite> to define version ranges.</p>
+<p>For example, to specify that your chart requires at least version
+14.0.0 of the Redis chart, you can use the following constraint:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&gt;=14.0.0&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>Using condition and tags:</p></li>
+</ol>
+<blockquote>
+<div><p>You can use the <cite>condition</cite> and <cite>tags</cite> fields in the dependency
+definition to control when a dependency is included in the chart.
+The <cite>condition</cite> field allows you to specify a value in the <cite>values.yaml</cite>
+file that determines whether the dependency is enabled or disabled.
+The <cite>tags</cite> field allows you to group dependencies and enable or disable
+them based on tags.</p>
+<p>Here is an example of using the <cite>condition</cite> field:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;14.8.8&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">    </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis.enabled</span>
+</pre></div>
+</div>
+<p>In this example, the Redis dependency will only be included if the
+<cite>redis.enabled</cite> value in the <cite>values.yaml</cite> file is set to <cite>true</cite>.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Using repo name:</p>
+<blockquote>
+<div><p>When adding a dependency, you can use a repository name instead of
+the full URL. This is useful if you have added the repository to
+your Helm client using the <cite>helm repo add</cite> command.</p>
+<p>For example, if you have added the Bitnami repository with the name
+<cite>bitnami</cite>, you can specify the dependency as follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;14.8.8&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;bitnami&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Using multiple conditional dependencies:</p>
+<blockquote>
+<div><p>You can add multiple dependencies to your chart by defining them
+in the <cite>dependencies</cite> section of the <cite>Chart.yaml</cite> file. Each
+dependency should be defined as a separate item in the list.</p>
+<p>Here is an example of a chart with multiple dependencies:
+In this example, the Redis dependency will only be included if the
+<cite>tags.enabled</cite> value in the <cite>values.yaml</cite> file is set to <cite>true</cite>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;14.8.8&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">    </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;10.3.11&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://charts.bitnami.com/bitnami&quot;</span>
+<span class="w">    </span><span class="nt">tages</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">enabled</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Pass values to dependencies:</p>
+<blockquote>
+<div><p>You can pass custom values to the dependencies of your chart by
+defining them in the <cite>values.yaml</cite> file of your chart. You can
+specify values for each dependency using the name of the dependency
+as a prefix.</p>
+<p>Here is an example of how to pass custom values to the Redis
+dependency:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span>
+<span class="w">  </span><span class="nt">master</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
+<span class="nt">mysql</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">rootPassword</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mypassword</span>
+<span class="w">  </span><span class="nt">primary</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span>
+<span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30075</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Read Values from Dependencies</p>
+<blockquote>
+<div><p>You can read values from the dependencies of your chart using
+the <cite>{{ .Values.&lt;dependency-name&gt;.&lt;value-path&gt; }}</cite> syntax in your
+templates. This allows you to access values defined in the
+<cite>values.yaml</cite> file of the dependency chart.</p>
+<p>Here is an example of how to read a value from the Redis dependency:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myconfigmap</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">redis-password</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.redis.auth.password | quote</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Exporting Values to Dependencies</p>
+<blockquote>
+<div><p>You can export values from your chart to its dependencies using
+the <cite>export</cite> field in the <cite>values.yaml</cite> file of your chart. This
+allows you to share values between your chart and its dependencies.</p>
+<p>Here is an example of how to export a value to the Redis dependency:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">export</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">myvalue</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;somevalue&quot;</span>
+</pre></div>
+</div>
+<p>In the Redis dependency, you can access the exported value using
+the <cite>{{ .Values.myvalue }}</cite> syntax in your templates.</p>
+</div></blockquote>
+</li>
+<li><p>Exporting Values to Parent Chart</p>
+<blockquote>
+<div><p>You can export values from a dependency chart to its parent chart
+using the <cite>export</cite> field in the <cite>values.yaml</cite> file of the
+dependency chart. This allows you to share values between the
+dependency chart and its parent chart.</p>
+<p>Here is an example of how to export a value from the Redis
+dependency chart:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">export</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">redisHost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;myredishost&quot;</span>
+</pre></div>
+</div>
+<p>In the parent chart, you can access the exported value using
+the <cite>{{ .Values.redisHost }}</cite> syntax in your templates.</p>
+</div></blockquote>
+</li>
+<li><p>Using Global Values</p>
+<blockquote>
+<div><p>You can define global values in the <cite>values.yaml</cite> file of your
+chart using the <cite>global</cite> key. Global values are accessible from
+any template in your chart and its dependencies.</p>
+<p>Here is an example of how to define and use a global value:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">appName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;myapp&quot;</span>
+</pre></div>
+</div>
+<p>In your templates, you can access the global value using the
+<cite>{{ .Values.global.appName }}</cite> syntax.</p>
+</div></blockquote>
+</li>
+<li><p>Using Values which are not exported</p>
+<blockquote>
+<div><p>If a dependency chart does not export a value, you can still
+access its values using the <cite>{{ .Values.&lt;dependency-name&gt;.&lt;value-path&gt; }}</cite>
+syntax in your templates. However, this approach is less reliable
+because the dependency chart may change its internal structure
+without warning.</p>
+<p>Here is an example of how to access a value from a dependency
+chart that does not export it:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myconfigmap</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">redis-host</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.redis.primary.host | quote</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Using Library Charts</p>
+<blockquote>
+<div><p>Library charts are charts that contain reusable templates and
+functions that can be shared across multiple charts. You can use
+library charts to avoid duplicating common templates and logic in
+your charts.</p>
+<p>To use a library chart, you need to add it as a dependency in the
+<cite>Chart.yaml</cite> file of your chart. Here is an example of how to add
+a library chart as a dependency:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mylibrary</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com/charts&quot;</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">library</span>
+</pre></div>
+</div>
+<p>After adding the library chart as a dependency, you can use its
+templates and functions in your chart’s templates.</p>
+</div></blockquote>
+</li>
+<li><p>Importing Values from Child charts using import-values</p>
+<blockquote>
+<div><p>You can import values from child charts into the parent chart
+using the <cite>import-values</cite> field in the <cite>Chart.yaml</cite> file of the
+parent chart. This allows you to share values between the parent
+chart and its child charts.</p>
+<p>Here is an example of how to import values from a child chart:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mychildchart</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com/charts&quot;</span>
+<span class="w">    </span><span class="nt">import-values</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">childValue1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">childValue2</span>
+</pre></div>
+</div>
+<p>In the parent chart, you can access the imported values using
+the <cite>{{ .Values.childValue1 }}</cite> and <cite>{{ .Values.childValue2 }}</cite>
+syntax in your templates.</p>
+</div></blockquote>
+</li>
+<li><p>Importing Values from Child charts using import-values with alias</p>
+<blockquote>
+<div><p>You can import values from child charts into the parent chart
+using the <cite>import-values</cite> field in the <cite>Chart.yaml</cite> file of the
+parent chart. You can also use the <cite>as</cite> keyword to rename the
+imported values.</p>
+<p>Here is an example of how to import and rename values from a
+child chart:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mychildchart</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;1.0.0&quot;</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com/charts&quot;</span>
+<span class="w">    </span><span class="nt">import-values</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">childValue1 as parentValue1</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">childValue2 as parentValue2</span>
+</pre></div>
+</div>
+<p>In the parent chart, you can access the imported and renamed
+values using the <cite>{{ .Values.parentValue1 }}</cite> and
+<cite>{{ .Values.parentValue2 }}</cite> syntax in your templates.</p>
+</div></blockquote>
+</li>
+<li><p>Helm Hooks</p>
+<blockquote>
+<div><p>Helm hooks are special annotations that allow you to run
+specific actions at certain points in the lifecycle of a Helm
+release. Hooks can be used to perform tasks such as database
+migrations, backups, or cleanup operations.</p>
+<p>To create a hook, you need to add the appropriate annotations
+to your Kubernetes resource definitions in your chart’s templates.
+Here is an example of how to create a pre-install hook:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">batch/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Job</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pre-install-job</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pre-install</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook-weight&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook-delete-policy&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hook-succeeded</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-image</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;my-command&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+</pre></div>
+</div>
+<p>In this example, the job will run before the chart is installed.
+The <cite>hook-weight</cite> annotation determines the order in which hooks
+are executed, and the <cite>hook-delete-policy</cite> annotation specifies
+when the hook resource should be deleted.</p>
+</div></blockquote>
+</li>
+<li><p>Create and use Hooks</p>
+<blockquote>
+<div><p>You can create and use hooks in your Helm charts to perform
+specific actions at certain points in the lifecycle of a Helm
+release. Hooks can be used for tasks such as database migrations,
+backups, or cleanup operations.</p>
+<p>To create a hook, you need to add the appropriate annotations to
+your Kubernetes resource definitions in your chart’s templates.
+Here is an example of how to create a post-install hook:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">batch/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Job</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-post-install-job</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">post-install</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook-weight&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;0&quot;</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook-delete-policy&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hook-succeeded</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-image</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;my-command&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+</pre></div>
+</div>
+<p>In this example, the job will run after the chart is installed.
+The <cite>hook-weight</cite> annotation determines the order in which hooks
+are executed, and the <cite>hook-delete-policy</cite> annotation specifies
+when the hook resource should be deleted.</p>
+</div></blockquote>
+</li>
+<li><p>Testing Charts with Helm Tests</p>
+<blockquote>
+<div><p>Helm provides a built-in mechanism for testing charts using
+Helm tests. Helm tests are special Kubernetes resources that
+are defined in the <cite>templates/tests/</cite> directory of your chart.
+These resources are executed when you run the <cite>helm test</cite> command.</p>
+<p>To create a Helm test, you need to define a Kubernetes resource
+in the <cite>templates/tests/</cite> directory of your chart. Here is an
+example of how to create a simple test using a Pod:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-test-pod</span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mychart</span>
+<span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Release.Name</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Chart.AppVersion</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">    </span><span class="nt">app.kubernetes.io/managed-by</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Release.Service</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="s">&quot;helm.sh/hook&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;echo</span><span class="nv"> </span><span class="s">Hello,</span><span class="nv"> </span><span class="s">World!</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">sleep</span><span class="nv"> </span><span class="s">30&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Never</span>
+</pre></div>
+</div>
+<p>In this example, the Pod will run a simple command that prints
+“Hello, World!” and then sleeps for 30 seconds. The <cite>helm.sh/hook</cite>
+annotation specifies that this resource is a test hook.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

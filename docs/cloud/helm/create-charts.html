@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Charts &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Templates Deep Dive" href="templates.html" />
+    <link rel="prev" title="Advanced Commands" href="advanced-commands.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Helm Charts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">Helm Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced-commands.html">Advanced Commands</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Create Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html">Templates Deep Dive</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Cloud</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Helm Charts</a></li>
+      <li class="breadcrumb-item active">Create Charts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/cloud/helm/create-charts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="create-charts">
+<h1>Create Charts<a class="headerlink" href="#create-charts" title="Link to this heading"></a></h1>
+<ol class="arabic">
+<li><p>Create a New Chart</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># To create a new Helm chart, use the `helm create` command followed by the name of the chart you want to create.</span>
+helm<span class="w"> </span>create<span class="w"> </span>mychart
+<span class="c1"># This will create a directory named `mychart` with a basic Helm chart structure.</span>
+ls<span class="w"> </span>mychart
+<span class="c1"># You can explore the contents of the chart directory using the `tree` command (if available) or by listing the files.</span>
+tree<span class="w"> </span>mychart
+<span class="c1"># Example output:</span>
+revschart
+├──<span class="w"> </span>Chart.yaml<span class="w"> </span><span class="c1"># Information about your chart</span>
+├──<span class="w"> </span>charts<span class="w"> </span><span class="c1"># Directory to hold any dependent charts</span>
+├──<span class="w"> </span>templates<span class="w"> </span><span class="c1"># Directory for Kubernetes manifest templates</span>
+│<span class="w">   </span>├──<span class="w"> </span>NOTES.txt<span class="w"> </span><span class="c1"># Instructions displayed after installation</span>
+│<span class="w">   </span>├──<span class="w"> </span>_helpers.tpl<span class="w"> </span><span class="c1"># Template helpers for the chart</span>
+│<span class="w">   </span>├──<span class="w"> </span>deployment.yaml<span class="w"> </span><span class="c1"># Deployment resource template</span>
+│<span class="w">   </span>├──<span class="w"> </span>hpa.yaml<span class="w"> </span><span class="c1"># Horizontal Pod Autoscaler template</span>
+│<span class="w">   </span>├──<span class="w"> </span>httproute.yaml<span class="w"> </span><span class="c1"># HTTPRoute resource template</span>
+│<span class="w">   </span>├──<span class="w"> </span>ingress.yaml<span class="w"> </span><span class="c1"># Ingress resource template</span>
+│<span class="w">   </span>├──<span class="w"> </span>service.yaml<span class="w"> </span><span class="c1"># Service resource template</span>
+│<span class="w">   </span>├──<span class="w"> </span>serviceaccount.yaml<span class="w"> </span><span class="c1"># ServiceAccount resource template</span>
+│<span class="w">   </span>└──<span class="w"> </span>tests<span class="w"> </span><span class="c1"># Directory for test files</span>
+│<span class="w">       </span>└──<span class="w"> </span>test-connection.yaml<span class="w"> </span><span class="c1"># Test resource template</span>
+└──<span class="w"> </span>values.yaml<span class="w"> </span><span class="c1"># Default configuration values for the chart</span>
+
+<span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">11</span><span class="w"> </span>files
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install a Chart</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># To install the chart you created, use the `helm install` command followed by a release name and the path to the chart directory.</span>
+helm<span class="w"> </span>install<span class="w"> </span>myrelease<span class="w"> </span>mychart
+<span class="c1"># This will deploy the resources defined in your chart to your Kubernetes cluster.</span>
+<span class="c1"># You can check the status of your release using:</span>
+helm<span class="w"> </span>status<span class="w"> </span>myrelease
+<span class="c1"># To see the resources created by your chart, you can use:</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>all
+<span class="c1"># Example output:</span>
+NAME<span class="w">                                   </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+pod/myrelease-mychart-5d5b6f7c7b-abcde<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>2m
+
+NAME<span class="w">                      </span>TYPE<span class="w">        </span>CLUSTER-IP<span class="w">      </span>EXTERNAL-IP<span class="w">   </span>PORT<span class="o">(</span>S<span class="o">)</span><span class="w">    </span>AGE
+service/myrelease-mychart<span class="w"> </span>ClusterIP<span class="w">   </span><span class="m">10</span>.96.123.456<span class="w">   </span>&lt;none&gt;<span class="w">        </span><span class="m">80</span>/TCP<span class="w">     </span>2m
+
+NAME<span class="w">                              </span>READY<span class="w">   </span>UP-TO-DATE<span class="w">   </span>AVAILABLE<span class="w">   </span>AGE
+deployment.apps/myrelease-mychart<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span><span class="m">1</span><span class="w">            </span><span class="m">1</span><span class="w">           </span>2m
+
+NAME<span class="w">                                         </span>DESIRED<span class="w">   </span>CURRENT<span class="w">   </span>READY<span class="w">   </span>AGE
+replicaset.apps/myrelease-mychart-5d5b6f7c7b<span class="w">   </span><span class="m">1</span><span class="w">         </span><span class="m">1</span><span class="w">         </span><span class="m">1</span><span class="w">       </span>2m
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Chart yaml</p>
+<blockquote>
+<div><p>A Sample Chart.yml</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v2</span><span class="w"> </span><span class="c1"># The chart API version</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revschart</span><span class="w"> </span><span class="c1"># The name of the chart</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A Helm chart for Kubernetes</span><span class="w"> </span><span class="c1"># A brief description of the chart</span>
+<span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.freeiconspng.com/uploads/website-icon-8.png</span><span class="w"> </span><span class="c1"># URL to an icon file for the chart</span>
+<span class="nt">keywords</span><span class="p">:</span><span class="w"> </span><span class="c1"># Keywords to help search for the chart</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revsapp</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample-app</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demoapp</span>
+<span class="nt">home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://revsgn.com/</span><span class="w"> </span><span class="c1"># The URL of the project homepage</span>
+<span class="nt">sources</span><span class="p">:</span><span class="w"> </span><span class="c1"># A list of URLs to the source code for the project</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://revsgn.com/sources</span>
+<span class="nt">maintainers</span><span class="p">:</span><span class="w"> </span><span class="c1"># A list of maintainers for the chart</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revsgn</span>
+<span class="w">      </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">revsn@email.com</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pushpab</span>
+<span class="w">      </span><span class="nt">email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pushpab@email.com</span>
+<span class="c1"># A chart can be either an &#39;application&#39; or a &#39;library&#39; chart.</span>
+<span class="c1">#</span>
+<span class="c1"># Application charts are a collection of templates that can be packaged into versioned arch&gt;</span>
+<span class="c1"># to be deployed.</span>
+<span class="c1">#</span>
+<span class="c1"># Library charts provide useful utilities or functions for the chart developer. They&#39;re inc&gt;</span>
+<span class="c1"># a dependency of application charts to inject those utilities and functions into the rende&gt;</span>
+<span class="c1"># pipeline. Library charts do not define any templates and therefore cannot be deployed.</span>
+<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application</span>
+
+<span class="c1"># This is the chart version. This version number should be incremented each time you make c&gt;</span>
+<span class="c1"># to the chart and its templates, including the app version.</span>
+<span class="c1"># Versions are expected to follow Semantic Versioning (https://semver.org/)</span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1.0</span>
+
+<span class="c1"># This is the version number of the application being deployed. This version number should &gt;</span>
+<span class="c1"># incremented each time you make changes to the application. Versions are not expected to</span>
+<span class="c1"># follow Semantic Versioning. They should reflect the version the application is using.</span>
+<span class="c1"># It is recommended to use it with quotes.</span>
+<span class="nt">appVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.16.0&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Helm package</p>
+<blockquote>
+<div><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># To package a Helm chart, use the `helm package` command followed by the path to the chart directory.</span>
+<span class="l l-Scalar l-Scalar-Plain">helm package mychart</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># If your chart has dependencies, you can update them before packaging using the `--dependency-update` flag.</span>
+<span class="l l-Scalar l-Scalar-Plain">helm package mychart --dependency-update</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># You can also specify a revision number for the packaged chart using the `--revision` flag.</span>
+<span class="l l-Scalar l-Scalar-Plain">helm package mychart --revision 2</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># You can specify a version for the packaged chart using the `--version` flag.</span>
+<span class="l l-Scalar l-Scalar-Plain">helm package mychart --version 1.0.0</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># To specify an output directory for the packaged chart, use the `-d` or `--destination` flag.</span>
+<span class="l l-Scalar l-Scalar-Plain">helm package mychart -d ./output-directory</span>
+
+<span class="l l-Scalar l-Scalar-Plain"># This will create a `.tgz` file in the current directory, which is a packaged version of your chart.</span>
+<span class="l l-Scalar l-Scalar-Plain">ls</span>
+<span class="l l-Scalar l-Scalar-Plain"># Example output</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">mychart-0.1.0.tgz</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Helm ignore</p>
+<blockquote>
+<div><p># The <cite>.helmignore</cite> file is used to specify files and directories that should be ignored when packaging a Helm chart.
+# It follows the same pattern as a <cite>.gitignore</cite> file.</p>
+<p># Example <cite>.helmignore</cite> file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Ignore all files with a .log extension
+*.log
+
+# Ignore the `tmp` directory
+tmp/
+
+# Ignore all files in the `tests` directory
+tests/*
+
+# Ignore specific files
+secret-values.yaml
+README.md
+
+# Ignore all hidden files (files starting with a dot)
+.*
+
+# Ignore all files in the `docs` directory except for `docs/important.md`
+docs/*
+!docs/important.md
+
+# Ignore all `.txt` files in the `config` directory
+config/*.txt
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Helm Lint</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># To validate a Helm chart, use the `helm lint` command followed by the path to the chart directory.</span>
+helm<span class="w"> </span>lint<span class="w"> </span>mychart
+
+<span class="c1"># This command checks the chart for common issues and best practices, and it will output any warnings or errors it finds.</span>
+<span class="c1"># Example output:</span>
+<span class="o">==</span><span class="w"> </span>Linting<span class="w"> </span><span class="nv">mychart</span><span class="w"> </span><span class="o">==</span>
+<span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Chart.yaml:<span class="w"> </span>icon<span class="w"> </span>is<span class="w"> </span>recommended
+<span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span>Chart.yaml:<span class="w"> </span>keywords<span class="w"> </span>are<span class="w"> </span>recommended
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="advanced-commands.html" class="btn btn-neutral float-left" title="Advanced Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="templates.html" class="btn btn-neutral float-right" title="Templates Deep Dive" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

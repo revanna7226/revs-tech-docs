@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Database" href="../../database/index.html" />
+    <link rel="next" title="Helm Commands" href="commands.html" />
     <link rel="prev" title="Helm Charts" href="index.html" /> 
 </head>
 
@@ -59,6 +59,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Helm Charts</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">Helm Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced-commands.html">Advanced Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-charts.html">Create Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html">Templates Deep Dive</a></li>
 </ul>
 </li>
 </ul>
@@ -71,6 +75,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../questions/index.html">Question Bank</a></li>
 </ul>
 
         </div>
@@ -101,6 +106,139 @@
              
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>Helm Commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm<span class="w"> </span>repo<span class="w"> </span>list
+
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>bitnami<span class="w"> </span>https://charts.bitnami.com/bitnami
+
+helm<span class="w"> </span>repo<span class="w"> </span>list
+
+helm<span class="w"> </span>repo<span class="w"> </span>remove<span class="w"> </span>bitnami
+
+helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>bitnami<span class="w"> </span>https://charts.bitnami.com/bitnami
+
+
+Search<span class="w"> </span>the<span class="w"> </span>repository:
+
+helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>mysql
+
+helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>database
+
+helm<span class="w"> </span>search<span class="w"> </span>repo<span class="w"> </span>database<span class="w"> </span>--versions
+
+
+Install<span class="w"> </span>a<span class="w"> </span>package:
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pods
+
+<span class="o">(</span>Below<span class="w"> </span>Two<span class="w"> </span>commands<span class="w"> </span>-<span class="w"> </span>In<span class="w"> </span>a<span class="w"> </span>Different<span class="w"> </span>Shell/Commandline<span class="w"> </span>window/tab<span class="o">)</span>
+
+minikube<span class="w"> </span>ssh
+
+docker<span class="w"> </span>images
+
+helm<span class="w"> </span>install<span class="w"> </span>mydb<span class="w"> </span>bitnami/mysql
+
+Check<span class="w"> </span>the<span class="w"> </span>cluster:
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pods
+
+minikube<span class="w"> </span>ssh
+
+docker<span class="w"> </span>images
+
+To<span class="w"> </span>check<span class="w"> </span>the<span class="w"> </span>installation<span class="w"> </span>status:
+
+helm<span class="w"> </span>status<span class="w"> </span>mydb
+
+
+
+--------------------------------------------
+
+To<span class="w"> </span>Upgrade:
+
+<span class="nv">ROOT_PASSWORD</span><span class="o">=</span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>--namespace<span class="w"> </span>default<span class="w"> </span>mydb-mysql<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.mysql-root-password}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode<span class="k">)</span>
+
+helm<span class="w"> </span>upgrade<span class="w"> </span>--namespace<span class="w"> </span>default<span class="w"> </span>mysql-release<span class="w"> </span>bitnami/mysql<span class="w"> </span>--set<span class="w"> </span>auth.rootPassword<span class="o">=</span><span class="nv">$ROOT_PASSWORD</span>
+
+-------
+
+helm<span class="w"> </span>uninstall<span class="w"> </span>mysql-release
+</pre></div>
+</div>
+<p>Updates:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#⚠ WARNING: Since August 28th, 2025, only a limited subset of images/charts are available for free.</span>
+<span class="c1">#Subscribe to Bitnami Secure Images to receive continued support and security updates</span>
+<span class="c1">#More info at https://bitnami.com and https://github.com/bitnami/containers/issues/83267</span>
+
+<span class="c1">#Solution:</span>
+Append<span class="w"> </span>--set<span class="w"> </span>image.repository<span class="o">=</span>bitnamilegacy/&lt;ChartName&gt;<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>helm<span class="w"> </span>install<span class="w"> </span><span class="nb">command</span>
+
+<span class="c1">#Example:</span>
+helm<span class="w"> </span>install<span class="w"> </span>mydb<span class="w"> </span>bitnami/mysql<span class="w"> </span>--set<span class="w"> </span>image.repository<span class="o">=</span>bitnamilegacy/mysql
+</pre></div>
+</div>
+<p>output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>NAME: mydb
+LAST DEPLOYED: Wed Oct 15 06:22:10 2025
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: mysql
+CHART VERSION: 14.0.3
+APP VERSION: 9.4.0
+
+⚠ WARNING: Since August 28th, 2025, only a limited subset of images/charts are available for free.
+    Subscribe to Bitnami Secure Images to receive continued support and security updates.
+    More info at https://bitnami.com and https://github.com/bitnami/containers/issues/83267
+
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+Watch the deployment status using the command: kubectl get pods -w --namespace default
+
+Services:
+
+echo Primary: mydb-mysql.default.svc.cluster.local:3306
+
+Execute the following to get the administrator credentials:
+
+echo Username: root MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace default mydb-mysql -o jsonpath=&quot;{.data.mysql-root-password}&quot; | base64 -d)
+
+To connect to your database:
+
+1. Run a pod that you can use as a client:
+
+    kubectl run mydb-mysql-client --rm --tty -i --restart=&#39;Never&#39; --image  docker.io/bitnamilegacy/mysql:9.4.0-debian-12-r1 --namespace default --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD --command -- bash
+
+2. To connect to primary service (read/write):
+
+    mysql -h mydb-mysql.default.svc.cluster.local -uroot -p&quot;$MYSQL_ROOT_PASSWORD&quot;
+
+
+
+
+
+
+WARNING: There are &quot;resources&quot; sections in the chart not set. Using &quot;resourcesPreset&quot; is not recommended for production. For production installations, please set the following values according to your workload needs:
+- primary.resources
+- secondary.resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+⚠ SECURITY WARNING: Original containers have been substituted. This Helm chart was designed, tested, and validated on multiple platforms using a specific set of Bitnami and Tanzu Application Catalog containers. Substituting other containers is likely to cause degraded security and performance, broken chart features, and missing environment variables.
+
+Substituted images detected:
+- docker.io/bitnamilegacy/mysql:9.4.0-debian-12-r1
+
+⚠ WARNING: Original containers have been substituted for unrecognized ones. Deploying this chart with non-standard containers is likely to cause degraded security and performance, broken chart features, and missing environment variables.
+
+Unrecognized images:
+- docker.io/bitnamilegacy/mysql:9.4.0-debian-12-r1
+</pre></div>
+</div>
 </section>
 
 
@@ -108,13 +246,13 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Helm Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../database/index.html" class="btn btn-neutral float-right" title="Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="commands.html" class="btn btn-neutral float-right" title="Helm Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Revannaswamy N.</p>
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

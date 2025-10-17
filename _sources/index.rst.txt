@@ -18,3 +18,4 @@ Revs Notes
    docs/webui/index
    docs/aitools/index
    docs/udemy/index
+   docs/questions/index

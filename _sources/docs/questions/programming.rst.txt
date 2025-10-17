@@ -567,3 +567,116 @@ Coding Challenge Questions
       Digits: 3
       Special Characters: 3
 
+#. How to implement Stack in Java?
+
+   A stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle.
+
+   **Array-Based Stack Implementation**
+
+   .. code-block:: java
+
+      public class ArrayStack {
+         private int maxSize;
+         private int[] stackArray;
+         private int top;
+
+         public ArrayStack(int size) {
+            this.maxSize = size;
+            this.stackArray = new int[size];
+            this.top = -1;
+         }
+
+         public void push(int value) {
+            if (top == maxSize - 1) {
+                  throw new RuntimeException("Stack overflow");
+            }
+            stackArray[++top] = value;
+         }
+
+         public int pop() {
+            if (top == -1) {
+                  throw new RuntimeException("Stack underflow");
+            }
+            return stackArray[top--];
+         }
+
+         public int peek() {
+            if (top == -1) {
+                  throw new RuntimeException("Stack is empty");
+            }
+            return stackArray[top];
+         }
+
+         public boolean isEmpty() {
+            return top == -1;
+         }
+      }
+
+      // Usage
+      ArrayStack stack = new ArrayStack(5);
+      stack.push(10);
+      stack.push(20);
+      System.out.println(stack.pop());  // Outputs 20
+      System.out.println(stack.peek()); // Outputs 10
+
+   **Linked List-Based Stack Implementation**
+
+   .. code-block:: java
+      
+      class Node {
+         int data;
+         Node next;
+
+         Node(int data) {
+            this.data = data;
+            this.next = null;
+         }
+      }
+
+      public class LinkedListStack {
+         private Node top;
+
+         public LinkedListStack() {
+            this.top = null;
+         }
+
+         public void push(int value) {
+            Node newNode = new Node(value);
+            newNode.next = top;
+            top = newNode;
+         }
+
+         public int pop() {
+            if (top == null) {
+                  throw new RuntimeException("Stack underflow");
+            }
+            int value = top.data;
+            top = top.next;
+            return value;
+         }
+
+         public int peek() {
+            if (top == null) {
+                  throw new RuntimeException("Stack is empty");
+            }
+            return top.data;
+         }
+
+         public boolean isEmpty() {
+            return top == null;
+         }
+      }
+
+      // Usage
+      LinkedListStack stack = new LinkedListStack();
+      stack.push(10);
+      stack.push(20);
+      System.out.println(stack.pop());  // Outputs 20
+      System.out.println(stack.peek()); // Outputs 10
+
+      
+
+
+
+         
+

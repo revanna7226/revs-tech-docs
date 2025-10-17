@@ -14,10 +14,18 @@ Helm Charts
      - `GitHub Code Resource <https://github.com/bharaththippireddy/devopsandawsformicroservicedevelopers>`_
      - revannarsn
 
-`Helm Documentation <https://helm.sh/docs/>`_
+Useful Links:
+    - `Helm Documentation <https://helm.sh/docs/>`_
+    - `GitHub Bitnami Charts Repository <https://github.com/bitnami/charts>`_
+    - `Artifact Hub <https://artifacthub.io/>`_
 
 .. toctree::
    :maxdepth: 10
    :caption: Contents
 
    introduction
+   commands
+   advanced-commands
+   create-charts
+   templates
+   advanced-temaplates
