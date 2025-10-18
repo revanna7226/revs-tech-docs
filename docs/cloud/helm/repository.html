@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repository &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Jenkins" href="../jenkins/index.html" />
+    <link rel="prev" title="Templates Deep Dive" href="templates.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Helm Charts</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands.html">Helm Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced-commands.html">Advanced Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-charts.html">Create Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html">Templates Deep Dive</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Cloud</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Helm Charts</a></li>
+      <li class="breadcrumb-item active">Repository</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/cloud/helm/repository.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="repository">
+<h1>Repository<a class="headerlink" href="#repository" title="Link to this heading"></a></h1>
+<p>Local Repository</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Setup Local Repository</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm<span class="w"> </span>repo<span class="w"> </span>index<span class="w"> </span>chartsrepo/
+
+helm<span class="w"> </span>package<span class="w"> </span>revschart<span class="w"> </span>-d<span class="w"> </span>../chartsrepo/
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Host Repository</p></li>
+</ol>
+<ul>
+<li><p>You can host the <cite>chartsrepo/</cite> directory on any web server or cloud storage that serves static files.</p></li>
+<li><p>For example, you can use GitHub Pages, Amazon S3, or any web hosting service.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p># Example Local Hosting with Python HTTP Server
+cd chartsrepo/
+python3 -m http.server –bind 127.0.0.1 8080 –directory .
+# Now your repository is accessible at <a class="reference external" href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
+</div></blockquote>
+</li>
+</ul>
+<ol class="arabic">
+<li><p>Add Repository to Helm</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm repo add revsrepo <a class="reference external" href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a></p>
+</div></blockquote>
+</li>
+<li><p>Update Repository</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm repo update
+# Regenerate index if you add new charts
+helm repo index chartsrepo/</p>
+</div></blockquote>
+</li>
+<li><p>Install Chart from Repository</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm install revschart revsrepo/revschart</p>
+</div></blockquote>
+</li>
+<li><p>Verify Installation</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm list</p>
+</div></blockquote>
+</li>
+<li><p>Helm Search Repository</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm search repo revschart</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p>GitHub Repository</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl>
+<dt>Setup GitHub Repository</dt><dd><ul class="simple">
+<li><p>Create a new GitHub repository (e.g., <cite>gitchartrepo</cite>).</p></li>
+<li><p>Clone the repository locally.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>git clone <a class="reference external" href="https://github.com/revanna7226/gitchartrepo.git">https://github.com/revanna7226/gitchartrepo.git</a></p>
+</dd>
+</dl>
+</li>
+<li><p>Go to the cloned directory</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>gitchartrepo/
+
+helm<span class="w"> </span>create<span class="w"> </span>demochart
+helm<span class="w"> </span>package<span class="w"> </span>demochart<span class="w"> </span>-d<span class="w"> </span>.
+helm<span class="w"> </span>repo<span class="w"> </span>index<span class="w"> </span>.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Push to GitHub</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add Helm chart and index&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Host GitHub Pages</dt><dd><ul class="simple">
+<li><p>Go to the repository settings on GitHub.</p></li>
+<li><p>Under the “Pages” section, set the source to the <cite>main</cite> branch and the root directory (<cite>/</cite>).</p></li>
+<li><p>Save the settings. Your repository will be available at <cite>https://&lt;your-username&gt;.github.io/gitchartrepo/</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Add GitHub Repository to Helm</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm repo add gitrepo <a class="reference external" href="https://revanna7226.github.io/gitchartrepo/">https://revanna7226.github.io/gitchartrepo/</a>
+helm repo list
+helm search repo demochart
+helm install gitapp gitrepo/demochart</p>
+</div></blockquote>
+</li>
+<li><p>Verify Installation</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm list</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic">
+<li><p>OCI Registries</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Push Chart to OCI Registry</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm chart save revschart oci://my-oci-registry/revscharts:0.1.0
+helm chart push oci://my-oci-registry/revscharts:0.1.0</p>
+</div></blockquote>
+</li>
+<li><p>Pull Chart from OCI Registry</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm chart pull oci://my-oci-registry/revscharts:0.1.0
+helm chart export oci://my-oci-registry/revscharts:0.1.0 –destination ./charts</p>
+</div></blockquote>
+</li>
+<li><p>Install Chart from OCI Registry</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm install ociapp oci://my-oci-registry/revscharts –version 0.1.0</p>
+</div></blockquote>
+</li>
+<li><p>Verify Installation</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm list</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p># . Clean Up</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Uninstall Helm Releases</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm uninstall revschart
+helm uninstall gitapp
+helm uninstall ociapp</p>
+</div></blockquote>
+</li>
+<li><p>Remove Repositories</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>helm repo remove revsrepo
+helm repo remove gitrepo
+helm repo remove ocirepo</p>
+</div></blockquote>
+</li>
+<li><p>Delete Local Files</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p>rm -rf chartsrepo/
+rm -rf gitchartrepo/
+rm -rf charts/</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Summary</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You have successfully created and managed Helm chart repositories using local hosting, GitHub Pages, and OCI registries.</p></li>
+<li><p>You can now package, distribute, and deploy Helm charts efficiently using these methods.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>Course Commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>oci-registry<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>registry
+
+helm<span class="w"> </span>package<span class="w"> </span>firstchart
+
+helm<span class="w"> </span>push<span class="w"> </span>firstchart-0.1.0.tgz<span class="w"> </span>oci://localhost:5000/helm-charts
+
+helm<span class="w"> </span>show<span class="w"> </span>all<span class="w"> </span>oci://localhost:5000/helm-charts/firstchart<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+
+helm<span class="w"> </span>pull<span class="w"> </span>oci://localhost:5000/helm-charts/firstchart<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+
+helm<span class="w"> </span>template<span class="w"> </span>myrelease<span class="w"> </span>oci://localhost:5000/helm-charts/firstchart<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+
+helm<span class="w"> </span>install<span class="w"> </span>myrelease<span class="w"> </span>oci://localhost:5000/helm-charts/firstchart<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.1.0
+
+helm<span class="w"> </span>upgrade<span class="w"> </span>myrelease<span class="w"> </span>oci://localhost:5000/helm-charts/firstchart<span class="w"> </span>--version<span class="w"> </span><span class="m">0</span>.2.0
+
+helm<span class="w"> </span>registry<span class="w"> </span>login<span class="w"> </span>-u<span class="w"> </span>myuser<span class="w"> </span>&lt;oci<span class="w"> </span>registry&gt;
+
+helm<span class="w"> </span>registry<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>&lt;oci<span class="w"> </span>registry<span class="w"> </span>url&gt;
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="templates.html" class="btn btn-neutral float-left" title="Templates Deep Dive" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../jenkins/index.html" class="btn btn-neutral float-right" title="Jenkins" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

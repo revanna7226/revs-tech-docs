@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Database" href="../../database/index.html" />
+    <link rel="next" title="Repository" href="repository.html" />
     <link rel="prev" title="Create Charts" href="create-charts.html" /> 
 </head>
 
@@ -63,8 +63,10 @@
 <li class="toctree-l3"><a class="reference internal" href="advanced-commands.html">Advanced Commands</a></li>
 <li class="toctree-l3"><a class="reference internal" href="create-charts.html">Create Charts</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Templates Deep Dive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="repository.html">Repository</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
@@ -106,7 +108,10 @@
              
   <section id="templates-deep-dive">
 <h1>Templates Deep Dive<a class="headerlink" href="#templates-deep-dive" title="Link to this heading"></a></h1>
-<ul class="simple">
+<p>helm uses Go templates to generate Kubernetes manifest files.
+This section provides an in-depth look at the various features and capabilities of Go templates as used in helm charts.</p>
+<dl class="simple">
+<dt>Contents:</dt><dd><ul class="simple">
 <li><p>Template Actions</p></li>
 <li><p>Template Information</p></li>
 <li><p>Template Functions</p></li>
@@ -122,6 +127,145 @@
 <li><p>_helpers.tpl</p></li>
 <li><p>Create and Use Custom temaplates</p></li>
 </ul>
+</dd>
+</dl>
+<ol class="arabic">
+<li><p><strong>Template Actions:</strong></p>
+<p>Actions are enclosed in {{ … }} and interpreted by the Go template engine that Helm uses.
+Everything outside these delimiters is rendered as plain text.</p>
+<p>Handling Whitespace: Helm also provides whitespace control using hyphens,</p>
+<ul class="simple">
+<li><p>{{- … }} removes leading whitespace</p></li>
+<li><p>{{ … -}} removes trailing whitespace</p></li>
+<li><p>{{- … -}} removes both leading and trailing whitespace</p></li>
+</ul>
+<p><strong>Common Actions in Helm Templates:</strong></p>
+<ol class="arabic">
+<li><p><strong>Variable Declarations</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">$var</span> <span class="pre">:=</span> <span class="pre">value</span> <span class="pre">}}</span></code> — Declare and assign a variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">$name</span> <span class="pre">:=</span> <span class="pre">.Values.name</span> <span class="pre">}}</span></code> — Access a value from the chart’s <cite>values.yaml</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">$</span> <span class="pre">:=</span> <span class="pre">.</span> <span class="pre">}}</span></code> — Assign the current context to a variable.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Conditionals</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">CONDITION</span> <span class="pre">}}</span></code> … <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">end</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">CONDITION</span> <span class="pre">}}...{{</span> <span class="pre">else</span> <span class="pre">}}...{{</span> <span class="pre">end</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">if</span> <span class="pre">and</span> <span class="pre">(eq</span> <span class="pre">.Values.env</span> <span class="pre">&quot;prod&quot;)</span> <span class="pre">.Values.enabled</span> <span class="pre">}}</span></code> — Combine conditions.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Loops</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">range</span> <span class="pre">.Values.list</span> <span class="pre">}}</span></code> … <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">end</span> <span class="pre">}}</span></code> — Iterate over a list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">range</span> <span class="pre">$key,</span> <span class="pre">$val</span> <span class="pre">:=</span> <span class="pre">.Values.map</span> <span class="pre">}}</span></code> — Iterate over key-value pairs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{-</span> <span class="pre">range</span> <span class="pre">...</span> <span class="pre">-}}</span></code> — Trim whitespace around loop blocks.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Includes and Templates</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">include</span> <span class="pre">&quot;template.name&quot;</span> <span class="pre">.</span> <span class="pre">}}</span></code> — Reuse another template.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">template</span> <span class="pre">&quot;template.name&quot;</span> <span class="pre">.</span> <span class="pre">}}</span></code> — Render a named template.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">define</span> <span class="pre">&quot;template.name&quot;</span> <span class="pre">}}</span></code> … <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">end</span> <span class="pre">}}</span></code> — Define a reusable template block.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{-</span> <span class="pre">include</span> <span class="pre">&quot;chart.fullname&quot;</span> <span class="pre">.</span> <span class="pre">|</span> <span class="pre">indent</span> <span class="pre">2</span> <span class="pre">}}</span></code> — Include and indent output.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Pipelines</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">.Values.name</span> <span class="pre">|</span> <span class="pre">upper</span> <span class="pre">}}</span></code> — Pass output through a function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">.Release.Name</span> <span class="pre">|</span> <span class="pre">printf</span> <span class="pre">&quot;%s-chart&quot;</span> <span class="pre">}}</span></code> — Format strings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">include</span> <span class="pre">&quot;template.name&quot;</span> <span class="pre">.</span> <span class="pre">|</span> <span class="pre">nindent</span> <span class="pre">4</span> <span class="pre">}}</span></code> — Indent output with <cite>n</cite> spaces.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Flow Control and Context</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.</span></code> — Refers to the current context.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span></code> — Refers to the parent context.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$</span></code> — Root context (top-level scope).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Comments</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{/*</span> <span class="pre">This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">Helm</span> <span class="pre">comment</span> <span class="pre">*/}}</span></code> — Ignored during rendering.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Whitespace Control</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{-</span></code> and <code class="docutils literal notranslate"><span class="pre">-}}</span></code> — Trim whitespace from template output.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Function Calls (Selected Examples)</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">default</span> <span class="pre">&quot;value&quot;</span> <span class="pre">.Values.someVar</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">quote</span> <span class="pre">.Values.name</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">toYaml</span> <span class="pre">.Values.config</span> <span class="pre">|</span> <span class="pre">indent</span> <span class="pre">2</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">required</span> <span class="pre">&quot;message&quot;</span> <span class="pre">.Values.field</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">eq</span> <span class="pre">.Values.env</span> <span class="pre">&quot;prod&quot;</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">ne</span> <span class="pre">.Values.env</span> <span class="pre">&quot;dev&quot;</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">upper</span> <span class="pre">&quot;text&quot;</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">lower</span> <span class="pre">&quot;TEXT&quot;</span> <span class="pre">}}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">trunc</span> <span class="pre">10</span> <span class="pre">.Values.longString</span> <span class="pre">}}</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Release and Chart Metadata</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.Release.Name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.Release.Namespace</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.Chart.Name</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.Chart.Version</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Files and Lookups</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">.Files.Get</span> <span class="pre">&quot;config.yaml&quot;</span> <span class="pre">}}</span></code> — Read a file from <cite>charts/</cite> or <cite>files/</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">.Files.Glob</span> <span class="pre">&quot;templates/*.tpl&quot;</span> <span class="pre">}}</span></code> — Access multiple files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">.Files.GetBytes</span> <span class="pre">&quot;cert.pem&quot;</span> <span class="pre">|</span> <span class="pre">b64enc</span> <span class="pre">}}</span></code> — Encode binary data.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># revschart/templates/deployment.yaml</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="w">   </span><span class="l l-Scalar l-Scalar-Plain">{{.Values.my.custom.data | nindent 2}}</span><span class="w"> </span><span class="c1"># Indent custom data by 2 spaces -&gt; RevsMyName</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Chart.Name</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access chart name -&gt; revschart</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Chart.Version</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access chart version -&gt; 0.1.0</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Chart.AppVersion</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access chart app version -&gt; 1.16.0</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Chart.Annotations</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access chart annotations -&gt; map[]</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Release.Name</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access release name -&gt; release-name</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Release.Namespace</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access release namespace -&gt; default</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Release.IsInstall</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Check if install -&gt; true</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Release.IsUpgrade</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Check if upgrade -&gt; false</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Release.Service</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access release service -&gt; Helm</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Template.Name</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access template name -&gt; revschart/templates/deployment.yaml</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Template.BasePath</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Access template base path -&gt; revschart/templates</span>
+<span class="w">   </span><span class="p p-Indicator">{{</span><span class="nv">.Values.my.custom.data2 | default &quot;None&quot; | upper | quote</span><span class="p p-Indicator">}}</span><span class="w"> </span><span class="c1"># Default, upper, quote -&gt; &quot;NONE&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 
 
@@ -129,7 +273,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="create-charts.html" class="btn btn-neutral float-left" title="Create Charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../database/index.html" class="btn btn-neutral float-right" title="Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="repository.html" class="btn btn-neutral float-right" title="Repository" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

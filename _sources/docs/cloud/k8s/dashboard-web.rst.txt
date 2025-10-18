@@ -70,6 +70,10 @@ To launch the Kubernetes Dashboard UI when Kubernetes is enabled through Docker 
       
       kubectl proxy
 
+   In case you encounter an error indicating that port 8001 is already in use, follow these steps to free up the port: 
+
+   .. code-block:: bash
+
       #>> error: listen tcp 127.0.0.1:8001: bind: address already in use
     
       # port 8001 on your Ubuntu system is currently being used by another process

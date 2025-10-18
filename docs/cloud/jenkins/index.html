@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Microservices &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Jenkins &mdash; Revs Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
@@ -25,8 +25,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="AWS Certifications" href="../aws/index.html" />
-    <link rel="prev" title="Microservices" href="index.html" /> 
+    <link rel="next" title="Database" href="../../database/index.html" />
+    <link rel="prev" title="Repository" href="../helm/repository.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,16 +53,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Microservices</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Microservices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#what-is-microservices">What is Microservices?</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../ms/index.html">Microservices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS Certifications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../k8s/index.html">Kubernetes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helm/index.html">Helm Charts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Jenkins</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
@@ -91,10 +87,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Cloud</a></li>
-          <li class="breadcrumb-item"><a href="index.html">Microservices</a></li>
-      <li class="breadcrumb-item active">Microservices</li>
+      <li class="breadcrumb-item active">Jenkins</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/docs/cloud/ms/introduction.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/docs/cloud/jenkins/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -102,28 +97,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="microservices">
-<h1>Microservices<a class="headerlink" href="#microservices" title="Link to this heading"></a></h1>
-</section>
-<section id="what-is-microservices">
-<h1>What is Microservices?<a class="headerlink" href="#what-is-microservices" title="Link to this heading"></a></h1>
+  <section id="jenkins">
+<h1>Jenkins<a class="headerlink" href="#jenkins" title="Link to this heading"></a></h1>
 <dl class="simple">
-<dt>Features:</dt><dd><ul class="simple">
-<li><p>Heterogenous</p></li>
-<li><p>Robustness</p></li>
-<li><p>Scaling</p></li>
-<li></li>
-</ul>
+<dt>Installation:</dt><dd><p>Follow <a class="reference external" href="https://www.jenkins.io/doc/book/installing/linux/#debianubuntu">Installation Procedure</a> to install Jenkins on Ubuntu.</p>
 </dd>
 </dl>
+<p>Uninstallation:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>remove<span class="w"> </span>--purge<span class="w"> </span>jenkins
+rm<span class="w"> </span>-rf<span class="w"> </span>/var/lib/jenkins
+</pre></div>
+</div>
+<p>Manage the Jenkins service on a Linux/Ubuntu system that uses systemd</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>jenkins
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>jenkins
+</pre></div>
+</div>
+</div></blockquote>
+<p>Commands:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Java<span class="w"> </span>Path:
+
+/lib/jvm/java-1.8.0-openjdk-1.8.0.242.b08-0.amzn2.0.1.x86_64
+
+Maven<span class="w"> </span>Path:
+
+/usr/share/maven
+
+Git<span class="w"> </span>Path:
+
+/usr/bin/git
+
+Assign<span class="w"> </span>Root<span class="w"> </span>User<span class="w"> </span>and<span class="w"> </span>Permissions:
+
+vi<span class="w"> </span>/etc/sysconfig/jenkins
+
+chown<span class="w"> </span>-R<span class="w"> </span>root:root<span class="w"> </span>/var/lib/jenkins
+chown<span class="w"> </span>-R<span class="w"> </span>root:root<span class="w"> </span>/var/cache/jenkins
+chown<span class="w"> </span>-R<span class="w"> </span>root:root<span class="w"> </span>/var/log/jenkins
+
+service<span class="w"> </span>jenkins<span class="w"> </span>restart
+
+
+Tomcat<span class="w"> </span>Installation<span class="w"> </span>and<span class="w"> </span>Integration:
+
+yum<span class="w"> </span>install<span class="w"> </span>tomcat
+
+yum<span class="w"> </span>install<span class="w"> </span>tomcat-webapps<span class="w"> </span>tomcat-admin-webapps
+
+vi<span class="w"> </span>/usr/share/tomcat/conf/tomcat-users.xml
+
+Uncomment<span class="w"> </span>Admin<span class="w"> </span>roles<span class="w"> </span>and<span class="w"> </span>user<span class="w"> </span>and<span class="w"> </span>Add:
+
+&lt;user<span class="w"> </span><span class="nv">username</span><span class="o">=</span><span class="s2">&quot;deployer&quot;</span><span class="w"> </span><span class="nv">password</span><span class="o">=</span><span class="s2">&quot;deployer&quot;</span><span class="w"> </span><span class="nv">roles</span><span class="o">=</span><span class="s2">&quot;manager-script&quot;</span><span class="w"> </span>/&gt;
+
+Deploy<span class="w"> </span>war/ear<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>container:
+
+**/java-web-project.war
+</pre></div>
+</div>
+</div></blockquote>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Microservices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../aws/index.html" class="btn btn-neutral float-right" title="AWS Certifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../helm/repository.html" class="btn btn-neutral float-left" title="Repository" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../database/index.html" class="btn btn-neutral float-right" title="Database" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

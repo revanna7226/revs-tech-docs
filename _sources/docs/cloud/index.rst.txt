@@ -13,3 +13,4 @@ Cloud
    k8s/index
    docker/index
    helm/index
+   jenkins/index

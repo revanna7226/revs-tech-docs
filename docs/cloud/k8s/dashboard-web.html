@@ -65,6 +65,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../docker/index.html">Dockers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../helm/index.html">Helm Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
@@ -163,8 +164,10 @@ Create an admin user so you can log in with a token.</p>
 <li><p>Access the Dashboard:</p>
 <p>Start the kubectl proxy:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl<span class="w"> </span>proxy
-
-<span class="c1">#&gt;&gt; error: listen tcp 127.0.0.1:8001: bind: address already in use</span>
+</pre></div>
+</div>
+<p>In case you encounter an error indicating that port 8001 is already in use, follow these steps to free up the port:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#&gt;&gt; error: listen tcp 127.0.0.1:8001: bind: address already in use</span>
 
 <span class="c1"># port 8001 on your Ubuntu system is currently being used by another process</span>
 <span class="c1"># The command below correctly lists network processes listening on port 8001.</span>

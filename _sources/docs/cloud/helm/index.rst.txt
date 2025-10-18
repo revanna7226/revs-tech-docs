@@ -29,3 +29,4 @@ Useful Links:
    create-charts
    templates
    advanced-temaplates
+   repository
