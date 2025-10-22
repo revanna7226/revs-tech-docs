@@ -10,12 +10,21 @@ Spring Data JPA Features
    features/auditing
    features/queryhints
    features/pagination-sort
+   features/repositories
+   features/relationships
+   features/enum-mapping
+   features/caching
+   features/transactions
+   features/native-queries
+   features/custom-implementations
+   features/specifications
+   features/optimistic-pessimistic-locking
+   features/n1-problem
+   features/transaction-isolation
+   features/transaction-propagation
+
 
 Features:
-   - Spring Data JPA Repositories
-   - Spring Data JPA Query Methods
-   - Spring Data JPA Pagination and Sorting
-   - Spring Data JPA Relationships
    - Spring Data JPA Enum Mapping
    - Spring Data JPA Caching
    - Spring Data JPA Transactions - https://youtu.be/a9z9x4bxmK4?si=uRmDAA1noyKvNe8d, https://youtu.be/eWl8G7NDKqo?si=HVnGgZLMPVFitNkW

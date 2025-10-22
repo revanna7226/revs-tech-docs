@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Data JPA Relationships &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Spring Security" href="../../security/index.html" />
+    <link rel="prev" title="Spring Data JPA Repositories" href="repositories.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
+<li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Spring Data JPA Relationships</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
+          <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
+      <li class="breadcrumb-item active">Spring Data JPA Relationships</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/relationships.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spring-data-jpa-relationships">
+<h1>Spring Data JPA Relationships<a class="headerlink" href="#spring-data-jpa-relationships" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p>In real-world applications, entities are often related to one another.
+<strong>Spring Data JPA</strong> (via JPA/Hibernate) supports different types of relationships between entities,
+allowing you to model and manage complex data structures effectively.</p>
+<p>The three main types of relationships are:</p>
+<ol class="arabic simple">
+<li><p><strong>One-to-One</strong></p></li>
+<li><p><strong>One-to-Many / Many-to-One</strong></p></li>
+<li><p><strong>Many-to-Many</strong></p></li>
+</ol>
+<p>Each relationship type is defined using specific annotations such as:
+<code class="docutils literal notranslate"><span class="pre">&#64;OneToOne</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;ManyToOne</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;ManyToMany</span></code>.</p>
+</dd>
+</dl>
+<ol class="arabic">
+<li><dl>
+<dt>One-to-One Relationship:</dt><dd><p><strong>Definition:</strong>
+A <strong>One-to-One</strong> relationship means that one entity is associated with exactly one other entity.</p>
+<p><strong>Example Scenario:</strong>
+Each <em>Employee</em> has one <em>Address</em>.</p>
+<p><strong>Entity Classes:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.*</span><span class="p">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@OneToOne</span><span class="p">(</span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;address_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">referencedColumnName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Address</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Address</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">state</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;OneToOne</span></code> defines the relationship.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;JoinColumn</span></code> specifies the foreign key column (<code class="docutils literal notranslate"><span class="pre">address_id</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cascade</span> <span class="pre">=</span> <span class="pre">CascadeType.ALL</span></code> ensures both entities persist or delete together.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>One-to-Many and Many-to-One Relationship:</dt><dd><p><strong>Definition:</strong></p>
+<ul class="simple">
+<li><p>A <strong>One-to-Many</strong> relationship occurs when one entity is related to multiple instances of another entity.</p></li>
+<li><p>The reverse side (<strong>Many-to-One</strong>) indicates that multiple entities share one reference to another entity.</p></li>
+</ul>
+<p><strong>Example Scenario:</strong></p>
+<p>One <em>Department</em> can have multiple <em>Employees</em>,
+but each <em>Employee</em> belongs to only one <em>Department</em>.</p>
+<p><strong>Entity Classes:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Department</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;department&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CascadeType</span><span class="p">.</span><span class="na">ALL</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@ManyToOne</span>
+<span class="w">    </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;department_id&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> on the Department side indicates multiple employees.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mappedBy</span> <span class="pre">=</span> <span class="pre">&quot;department&quot;</span></code> tells JPA that the relationship is owned by the <code class="docutils literal notranslate"><span class="pre">Employee</span></code> entity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ManyToOne</span></code> on the Employee side defines the owner of the relationship.</p></li>
+<li><p>The join column <code class="docutils literal notranslate"><span class="pre">department_id</span></code> will be created in the <code class="docutils literal notranslate"><span class="pre">employee</span></code> table.</p></li>
+</ul>
+<p><strong>Example Usage:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Department</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Department</span><span class="p">();</span>
+<span class="n">dept</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;IT&quot;</span><span class="p">);</span>
+
+<span class="n">Employee</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="p">();</span>
+<span class="n">emp1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">);</span>
+<span class="n">emp1</span><span class="p">.</span><span class="na">setDepartment</span><span class="p">(</span><span class="n">dept</span><span class="p">);</span>
+
+<span class="n">Employee</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Employee</span><span class="p">();</span>
+<span class="n">emp2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">);</span>
+<span class="n">emp2</span><span class="p">.</span><span class="na">setDepartment</span><span class="p">(</span><span class="n">dept</span><span class="p">);</span>
+
+<span class="n">dept</span><span class="p">.</span><span class="na">setEmployees</span><span class="p">(</span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">emp1</span><span class="p">,</span><span class="w"> </span><span class="n">emp2</span><span class="p">));</span>
+
+<span class="n">departmentRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">dept</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Many-to-Many Relationship:</dt><dd><p><strong>Definition:</strong></p>
+<p>A <strong>Many-to-Many</strong> relationship occurs when multiple records of one entity are related to multiple records of another entity.</p>
+<p><strong>Example Scenario:</strong></p>
+<p>A <em>Student</em> can enroll in multiple <em>Courses</em>, and a <em>Course</em> can have multiple <em>Students</em>.</p>
+<p><strong>Entity Classes:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.persistence.*</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Set</span><span class="p">;</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Student</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@ManyToMany</span>
+<span class="w">    </span><span class="nd">@JoinTable</span><span class="p">(</span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;student_course&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">joinColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;student_id&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">inverseJoinColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;course_id&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Course</span><span class="o">&gt;</span><span class="w"> </span><span class="n">courses</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Course</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">title</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@ManyToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;courses&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span><span class="w"> </span><span class="n">students</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ManyToMany</span></code> defines a bidirectional many-to-many relationship.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;JoinTable</span></code> defines a join table (<code class="docutils literal notranslate"><span class="pre">student_course</span></code>) with foreign keys <code class="docutils literal notranslate"><span class="pre">student_id</span></code> and <code class="docutils literal notranslate"><span class="pre">course_id</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mappedBy</span> <span class="pre">=</span> <span class="pre">&quot;courses&quot;</span></code> makes the <code class="docutils literal notranslate"><span class="pre">Course</span></code> entity the inverse side of the relationship.</p></li>
+</ul>
+<p><strong>Example Usage:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Student</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span>
+<span class="n">s1</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">);</span>
+
+<span class="n">Student</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Student</span><span class="p">();</span>
+<span class="n">s2</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="s">&quot;Mary&quot;</span><span class="p">);</span>
+
+<span class="n">Course</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Course</span><span class="p">();</span>
+<span class="n">c1</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Spring Boot&quot;</span><span class="p">);</span>
+
+<span class="n">Course</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Course</span><span class="p">();</span>
+<span class="n">c2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Microservices&quot;</span><span class="p">);</span>
+
+<span class="n">s1</span><span class="p">.</span><span class="na">setCourses</span><span class="p">(</span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">));</span>
+<span class="n">s2</span><span class="p">.</span><span class="na">setCourses</span><span class="p">(</span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">c1</span><span class="p">));</span>
+
+<span class="n">studentRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+<span class="n">studentRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<dl>
+<dt>Cascade Types in Relationships:</dt><dd><p>Cascade Types control how operations propagate from parent to child entities.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cascade Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ALL</p></td>
+<td><p>Applies all cascade operations</p></td>
+</tr>
+<tr class="row-odd"><td><p>PERSIST</p></td>
+<td><p>Propagates persist operation</p></td>
+</tr>
+<tr class="row-even"><td><p>MERGE</p></td>
+<td><p>Propagates merge operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>REMOVE</p></td>
+<td><p>Propagates delete operation</p></td>
+</tr>
+<tr class="row-even"><td><p>REFRESH</p></td>
+<td><p>Propagates refresh operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>DETACH</p></td>
+<td><p>Propagates detach operation</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<p>Example:
+<code class="docutils literal notranslate"><span class="pre">&#64;OneToMany(cascade</span> <span class="pre">=</span> <span class="pre">CascadeType.ALL)</span></code> ensures saving the parent also saves the child entities.</p>
+<dl>
+<dt>Fetch Types:</dt><dd><p>Fetch type determines how related entities are loaded.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fetch Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LAZY (default)</p></td>
+<td><p>Loads the relationship only when accessed</p></td>
+</tr>
+<tr class="row-odd"><td><p>EAGER</p></td>
+<td><p>Loads the relationship immediately</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Example:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">&#64;OneToMany(fetch</span> <span class="pre">=</span> <span class="pre">FetchType.LAZY)</span></code> — Child entities are loaded on-demand.</p>
+</dd>
+</dl>
+</dd>
+<dt>Summary:</dt><dd><p><strong>Spring Data JPA Relationships</strong> allow mapping of object associations to relational database tables.
+<strong>Key Takeaways:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;OneToOne</span></code> → One entity associated with one other.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> / <code class="docutils literal notranslate"><span class="pre">&#64;ManyToOne</span></code> → One entity related to multiple others.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ManyToMany</span></code> → Many entities related to many others.</p></li>
+<li><p>Relationships can be <strong>bidirectional</strong> or <strong>unidirectional</strong>.</p></li>
+<li><p>Use <strong>cascade</strong> and <strong>fetch types</strong> carefully to control persistence behavior and performance.</p></li>
+</ul>
+</dd>
+<dt>Conclusion:</dt><dd><p>Understanding and correctly implementing entity relationships in Spring Data JPA
+is essential for designing robust and maintainable data models.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="repositories.html" class="btn btn-neutral float-left" title="Spring Data JPA Repositories" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../security/index.html" class="btn btn-neutral float-right" title="Spring Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
