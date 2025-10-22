@@ -4,6 +4,10 @@ Jenkins
 Installation:
     Follow `Installation Procedure <https://www.jenkins.io/doc/book/installing/linux/#debianubuntu>`_ to install Jenkins on Ubuntu.
 
+Links:
+    - Jenkins Login Page - `click here <http://localhost:8080/login.html/>`_
+    - Jenkins Environment Variables - `click here <http://localhost:8080/env-vars.html/>`_    
+
 Uninstallation:
 
     .. code-block:: bash

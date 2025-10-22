@@ -1,6 +1,18 @@
 4. Interface Segregation Principle - ISP
 ========================================
 
+.. admonition:: Definition
+
+    "Clients should not be forced to depend on interfaces they do not use."
+
+In simple terms, this means designing small, focused interfaces rather than 
+one big fat interface. Clients (classes) implement only the methods they actually need.
+
+Why ISP Matters
+    - Prevents classes from having to implement unnecessary methods.
+    - Makes code easier to maintain and understand.
+    - Increases flexibility and reduces coupling.    
+
 .. code-block:: java
 
     package com.revs.solidprinciples;
@@ -91,7 +103,4 @@
         public void Scan(Document d) throws Exception {
             scanner.Scan(d);
         }
-    }
-
-    public class ISP {
     }

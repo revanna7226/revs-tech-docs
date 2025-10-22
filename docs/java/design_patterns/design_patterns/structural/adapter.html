@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When to use &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Spring Framework" href="../../../spring/index.html" />
+    <link rel="prev" title="Structural Design Patterns" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Java Design Patterns</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../introduction.html#gamma-categorization">Gamma Categorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../creational/index.html">Creational Design Patterns</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Structural Design Patterns</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">When to use</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-1-object-adapter-composition">Example 1 — Object Adapter (composition)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-2-class-adapter-inheritance">Example 2 — Class Adapter (inheritance)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deep-vs-shallow-adaptation">Deep vs Shallow Adaptation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advantages-disadvantages">Advantages / Disadvantages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-patterns">Related Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../spring/index.html">Spring Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Java Design Patterns</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Structural Design Patterns</a></li>
+      <li class="breadcrumb-item active">When to use</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/design_patterns/design_patterns/structural/adapter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="when-to-use">
+<h1>When to use<a class="headerlink" href="#when-to-use" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>You want to reuse an existing class but its interface does not match the
+one you need.</p></li>
+<li><p>You want to create a reusable class that cooperates with unrelated or
+unforeseen classes.</p></li>
+<li><p>To provide a thin wrapper that converts data or calls between modules.</p></li>
+</ul>
+</section>
+<section id="example-1-object-adapter-composition">
+<h1>Example 1 — Object Adapter (composition)<a class="headerlink" href="#example-1-object-adapter-composition" title="Link to this heading"></a></h1>
+<p>Scenario: A simple media player application expects to use the <cite>MediaPlayer</cite>
+interface (<cite>play(String audioType, String fileName)</cite>). We have legacy classes
+that can play specific formats (<cite>VlcPlayer</cite>, <cite>Mp4Player</cite>) with different
+methods. We create a <cite>MediaAdapter</cite> that adapts those classes to the
+<cite>MediaPlayer</cite> interface.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Target interface expected by client</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MediaPlayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">audioType</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Adaptee interface (legacy or third-party)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">AdvancedMediaPlayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">playVlc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">playMp4</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Concrete adaptees</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VlcPlayer</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AdvancedMediaPlayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">playVlc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Playing vlc file. Name: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">playMp4</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// do nothing</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Mp4Player</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AdvancedMediaPlayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">playVlc</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// do nothing</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">playMp4</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Playing mp4 file. Name: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Object Adapter: implements the Target and uses an Adaptee</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MediaAdapter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">MediaPlayer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">AdvancedMediaPlayer</span><span class="w"> </span><span class="n">advancedMusicPlayer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">MediaAdapter</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">audioType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;vlc&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">advancedMusicPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VlcPlayer</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;mp4&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">advancedMusicPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mp4Player</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">audioType</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;vlc&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">advancedMusicPlayer</span><span class="p">.</span><span class="na">playVlc</span><span class="p">(</span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;mp4&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">advancedMusicPlayer</span><span class="p">.</span><span class="na">playMp4</span><span class="p">(</span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Concrete Target implementation that can play mp3 directly and delegates</span>
+<span class="c1">// other formats to the adapter</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AudioPlayer</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">MediaPlayer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">MediaAdapter</span><span class="w"> </span><span class="n">mediaAdapter</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">audioType</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;mp3&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Playing mp3 file. Name: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;vlc&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">audioType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="s">&quot;mp4&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">mediaAdapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MediaAdapter</span><span class="p">(</span><span class="n">audioType</span><span class="p">);</span>
+<span class="w">            </span><span class="n">mediaAdapter</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="n">audioType</span><span class="p">,</span><span class="w"> </span><span class="n">fileName</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Invalid media. &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">audioType</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; format not supported&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Client</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ObjectAdapterDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">MediaPlayer</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AudioPlayer</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">player</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">&quot;mp3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;beyond_the_horizon.mp3&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">player</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">&quot;mp4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alone.mp4&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">player</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">&quot;vlc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;far_far_away.vlc&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">player</span><span class="p">.</span><span class="na">play</span><span class="p">(</span><span class="s">&quot;avi&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mind_me.avi&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Playing mp3 file. Name: beyond_the_horizon.mp3
+Playing mp4 file. Name: alone.mp4
+Playing vlc file. Name: far_far_away.vlc
+Invalid media. avi format not supported
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h1>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>The <strong>MediaAdapter</strong> composes the <cite>AdvancedMediaPlayer</cite> adapters (Vlc/Mp4)
+and converts the <cite>play(audioType, fileName)</cite> call into the proper method on
+the adaptee.</p></li>
+<li><p>This approach is flexible — new formats can be added by adding new
+<cite>AdvancedMediaPlayer</cite> implementations and updating the adapter.</p></li>
+</ul>
+</section>
+<section id="example-2-class-adapter-inheritance">
+<h1>Example 2 — Class Adapter (inheritance)<a class="headerlink" href="#example-2-class-adapter-inheritance" title="Link to this heading"></a></h1>
+<p><strong>Note:</strong> Java allows class adapter implementation by extending the Adaptee class
+and implementing the Target interface. This works when the Adaptee is a class
+you can extend (not final) and you can use inheritance.</p>
+<p>Scenario: You have a legacy <cite>LegacyRectangle</cite> with <cite>draw(x1,y1,x2,y2)</cite> that
+draws rectangles with two corner points. Your new system expects <cite>Shape</cite>
+interface with <cite>draw(int x, int y, int width, int height)</cite>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Target expected by the client</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Adaptee: legacy API</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LegacyRectangle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;LegacyRectangle: (&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;) to (&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Class Adapter: extends the adaptee and implements the target</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RectangleAdapter</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">LegacyRectangle</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// translate new parameters to legacy parameters</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">width</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// call adaptee method (inherited)</span>
+<span class="w">        </span><span class="n">draw</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Client</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ClassAdapterDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Shape</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RectangleAdapter</span><span class="p">();</span>
+<span class="w">        </span><span class="n">rect</span><span class="p">.</span><span class="na">draw</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">);</span><span class="w"> </span><span class="c1">// internally calls LegacyRectangle.draw(10,20,40,60)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Expected output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>LegacyRectangle: (10,20) to (40,60)
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h1>Notes<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Class Adapter</strong> uses inheritance; you can override behaviour or forward calls.</p></li>
+<li><p>It is less flexible than object adapter if you need to adapt multiple adaptees
+or already extend another class (Java single inheritance limit).</p></li>
+</ul>
+</section>
+<section id="deep-vs-shallow-adaptation">
+<h1>Deep vs Shallow Adaptation<a class="headerlink" href="#deep-vs-shallow-adaptation" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Adapters may only <strong>translate interfaces</strong> (shallow) or may also <strong>convert data
+formats</strong> and add logic (deep). Keep adapters simple and focused on interface
+translation — complex transformations may indicate the need for a separate
+converter or mapper component.</p></li>
+</ul>
+</section>
+<section id="advantages-disadvantages">
+<h1>Advantages / Disadvantages<a class="headerlink" href="#advantages-disadvantages" title="Link to this heading"></a></h1>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Advantages</strong></p></th>
+<th class="head"><p>Allows reuse of existing classes without changing their source. Decouples
+client from concrete implementations. Supports two-way adaptation if needed.</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Disadvantages</strong></p></td>
+<td><p>Adds an extra layer (wrapper) which can increase complexity. Class adapter
+ties adapter to a specific Adaptee via inheritance and is less flexible.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="related-patterns">
+<h1>Related Patterns<a class="headerlink" href="#related-patterns" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Facade:</strong> provides a simpler interface to a set of interfaces; Adapter converts
+one interface to another. Facade simplifies a subsystem; Adapter makes two
+incompatible interfaces work together.</p></li>
+<li><p><strong>Decorator:</strong> adds responsibilities to an object dynamically; Adapter changes
+interface. They can look similar but intent differs.</p></li>
+<li><p><strong>Proxy:</strong> controls access to an object; Proxy and Adapter both wrap objects,
+but Proxy focuses on access control, Adapter on interface conversion.</p></li>
+</ul>
+</section>
+<section id="best-practices">
+<h1>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Prefer <strong>Object Adapter (composition)</strong> in Java for flexibility.</p></li>
+<li><p>Keep adapters <strong>thin</strong>; avoid putting business logic inside the adapter.</p></li>
+<li><p>If adapting third-party libraries, wrap them behind your own Target
+interfaces to simplify future changes.</p></li>
+<li><p>Use adapters to integrate legacy systems gradually without modifying existing code.</p></li>
+</ul>
+</section>
+<section id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>The Adapter pattern is a lightweight, widely-used structural pattern for
+integrating components with incompatible interfaces.</p></li>
+<li><p>Use object adapters (composition) in Java most of the time. Use class
+adapters when inheritance is appropriate and allowed.</p></li>
+<li><p>Adapters make code more modular, testable, and maintainable by isolating
+translation logic.</p></li>
+</ul>
+</section>
+<section id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Also spelled <em>Adaptor</em> in some texts — same pattern, same intent.</p></li>
+<li><p>Typical uses: API integration, legacy code reuse, third-party library wrappers,
+platform-specific shims.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Structural Design Patterns" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../spring/index.html" class="btn btn-neutral float-right" title="Spring Framework" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

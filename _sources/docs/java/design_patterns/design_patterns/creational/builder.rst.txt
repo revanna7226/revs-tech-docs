@@ -1,135 +1,199 @@
 Builder
 =======
 
+Builder Pattern
+---------------
+
+Overview:
+    - This is a ``creational design pattern`` that is used to construct complex objects step-by-step.
+    - It allows you to produce different representations of an object using the same construction process.
+    - To separate the construction of a complex object from its representation, so the same construction process can create different representations.
+
 When construction gets a little bit too complicated.
 
 .. admonition:: Definition
 
     When piece-wise object construction is complicated, provide an API for doing it succinctly.
 
-Motivation
-----------  
-- Some objects are simple and can be created in a single constructor call
-- Other Objects requires a lot of ceremony to create
-- Having an Object with 10 constructor arguments is not productive
-- Instead opt for piece-wise construction.
-- Builder provides an API for constructing an object step-by-step
+Problem:
+    When an object requires many parameters — especially optional ones — using constructors or telescoping constructors becomes unreadable:
 
-Builders in Java
-----------------
+Solution:
+    The Builder pattern solves this problem by:
 
-.. code-block:: Java
+    - Separating object creation from its representation.
+    - Providing a step-by-step construction process.
+    - Making the code more readable, flexible, and maintainable.
 
-    package com.revs.designpatterns;
+**Example 1 - Basic Builder Pattern:**
 
-    import java.util.ArrayList;
-    import java.util.Collections;
+    .. code-block:: java
 
-    class HtmlElement {
+        // Step 1: Create the Product class
+        public class User {
+            // Required parameters
+            private String firstName;
+            private String lastName;
 
-        public String name, text;
-        public ArrayList<HtmlElement> elements = new ArrayList<HtmlElement>();
-        private final int indentSize = 2;
-        private final String newLine = System.lineSeparator();
+            // Optional parameters
+            private int age;
+            private String city;
+            private String occupation;
+            private boolean isEmployed;
 
-        public HtmlElement() {
-        }
-
-        public HtmlElement(String name, String text) {
-            this.name = name;
-            this.text = text;
-        }
-
-        private String toStringImpl(int indent) {
-            StringBuilder sb = new StringBuilder();
-            String i = String.join("", Collections.nCopies(indent * indentSize, " "));
-            sb.append(String.format("%s<%s>%s", i, name, newLine));
-            if (text != null && !text.isEmpty()) {
-                sb.append(String.join("", Collections.nCopies(indentSize * (indent + 1), " "))).append(text).append(newLine);
+            // Private constructor
+            private User(UserBuilder builder) {
+                this.firstName = builder.firstName;
+                this.lastName = builder.lastName;
+                this.age = builder.age;
+                this.city = builder.city;
+                this.occupation = builder.occupation;
+                this.isEmployed = builder.isEmployed;
             }
 
-            for (HtmlElement e : elements)
-                sb.append(e.toStringImpl(indent + 1));
-
-            sb.append(String.format("%s</%s>%s", i, name, newLine));
-            return sb.toString();
-        }
-
-        @Override
-        public String toString() {
-            return toStringImpl(0);
-        }
-    }
-
-    class HtmlBuilder {
-
-        private String rootName;
-        private HtmlElement root = new HtmlElement();
-
-        public HtmlBuilder(String rootName) {
-            this.rootName = rootName;
-            root.name = rootName;
-        }
-
-        // not fluent
-        public void addChild(String childName, String childText) {
-            HtmlElement e = new HtmlElement(childName, childText);
-            root.elements.add(e);
-        }
-
-        public HtmlBuilder addChildFluent(String childName, String childText) {
-            HtmlElement e = new HtmlElement(childName, childText);
-            root.elements.add(e);
-            return this;
-        }
-
-        public void clear() {
-            root = new HtmlElement();
-            root.name = rootName;
-        }
-
-        // delegating
-        @Override
-        public String toString() {
-            return root.toString();
-        }
-    }
-
-    class Builder {
-        public static void main(String[] args) {
-            // we want to build a simple HTML paragraph
-            System.out.println("Testing");
-            String hello = "hello";
-            System.out.println("<p>" + hello + "</p>");
-
-            // now we want to build a list with 2 words
-            String[] words = {"hello", "world"};
-            StringBuilder sb = new StringBuilder();
-            sb.append("<ul>\n");
-            for (String word : words) {
-                // indentation management, line breaks and other evils
-                sb.append(String.format("  <li>%s</li>\n", word));
+            @Override
+            public String toString() {
+                return "User [firstName=" + firstName + ", lastName=" + lastName +
+                        ", age=" + age + ", city=" + city + ", occupation=" + occupation +
+                        ", employed=" + isEmployed + "]";
             }
-            sb.append("</ul>");
-            System.out.println(sb);
 
-            // ordinary non-fluent builder
-            HtmlBuilder builder = new HtmlBuilder("ul");
-            builder.addChild("li", "hello");
-            builder.addChild("li", "world");
-            System.out.println(builder);
+            // Static Builder Class
+            public static class UserBuilder {
+                private final String firstName;
+                private final String lastName;
+                private int age;
+                private String city;
+                private String occupation;
+                private boolean isEmployed;
 
-            // fluent builder
-            builder.clear();
-            builder.addChildFluent("li", "hello").addChildFluent("li", "world");
-            System.out.println(builder);
+                public UserBuilder(String firstName, String lastName) {
+                    this.firstName = firstName;
+                    this.lastName = lastName;
+                }
+
+                public UserBuilder age(int age) {
+                    this.age = age;
+                    return this;
+                }
+
+                public UserBuilder city(String city) {
+                    this.city = city;
+                    return this;
+                }
+
+                public UserBuilder occupation(String occupation) {
+                    this.occupation = occupation;
+                    return this;
+                }
+
+                public UserBuilder isEmployed(boolean isEmployed) {
+                    this.isEmployed = isEmployed;
+                    return this;
+                }
+
+                public User build() {
+                    return new User(this);
+                }
+            }
         }
-    }
 
+        // Step 2: Use the Builder Pattern
+        public class BuilderPatternDemo {
+            public static void main(String[] args) {
+                User user1 = new User.UserBuilder("John", "Doe")
+                        .age(30)
+                        .city("New York")
+                        .occupation("Engineer")
+                        .isEmployed(true)
+                        .build();
 
+                User user2 = new User.UserBuilder("Jane", "Smith")
+                        .city("San Francisco")
+                        .build();
 
-Fluent Builder Inheritance with Recursive Generics
---------------------------------------------------
+                System.out.println(user1);
+                System.out.println(user2);
+            }
+        }
+
+        // Output:
+        // User [firstName=John, lastName=Doe, age=30, city=New York, occupation=Engineer, employed=true]
+        // User [firstName=Jane, lastName=Smith, age=0, city=San Francisco, occupation=null, employed=false]
+
+**Example 2 - Builder Pattern with Director:**
+
+    In more structured systems (like frameworks), a Director class can control the building process.
+
+    .. code-block:: java
+
+        // Product
+        class House {
+            private String walls;
+            private String roof;
+            private String floor;
+
+            public void setWalls(String walls) { this.walls = walls; }
+            public void setRoof(String roof) { this.roof = roof; }
+            public void setFloor(String floor) { this.floor = floor; }
+
+            @Override
+            public String toString() {
+                return "House [walls=" + walls + ", roof=" + roof + ", floor=" + floor + "]";
+            }
+        }
+
+        // Builder Interface
+        interface HouseBuilder {
+            void buildWalls();
+            void buildRoof();
+            void buildFloor();
+            House getHouse();
+        }
+
+        // Concrete Builder
+        class WoodenHouseBuilder implements HouseBuilder {
+            private House house = new House();
+
+            public void buildWalls() { house.setWalls("Wooden Walls"); }
+            public void buildRoof() { house.setRoof("Wooden Roof"); }
+            public void buildFloor() { house.setFloor("Wooden Floor"); }
+
+            public House getHouse() { return house; }
+        }
+
+        // Director
+        class CivilEngineer {
+            private HouseBuilder houseBuilder;
+
+            public CivilEngineer(HouseBuilder houseBuilder) {
+                this.houseBuilder = houseBuilder;
+            }
+
+            public House constructHouse() {
+                houseBuilder.buildWalls();
+                houseBuilder.buildRoof();
+                houseBuilder.buildFloor();
+                return houseBuilder.getHouse();
+            }
+        }
+
+        // Client
+        public class BuilderWithDirectorDemo {
+            public static void main(String[] args) {
+                HouseBuilder woodenBuilder = new WoodenHouseBuilder();
+                CivilEngineer engineer = new CivilEngineer(woodenBuilder);
+
+                House house = engineer.constructHouse();
+                System.out.println(house);
+            }
+        }
+
+        // Output:
+        // House [walls=Wooden Walls, roof=Wooden Roof, floor=Wooden Floor]
+
+Fluent Builder Inheritance with Recursive Generics:
+---------------------------------------------------
 
 Sometimes Builder is inherit from another Builder.
 
@@ -198,6 +262,16 @@ Sometimes Builder is inherit from another Builder.
 
 Faceted Builder
 ---------------
+
+Intent:
+    To separate the construction of different aspects (facets) of a complex object into multiple coordinated builders — all sharing the same underlying object instance.
+
+Example Scenario:
+    Let's build a complex Person object that has two major facets:
+    - Address Information (where they live)
+    - Job Information (where they work)
+
+    Instead of cramming everything into a single Builder class, we create different builders for each facet, but they all operate on the same underlying Person object.    
 
 .. code-block:: java
 
@@ -300,145 +374,3 @@ Faceted Builder
             System.out.println(person);
         }
     }
-
-Excercise: Builder Coding Exercise
------------------------------------
-
-You are asked to implement the Builder design pattern for rendering simple chunks of code.
-
-Sample use of the builder you are asked to create:
-
-.. code-block:: java
-
-    CodeBuilder cb = new CodeBuilder("Person").addField("name", "String").addField("age", "int");
-    System.out.println(cb);
-
-
-The expected output of the above code is:
-
-.. code-block:: java
-
-    public class Person
-    {
-      public String name;
-      public int age;
-    }
-
-Please observe the same placement of curly braces and use two-space indentation.
-
-Solution
---------
-
-.. code-block:: java
-
-    package com.activemesa.creational.builder.exercise;
-
-    import org.junit.Test;
-    import org.junit.Assert;
-
-    import java.util.ArrayList;
-    import java.util.List;
-
-    class Field {
-        public String type, name;
-
-        public Field(String name, String type) {
-            this.type = type;
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("public %s %s;", type, name);
-        }
-    }
-
-    class Class {
-        public String name;
-        public List<Field> fields = new ArrayList<>();
-
-        public Class() {
-        }
-
-        @Override
-        public String toString() {
-            StringBuilder sb = new StringBuilder();
-            String nl = System.lineSeparator();
-            sb.append("public class " + name).append(nl)
-                    .append("{").append(nl);
-            for (Field f : fields)
-                sb.append("  " + f).append(nl);
-            sb.append("}").append(nl);
-            return sb.toString();
-        }
-    }
-
-    class CodeBuilder {
-        private Class theClass = new Class();
-
-        public CodeBuilder(String rootName) {
-            theClass.name = rootName;
-        }
-
-        public CodeBuilder addField(String name, String type) {
-            theClass.fields.add(new Field(name, type));
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return theClass.toString();
-        }
-    }
-
-    //import org.junit.Test;
-    //import org.junit.Assert;
-    //import com.udemy.ucp.*;
-
-Tests
------
-
-.. code-block:: java
-
-    package com.activemesa.creational.builder.exercise;
-
-    import org.junit.Assert;
-    import org.junit.Test;
-
-    import static org.junit.Assert.assertEquals;
-
-    public class Evaluate {
-        private String preprocess(String text) {
-            return text.replace("\r\n", "\n").trim();
-        }
-
-        @Test
-        public void emptyTest() {
-            CodeBuilder cb = new CodeBuilder("Foo");
-            assertEquals("public class Foo\n{\n}",
-                    preprocess(cb.toString()));
-        }
-
-        @Test
-        public void personTest() {
-            CodeBuilder cb = new CodeBuilder("Person")
-                    .addField("name", "String")
-                    .addField("age", "int");
-            assertEquals("public class Person\n{\n" +
-                            "  public String name;\n" +
-                            "  public int age;\n}",
-                    preprocess(cb.toString()));
-        }
-    }
-
-Summary
--------
-
-  - A builder is a separate component for building an object
-
-  - so Can either give builder a constructor or return it via a static function
-
-  - To make builder fluent, return this
-
-  - Different facets of an object can be built with different builders working in tandem via a base class
-

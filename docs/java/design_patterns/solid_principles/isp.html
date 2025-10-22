@@ -75,10 +75,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html#gamma-categorization">Gamma Categorization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../design_patterns/creational/index.html">Creational Design Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../design_patterns/structural/index.html">Structural Design Patterns</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../spring/index.html">Spring Framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/index.html">Java Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
@@ -118,6 +120,20 @@
              
   <section id="interface-segregation-principle-isp">
 <h1>4. Interface Segregation Principle - ISP<a class="headerlink" href="#interface-segregation-principle-isp" title="Link to this heading"></a></h1>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>“Clients should not be forced to depend on interfaces they do not use.”</p>
+</div>
+<p>In simple terms, this means designing small, focused interfaces rather than
+one big fat interface. Clients (classes) implement only the methods they actually need.</p>
+<dl class="simple">
+<dt>Why ISP Matters</dt><dd><ul class="simple">
+<li><p>Prevents classes from having to implement unnecessary methods.</p></li>
+<li><p>Makes code easier to maintain and understand.</p></li>
+<li><p>Increases flexibility and reduces coupling.</p></li>
+</ul>
+</dd>
+</dl>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.revs.solidprinciples</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">Document</span><span class="w"> </span><span class="p">{</span>
@@ -206,9 +222,6 @@
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Scan</span><span class="p">(</span><span class="n">Document</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">scanner</span><span class="p">.</span><span class="na">Scan</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ISP</span><span class="w"> </span><span class="p">{</span>
 <span class="p">}</span>
 </pre></div>
 </div>

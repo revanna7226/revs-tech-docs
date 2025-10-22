@@ -75,10 +75,12 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../introduction.html#gamma-categorization">Gamma Categorization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../design_patterns/creational/index.html">Creational Design Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../design_patterns/structural/index.html">Structural Design Patterns</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../spring/index.html">Spring Framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../testing/index.html">Java Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
@@ -119,7 +121,13 @@
   <section id="single-responsibility-principle-srp">
 <h1>1. Single Responsibility Principle - SRP<a class="headerlink" href="#single-responsibility-principle-srp" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://www.geeksforgeeks.org/single-responsibility-principle-in-java-with-examples/">Reference Link</a></p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
 <p>Class should have one reason to change or should have one single responsibility.</p>
+</div>
+<p>The Single Responsibility Principle (SRP) in Java states that a class should have
+only one responsibility or reason to change. This means each class should focus on
+a single functionality or purpose, avoiding combining multiple responsibilities into one class.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.revs.solidprinciples</span><span class="p">;</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">java.io.*</span><span class="p">;</span>

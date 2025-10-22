@@ -3,7 +3,13 @@
 
 `Reference Link <https://www.geeksforgeeks.org/single-responsibility-principle-in-java-with-examples/>`_
 
-Class should have one reason to change or should have one single responsibility.
+.. admonition:: Definition
+
+    Class should have one reason to change or should have one single responsibility.
+
+The Single Responsibility Principle (SRP) in Java states that a class should have 
+only one responsibility or reason to change. This means each class should focus on 
+a single functionality or purpose, avoiding combining multiple responsibilities into one class.
 
 .. code-block:: java
 

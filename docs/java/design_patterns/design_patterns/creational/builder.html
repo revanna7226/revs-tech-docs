@@ -65,25 +65,22 @@
 <li class="toctree-l3"><a class="reference internal" href="../../introduction.html#gamma-categorization">Gamma Categorization</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Creational Design Patterns</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Builder</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#motivation">Motivation</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#builders-in-java">Builders in Java</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#fluent-builder-inheritance-with-recursive-generics">Fluent Builder Inheritance with Recursive Generics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#builder-pattern">Builder Pattern</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#fluent-builder-inheritance-with-recursive-generics">Fluent Builder Inheritance with Recursive Generics:</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#faceted-builder">Faceted Builder</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#excercise-builder-coding-exercise">Excercise: Builder Coding Exercise</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#solution">Solution</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#tests">Tests</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="factory.html">Factory</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prototype.html">Prototype</a></li>
-<li class="toctree-l4"><a class="reference internal" href="singleton.html">Singleton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="singleton.html">Singleton Design Pattern in Java</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../structural/index.html">Structural Design Patterns</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../spring/index.html">Spring Framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
@@ -123,133 +120,201 @@
              
   <section id="builder">
 <h1>Builder<a class="headerlink" href="#builder" title="Link to this heading"></a></h1>
+<section id="builder-pattern">
+<h2>Builder Pattern<a class="headerlink" href="#builder-pattern" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Overview:</dt><dd><ul class="simple">
+<li><p>This is a <code class="docutils literal notranslate"><span class="pre">creational</span> <span class="pre">design</span> <span class="pre">pattern</span></code> that is used to construct complex objects step-by-step.</p></li>
+<li><p>It allows you to produce different representations of an object using the same construction process.</p></li>
+<li><p>To separate the construction of a complex object from its representation, so the same construction process can create different representations.</p></li>
+</ul>
+</dd>
+</dl>
 <p>When construction gets a little bit too complicated.</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>When piece-wise object construction is complicated, provide an API for doing it succinctly.</p>
 </div>
-<section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Problem:</dt><dd><p>When an object requires many parameters — especially optional ones — using constructors or telescoping constructors becomes unreadable:</p>
+</dd>
+<dt>Solution:</dt><dd><p>The Builder pattern solves this problem by:</p>
 <ul class="simple">
-<li><p>Some objects are simple and can be created in a single constructor call</p></li>
-<li><p>Other Objects requires a lot of ceremony to create</p></li>
-<li><p>Having an Object with 10 constructor arguments is not productive</p></li>
-<li><p>Instead opt for piece-wise construction.</p></li>
-<li><p>Builder provides an API for constructing an object step-by-step</p></li>
+<li><p>Separating object creation from its representation.</p></li>
+<li><p>Providing a step-by-step construction process.</p></li>
+<li><p>Making the code more readable, flexible, and maintainable.</p></li>
 </ul>
-</section>
-<section id="builders-in-java">
-<h2>Builders in Java<a class="headerlink" href="#builders-in-java" title="Link to this heading"></a></h2>
-<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.revs.designpatterns</span><span class="p">;</span>
+</dd>
+</dl>
+<p><strong>Example 1 - Basic Builder Pattern:</strong></p>
+<blockquote>
+<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Step 1: Create the Product class</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Required parameters</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Collections</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Optional parameters</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">occupation</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isEmployed</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="nc">HtmlElement</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">HtmlElement</span><span class="o">&gt;</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">HtmlElement</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">indentSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">newLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">lineSeparator</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlElement</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Private constructor</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">User</span><span class="p">(</span><span class="n">UserBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">firstName</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">lastName</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">age</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">city</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">occupation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">occupation</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">isEmployed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">builder</span><span class="p">.</span><span class="na">isEmployed</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlElement</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">text</span><span class="p">;</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;User [firstName=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">firstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, lastName=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lastName</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="s">&quot;, age=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, city=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">city</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, occupation=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">occupation</span><span class="w"> </span><span class="o">+</span>
+<span class="w">                </span><span class="s">&quot;, employed=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">isEmployed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toStringImpl</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">indent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">nCopies</span><span class="p">(</span><span class="n">indent</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">indentSize</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">));</span>
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%s&lt;%s&gt;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">newLine</span><span class="p">));</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">text</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">nCopies</span><span class="p">(</span><span class="n">indentSize</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">))).</span><span class="na">append</span><span class="p">(</span><span class="n">text</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">newLine</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Static Builder Class</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserBuilder</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">occupation</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isEmployed</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserBuilder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">firstName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">lastName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">firstName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstName</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">lastName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastName</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">HtmlElement</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">elements</span><span class="p">)</span>
-<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">toStringImpl</span><span class="p">(</span><span class="n">indent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">UserBuilder</span><span class="w"> </span><span class="nf">age</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;%s&lt;/%s&gt;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">newLine</span><span class="p">));</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">UserBuilder</span><span class="w"> </span><span class="nf">city</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">city</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">city</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">toStringImpl</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">UserBuilder</span><span class="w"> </span><span class="nf">occupation</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">occupation</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">occupation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">occupation</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">HtmlBuilder</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">UserBuilder</span><span class="w"> </span><span class="nf">isEmployed</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">isEmployed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">isEmployed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isEmployed</span><span class="p">;</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">rootName</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">HtmlElement</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HtmlElement</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">HtmlBuilder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">rootName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">rootName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rootName</span><span class="p">;</span>
-<span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rootName</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// not fluent</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addChild</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">childName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">childText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">HtmlElement</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HtmlElement</span><span class="p">(</span><span class="n">childName</span><span class="p">,</span><span class="w"> </span><span class="n">childText</span><span class="p">);</span>
-<span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">elements</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">HtmlBuilder</span><span class="w"> </span><span class="nf">addChildFluent</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">childName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">childText</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">HtmlElement</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HtmlElement</span><span class="p">(</span><span class="n">childName</span><span class="p">,</span><span class="w"> </span><span class="n">childText</span><span class="p">);</span>
-<span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">elements</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HtmlElement</span><span class="p">();</span>
-<span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rootName</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// delegating</span>
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">build</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">Builder</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// Step 2: Use the Builder Pattern</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BuilderPatternDemo</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// we want to build a simple HTML paragraph</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Testing&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">hello</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;&lt;p&gt;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hello</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;&lt;/p&gt;&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="na">UserBuilder</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">age</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">city</span><span class="p">(</span><span class="s">&quot;New York&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">occupation</span><span class="p">(</span><span class="s">&quot;Engineer&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">isEmployed</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">// now we want to build a list with 2 words</span>
-<span class="w">        </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">};</span>
-<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;ul&gt;\n&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">words</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// indentation management, line breaks and other evils</span>
-<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;  &lt;li&gt;%s&lt;/li&gt;\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">));</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;&lt;/ul&gt;&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">sb</span><span class="p">);</span>
+<span class="w">        </span><span class="n">User</span><span class="w"> </span><span class="n">user2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="na">UserBuilder</span><span class="p">(</span><span class="s">&quot;Jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Smith&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">city</span><span class="p">(</span><span class="s">&quot;San Francisco&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 
-<span class="w">        </span><span class="c1">// ordinary non-fluent builder</span>
-<span class="w">        </span><span class="n">HtmlBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HtmlBuilder</span><span class="p">(</span><span class="s">&quot;ul&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">addChild</span><span class="p">(</span><span class="s">&quot;li&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">addChild</span><span class="p">(</span><span class="s">&quot;li&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">builder</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// fluent builder</span>
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
-<span class="w">        </span><span class="n">builder</span><span class="p">.</span><span class="na">addChildFluent</span><span class="p">(</span><span class="s">&quot;li&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">).</span><span class="na">addChildFluent</span><span class="p">(</span><span class="s">&quot;li&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">builder</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">user1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">user2</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
+
+<span class="c1">// Output:</span>
+<span class="c1">// User [firstName=John, lastName=Doe, age=30, city=New York, occupation=Engineer, employed=true]</span>
+<span class="c1">// User [firstName=Jane, lastName=Smith, age=0, city=San Francisco, occupation=null, employed=false]</span>
 </pre></div>
 </div>
+</div></blockquote>
+<p><strong>Example 2 - Builder Pattern with Director:</strong></p>
+<blockquote>
+<div><p>In more structured systems (like frameworks), a Director class can control the building process.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Product</span>
+<span class="kd">class</span> <span class="nc">House</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">walls</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">roof</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">floor</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setWalls</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">walls</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">walls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">walls</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setRoof</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">roof</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">roof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">roof</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setFloor</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">floor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">floor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">floor</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;House [walls=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">walls</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, roof=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">roof</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, floor=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">floor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Builder Interface</span>
+<span class="kd">interface</span> <span class="nc">HouseBuilder</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildWalls</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildRoof</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildFloor</span><span class="p">();</span>
+<span class="w">    </span><span class="n">House</span><span class="w"> </span><span class="nf">getHouse</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Concrete Builder</span>
+<span class="kd">class</span> <span class="nc">WoodenHouseBuilder</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HouseBuilder</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">House</span><span class="w"> </span><span class="n">house</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">House</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildWalls</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">house</span><span class="p">.</span><span class="na">setWalls</span><span class="p">(</span><span class="s">&quot;Wooden Walls&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildRoof</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">house</span><span class="p">.</span><span class="na">setRoof</span><span class="p">(</span><span class="s">&quot;Wooden Roof&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">buildFloor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">house</span><span class="p">.</span><span class="na">setFloor</span><span class="p">(</span><span class="s">&quot;Wooden Floor&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">House</span><span class="w"> </span><span class="nf">getHouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">house</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Director</span>
+<span class="kd">class</span> <span class="nc">CivilEngineer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">HouseBuilder</span><span class="w"> </span><span class="n">houseBuilder</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CivilEngineer</span><span class="p">(</span><span class="n">HouseBuilder</span><span class="w"> </span><span class="n">houseBuilder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">houseBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">houseBuilder</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">House</span><span class="w"> </span><span class="nf">constructHouse</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">houseBuilder</span><span class="p">.</span><span class="na">buildWalls</span><span class="p">();</span>
+<span class="w">        </span><span class="n">houseBuilder</span><span class="p">.</span><span class="na">buildRoof</span><span class="p">();</span>
+<span class="w">        </span><span class="n">houseBuilder</span><span class="p">.</span><span class="na">buildFloor</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">houseBuilder</span><span class="p">.</span><span class="na">getHouse</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Client</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BuilderWithDirectorDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">HouseBuilder</span><span class="w"> </span><span class="n">woodenBuilder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WoodenHouseBuilder</span><span class="p">();</span>
+<span class="w">        </span><span class="n">CivilEngineer</span><span class="w"> </span><span class="n">engineer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CivilEngineer</span><span class="p">(</span><span class="n">woodenBuilder</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">House</span><span class="w"> </span><span class="n">house</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">engineer</span><span class="p">.</span><span class="na">constructHouse</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">house</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Output:</span>
+<span class="c1">// House [walls=Wooden Walls, roof=Wooden Roof, floor=Wooden Floor]</span>
+</pre></div>
+</div>
+</div></blockquote>
 </section>
 <section id="fluent-builder-inheritance-with-recursive-generics">
-<h2>Fluent Builder Inheritance with Recursive Generics<a class="headerlink" href="#fluent-builder-inheritance-with-recursive-generics" title="Link to this heading"></a></h2>
+<h2>Fluent Builder Inheritance with Recursive Generics:<a class="headerlink" href="#fluent-builder-inheritance-with-recursive-generics" title="Link to this heading"></a></h2>
 <p>Sometimes Builder is inherit from another Builder.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.revs.designpatterns</span><span class="p">;</span>
 
@@ -315,6 +380,15 @@
 </section>
 <section id="faceted-builder">
 <h2>Faceted Builder<a class="headerlink" href="#faceted-builder" title="Link to this heading"></a></h2>
+<dl>
+<dt>Intent:</dt><dd><p>To separate the construction of different aspects (facets) of a complex object into multiple coordinated builders — all sharing the same underlying object instance.</p>
+</dd>
+<dt>Example Scenario:</dt><dd><p>Let’s build a complex Person object that has two major facets:
+- Address Information (where they live)
+- Job Information (where they work)</p>
+<p>Instead of cramming everything into a single Builder class, we create different builders for each facet, but they all operate on the same underlying Person object.</p>
+</dd>
+</dl>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.revs.designpatterns.builder</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">Person</span><span class="w"> </span><span class="p">{</span>
@@ -416,138 +490,6 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="excercise-builder-coding-exercise">
-<h2>Excercise: Builder Coding Exercise<a class="headerlink" href="#excercise-builder-coding-exercise" title="Link to this heading"></a></h2>
-<p>You are asked to implement the Builder design pattern for rendering simple chunks of code.</p>
-<p>Sample use of the builder you are asked to create:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">CodeBuilder</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CodeBuilder</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">).</span><span class="na">addField</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;String&quot;</span><span class="p">).</span><span class="na">addField</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;int&quot;</span><span class="p">);</span>
-<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">cb</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>The expected output of the above code is:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Person</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Please observe the same placement of curly braces and use two-space indentation.</p>
-</section>
-<section id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Link to this heading"></a></h2>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.activemesa.creational.builder.exercise</span><span class="p">;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Assert</span><span class="p">;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">Field</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Field</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
-<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;public %s %s;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">Class</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Field</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Class</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">nl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">lineSeparator</span><span class="p">();</span>
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;public class &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">nl</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;{&quot;</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">nl</span><span class="p">);</span>
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Field</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">fields</span><span class="p">)</span>
-<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">nl</span><span class="p">);</span>
-<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;}&quot;</span><span class="p">).</span><span class="na">append</span><span class="p">(</span><span class="n">nl</span><span class="p">);</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span> <span class="nc">CodeBuilder</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Class</span><span class="w"> </span><span class="n">theClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Class</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">CodeBuilder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">rootName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">theClass</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rootName</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">CodeBuilder</span><span class="w"> </span><span class="nf">addField</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">theClass</span><span class="p">.</span><span class="na">fields</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Field</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">));</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Override</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">theClass</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">//import org.junit.Test;</span>
-<span class="c1">//import org.junit.Assert;</span>
-<span class="c1">//import com.udemy.ucp.*;</span>
-</pre></div>
-</div>
-</section>
-<section id="tests">
-<h2>Tests<a class="headerlink" href="#tests" title="Link to this heading"></a></h2>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.activemesa.creational.builder.exercise</span><span class="p">;</span>
-
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Assert</span><span class="p">;</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">org.junit.Test</span><span class="p">;</span>
-
-<span class="kn">import static</span><span class="w"> </span><span class="nn">org.junit.Assert.assertEquals</span><span class="p">;</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Evaluate</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">preprocess</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">text</span><span class="p">.</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;\r\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">).</span><span class="na">trim</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">emptyTest</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">CodeBuilder</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CodeBuilder</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;public class Foo\n{\n}&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">preprocess</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">toString</span><span class="p">()));</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="nd">@Test</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">personTest</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">CodeBuilder</span><span class="w"> </span><span class="n">cb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CodeBuilder</span><span class="p">(</span><span class="s">&quot;Person&quot;</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addField</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;String&quot;</span><span class="p">)</span>
-<span class="w">                </span><span class="p">.</span><span class="na">addField</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;int&quot;</span><span class="p">);</span>
-<span class="w">        </span><span class="n">assertEquals</span><span class="p">(</span><span class="s">&quot;public class Person\n{\n&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="s">&quot;  public String name;\n&quot;</span><span class="w"> </span><span class="o">+</span>
-<span class="w">                        </span><span class="s">&quot;  public int age;\n}&quot;</span><span class="p">,</span>
-<span class="w">                </span><span class="n">preprocess</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">toString</span><span class="p">()));</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
-<blockquote>
-<div><ul class="simple">
-<li><p>A builder is a separate component for building an object</p></li>
-<li><p>so Can either give builder a constructor or return it via a static function</p></li>
-<li><p>To make builder fluent, return this</p></li>
-<li><p>Different facets of an object can be built with different builders working in tandem via a base class</p></li>
-</ul>
-</div></blockquote>
 </section>
 </section>
 

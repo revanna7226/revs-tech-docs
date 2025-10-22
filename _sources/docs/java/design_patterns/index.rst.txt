@@ -20,3 +20,5 @@ Java Design Patterns
 
    introduction
    design_patterns/creational/index
+   design_patterns/structural/index
+   design_patterns/behavioral/index

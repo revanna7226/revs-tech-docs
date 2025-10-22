@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bridge Design Pattern — Detailed Explanation with Java Example &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Bridge Design Pattern — Detailed Explanation with Java Example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/design_patterns/design_patterns/structural/bridge.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bridge-design-pattern-detailed-explanation-with-java-example">
+<h1>Bridge Design Pattern — Detailed Explanation with Java Example<a class="headerlink" href="#bridge-design-pattern-detailed-explanation-with-java-example" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The Bridge pattern is a structural design pattern that decouples an abstraction from
+its implementation so the two can vary independently. It is useful when both the
+abstraction and its implementation may need to change over time — by separating them
+you avoid a combinatorial explosion of subclasses.</p>
+</section>
+<section id="intent">
+<h2>Intent<a class="headerlink" href="#intent" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Separate an abstraction from its implementation.</p></li>
+<li><p>Allow the abstraction and implementation to evolve independently.</p></li>
+<li><p>Reduce compile-time coupling between abstraction and concrete implementations.</p></li>
+</ul>
+</section>
+<section id="key-participants">
+<h2>Key Participants<a class="headerlink" href="#key-participants" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Abstraction
+- Defines the abstraction’s interface and maintains a reference to an Implementor.</p></li>
+<li><p>RefinedAbstraction
+- Extends the Abstraction and uses the Implementor for concrete operations.</p></li>
+<li><p>Implementor
+- Defines the interface for implementation classes. This interface doesn’t need</p>
+<blockquote>
+<div><p>to mirror Abstraction’s interface exactly — they can be different, as long as
+Abstraction uses Implementor for work.</p>
+</div></blockquote>
+</li>
+<li><p>ConcreteImplementor
+- Implements the Implementor interface.</p></li>
+</ul>
+</section>
+<section id="uml-simplified-ascii">
+<h2>UML (simplified ASCII)<a class="headerlink" href="#uml-simplified-ascii" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl class="simple">
+<dt>Abstraction&lt;&gt;—–Implementor</dt><dd><p>^                  ^
+|                  |</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>RefinedAbstraction   ConcreteImplementorA</dt><dd><p>ConcreteImplementorB</p>
+</dd>
+</dl>
+</section>
+<section id="when-to-use">
+<h2>When to use<a class="headerlink" href="#when-to-use" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>When you want to avoid a permanent binding between an abstraction and its implementation.</p></li>
+<li><p>When both the abstractions and their implementations should be extensible by subclassing.</p></li>
+<li><p>When changes in the implementation should not affect clients of the abstraction.</p></li>
+</ul>
+</section>
+<section id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Improves flexibility and extensibility.</p></li>
+<li><p>Reduces subclass explosion (avoids creating subclasses for every combination).</p></li>
+<li><p>Implementation can be changed at runtime.</p></li>
+</ul>
+</section>
+<section id="trade-offs">
+<h2>Trade-offs<a class="headerlink" href="#trade-offs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>More complex design because of extra indirection.</p></li>
+<li><p>Slight increase in number of classes.</p></li>
+</ul>
+</section>
+<section id="java-example-shapes-colors">
+<h2>Java Example: Shapes + Colors<a class="headerlink" href="#java-example-shapes-colors" title="Link to this heading"></a></h2>
+<p>We model a simple scenario: different shapes (Circle, Square) can be drawn using
+different colors (Red, Green). Shape is the Abstraction, Color is the Implementor.</p>
+<p>Files (all in the same package or default package):
+- Color.java (Implementor)
+- RedColor.java (ConcreteImplementor)
+- GreenColor.java (ConcreteImplementor)
+- Shape.java (Abstraction)
+- Circle.java (RefinedAbstraction)
+- Square.java (RefinedAbstraction)
+- BridgeDemo.java (Client / Main)</p>
+</section>
+<section id="code">
+<h2>Code<a class="headerlink" href="#code" title="Link to this heading"></a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Color.java</span>
+<span class="c1">// Implementor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Color</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Apply color to some shape-specific description (could be drawing logic)</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyColor</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// RedColor.java</span>
+<span class="c1">// ConcreteImplementor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RedColor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Applying red color&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// GreenColor.java</span>
+<span class="c1">// ConcreteImplementor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GreenColor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">applyColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Applying green color&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Shape.java</span>
+<span class="c1">// Abstraction</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Bridge to implementation</span>
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="nf">Shape</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Clients call this; the implementation is delegated to Color</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Allow changing implementation at runtime</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setColor</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Circle.java</span>
+<span class="c1">// RefinedAbstraction</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Circle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Circle</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Drawing Circle of radius &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">color</span><span class="p">.</span><span class="na">applyColor</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Square.java</span>
+<span class="c1">// RefinedAbstraction</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Square</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">side</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Square</span><span class="p">(</span><span class="n">Color</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">side</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">color</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">side</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">draw</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Drawing Square with side &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">side</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">color</span><span class="p">.</span><span class="na">applyColor</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// BridgeDemo.java</span>
+<span class="c1">// Client code</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BridgeDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Color</span><span class="w"> </span><span class="n">red</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RedColor</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Color</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GreenColor</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">Shape</span><span class="w"> </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="n">red</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Shape</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Square</span><span class="p">(</span><span class="n">green</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">circle</span><span class="p">.</span><span class="na">draw</span><span class="p">();</span>
+<span class="w">        </span><span class="n">square</span><span class="p">.</span><span class="na">draw</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Change implementation at runtime</span>
+<span class="w">        </span><span class="n">square</span><span class="p">.</span><span class="na">setColor</span><span class="p">(</span><span class="n">red</span><span class="p">);</span>
+<span class="w">        </span><span class="n">square</span><span class="p">.</span><span class="na">draw</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="compile-run">
+<h2>Compile &amp; Run<a class="headerlink" href="#compile-run" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Save each class in its own .java file with the exact class name (e.g., Circle.java).</p></li>
+<li><p>Compile:
+javac <a href="#id1"><span class="problematic" id="id2">*</span></a>.java</p></li>
+<li><p>Run:
+java BridgeDemo</p></li>
+</ol>
+</section>
+<section id="expected-output">
+<h2>Expected Output<a class="headerlink" href="#expected-output" title="Link to this heading"></a></h2>
+<p>Drawing Circle of radius 5 - Applying red color
+Drawing Square with side 10 - Applying green color
+Drawing Square with side 10 - Applying red color</p>
+</section>
+<section id="how-this-demonstrates-bridge">
+<h2>How this demonstrates Bridge<a class="headerlink" href="#how-this-demonstrates-bridge" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Shape (Abstraction) does not know details about how color is applied; it delegates to
+the Color implementor.</p></li>
+<li><p>Circle and Square can be extended without touching color implementations.</p></li>
+<li><p>RedColor and GreenColor can be changed, extended or replaced independently of shapes.</p></li>
+<li><p>At runtime you can change the Color instance inside a Shape (setColor), showing the
+independent variation of abstraction and implementation.</p></li>
+</ul>
+</section>
+<section id="real-world-analogies">
+<h2>Real-world analogies<a class="headerlink" href="#real-world-analogies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Remote (abstraction) and Device (implementation). You can have different remotes for
+TVs, Radios, etc., but the same remote abstraction can work with different devices
+(the implementation), and new remotes or devices can be added freely.</p></li>
+<li><p>GUI widget hierarchy (abstraction) and platform-specific drawing APIs (implementation).</p></li>
+</ul>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<p>The Bridge pattern separates abstraction from implementation, promoting independent
+extensibility and reducing coupling. Use it when you expect both sides to change
+independently or when you need to switch implementations at runtime without
+affecting client code.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -63,6 +63,7 @@
 <li class="toctree-l2"><a class="reference internal" href="design_patterns/index.html">Java Design Patterns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spring/index.html">Spring Framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing/index.html">Java Testing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../golang/index.html">Golang</a></li>
@@ -100,6 +101,69 @@
              
   <section id="java-introduction">
 <h1>Java Introduction<a class="headerlink" href="#java-introduction" title="Link to this heading"></a></h1>
+<p>Introduction:</p>
+<p>Project Description:</p>
+<blockquote>
+<div><p>MLOps stands for Machine Learning Operations.
+MLOps is a application that bridges the gap between data science and IT operations to streamline
+the entire machine learning (ML) lifecycle—from data preparation to model deployment and monitoring.
+It enables continuous integration, continuous delivery, and continuous training of ML models,
+ensuring scalability, reproducibility, and governance across machine learning workflows.</p>
+<p>As the Senior Developer leading a team of two—one frontend and one backend developer-
+I was responsible for gathering requirements from the client, seeking clarifications,
+and distributing tasks to the team members.</p>
+<p>I personally handled most of the backend tasks, focusing on machine learning workflows,
+model development, and configuration management.</p>
+<p>In addition to these responsibilities, as a Java backend developer in an MLOps project, my tasks included designing
+and developing scalable RESTful APIs for model serving, integrating machine learning models into backend services,
+and managing data persistence using relational databases. I implemented automated ML pipelines using Spring Boot,
+orchestrated workflows for model training and deployment, and ensured robust error handling and logging.
+I also worked on securing backend services through authentication and authorization, optimized performance
+for high-load scenarios, and collaborated closely with DevOps teams for containerization and CI/CD automation, s
+enabling smooth continuous delivery of ML models in production environments.</p>
+<p>Feature Engineering is the process of transforming raw data into meaningful features
+that improve the performance of machine learning models.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text"><strong>Feature Engineering Lifecycle in MLOps</strong></span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.8%" />
+<col style="width: 37.5%" />
+<col style="width: 41.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Stage</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>MLOps Considerations</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Data Ingestion</strong></p></td>
+<td><p>Collect raw data from multiple sources (databases, APIs, streams, logs).</p></td>
+<td><p>Use pipelines (e.g., Airflow, Kubeflow Pipelines) for automated, repeatable ingestion.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feature Extraction</strong></p></td>
+<td><p>Derive features such as averages, ratios, counts, or domain-specific metrics.</p></td>
+<td><p>Automate via feature pipelines; ensure deterministic transformations.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Feature Transformation</strong></p></td>
+<td><p>Normalize, scale, encode, or bucketize features.</p></td>
+<td><p>Track transformations using metadata; apply same steps in training &amp; serving.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feature Selection</strong></p></td>
+<td><p>Choose most impactful features using statistical or ML-based methods.</p></td>
+<td><p>Integrate explainability and validation metrics into CI/CD pipelines.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Feature Store Management</strong></p></td>
+<td><p>Store reusable features for training and inference.</p></td>
+<td><p>Use a centralized <strong>Feature Store</strong> (like Feast, Hopsworks, or Vertex AI Feature Store).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Feature Monitoring</strong></p></td>
+<td><p>Detect feature drift and data quality issues in production.</p></td>
+<td><p>Monitor data distribution and alert on anomalies.</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
 </section>
 
 

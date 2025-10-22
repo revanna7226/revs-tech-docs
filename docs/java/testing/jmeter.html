@@ -1,0 +1,190 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apache JMeter &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Golang" href="../../golang/index.html" />
+    <link rel="prev" title="Java Testing" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spring/index.html">Spring Framework</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Java Testing</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Apache JMeter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Java Testing</a></li>
+      <li class="breadcrumb-item active">Apache JMeter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/java/testing/jmeter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="apache-jmeter">
+<h1>Apache JMeter<a class="headerlink" href="#apache-jmeter" title="Link to this heading"></a></h1>
+<ol class="arabic">
+<li><p><strong>What is JMeter?</strong></p>
+<p>Apache JMeter is an open‑source, Java‑based performance testing tool
+developed by the Apache Software Foundation that is used to test and
+measure the performance of applications, servers, and network components</p>
+</li>
+<li><p><strong>Main Purpose:</strong></p>
+<p>JMeter is designed to perform load testing, stress testing, and performance analysis. It simulates multiple users accessing a web service, API, or database concurrently to evaluate how well the system performs under various loads.​</p>
+</li>
+<li><p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p>Supports testing of multiple protocol types such as HTTP, HTTPS, SOAP, REST, FTP, JDBC (databases), LDAP, JMS, and TCP.​</p></li>
+<li><p>Provides a GUI-based Test IDE for quickly creating, debugging, and visualizing test plans while also supporting command-line execution for CI pipelines.​</p></li>
+<li><p>Supports multi-threaded testing, meaning it can simulate numerous concurrent users to mimic real-world load scenarios.</p></li>
+<li><p>Offers extensive reporting and visualization tools, including dynamic HTML and graph-based performance reports.​</p></li>
+<li><p>Extensible architecture — new plugins and samplers can be easily added to support additional protocols or custom behavior.​</p></li>
+</ul>
+</li>
+<li><p>Installation and Setup</p>
+<ul>
+<li><p>Download JMeter from <a class="reference external" href="https://jmeter.apache.org/download_jmeter.cgi">Official Website</a>.</p></li>
+<li><p>Download Binary file: apache-jmeter-5.6.3.zip</p></li>
+<li><p>Place this to C Drive and Extract</p></li>
+<li><p>Go to Extrcated Jmeter Folder -&gt; bin</p></li>
+<li><p>Take bin directory to command prompt</p></li>
+<li><p>Run the bat file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jmeter
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WARN<span class="w"> </span>StatusConsoleListener<span class="w"> </span>The<span class="w"> </span>use<span class="w"> </span>of<span class="w"> </span>package<span class="w"> </span>scanning<span class="w"> </span>to<span class="w"> </span>locate<span class="w"> </span>plugins<span class="w"> </span>is<span class="w"> </span>deprecated<span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>removed<span class="w"> </span><span class="k">in</span><span class="w"> </span>a<span class="w"> </span>future<span class="w"> </span><span class="nv">release</span>
+<span class="o">================================================================================</span>
+Don<span class="err">&#39;</span>t<span class="w"> </span>use<span class="w"> </span>GUI<span class="w"> </span>mode<span class="w"> </span><span class="k">for</span><span class="w"> </span>load<span class="w"> </span>testing<span class="w"> </span>!,<span class="w"> </span>only<span class="w"> </span><span class="k">for</span><span class="w"> </span>Test<span class="w"> </span>creation<span class="w"> </span>and<span class="w"> </span>Test<span class="w"> </span>debugging.
+For<span class="w"> </span>load<span class="w"> </span>testing,<span class="w"> </span>use<span class="w"> </span>CLI<span class="w"> </span>Mode<span class="w"> </span><span class="o">(</span>was<span class="w"> </span>NON<span class="w"> </span>GUI<span class="o">)</span>:
+<span class="w">   </span>jmeter<span class="w"> </span>-n<span class="w"> </span>-t<span class="w"> </span><span class="o">[</span>jmx<span class="w"> </span>file<span class="o">]</span><span class="w"> </span>-l<span class="w"> </span><span class="o">[</span>results<span class="w"> </span>file<span class="o">]</span><span class="w"> </span>-e<span class="w"> </span>-o<span class="w"> </span><span class="o">[</span>Path<span class="w"> </span>to<span class="w"> </span>web<span class="w"> </span>report<span class="w"> </span>folder<span class="o">]</span>
+<span class="p">&amp;</span><span class="w"> </span>increase<span class="w"> </span>Java<span class="w"> </span>Heap<span class="w"> </span>to<span class="w"> </span>meet<span class="w"> </span>your<span class="w"> </span><span class="nb">test</span><span class="w"> </span>requirements:
+<span class="w">   </span>Modify<span class="w"> </span>current<span class="w"> </span>env<span class="w"> </span>variable<span class="w"> </span><span class="nv">HEAP</span><span class="o">=</span><span class="s2">&quot;-Xms1g -Xmx1g -XX:MaxMetaspaceSize=256m&quot;</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>jmeter<span class="w"> </span>batch<span class="w"> </span>file
+Check<span class="w"> </span>:<span class="w"> </span>https://jmeter.apache.org/usermanual/best-practices.html
+<span class="o">================================================================================</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Reference Link:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/eqZORQpOuZA?si=DWS_nImNMzKP5uPU">Youtube Video</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Java Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../golang/index.html" class="btn btn-neutral float-right" title="Golang" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

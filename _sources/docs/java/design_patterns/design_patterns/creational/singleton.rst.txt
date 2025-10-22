@@ -1,207 +1,229 @@
-Singleton
-=========
+Singleton Design Pattern in Java
+===============================
 
-Motivation
-----------
-
-For some components it only makes sense to have one in the system
-
-- Database repository
-- Object factory
-
-E.g., the constructor call is expensive
-
-- We only do it once
-- We provide everyone with the same instance
-
-Want to prevent anyone creating additional copies
-
-Need to take care of lazy instantiation and thread safety
+#. Overview: 
+    The **Singleton Design Pattern** is a **creational pattern** that ensures a class has only **one instance** and provides a **global point of access** to it.  
+    It is widely used in **logging, configuration, caching, and thread pools**.
 
 
-.. admonition:: Definition
+#. Types of Singleton Implementation:
+    .. list-table::
+        :header-rows: 1
+        :widths: 25 75
 
-    A Component which is instantiated only once.
+        * - **Type**
+          - **Description**
+        * - Eager Initialization
+          - Instance is created at the time of class loading. Simple but may waste resources.
+        * - Lazy Initialization
+          - Instance is created only when requested. Not thread-safe without synchronization.
+        * - Thread-safe Singleton
+          - Ensures only one instance is created in multi-threaded environments using `synchronized`.
+        * - Bill Pugh Singleton
+          - Uses a static inner helper class for lazy-loaded, thread-safe singleton.
+        * - Enum Singleton
+          - Uses Java Enum, inherently thread-safe, handles serialization automatically.
 
-Basic Singleton and Serialization Promblems
--------------------------------------------
+    #. Eager Initialization:
+        The instance is created at the time of class loading.
 
-.. code-block:: java
+        .. code-block:: java
 
-    package com.revs.designpatterns.singleton;
+            public class EagerSingleton {
+                private static final EagerSingleton instance = new EagerSingleton();
 
-    import java.io.*;
+                private EagerSingleton() {
+                    // private constructor
+                }
 
-    class BasicSingleton implements Serializable {
-        // cannot new this class, however
-        // * instance can be created deliberately (reflection)
-        // * instance can be created accidentally (serialization)
-        private BasicSingleton() {
-            System.out.println("Singleton is initializing");
-        }
-
-        private static final BasicSingleton INSTANCE = new BasicSingleton();
-
-        private int value = 0;
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-
-        // required for correct serialization
-        // readResolve is used for _replacing_ the object read from the stream
-
-    //  protected Object readResolve()
-    //  {
-    //    return INSTANCE;
-    //  }
-
-        // generated getter
-        public static BasicSingleton getInstance() {
-            return INSTANCE;
-        }
-    }
-
-    class BasicSingletonDemo {
-        static void saveToFile(BasicSingleton singleton, String filename)
-                throws Exception {
-            try (FileOutputStream fileOut = new FileOutputStream(filename);
-                ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-                out.writeObject(singleton);
+                public static EagerSingleton getInstance() {
+                    return instance;
+                }
             }
-        }
 
-        static BasicSingleton readFromFile(String filename)
-                throws Exception {
-            try (FileInputStream fileIn = new FileInputStream(filename);
-                ObjectInputStream in = new ObjectInputStream(fileIn)) {
-                return (BasicSingleton) in.readObject();
-            }
-        }
+        **Pros:**
+            - Simple implementation.
+            - Thread-safe without synchronization.
 
-        public static void main(String[] args) throws Exception {
-            BasicSingleton singleton = BasicSingleton.getInstance();
-            singleton.setValue(111);
+        **Cons:**
+            - Instance is created even if not used (resource wastage).
 
-            String filename = "singleton.bin";
-            saveToFile(singleton, filename);
+    #. Lazy Initialization:
+        Instance is created only when needed.
 
-            singleton.setValue(222);
+        .. code-block:: java
 
-            BasicSingleton singleton2 = readFromFile(filename);
+            public class LazySingleton {
+                private static LazySingleton instance;
 
-            System.out.println(singleton == singleton2);
+                private LazySingleton() {}
 
-            System.out.println(singleton.getValue());
-            System.out.println(singleton2.getValue());
-        }
-    }
-
-Static Block Singleton
-----------------------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.singleton;
-
-    import java.io.File;
-    import java.io.IOException;
-
-    class StaticBlockSingleton {
-        private StaticBlockSingleton() throws IOException {
-            System.out.println("Initializing Static block singleton");
-            File.createTempFile(".", ".");
-        }
-
-        private static StaticBlockSingleton instance;
-
-        static {
-            try {
-                instance = new StaticBlockSingleton();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        public static StaticBlockSingleton getInstance() {
-            return instance;
-        }
-
-        public int value;
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-    }
-
-    public class StaticBlockSingletonDemo {
-        public static void main(String[] args) {
-            StaticBlockSingleton staticBlockSingleton = StaticBlockSingleton.getInstance();
-            staticBlockSingleton.setValue(100);
-            System.out.println(staticBlockSingleton);
-        }
-    }
-
-Lazyness and Thread safety Singleton
--------------------------------------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.singleton;
-
-    class LazySingleton {
-        private static LazySingleton instance;
-
-        private LazySingleton() {
-            System.out.println("initializing Singleton");
-        }
-
-    //    public static LazySingleton getInstance() {
-    //        if(instance == null) {
-    //            instance = new LazySingleton();
-    //        }
-    //        return instance;
-    //    }
-
-        // threadsafety
-    //    public static synchronized LazySingleton getInstance() {
-    //        if(instance == null) {
-    //            instance = new LazySingleton();
-    //        }
-    //        return instance;
-    //    }
-
-        // double-checked locking
-        public static LazySingleton getInstance() {
-            if (instance == null) {
-                synchronized (LazySingleton.class) {
+                public static LazySingleton getInstance() {
                     if (instance == null) {
                         instance = new LazySingleton();
                     }
+                    return instance;
                 }
             }
-            return instance;
+
+        **Pros:**
+        - Lazy loading (created only when needed).
+
+        **Cons:**
+        - Not thread-safe.
+        - Multiple threads may create multiple instances.
+
+    #. Thread-Safe Singleton:
+        Using `synchronized` to make lazy initialization thread-safe.
+
+        .. code-block:: java
+
+            public class ThreadSafeSingleton {
+                private static ThreadSafeSingleton instance;
+
+                private ThreadSafeSingleton() {}
+
+                public static synchronized ThreadSafeSingleton getInstance() {
+                    if (instance == null) {
+                        instance = new ThreadSafeSingleton();
+                    }
+                    return instance;
+                }
+            }
+
+        **Pros:**
+        - Thread-safe.
+
+        **Cons:**
+        - Synchronization overhead on every call.
+
+    #. Double-Checked Locking:
+        Reduces synchronization overhead by locking only when instance is null.
+
+        .. code-block:: java
+
+            public class DoubleCheckedSingleton {
+                private static volatile DoubleCheckedSingleton instance;
+
+                private DoubleCheckedSingleton() {}
+
+                public static DoubleCheckedSingleton getInstance() {
+                    if (instance == null) {
+                        synchronized (DoubleCheckedSingleton.class) {
+                            if (instance == null) {
+                                instance = new DoubleCheckedSingleton();
+                            }
+                        }
+                    }
+                    return instance;
+                }
+            }
+
+        **Pros:**
+        - Thread-safe.
+        - Efficient (synchronization only at first time).
+
+        **Cons:**
+        - Requires `volatile` keyword (Java 5+).
+
+
+    #. Bill Pugh Singleton Implementation:
+        Uses a static inner helper class. Lazy-loaded and thread-safe.
+
+        .. code-block:: java
+
+            public class BillPughSingleton {
+                private BillPughSingleton() {}
+
+                private static class SingletonHelper {
+                    private static final BillPughSingleton INSTANCE = new BillPughSingleton();
+                }
+
+                public static BillPughSingleton getInstance() {
+                    return SingletonHelper.INSTANCE;
+                }
+            }
+
+        **Pros:**
+        - Thread-safe without synchronization.
+        - Lazy-loaded.
+
+    #. Enum Singleton:
+        Java Enum approach is **simplest and safest**, handles serialization automatically.
+
+        .. code-block:: java
+
+            public enum EnumSingleton {
+                INSTANCE;
+
+                public void showMessage() {
+                    System.out.println("Hello from Enum Singleton!");
+                }
+            }
+
+        **Usage:**
+
+        .. code-block:: java
+
+            public class Main {
+                public static void main(String[] args) {
+                    EnumSingleton singleton = EnumSingleton.INSTANCE;
+                    singleton.showMessage();
+                }
+            }
+
+        **Pros:**
+        - Thread-safe.
+        - Serialization handled automatically.
+        - Reflection attack resistant.
+
+#. Comparison of Singleton Implementations:
+    .. list-table::
+        :header-rows: 1
+        :widths: 20 20 20 40
+
+        * - **Type**
+          - **Thread-Safe**
+          - **Lazy Loading**
+          - **Pros/Cons**
+        * - Eager Initialization
+          - Yes
+          - No
+          - Simple, but may waste resources.
+        * - Lazy Initialization
+          - No
+          - Yes
+          - Lazy loading, but not thread-safe.
+        * - Thread-Safe Singleton (synchronized)
+          - Yes
+          - Yes
+          - Thread-safe, but synchronization overhead.
+        * - Double-Checked Locking
+          - Yes
+          - Yes
+          - Efficient, thread-safe, requires volatile.
+        * - Bill Pugh Singleton
+          - Yes
+          - Yes
+          - Efficient, lazy-loaded, elegant.
+        * - Enum Singleton
+          - Yes
+          - Yes
+          - Simplest, handles serialization and reflection attacks.
+
+#. Usage in Spring Framework:
+    - Spring Beans are **singleton by default**, using the Singleton pattern.
+  
+    Example:
+
+    .. code-block:: java
+
+        @Service
+        public class UserService {
+            public void processUser() {
+                System.out.println("Processing user...");
+            }
         }
-    }
 
-    public class LazySingletonAndThreadSafetyDemo {
-
-        public static void main(String[] args) {
-
-        }
-    }
-
-Innetr Static Class Singleton
------------------------------
-
-.. code-block:: java
-
-
+    Spring ensures only **one instance** of `UserService` exists in the application context.
+        

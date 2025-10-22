@@ -9,6 +9,7 @@ Spring Data JPA Features
    features/data-projections
    features/auditing
    features/queryhints
+   features/pagination-sort
 
 Features:
    - Spring Data JPA Repositories
@@ -22,5 +23,8 @@ Features:
    - Spring Data JPA Custom Implementations
    - Spring Data JPA Specifications
    - Spring Data JPA QueryHints
-   - Spring Data JPA Locking - https://youtu.be/lR6y-0RC5cc?si=NR7v50dptlYzXChd
+   - Spring Data JPA Optimistic & Pessimistic Locking - https://youtu.be/lR6y-0RC5cc?si=NR7v50dptlYzXChd
    - Spring Data JPA N+1 Problem - https://youtu.be/zwF5ADW6eKs?si=kWVFfVW2RN8qBqy2
+   - Spring Data JPA Transaction Isolation - https://youtu.be/a9z9x4bxmK4?si=0Ul7fWPhqpE7d826
+   - Spring Data JPA Transaction Propagation - https://youtu.be/NKuo8hyIwgQ?si=ZHnhFdYHvcFQGU1l\
+   - Spring Data JPA Stored Procedure - https://youtu.be/oWbKtmtPGpg?si=p4nRZ4s3KAg5xlOz

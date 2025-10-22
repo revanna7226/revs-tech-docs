@@ -14,3 +14,4 @@ Cloud
    docker/index
    helm/index
    jenkins/index
+   kafka/index

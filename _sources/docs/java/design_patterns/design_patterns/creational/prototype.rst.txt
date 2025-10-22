@@ -1,294 +1,158 @@
 Prototype
 =========
 
-Motivation
-----------
+#. Concept:
+    The Prototype Design Pattern is a creational design pattern that allows you to clone existing objects instead of creating new instances from scratch.
 
-1. Complicated objects (e.g., cars) aren't designed from scratch
-   
-2. They reiterate existing designs
-An existing (partially or fully constructed) design is a
-Prototype
+    It is especially useful when object creation is expensive or complex, and copying an existing object is more efficient.
 
-3. We make a copy (clone) the prototype and customize it
+#. When to Use:
 
-4. Requires 'deep copy' support
-We make the cloning convenient (e.g., via a Factory)
+   - Creating a new object is costly (e.g., initializing a large object, DB connections, or complex computations).
+   - You want runtime object creation flexibility.
+   - You need deep or shallow copies of objects without coupling the client to concrete classes.
 
-.. admonition:: Definition
+#. UML Diagram
 
-    A partially or fully initialized object that you copy (clone) and make use of.
+    .. code-block:: lua
 
-Don't Use Cloneable
--------------------
+        +--------------------+
+        |    Prototype       |
+        | + clone():Prototype|
+        +--------+-----------+
+                 ^
+                 |
+        +--------------------+
+        | ConcretePrototype  |
+        | + clone()          |
+        +--------------------+
+                 ^
+                 |
+               Client
 
-.. code-block:: java
+#. Key Concepts
+    .. list-table:: ConceptDescription
+        :header-rows: 1
 
-    package com.revs.designpatterns.prototype;
+        * - Concept
+          - Description
+        * - Prototype
+          - Declares the cloning interface (clone() method).
+        * - ConcretePrototype
+          - Implements the clone() method to duplicate itself.
+        * - Client
+          - Creates a new object by asking a prototype to clone itself.
 
-    import java.util.Arrays;
+Example 1 - Shallow Copy Using Cloneable:
+    .. code-block:: java
 
-    // Cloneable is a marker interface
-    class Address implements Cloneable {
-        public String streetName;
-        public int houseNumber;
+        // Step 1: Prototype Class
+        public class Employee implements Cloneable {
+            private String name;
+            private int age;
 
-        public Address(String streetName, int houseNumber) {
-            this.streetName = streetName;
-            this.houseNumber = houseNumber;
+            public Employee(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            // Shallow clone
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                return super.clone();
+            }
+
+            @Override
+            public String toString() {
+                return "Employee{name='" + name + "', age=" + age + "}";
+            }
+
+            // Getters and Setters
+            public String getName() { return name; }
+            public void setName(String name) { this.name = name; }
+            public int getAge() { return age; }
+            public void setAge(int age) { this.age = age; }
         }
 
-        @Override
-        public String toString() {
-            return "Address{" +
-                    "streetName='" + streetName + '\'' +
-                    ", houseNumber=" + houseNumber +
-                    '}';
+        // Step 2: Client Code
+        public class PrototypeDemo {
+            public static void main(String[] args) throws CloneNotSupportedException {
+                Employee original = new Employee("John", 30);
+                Employee clone = (Employee) original.clone();
+
+                clone.setName("Jane"); // modifying the clone
+
+                System.out.println(original);
+                System.out.println(clone);
+            }
         }
 
-        // base class clone() is protected
-        @Override
-        public Object clone() throws CloneNotSupportedException {
-            return new Address(streetName, houseNumber);
-        }
-    }
+        // Output
+        // Employee{name='John', age=30}
+        // Employee{name='Jane', age=30}
 
-    class Person implements Cloneable {
-        public String[] names;
-        public Address address;
 
-        public Person(String[] names, Address address) {
-            this.names = names;
-            this.address = address;
-        }
+    ✅ Shallow copy works fine for primitive fields and immutable objects.
 
-        @Override
-        public String toString() {
-            return "Person{" +
-                    "names=" + Arrays.toString(names) +
-                    ", address=" + address +
-                    '}';
-        }
+6. Example 2: Deep Copy:
+    Shallow copy only copies primitive and immutable fields, but references are shared.
+    For objects with nested objects, use deep copy:
 
-        @Override
-        public Object clone() throws CloneNotSupportedException {
-            return new Person(
-                    // clone() creates a shallow copy!
-                    /*names */ names.clone(),
+    .. code-block:: java
 
-                    // fixes address but not names
-                    /*address */ // (Address) address.clone()
-                    address instanceof Cloneable ? (Address) address.clone() : address
-            );
-        }
-    }
+        class Address implements Cloneable {
+            String city;
 
-    class CloneableDemo {
-        public static void main(String[] args)
-                throws CloneNotSupportedException {
-            Person john = new Person(new String[]{"John", "Smith"},
-                    new Address("London Road", 123));
+            public Address(String city) { this.city = city; }
 
-            // shallow copy, not good:
-            //Person jane = john;
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                return super.clone();
+            }
 
-            // jane is the girl next door
-            Person jane = (Person) john.clone();
-            jane.names[0] = "Jane"; // clone is (originally) shallow copy
-            jane.address.houseNumber = 124; // oops, also changed john
-
-            System.out.println(john);
-            System.out.println(jane);
-        }
-    }
-
-Copy Constructors
------------------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.prototype;
-
-    class Address1 {
-        public String streetAddress, city, country;
-
-        public Address1(String streetAddress, String city, String country) {
-            this.streetAddress = streetAddress;
-            this.city = city;
-            this.country = country;
+            @Override
+            public String toString() { return city; }
         }
 
-        public Address1(Address1 other) {
-            this(other.streetAddress, other.city, other.country);
+        class EmployeeWithAddress implements Cloneable {
+            private String name;
+            private Address address;
+
+            public EmployeeWithAddress(String name, Address address) {
+                this.name = name;
+                this.address = address;
+            }
+
+            @Override
+            protected Object clone() throws CloneNotSupportedException {
+                EmployeeWithAddress cloned = (EmployeeWithAddress) super.clone();
+                cloned.address = (Address) address.clone(); // deep copy
+                return cloned;
+            }
+
+            @Override
+            public String toString() {
+                return "Employee{name='" + name + "', address=" + address + "}";
+            }
         }
 
-        @Override
-        public String toString() {
-            return "Address{" +
-                    "streetAddress='" + streetAddress + '\'' +
-                    ", city='" + city + '\'' +
-                    ", country='" + country + '\'' +
-                    '}';
-        }
-    }
+        // Client Code
+        public class PrototypeDeepCopyDemo {
+            public static void main(String[] args) throws CloneNotSupportedException {
+                Address address = new Address("New York");
+                EmployeeWithAddress original = new EmployeeWithAddress("John", address);
 
-    class Employee {
-        public String name;
-        public Address1 address;
+                EmployeeWithAddress clone = (EmployeeWithAddress) original.clone();
+                clone.address.city = "Los Angeles";
 
-        public Employee(String name, Address1 address) {
-            this.name = name;
-            this.address = address;
+                System.out.println(original);
+                System.out.println(clone);
+            }
         }
 
-        public Employee(Employee other) {
-            name = other.name;
-            address = new Address1(other.address);
-        }
-
-        @Override
-        public String toString() {
-            return "Employee{" +
-                    "name='" + name + '\'' +
-                    ", address=" + address +
-                    '}';
-        }
-    }
-
-    class CopyConstructorDemo {
-        public static void main(String[] args) {
-            Employee john = new Employee("John",
-                    new Address1("123 London Road", "London", "UK"));
-
-            //Employee chris = john;
-            Employee chris = new Employee(john);
-
-            chris.name = "Chris";
-            System.out.println(john);
-            System.out.println(chris);
-        }
-    }
-
-Copy Through Serialization
---------------------------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.prototype;
-
-    import org.apache.commons.lang3.SerializationUtils;
-
-    import java.io.Serializable;
-
-    // some libraries use reflection (no need for Serializable)
-    class Foo implements Serializable {
-        public int stuff;
-        public String whatever;
-
-        public Foo(int stuff, String whatever) {
-            this.stuff = stuff;
-            this.whatever = whatever;
-        }
-
-        @Override
-        public String toString() {
-            return "Foo{" +
-                    "stuff=" + stuff +
-                    ", whatever='" + whatever + '\'' +
-                    '}';
-        }
-    }
-
-    class CopyThroughSerialize {
-        public static void main(String[] args) {
-            Foo foo = new Foo(42, "life");
-            // use apache commons!
-            Foo foo2 = SerializationUtils.roundtrip(foo);
-
-            foo2.whatever = "xyz";
-
-            System.out.println(foo);
-            System.out.println(foo2);
-        }
-    }
+        // Output
+        // Employee{name='John', address=New York}
+        // Employee{name='John', address=Los Angeles}
 
 
-Exercise
---------
-
-Given the following class definitions, you are asked to implement Line.deepCopy()  to perform a deep copy of the current Line  object.
-
-Solution
---------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.prototype;
-
-    class Point {
-        public int x, y;
-
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    class Line {
-        public Point start, end;
-
-        public Line(Point start, Point end) {
-            this.start = start;
-            this.end = end;
-        }
-
-        public Line deepCopy() {
-            Point newStart = new Point(start.x, start.y);
-            Point newEnd = new Point(end.x, end.y);
-            return new Line(newStart, newEnd);
-        }
-    }
-
-Tests
------
-
-.. code-block:: java
-
-    package com.revs.designpatterns.prototype;
-
-    import org.junit.Test;
-    import static org.junit.Assert.assertEquals;
-
-    public class Solution
-    {
-        @Test
-        public void test()
-        {
-            Line line1 = new Line(
-                    new Point(3, 3),
-                    new Point(10, 10)
-            );
-
-            Line line2 = line1.deepCopy();
-            line1.start.x = line1.end.x = line1.start.y = line1.end.y = 0;
-
-            assertEquals(3, line2.start.x);
-            assertEquals(3, line2.start.y);
-            assertEquals(10, line2.end.x);
-            assertEquals(10, line2.end.y);
-        }
-    }
-
-Summary
--------
-
-To implement a prototype, partially construct an object and store it somewhere 
-
-Clone the prototype
-
-- Implement your own deep copy functionality; or
-- Serialize and deserialize
-  
-Customize the resulting instance
-
-
+    ✅ Now the cloned object has its own copy of Address.
