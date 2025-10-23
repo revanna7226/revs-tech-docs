@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Data JPA Caching in Detail &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Optimistic and Pessimistic Locking" href="locking.html" />
+    <link rel="prev" title="Spring Data JPA Enum Mapping" href="enum-mapping.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
+<li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
+<li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Spring Data JPA Caching in Detail</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
+<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../spring-boot/index.html">Spring Boot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
+          <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
+      <li class="breadcrumb-item active">Spring Data JPA Caching in Detail</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/caching.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spring-data-jpa-caching-in-detail">
+<h1>Spring Data JPA Caching in Detail<a class="headerlink" href="#spring-data-jpa-caching-in-detail" title="Link to this heading"></a></h1>
+<dl>
+<dt>Overview:</dt><dd><p>Caching is a mechanism used to temporarily store frequently accessed data in memory
+so that future requests for the same data can be served faster without hitting the database.</p>
+<p><strong>Spring Data JPA</strong> provides support for caching through integration with
+<strong>JPA providers</strong> such as <strong>Hibernate</strong>, which offers both first-level and second-level caching.</p>
+<p>Caching improves performance and scalability by reducing database access,
+network latency, and query execution time.</p>
+</dd>
+<dt>Types of Caching in JPA:</dt><dd><p>There are two primary levels of caching in JPA:</p>
+<ol class="arabic simple">
+<li><p><strong>First-Level Cache (Session Cache)</strong>:</p>
+<ul class="simple">
+<li><p>Enabled by default in Hibernate.</p></li>
+<li><p>Operates at the <strong>EntityManager</strong> or <strong>Session</strong> level.</p></li>
+<li><p>Caches entities within the same transaction or session.</p></li>
+<li><p>Cleared when the session ends.</p></li>
+</ul>
+</li>
+<li><p><strong>Second-Level Cache (Shared Cache)</strong>:</p>
+<ul class="simple">
+<li><p>Optional and configurable.</p></li>
+<li><p>Operates across sessions.</p></li>
+<li><p>Stores entities, collections, and query results.</p></li>
+<li><p>Requires a caching provider like <strong>Ehcache</strong>, <strong>Caffeine</strong>, or <strong>Hazelcast</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</dd>
+<dt>First-Level Cache/Session Cache:</dt><dd><p>The <strong>first-level cache</strong> is automatically enabled in Hibernate and cannot be turned off.</p>
+<p>Example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmployeeRepository</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">demonstrateFirstLevelCache</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// The first call hits the database</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="mi">1L</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// The second call fetches from the first-level cache (no DB query)</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="mi">1L</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">emp1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">emp2</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Explanation:</dt><dd><ul class="simple">
+<li><p>Both calls use the same <strong>EntityManager</strong> context.</p></li>
+<li><p>The second call retrieves the entity from the <strong>first-level cache</strong> instead of querying the database.</p></li>
+<li><p>The cache is cleared once the transaction completes.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>Second-Level Cache/Shared Cache:</dt><dd><p>To enable <strong>second-level caching</strong>, we must configure:</p>
+<ol class="arabic simple">
+<li><p>Hibernate cache properties</p></li>
+<li><p>Cache provider (Ehcache, Caffeine, etc.)</p></li>
+<li><p>Entity-level cache annotations</p></li>
+</ol>
+<p><strong>Step 1: Add Dependencies</strong>:
+For <strong>Ehcache</strong>, add the following dependency in <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.hibernate.orm<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>hibernate-jcache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.ehcache<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>ehcache<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Configure Hibernate Caching</strong>:
+Add the following properties to your <code class="docutils literal notranslate"><span class="pre">application.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spring</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">jpa</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">hibernate</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cache</span><span class="p">:</span>
+<span class="w">                    </span><span class="nt">use_second_level_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                    </span><span class="nt">use_query_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">                    </span><span class="nt">region</span><span class="p">:</span>
+<span class="w">                        </span><span class="nt">factory_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">org.hibernate.cache.jcache.JCacheRegionFactory</span>
+<span class="w">        </span><span class="nt">hibernate</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">ddl-auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">update</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Create Ehcache Configuration:</strong>
+Create a file named <code class="docutils literal notranslate"><span class="pre">ehcache.xml</span></code> in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;config</span>
+<span class="w">        </span><span class="na">xmlns:xsi=</span><span class="s">&#39;http://www.w3.org/2001/XMLSchema-instance&#39;</span>
+<span class="w">        </span><span class="na">xmlns=</span><span class="s">&#39;http://www.ehcache.org/v3&#39;</span>
+<span class="w">        </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;cache</span><span class="w"> </span><span class="na">alias=</span><span class="s">&quot;employee&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;heap</span><span class="w"> </span><span class="na">unit=</span><span class="s">&quot;entries&quot;</span><span class="nt">&gt;</span>1000<span class="nt">&lt;/heap&gt;</span>
+<span class="w">        </span><span class="nt">&lt;expiry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;ttl</span><span class="w"> </span><span class="na">unit=</span><span class="s">&quot;seconds&quot;</span><span class="nt">&gt;</span>300<span class="nt">&lt;/ttl&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/expiry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/cache&gt;</span>
+
+<span class="nt">&lt;/config&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This block defines one cache instance with the alias (name) employee</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;heap</span> <span class="pre">unit=&quot;entries&quot;&gt;1000&lt;/heap&gt;</span></code> This defines the in-memory storage size of the cache known as the heap store.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unit=&quot;entries&quot;</span></code> specifies the unit type.</p></li>
+<li><p>The value 1000 means this cache can hold up to 1000 entries in the JVM heap before older entries are evicted.</p></li>
+<li><p>Heap storage is typically the fastest cache tier stored directly in Java memory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;expiry&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;ttl</span> <span class="pre">unit=&quot;seconds&quot;&gt;300&lt;/ttl&gt;</span></code>, This defines the expiration policy for entries within the cache.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ttl</span></code> stands for Time-To-Live.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unit=&quot;seconds&quot;</span></code> and value <code class="docutils literal notranslate"><span class="pre">300</span></code> mean that each entry lives for 300 seconds (5 minutes) after creation or update.</p></li>
+<li><p>Once the time expires, the entry is automatically removed or refreshed according to the configured strategy.</p></li>
+</ul>
+<p><strong>Step 4: Enable Caching in the Entity:</strong>
+Annotate your entity class with <code class="docutils literal notranslate"><span class="pre">&#64;Cacheable</span></code> and Hibernate’s <code class="docutils literal notranslate"><span class="pre">&#64;org.hibernate.annotations.Cache</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;employees&quot;</span><span class="p">)</span>
+<span class="nd">@Cacheable</span>
+<span class="nd">@Cache</span><span class="p">(</span><span class="n">usage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CacheConcurrencyStrategy</span><span class="p">.</span><span class="na">READ_WRITE</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Cache Concurrency Strategies:
+Hibernate supports multiple caching strategies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">READ_ONLY</span></code> – For immutable entities (best performance).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NONSTRICT_READ_WRITE</span></code> – Cache is not updated immediately after transaction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ_WRITE</span></code> – Ensures strong consistency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TRANSACTIONAL</span></code> – Uses JTA transactions.</p></li>
+</ul>
+<p><strong>Step 5: Repository Layer:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">EmployeeRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Step 6: Service Layer Demonstration:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmployeeRepository</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="nf">getEmployeeById</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// First call fetches from DB and caches it</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// Second call retrieves from second-level cache</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Are both objects same? &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">emp1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">emp2</span><span class="p">));</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">emp2</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Step 7: Enable Query Caching (Optional):</strong>
+You can enable query caching using Hibernate query hints.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">EmployeeRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT e FROM Employee e WHERE e.department = :dept&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@org.springframework.data.jpa.repository.QueryHints</span><span class="p">(</span>
+<span class="w">        </span><span class="nd">@javax.persistence.QueryHint</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="na">hibernate</span><span class="p">.</span><span class="na">jpa</span><span class="p">.</span><span class="na">HibernateHints</span><span class="p">.</span><span class="na">HINT_CACHEABLE</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByDepartment</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">dept</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Step 8: Testing Caching Behavior:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@SpringBootTest</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeServiceTest</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmployeeService</span><span class="w"> </span><span class="n">employeeService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Test</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testCaching</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">employeeService</span><span class="p">.</span><span class="na">getEmployeeById</span><span class="p">(</span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// Hits DB</span>
+<span class="w">        </span><span class="n">employeeService</span><span class="p">.</span><span class="na">getEmployeeById</span><span class="p">(</span><span class="mi">1L</span><span class="p">);</span><span class="w"> </span><span class="c1">// Uses second-level cache</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You should see that the second call does <strong>not</strong> trigger a SQL query, proving the cache is working.</p>
+</dd>
+<dt>Benefits of JPA Caching:</dt><dd><ul class="simple">
+<li><p>Reduces database load and improves performance.</p></li>
+<li><p>Faster data access for frequently read entities.</p></li>
+<li><p>Transparent to developers – minimal code changes.</p></li>
+<li><p>Helps scalability under high concurrency.</p></li>
+</ul>
+</dd>
+<dt>Best Practices:</dt><dd><ul class="simple">
+<li><p>Use <strong>first-level cache</strong> for short-lived transactions.</p></li>
+<li><p>Use <strong>second-level cache</strong> for frequently accessed static data.</p></li>
+<li><p>Set appropriate TTL (Time To Live) to prevent stale data.</p></li>
+<li><p>Avoid caching write-heavy entities.</p></li>
+<li><p>Monitor cache statistics for performance tuning.</p></li>
+</ul>
+</dd>
+<dt>Conclusion:</dt><dd><p>Spring Data JPA Caching leverages Hibernate’s first and second-level caching mechanisms
+to optimize database performance and response time.
+By integrating providers like <strong>Ehcache</strong>, developers can easily cache entities, queries,
+and collections, improving scalability and reducing redundant database calls.</p>
+</dd>
+<dt><strong>Key Takeaways:</strong></dt><dd><ul class="simple">
+<li><p>First-level cache is automatic and session-scoped.</p></li>
+<li><p>Second-level cache requires explicit configuration.</p></li>
+<li><p>Query caching enhances read performance for repeated queries.</p></li>
+<li><p>Proper cache strategy and TTL settings are crucial for data consistency.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="enum-mapping.html" class="btn btn-neutral float-left" title="Spring Data JPA Enum Mapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="locking.html" class="btn btn-neutral float-right" title="Optimistic and Pessimistic Locking" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

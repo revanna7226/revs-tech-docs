@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swagger/OpenAPI Documentation &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Reactive Programming in Modern Java using Project Reactor" href="../../../reactive_programming/index.html" />
+    <link rel="prev" title="Spring Boot" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../data_jpa/index.html">Spring Data JPA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Boot</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Swagger/OpenAPI Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Boot</a></li>
+      <li class="breadcrumb-item active">Swagger/OpenAPI Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/spring-boot/features/swagger.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="swagger-openapi-documentation">
+<h1>Swagger/OpenAPI Documentation<a class="headerlink" href="#swagger-openapi-documentation" title="Link to this heading"></a></h1>
+<dl>
+<dt>Overview:</dt><dd><p>Swagger (now known as <strong>OpenAPI</strong>) is a framework used to document REST APIs.
+In <strong>Spring Boot 3</strong>, Swagger integration is typically achieved using the <strong>Springdoc OpenAPI</strong> library.
+This library automatically generates interactive API documentation (Swagger UI) for your Spring Boot REST endpoints.</p>
+</dd>
+<dt>Key Features:</dt><dd><ul class="simple">
+<li><p>Auto-generates API documentation from Spring Web annotations.</p></li>
+<li><p>Provides an interactive <strong>Swagger UI</strong> for testing APIs.</p></li>
+<li><p>Supports <strong>OpenAPI 3</strong> specification.</p></li>
+<li><p>Easily customizable with annotations and configuration properties.</p></li>
+</ul>
+</dd>
+<dt>Installation and Setup:</dt><dd><p><strong>Step 1: Add Maven Dependency:</strong></p>
+<p>Add the following dependency to your <code class="docutils literal notranslate"><span class="pre">pom.xml</span></code> file:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependencies&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;groupId&gt;</span>org.springdoc<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;artifactId&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="nt">&lt;/artifactId&gt;</span>
+<span class="w">        </span><span class="nt">&lt;version&gt;</span>2.6.0<span class="nt">&lt;/version&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;/dependencies&gt;</span>
+</pre></div>
+</div>
+<p>For <strong>Gradle</strong> users, add:</p>
+<div class="highlight-gradle notranslate"><div class="highlight"><pre><span></span>implementation &#39;org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0&#39;
+</pre></div>
+</div>
+<p><strong>Step 2: Application Configuration:</strong></p>
+<p>Start your Spring Boot application. By default, the documentation is automatically available at:</p>
+<ul class="simple">
+<li><p><strong>Swagger UI:</strong> <a class="reference external" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></p></li>
+<li><p><strong>OpenAPI JSON:</strong> <a class="reference external" href="http://localhost:8080/v3/api-docs">http://localhost:8080/v3/api-docs</a></p></li>
+</ul>
+</dd>
+<dt>Basic Configuration Example:</dt><dd><p>You can customize the OpenAPI configuration by defining a bean.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SwaggerConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">OpenAPI</span><span class="w"> </span><span class="nf">customOpenAPI</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">OpenAPI</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Info</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">title</span><span class="p">(</span><span class="s">&quot;Employee Management API&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">version</span><span class="p">(</span><span class="s">&quot;1.0.0&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">description</span><span class="p">(</span><span class="s">&quot;API documentation for Employee Management System&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">contact</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Contact</span><span class="p">()</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="s">&quot;Revannaswamy N&quot;</span><span class="p">)</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">email</span><span class="p">(</span><span class="s">&quot;rev@example.com&quot;</span><span class="p">)</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">url</span><span class="p">(</span><span class="s">&quot;https://example.com&quot;</span><span class="p">))</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">license</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">License</span><span class="p">()</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="s">&quot;Apache 2.0&quot;</span><span class="p">)</span>
+<span class="w">                                </span><span class="p">.</span><span class="na">url</span><span class="p">(</span><span class="s">&quot;https://www.apache.org/licenses/LICENSE-2.0.html&quot;</span><span class="p">)));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can also customize the OpenAPI configuration by adding the annotation as below.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@SpringBootApplication</span>
+<span class="nd">@OpenAPIDefinition</span><span class="p">(</span>
+<span class="w">    </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Info</span><span class="p">(</span>
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Revs MyApp API&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;API documentation for managing and tracking expenses&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">contact</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Contact</span><span class="p">(</span>
+<span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Revannaswamy N&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;revanna.rsn@gmail.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://revanna7226.github.io&quot;</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">        </span><span class="n">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@License</span><span class="p">(</span>
+<span class="w">            </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Apache 2.0&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://www.apache.org/licenses/LICENSE-2.0.html&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyappApplication</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SpringApplication</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">MyappApplication</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Creating a Sample REST Controller:</dt><dd><p>You can use the following <strong>Swagger (OpenAPI)</strong> annotations to enrich your documentation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;Operation</span></code> — Describes an endpoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ApiResponse</span></code> — Describes the possible responses.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;Parameter</span></code> — Describes a method parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;RequestBody</span></code> — Describes a request body.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api/employees&quot;</span><span class="p">)</span>
+<span class="nd">@Tag</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Employee Controller&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;APIs for managing employees&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nd">@GetMapping</span>
+<span class="w">    </span><span class="nd">@Operation</span><span class="p">(</span><span class="n">summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get a single account&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;API endpoint to retrieve an account by its ID&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@ApiResponses</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@ApiResponse</span><span class="p">(</span><span class="n">responseCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;200&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Account found&quot;</span><span class="p">),</span>
+<span class="w">        </span><span class="nd">@ApiResponse</span><span class="p">(</span><span class="n">responseCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;404&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Account not found&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">getAllEmployees</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">employees</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span>
+<span class="w">    </span><span class="nd">@SecurityRequirement</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bearerAuth&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Operation</span><span class="p">(</span><span class="n">summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Add a new employee&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;API endpoint to add a new employee&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">addEmployee</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">employees</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">employee</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">employee</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@Operation</span><span class="p">(</span><span class="n">summary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Get an employee&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;API endpoint to get single employee&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getEmployeeById</span><span class="p">(</span>
+<span class="w">            </span><span class="nd">@Parameter</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ID of the Account&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="nd">@PathVariable</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">employees</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">emp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">findFirst</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">ResponseEntity</span><span class="p">::</span><span class="n">ok</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">notFound</span><span class="p">().</span><span class="na">build</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Model/Entity Class Example:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Schema</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Employee entity representing a staff member&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Schema</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Unique identifier of the employee&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;101&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Schema</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Full name of the employee&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;John Doe&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Schema</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Designation of the employee&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Software Developer&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">designation</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can define Hibernate Validators annotation to reflect.</p>
+</dd>
+<dt>Spring Boot Configuration Properties (Optional):</dt><dd><p>You can customize Swagger UI and OpenAPI endpoints in your <code class="docutils literal notranslate"><span class="pre">application.yml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">springdoc</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">api-docs</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api-docs</span>
+<span class="w">    </span><span class="nt">swagger-ui</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/swagger-ui</span>
+<span class="w">        </span><span class="nt">operationsSorter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method</span>
+<span class="w">        </span><span class="nt">tagsSorter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alpha</span>
+<span class="w">        </span><span class="nt">display-request-duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</dd>
+<dt>Conclusion:</dt><dd><p>Swagger integration using <strong>Springdoc OpenAPI</strong> in <strong>Spring Boot 3</strong> provides a simple, automated, and powerful way to document and test REST APIs.
+It helps developers and API consumers understand, visualize, and interact with your services easily.</p>
+<p><strong>Key Benefits:</strong></p>
+<ul class="simple">
+<li><p>Zero boilerplate configuration.</p></li>
+<li><p>OpenAPI 3.0 compliance.</p></li>
+<li><p>Interactive testing environment.</p></li>
+<li><p>Highly customizable and extendable.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Spring Boot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../reactive_programming/index.html" class="btn btn-neutral float-right" title="Reactive Programming in Modern Java using Project Reactor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

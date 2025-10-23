@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Composite Primary Keys &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Transaction Isolation &mdash; Revs Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
@@ -25,8 +25,8 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Projections" href="data-projections.html" />
-    <link rel="prev" title="Spring Data JPA Features" href="../features.html" /> 
+    <link rel="next" title="Transaction Propagation" href="transaction-propagation.html" />
+    <link rel="prev" title="Spring Boot Transactions with @Transactional" href="transactions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,7 +65,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
 <li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
 <li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
 <li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
@@ -77,7 +77,7 @@
 <li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
 <li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
 <li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Transaction Isolation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
 </ul>
 </li>
@@ -117,9 +117,9 @@
           <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
           <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
-      <li class="breadcrumb-item active">Composite Primary Keys</li>
+      <li class="breadcrumb-item active">Transaction Isolation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/composite-primary-keys.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/transaction-isolation.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -127,104 +127,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="composite-primary-keys">
-<h1>Composite Primary Keys<a class="headerlink" href="#composite-primary-keys" title="Link to this heading"></a></h1>
-<p>In Spring Data JPA, a <em>composite primary key</em> is a primary key that consists of multiple columns.
-It uniquely identifies each record in a table using the combination of these columns rather than a single column.</p>
-<p>Composite keys can be defined in two main ways:</p>
-<ol class="arabic">
-<li><dl>
-<dt>Using <cite>&#64;Embeddable</cite> and <cite>&#64;EmbeddedId</cite>:</dt><dd><p>In this approach, you define a separate class annotated with <code class="docutils literal notranslate"><span class="pre">&#64;Embeddable</span></code> that contains the key fields.
-This class is then embedded into the entity using <code class="docutils literal notranslate"><span class="pre">&#64;EmbeddedId</span></code>.</p>
-<p>Example:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Embeddable</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderId</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">productId</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// Getters, Setters, hashCode(), equals()</span>
-<span class="p">}</span>
-
-<span class="nd">@Entity</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@EmbeddedId</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">OrderId</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quantity</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// Getters and Setters</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<dl class="simple">
-<dt>Key Points:</dt><dd><ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;Embeddable</span></code> class must implement <code class="docutils literal notranslate"><span class="pre">Serializable</span></code>.</p></li>
-<li><p>Must override <code class="docutils literal notranslate"><span class="pre">equals()</span></code> and <code class="docutils literal notranslate"><span class="pre">hashCode()</span></code> methods.</p></li>
-<li><p>The entity uses <code class="docutils literal notranslate"><span class="pre">&#64;EmbeddedId</span></code> to reference the composite key.</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>Using <cite>&#64;IdClass</cite>:</dt><dd><p>In this approach, you define a separate class annotated with <code class="docutils literal notranslate"><span class="pre">&#64;IdClass</span></code>.
-Each field in the <code class="docutils literal notranslate"><span class="pre">&#64;IdClass</span></code> corresponds to a field in the entity that is annotated with <code class="docutils literal notranslate"><span class="pre">&#64;Id</span></code>.</p>
-<p>Example:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.Serializable</span><span class="p">;</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderId</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">productId</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// Getters, Setters, hashCode(), equals()</span>
-<span class="p">}</span>
-
-<span class="nd">@Entity</span>
-<span class="nd">@IdClass</span><span class="p">(</span><span class="n">OrderId</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Order</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nd">@Id</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">orderId</span><span class="p">;</span>
-
-<span class="w">    </span><span class="nd">@Id</span>
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">productId</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">quantity</span><span class="p">;</span>
-
-<span class="w">    </span><span class="c1">// Getters and Setters</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</li>
-</ol>
-<dl class="simple">
-<dt>Key Points:</dt><dd><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&#64;IdClass</span></code> must map fields with matching names and types to those in the entity.</p></li>
-<li><p>The ID class must be <code class="docutils literal notranslate"><span class="pre">Serializable</span></code> and override <code class="docutils literal notranslate"><span class="pre">equals()</span></code> and <code class="docutils literal notranslate"><span class="pre">hashCode()</span></code>.</p></li>
-</ul>
-</dd>
-<dt>Best Practices:</dt><dd><ul class="simple">
-<li><p>Prefer <code class="docutils literal notranslate"><span class="pre">&#64;Embeddable</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;EmbeddedId</span></code> for cleaner encapsulation.</p></li>
-<li><p>Always implement <code class="docutils literal notranslate"><span class="pre">equals()</span></code> and <code class="docutils literal notranslate"><span class="pre">hashCode()</span></code> to ensure entity identity works correctly.</p></li>
-<li><p>Avoid using too many columns in a composite key; use surrogate keys if the composite key becomes complex.</p></li>
-</ul>
-</dd>
-<dt>References:</dt><dd><ul class="simple">
-<li><p><a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.composite-primary-keys">Spring Data JPA Reference Documentation</a></p></li>
-<li><p><a class="reference external" href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence API (JPA) Specification</a></p></li>
-</ul>
-</dd>
-</dl>
+  <section id="transaction-isolation">
+<h1>Transaction Isolation<a class="headerlink" href="#transaction-isolation" title="Link to this heading"></a></h1>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../features.html" class="btn btn-neutral float-left" title="Spring Data JPA Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data-projections.html" class="btn btn-neutral float-right" title="Projections" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="transactions.html" class="btn btn-neutral float-left" title="Spring Boot Transactions with @Transactional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transaction-propagation.html" class="btn btn-neutral float-right" title="Transaction Propagation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

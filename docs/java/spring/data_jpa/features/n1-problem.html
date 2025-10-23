@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hibernate N+1 Query Problem and Its Fix &mdash; Revs Tech Notes 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Spring Boot Transactions with @Transactional" href="transactions.html" />
+    <link rel="prev" title="Optimistic and Pessimistic Locking" href="locking.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Notes
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
+<li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
+<li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="caching.html">Spring Data JPA Caching in Detail</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Hibernate N+1 Query Problem and Its Fix</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../spring-boot/index.html">Spring Boot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
+          <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
+      <li class="breadcrumb-item active">Hibernate N+1 Query Problem and Its Fix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/n1-problem.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hibernate-n-1-query-problem-and-its-fix">
+<h1>Hibernate N+1 Query Problem and Its Fix<a class="headerlink" href="#hibernate-n-1-query-problem-and-its-fix" title="Link to this heading"></a></h1>
+<dl>
+<dt>Overview:</dt><dd><p>The <strong>N+1 Query Problem</strong> is a common performance issue in <strong>Hibernate</strong> and <strong>JPA</strong>
+that occurs when fetching related entities in a one-to-many or many-to-one relationship.</p>
+<p>It can cause <strong>a large number of unnecessary database queries</strong>, which severely impacts
+application performance.</p>
+</dd>
+<dt>What is the N+1 Query Problem?:</dt><dd><p>The <strong>N+1 problem</strong> occurs when:</p>
+<ol class="arabic simple">
+<li><p><strong>1 query</strong> is executed to fetch the parent entities.</p></li>
+<li><p>For each of those <strong>N parent entities</strong>, <strong>1 additional query</strong> is executed to fetch the child entities.</p></li>
+</ol>
+<p>Hence, the total number of queries = <strong>1 (main query) + N (child queries)</strong>.</p>
+</dd>
+<dt>Example Scenario:</dt><dd><p>Suppose we have two entities:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Department</span></code> (parent)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Employee</span></code> (child)</p></li>
+</ul>
+<p>A department can have multiple employees.</p>
+</dd>
+<dt>Entity Definitions:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;departments&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Department</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@Id</span>
+<span class="w">   </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">   </span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;department&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+
+<span class="w">   </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+
+<span class="o">---</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;employees&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@Id</span>
+<span class="w">   </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">   </span><span class="nd">@ManyToOne</span><span class="p">(</span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="w">   </span><span class="nd">@JoinColumn</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;department_id&quot;</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+
+<span class="w">   </span><span class="c1">// Getters and Setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Repository Layer:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">DepartmentRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Service Layer Demonstration:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DepartmentService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@Autowired</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">DepartmentRepository</span><span class="w"> </span><span class="n">departmentRepository</span><span class="p">;</span>
+
+<span class="w">   </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayDepartmentsAndEmployees</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">departmentRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Department</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">departments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Department: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+
+<span class="w">            </span><span class="c1">// Triggers a SELECT query for each department</span>
+<span class="w">            </span><span class="n">dept</span><span class="p">.</span><span class="na">getEmployees</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">emp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   Employee: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="na">getName</span><span class="p">()));</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Generated SQL (N+1 Problem):</dt><dd><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- 1 Query to fetch all departments</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">departments</span><span class="p">;</span>
+
+<span class="c1">-- N additional queries (one per department)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>Result: <strong>N+1 queries</strong></p>
+</dd>
+<dt>Why is this a Problem?:</dt><dd><ul>
+<li><p>Each department causes a separate query for its employees.</p></li>
+<li><p>When there are hundreds of departments, this leads to <strong>hundreds of queries</strong>.</p></li>
+<li><p>It increases:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Database load</p></li>
+<li><p>Network latency</p></li>
+<li><p>Transaction time</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>Fixing the N+1 Query Problem:</dt><dd><p>There are multiple ways to solve the N+1 problem in Hibernate:</p>
+<ol class="arabic simple">
+<li><p><strong>Fetch Join (Recommended)</strong></p></li>
+<li><p><strong>Entity Graphs</strong></p></li>
+<li><p><strong>Batch Fetching</strong></p></li>
+</ol>
+</dd>
+</dl>
+<ol class="arabic">
+<li><p><strong>Using Fetch Join (JPQL):</strong></p>
+<p>You can use a <strong>JOIN FETCH</strong> clause in JPQL to load both parent and child entities in a single query.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">DepartmentRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT DISTINCT d FROM Department d JOIN FETCH d.employees&quot;</span><span class="p">)</span>
+<span class="w">   </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAllDepartmentsWithEmployees</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Usage Example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DepartmentService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@Autowired</span>
+<span class="w">   </span><span class="kd">private</span><span class="w"> </span><span class="n">DepartmentRepository</span><span class="w"> </span><span class="n">departmentRepository</span><span class="p">;</span>
+
+<span class="w">   </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">readOnly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">displayDepartmentsAndEmployees</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">departmentRepository</span><span class="p">.</span><span class="na">findAllDepartmentsWithEmployees</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Department</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">departments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Department: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">            </span><span class="n">dept</span><span class="p">.</span><span class="na">getEmployees</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">emp</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   Employee: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="na">getName</span><span class="p">()));</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Generated SQL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">department_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Result:</strong> Only <strong>one query</strong> is executed — the N+1 problem is eliminated.</p>
+</li>
+<li><p><strong>Using Entity Graphs:</strong></p>
+<p>Entity Graphs provide a declarative way to define fetch plans.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Repository</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">DepartmentRepository</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Department</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">   </span><span class="nd">@EntityGraph</span><span class="p">(</span><span class="n">attributePaths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;employees&quot;</span><span class="p">})</span>
+<span class="w">   </span><span class="nd">@Query</span><span class="p">(</span><span class="s">&quot;SELECT d FROM Department d&quot;</span><span class="p">)</span>
+<span class="w">   </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Department</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findAllWithEmployees</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Explanation:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;EntityGraph</span></code> annotation instructs JPA to fetch the <code class="docutils literal notranslate"><span class="pre">employees</span></code> association eagerly.</p></li>
+<li><p>It avoids multiple SELECT queries by fetching related entities in one go.</p></li>
+</ul>
+</li>
+<li><p><strong>Using Hibernate Batch Fetching:</strong></p>
+<p>Batch fetching loads collections or entities in batches, rather than one by one.</p>
+<p>Add this to your <code class="docutils literal notranslate"><span class="pre">application.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spring</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">jpa</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">hibernate</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">default_batch_fetch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+<p>Then annotate the relationship with <code class="docutils literal notranslate"><span class="pre">&#64;BatchSize</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@OneToMany</span><span class="p">(</span><span class="n">mappedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;department&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FetchType</span><span class="p">.</span><span class="na">LAZY</span><span class="p">)</span>
+<span class="nd">@BatchSize</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Explanation:</p>
+<ul class="simple">
+<li><p>Hibernate fetches employees for 10 departments in a single batch.</p></li>
+<li><p>Reduces query count from N+1 to approximately <strong>N/10 + 1</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<dl>
+<dt><strong>Comparison of Solutions:</strong></dt><dd><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Solution Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Query Count Reduction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fetch Join</p></td>
+<td><p>JPQL join to fetch associations</p></td>
+<td><p>Single query</p></td>
+</tr>
+<tr class="row-odd"><td><p>Entity Graph</p></td>
+<td><p>Declarative fetch plan</p></td>
+<td><p>Single query</p></td>
+</tr>
+<tr class="row-even"><td><p>Batch Fetching</p></td>
+<td><p>Fetch associations in groups</p></td>
+<td><p>Partial reduction (batched)</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Best Practices:</dt><dd><ul>
+<li><p>Use <strong>Fetch Join</strong> for simple associations.</p></li>
+<li><p>Use <strong>Entity Graphs</strong> for dynamic fetch strategies.</p></li>
+<li><p>Use <strong>Batch Fetching</strong> for large datasets with memory constraints.</p></li>
+<li><p>Avoid <code class="docutils literal notranslate"><span class="pre">FetchType.EAGER</span></code> on collections — it can cause unintentional joins.</p></li>
+<li><p>Always monitor queries using logs:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">jpa</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">show-sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">hibernate</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">format_sql</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</dd>
+<dt>Conclusion:</dt><dd><p>The <strong>Hibernate N+1 Query Problem</strong> is a common performance pitfall that can severely degrade
+application performance in data-rich systems.</p>
+<p><strong>Key Takeaways:</strong></p>
+<ul class="simple">
+<li><p>The problem arises when each parent entity triggers separate queries for its children.</p></li>
+<li><p><strong>Fetch Join</strong> and <strong>Entity Graphs</strong> are the most effective solutions.</p></li>
+<li><p><strong>Batch Fetching</strong> helps in scenarios with large datasets.</p></li>
+<li><p>Always analyze generated SQL queries during development to detect and prevent the N+1 issue early.</p></li>
+</ul>
+<p>By using the right fetching strategy, you can significantly optimize your application’s performance
+and reduce unnecessary database load.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="locking.html" class="btn btn-neutral float-left" title="Optimistic and Pessimistic Locking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transactions.html" class="btn btn-neutral float-right" title="Spring Boot Transactions with @Transactional" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spring Data JPA &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Spring Boot &mdash; Revs Tech Notes 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -25,8 +25,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="UdemyCourse in28Minutes" href="in28Minutes/index.html" />
-    <link rel="prev" title="Spring Framework" href="../index.html" /> 
+    <link rel="next" title="Swagger/OpenAPI Documentation" href="features/swagger.html" />
+    <link rel="prev" title="Spring Security" href="../security/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,13 +62,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../maven/index.html">Apache Maven</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../design_patterns/index.html">Java Design Patterns</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Spring Framework</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Spring Data JPA</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
-<li class="toctree-l4"><a class="reference internal" href="features.html">Spring Data JPA Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_jpa/index.html">Spring Data JPA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../security/index.html">Spring Security</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Spring Boot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="features/swagger.html">Swagger/OpenAPI Documentation</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../security/index.html">Spring Security</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../spring-boot/index.html">Spring Boot</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
@@ -99,9 +98,9 @@
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Java</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Spring Framework</a></li>
-      <li class="breadcrumb-item active">Spring Data JPA</li>
+      <li class="breadcrumb-item active">Spring Boot</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/docs/java/spring/data_jpa/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/docs/java/spring/spring-boot/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -109,35 +108,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="spring-data-jpa">
-<h1>Spring Data JPA<a class="headerlink" href="#spring-data-jpa" title="Link to this heading"></a></h1>
+  <section id="spring-boot">
+<h1>Spring Boot<a class="headerlink" href="#spring-boot" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<p class="caption" role="heading"><span class="caption-text">Features</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="in28Minutes/index.html">UdemyCourse in28Minutes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="in28Minutes/introduction.html">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="in28Minutes/introduction.html#spring-boot-app-depenencies">Spring Boot App Depenencies</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="features.html">Spring Data JPA Features</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="features/composite-primary-keys.html">Composite Primary Keys</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/data-projections.html">Projections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/auditing.html">Auditing with Spring Security</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/queryhints.html">Spring Data JPA — Query Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/pagination-sort.html">Pagination and Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/repositories.html">Spring Data JPA Repositories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/relationships.html">Spring Data JPA Relationships</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/caching.html">Spring Data JPA Caching in Detail</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/locking.html">Optimistic and Pessimistic Locking</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/transaction-isolation.html">Transaction Isolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="features/transaction-propagation.html">Transaction Propagation</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="features/swagger.html">Swagger/OpenAPI Documentation</a></li>
 </ul>
 </div>
 </section>
@@ -146,8 +122,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../index.html" class="btn btn-neutral float-left" title="Spring Framework" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="in28Minutes/index.html" class="btn btn-neutral float-right" title="UdemyCourse in28Minutes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../security/index.html" class="btn btn-neutral float-left" title="Spring Security" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="features/swagger.html" class="btn btn-neutral float-right" title="Swagger/OpenAPI Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
