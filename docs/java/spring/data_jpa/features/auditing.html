@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Auditing with Spring Security &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Auditing with Spring Security &mdash; Revs Tech Handbook 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
@@ -33,12 +33,12 @@
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #007bff" >
 
           
           
           <a href="../../../../../index.html" class="icon icon-home">
-            Revs Tech Notes
+            Revs Tech Handbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -71,14 +71,18 @@
 <li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
 <li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="custom-implementations.html">Spring Data JPA Custom Implementations</a></li>
 <li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
 <li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
 <li class="toctree-l5"><a class="reference internal" href="caching.html">Spring Data JPA Caching in Detail</a></li>
 <li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
-<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation Levels</a></li>
 <li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="native-queries.html">Native Queries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="specifications.html">Spring Data JPA Specifications</a></li>
+<li class="toctree-l5"><a class="reference internal" href="stored-procedure.html">Stored Procedure</a></li>
 </ul>
 </li>
 </ul>
@@ -103,13 +107,13 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #007bff" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Revs Tech Notes</a>
+          <a href="../../../../../index.html">Revs Tech Handbook</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -121,7 +125,10 @@
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/docs/java/spring/data_jpa/features/auditing.rst.txt" rel="nofollow"> View page source</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="data-projections.html" class="btn btn-neutral float-left" title="Projections" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="queryhints.html" class="btn btn-neutral float-right" title="Spring Data JPA — Query Hints" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">

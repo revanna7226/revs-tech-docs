@@ -1,6 +1,6 @@
 
-Hibernate N+1 Query Problem and Its Fix
-=======================================
+Hibernate N+1 Query Problem
+===========================
 
 Overview:
    The **N+1 Query Problem** is a common performance issue in **Hibernate** and **JPA**

@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spring Data JPA Specifications &mdash; Revs Tech Handbook 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+      <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Stored Procedure" href="stored-procedure.html" />
+    <link rel="prev" title="Native Queries" href="native-queries.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #007bff" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Revs Tech Handbook
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Java</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../introduction.html">Java Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../basics/index.html">Core Java Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java8/index.html">Java 8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java9/index.html">Java 9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../design_patterns/index.html">Java Design Patterns</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Spring Framework</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Spring Data JPA</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../features.html">Spring Data JPA Features</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="composite-primary-keys.html">Composite Primary Keys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="data-projections.html">Projections</a></li>
+<li class="toctree-l5"><a class="reference internal" href="auditing.html">Auditing with Spring Security</a></li>
+<li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
+<li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="custom-implementations.html">Spring Data JPA Custom Implementations</a></li>
+<li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
+<li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
+<li class="toctree-l5"><a class="reference internal" href="caching.html">Spring Data JPA Caching in Detail</a></li>
+<li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
+<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation Levels</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="native-queries.html">Native Queries</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Spring Data JPA Specifications</a></li>
+<li class="toctree-l5"><a class="reference internal" href="stored-procedure.html">Stored Procedure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../security/index.html">Spring Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../spring-boot/index.html">Spring Boot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../testing/index.html">Java Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #007bff" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Revs Tech Handbook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Java</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
+          <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
+      <li class="breadcrumb-item active">Spring Data JPA Specifications</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/java/spring/data_jpa/features/specifications.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="native-queries.html" class="btn btn-neutral float-left" title="Native Queries" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stored-procedure.html" class="btn btn-neutral float-right" title="Stored Procedure" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="spring-data-jpa-specifications">
+<h1>Spring Data JPA Specifications<a class="headerlink" href="#spring-data-jpa-specifications" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p>Spring Data JPA <strong>Specifications</strong> provide a powerful and flexible way to build
+dynamic queries at runtime using the <strong>Criteria API</strong>.
+They are part of the <code class="docutils literal notranslate"><span class="pre">org.springframework.data.jpa.domain.Specification</span></code> interface
+and are used when the query parameters are <strong>optional or dynamic</strong>.</p>
+<p>This helps developers avoid writing multiple repository query methods for different
+combinations of parameters.</p>
+</dd>
+<dt>Key Concept:</dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">Specification</span></code> defines a <strong>predicate</strong> (a condition) that can be combined
+with other predicates using logical operators such as <strong>AND</strong>, <strong>OR</strong>, and <strong>NOT</strong>.</p>
+<p>The interface:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Specification</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Predicate</span><span class="w"> </span><span class="nf">toPredicate</span><span class="p">(</span><span class="n">Root</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">CriteriaQuery</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">CriteriaBuilder</span><span class="w"> </span><span class="n">cb</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><strong>Root&lt;T&gt;</strong> : Represents the entity being queried.</p></li>
+<li><p><strong>CriteriaQuery&lt;?&gt;</strong> : Represents the overall query.</p></li>
+<li><p><strong>CriteriaBuilder</strong> : Used to construct conditions (Predicates).</p></li>
+</ul>
+</dd>
+<dt>Example Entity:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">salary</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// getters and setters</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Repository Interface:</dt><dd><p>To use Specifications, your repository must extend <code class="docutils literal notranslate"><span class="pre">JpaSpecificationExecutor</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">EmployeeRepository</span><span class="w"> </span><span class="kd">extends</span>
+<span class="w">        </span><span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">JpaSpecificationExecutor</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Creating Specifications:</dt><dd><p>You can define Specifications as separate methods or static inner classes.</p>
+</dd>
+<dt>Example 1: Simple Specification:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeSpecification</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">hasDepartment</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">cb</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;department&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">department</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">hasMinimumSalary</span><span class="p">(</span><span class="n">Double</span><span class="w"> </span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">cb</span><span class="p">.</span><span class="na">greaterThanOrEqualTo</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;salary&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">salary</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">nameContains</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">keyword</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">                </span><span class="n">cb</span><span class="p">.</span><span class="na">like</span><span class="p">(</span><span class="n">cb</span><span class="p">.</span><span class="na">lower</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">)),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">keyword</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Combining Specifications:</dt><dd><p>Specifications can be combined using <code class="docutils literal notranslate"><span class="pre">and()</span></code>, <code class="docutils literal notranslate"><span class="pre">or()</span></code>, and <code class="docutils literal notranslate"><span class="pre">not()</span></code> methods.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Specification</span>
+<span class="w">        </span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">hasDepartment</span><span class="p">(</span><span class="s">&quot;IT&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">hasMinimumSalary</span><span class="p">(</span><span class="mf">50000.0</span><span class="p">))</span>
+<span class="w">        </span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">nameContains</span><span class="p">(</span><span class="s">&quot;john&quot;</span><span class="p">));</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">(</span><span class="n">spec</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Specification.where(...)</span></code> initializes the first condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.and(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.or(...)</span></code> chain multiple conditions dynamically.</p></li>
+<li><p>The resulting predicate translates into SQL queries automatically.</p></li>
+</ul>
+</dd>
+<dt>Example: Building Dynamic Search</dt><dd><p>Suppose we have an API endpoint that takes optional search parameters:
+<code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">department</span></code>, and <code class="docutils literal notranslate"><span class="pre">minSalary</span></code>.</p>
+<p>We can build a dynamic Specification like this:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmployeeRepository</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">searchEmployees</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">,</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">minSalary</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Specification</span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">name</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spec</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">nameContains</span><span class="p">(</span><span class="n">name</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">department</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">department</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spec</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">hasDepartment</span><span class="p">(</span><span class="n">department</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">minSalary</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spec</span><span class="p">.</span><span class="na">and</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">hasMinimumSalary</span><span class="p">(</span><span class="n">minSalary</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">(</span><span class="n">spec</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p>Each parameter is checked dynamically.</p></li>
+<li><p>Only non-null values are added as filtering conditions.</p></li>
+<li><p>No need to create multiple repository query methods.</p></li>
+</ul>
+</dd>
+<dt>Example Controller:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/employees&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmployeeController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">EmployeeService</span><span class="w"> </span><span class="n">employeeService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/search&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span>
+<span class="w">            </span><span class="nd">@RequestParam</span><span class="p">(</span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">            </span><span class="nd">@RequestParam</span><span class="p">(</span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">department</span><span class="p">,</span>
+<span class="w">            </span><span class="nd">@RequestParam</span><span class="p">(</span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">minSalary</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">employeeService</span><span class="p">.</span><span class="na">searchEmployees</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">department</span><span class="p">,</span><span class="w"> </span><span class="n">minSalary</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Specification with Joins:</dt><dd><p>You can also use joins to filter based on related entities.</p>
+<p>Example: Suppose <code class="docutils literal notranslate"><span class="pre">Employee</span></code> has a relation to <code class="docutils literal notranslate"><span class="pre">Department</span></code> entity.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Department</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nd">@Entity</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Id</span>
+<span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">IDENTITY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">salary</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@ManyToOne</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Department</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Specification with Join:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">hasDepartmentName</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">deptName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">query</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Join</span><span class="o">&lt;</span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Department</span><span class="o">&gt;</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">&quot;department&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">cb</span><span class="p">.</span><span class="na">equal</span><span class="p">(</span><span class="n">department</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">deptName</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Sorting and Pagination with Specifications:</dt><dd><p>You can also use Specifications with <code class="docutils literal notranslate"><span class="pre">Pageable</span></code> and <code class="docutils literal notranslate"><span class="pre">Sort</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Pageable</span><span class="w"> </span><span class="n">pageable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PageRequest</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">Sort</span><span class="p">.</span><span class="na">by</span><span class="p">(</span><span class="s">&quot;salary&quot;</span><span class="p">).</span><span class="na">descending</span><span class="p">());</span>
+
+<span class="n">Specification</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Specification</span>
+<span class="w">        </span><span class="p">.</span><span class="na">where</span><span class="p">(</span><span class="n">EmployeeSpecification</span><span class="p">.</span><span class="na">hasMinimumSalary</span><span class="p">(</span><span class="mf">40000.0</span><span class="p">));</span>
+
+<span class="n">Page</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">employeeRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span><span class="w"> </span><span class="n">pageable</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+<dt>Advantages of Using Specifications:</dt><dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Advantage</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dynamic Query Building</p></td>
+<td><p>Build flexible queries at runtime based on user input.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reusability</p></td>
+<td><p>Common conditions can be reused across services.</p></td>
+</tr>
+<tr class="row-even"><td><p>Type-Safe</p></td>
+<td><p>Built using JPA Criteria API, ensuring compile-time safety.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Composability</p></td>
+<td><p>Combine multiple conditions easily using logical operators.</p></td>
+</tr>
+<tr class="row-even"><td><p>Cleaner Repositories</p></td>
+<td><p>Avoids writing multiple query methods for every parameter combination.</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Conclusion:</dt><dd><p>Spring Data JPA Specifications offer a <strong>clean, reusable, and dynamic</strong> way to
+construct database queries without writing explicit SQL or JPQL.</p>
+<p>They are ideal for implementing <strong>search filters</strong>, <strong>advanced query conditions</strong>, or
+<strong>multi-criteria search APIs</strong> in enterprise applications.</p>
+<p>By leveraging <code class="docutils literal notranslate"><span class="pre">Specification.where()</span></code>, <code class="docutils literal notranslate"><span class="pre">and()</span></code>, and <code class="docutils literal notranslate"><span class="pre">or()</span></code>, developers can
+build complex queries with minimal code while maintaining readability and reusability.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="native-queries.html" class="btn btn-neutral float-left" title="Native Queries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stored-procedure.html" class="btn btn-neutral float-right" title="Stored Procedure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

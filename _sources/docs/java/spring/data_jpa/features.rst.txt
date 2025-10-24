@@ -11,6 +11,7 @@ Spring Data JPA Features
    features/queryhints
    features/pagination-sort
    features/repositories
+   features/custom-implementations
    features/relationships
    features/enum-mapping
    features/caching
@@ -19,19 +20,6 @@ Spring Data JPA Features
    features/transactions
    features/transaction-isolation
    features/transaction-propagation
-
-..    features/native-queries
-..    features/custom-implementations
-..    features/specifications
-..    features/n1-problem
-
-
-
-Features:
-   - Spring Data JPA Transactions - https://youtu.be/a9z9x4bxmK4?si=uRmDAA1noyKvNe8d, https://youtu.be/eWl8G7NDKqo?si=HVnGgZLMPVFitNkW
-   - Spring Data JPA Native Queries
-   - Spring Data JPA Custom Implementations
-   - Spring Data JPA Specifications
-   - Spring Data JPA Transaction Isolation - https://youtu.be/a9z9x4bxmK4?si=0Ul7fWPhqpE7d826
-   - Spring Data JPA Transaction Propagation - https://youtu.be/NKuo8hyIwgQ?si=ZHnhFdYHvcFQGU1l\
-   - Spring Data JPA Stored Procedure - https://youtu.be/oWbKtmtPGpg?si=p4nRZ4s3KAg5xlOz
+   features/native-queries
+   features/specifications
+   features/stored-procedure

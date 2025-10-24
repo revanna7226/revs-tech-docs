@@ -1,5 +1,5 @@
-Spring Boot Transactions with @Transactional
-============================================
+Transactions with @Transactional
+================================
 
 Overview:
     Transactions are a core concept in enterprise applications to ensure data
@@ -232,3 +232,6 @@ Conclusion:
     way to manage transactions. When used correctly, it guarantees data integrity,
     prevents partial updates, and simplifies error handling across multiple database
     operations.
+
+Reference Links:
+    - `Youtube Video by Java Techie <https://youtu.be/q6SidSElNbI?si=zQvJDvxAMoK7uu-H>`_

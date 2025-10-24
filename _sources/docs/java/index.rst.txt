@@ -15,4 +15,6 @@ Java
    reactive_programming/index
    testing/index
 
+Reference Links:
+    - `Coding Shuttle Handbooks <https://www.codingshuttle.com/handbooks/>`_
 

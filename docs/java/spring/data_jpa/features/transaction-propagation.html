@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transaction Propagation &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Transaction Propagation &mdash; Revs Tech Handbook 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
@@ -25,20 +25,20 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Spring Security" href="../../security/index.html" />
-    <link rel="prev" title="Transaction Isolation" href="transaction-isolation.html" /> 
+    <link rel="next" title="Native Queries" href="native-queries.html" />
+    <link rel="prev" title="Transaction Isolation Levels" href="transaction-isolation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #007bff" >
 
           
           
           <a href="../../../../../index.html" class="icon icon-home">
-            Revs Tech Notes
+            Revs Tech Handbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -71,14 +71,18 @@
 <li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
 <li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="custom-implementations.html">Spring Data JPA Custom Implementations</a></li>
 <li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
 <li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
 <li class="toctree-l5"><a class="reference internal" href="caching.html">Spring Data JPA Caching in Detail</a></li>
 <li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
-<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transaction-isolation.html">Transaction Isolation Levels</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">Transaction Propagation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="native-queries.html">Native Queries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="specifications.html">Spring Data JPA Specifications</a></li>
+<li class="toctree-l5"><a class="reference internal" href="stored-procedure.html">Stored Procedure</a></li>
 </ul>
 </li>
 </ul>
@@ -103,13 +107,13 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #007bff" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Revs Tech Notes</a>
+          <a href="../../../../../index.html">Revs Tech Handbook</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -121,7 +125,10 @@
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/docs/java/spring/data_jpa/features/transaction-propagation.rst.txt" rel="nofollow"> View page source</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="transaction-isolation.html" class="btn btn-neutral float-left" title="Transaction Isolation Levels" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="native-queries.html" class="btn btn-neutral float-right" title="Native Queries" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -129,14 +136,322 @@
              
   <section id="transaction-propagation">
 <h1>Transaction Propagation<a class="headerlink" href="#transaction-propagation" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p>Spring Data JPA provides robust transaction management through the
+<code class="docutils literal notranslate"><span class="pre">&#64;Transactional</span></code> annotation. One of its most powerful features is <strong>transaction
+propagation</strong>, which defines how transactions relate to each other when one
+transactional method calls another.</p>
+<p>In other words, propagation determines <strong>what happens to an existing transaction
+when a new transactional method is invoked</strong>.</p>
+<p>Spring provides several propagation behaviors via the <code class="docutils literal notranslate"><span class="pre">Propagation</span></code> enum.</p>
+</dd>
+<dt>Available Transaction Propagation Types:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">REQUIRED</span></code> (Default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REQUIRES_NEW</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUPPORTS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MANDATORY</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOT_SUPPORTED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NEVER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NESTED</span></code></p></li>
+</ol>
+<p>Below we explain each type in detail with examples.</p>
+</dd>
+</dl>
+<ol class="arabic">
+<li><dl>
+<dt>Propagation.REQUIRED</dt><dd><p><strong>Definition:</strong>
+If a transaction exists, the current method joins it.
+If there’s no existing transaction, a new one is created.</p>
+<p><strong>Use case:</strong>
+This is the <strong>default</strong> and most commonly used propagation behavior.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PaymentService</span><span class="w"> </span><span class="n">paymentService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Placing order...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">paymentService</span><span class="p">.</span><span class="na">processPayment</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PaymentService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Processing payment...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">placeOrder()</span></code> starts a transaction, <code class="docutils literal notranslate"><span class="pre">processPayment()</span></code> joins the same one.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">placeOrder()</span></code> rolls back, both operations roll back together.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.REQUIRES_NEW</dt><dd><p><strong>Definition:</strong>
+Always starts a new transaction.
+If an existing transaction is present, it is suspended until the new one completes.</p>
+<p><strong>Use case:</strong>
+Used when you need to <strong>run an independent transaction</strong> within another.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">PaymentService</span><span class="w"> </span><span class="n">paymentService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Order started&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">paymentService</span><span class="p">.</span><span class="na">processPayment</span><span class="p">();</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Error in order&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PaymentService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRES_NEW</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processPayment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Payment processed successfully&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Here, <code class="docutils literal notranslate"><span class="pre">processPayment()</span></code> runs in a <strong>new transaction</strong> independent of <code class="docutils literal notranslate"><span class="pre">placeOrder()</span></code>.</p></li>
+<li><p>Even if <code class="docutils literal notranslate"><span class="pre">placeOrder()</span></code> fails and rolls back, <code class="docutils literal notranslate"><span class="pre">processPayment()</span></code> will still be committed.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.SUPPORTS</dt><dd><p><strong>Definition:</strong>
+If a transaction exists, the method joins it.
+If there’s no transaction, it executes non-transactionally.</p>
+<p><strong>Use case:</strong>
+Used for methods that can safely execute with or without a transaction.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ProductService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">SUPPORTS</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">listProducts</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">productRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">listProducts()</span></code> is called from a transactional context, it will join it. Otherwise, it runs without a transaction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.MANDATORY</dt><dd><p><strong>Definition:</strong>
+The method must run within an existing transaction.
+If no transaction exists, an exception is thrown.</p>
+<p><strong>Use case:</strong>
+Used when a method <strong>must always</strong> be executed inside a transaction.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AuditService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">MANDATORY</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">audit</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Auditing: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">AuditService</span><span class="w"> </span><span class="n">auditService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Creating user...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">auditService</span><span class="p">.</span><span class="na">audit</span><span class="p">(</span><span class="s">&quot;User created&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">auditService.audit()</span></code> requires an active transaction.</p></li>
+<li><p>If you call it outside a transaction, Spring throws <code class="docutils literal notranslate"><span class="pre">TransactionRequiredException</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.NOT_SUPPORTED</dt><dd><p><strong>Definition:</strong>
+Runs the method <strong>non-transactionally</strong>.
+If there’s an active transaction, it is <strong>suspended</strong>.</p>
+<p><strong>Use case:</strong>
+Used for read-only or reporting operations that <strong>should not be part of any transaction</strong>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ReportService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">NOT_SUPPORTED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">generateReport</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Generating report outside transaction&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">generateReport()</span></code> is called within a transaction, Spring will suspend it and run this method outside the transactional context.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.NEVER</dt><dd><p><strong>Definition:</strong>
+Indicates that the method must <strong>not run within a transaction</strong>.
+If a transaction exists, an exception is thrown.</p>
+<p><strong>Use case:</strong>
+Used for operations that must explicitly <strong>avoid transactions</strong>.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NotificationService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">NEVER</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendNotification</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sending notification without transaction&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">sendNotification()</span></code> is called inside a transactional context, Spring throws <code class="docutils literal notranslate"><span class="pre">IllegalTransactionStateException</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Propagation.NESTED</dt><dd><p><strong>Definition:</strong>
+Runs the method within a <strong>nested transaction</strong> if a current transaction exists.
+Otherwise, it behaves like <code class="docutils literal notranslate"><span class="pre">REQUIRED</span></code> (starts a new transaction).</p>
+<p>Nested transactions use <strong>savepoints</strong>, so only part of the transaction can be rolled back.</p>
+<p><strong>Use case:</strong>
+Used when you want a rollback of only a <strong>portion</strong> of the main transaction.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">InventoryService</span><span class="w"> </span><span class="n">inventoryService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Placing order...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">inventoryService</span><span class="p">.</span><span class="na">updateInventory</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error in inventory update, continuing order...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">InventoryService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">NESTED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateInventory</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Updating inventory...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Inventory update failed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">updateInventory()</span></code> creates a nested transaction with a savepoint.</p></li>
+<li><p>When it fails, only the nested transaction rolls back, while <code class="docutils literal notranslate"><span class="pre">placeOrder()</span></code> continues normally.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ol>
+<dl>
+<dt><strong>Summary Table:</strong></dt><dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 71.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Propagation Type</strong></p></th>
+<th class="head"><p><strong>Behavior</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>REQUIRED</p></td>
+<td><p>Join existing or create new transaction</p></td>
+</tr>
+<tr class="row-odd"><td><p>REQUIRES_NEW</p></td>
+<td><p>Always start new transaction</p></td>
+</tr>
+<tr class="row-even"><td><p>SUPPORTS</p></td>
+<td><p>Join if exists, else non-transactional</p></td>
+</tr>
+<tr class="row-odd"><td><p>MANDATORY</p></td>
+<td><p>Must join existing, else error</p></td>
+</tr>
+<tr class="row-even"><td><p>NOT_SUPPORTED</p></td>
+<td><p>Suspend existing, run non-transactional</p></td>
+</tr>
+<tr class="row-odd"><td><p>NEVER</p></td>
+<td><p>Throw error if transaction exists</p></td>
+</tr>
+<tr class="row-even"><td><p>NESTED</p></td>
+<td><p>Start nested transaction with savepoint</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Conclusion:</dt><dd><p>Spring Data JPA’s <code class="docutils literal notranslate"><span class="pre">&#64;Transactional</span></code> propagation options allow fine-grained
+control over how your service methods participate in transactions. By selecting
+the right propagation type, you can balance <strong>data consistency</strong>, <strong>performance</strong>,
+and <strong>business logic independence</strong> effectively.</p>
+</dd>
+<dt>Reference Links:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/NKuo8hyIwgQ?si=rpgm8Fe0Qd3-JZ8-">Youtube Video by Java Techie</a></p></li>
+</ul>
+</dd>
+</dl>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="transaction-isolation.html" class="btn btn-neutral float-left" title="Transaction Isolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../security/index.html" class="btn btn-neutral float-right" title="Spring Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="transaction-isolation.html" class="btn btn-neutral float-left" title="Transaction Isolation Levels" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="native-queries.html" class="btn btn-neutral float-right" title="Native Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

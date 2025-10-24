@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transaction Isolation &mdash; Revs Tech Notes 1.0 documentation</title>
+  <title>Transaction Isolation Levels &mdash; Revs Tech Handbook 1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
@@ -26,19 +26,19 @@
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="Transaction Propagation" href="transaction-propagation.html" />
-    <link rel="prev" title="Spring Boot Transactions with @Transactional" href="transactions.html" /> 
+    <link rel="prev" title="Transactions with @Transactional" href="transactions.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+        <div class="wy-side-nav-search"  style="background: #007bff" >
 
           
           
           <a href="../../../../../index.html" class="icon icon-home">
-            Revs Tech Notes
+            Revs Tech Handbook
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -71,14 +71,18 @@
 <li class="toctree-l5"><a class="reference internal" href="queryhints.html">Spring Data JPA — Query Hints</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pagination-sort.html">Pagination and Sorting</a></li>
 <li class="toctree-l5"><a class="reference internal" href="repositories.html">Spring Data JPA Repositories</a></li>
+<li class="toctree-l5"><a class="reference internal" href="custom-implementations.html">Spring Data JPA Custom Implementations</a></li>
 <li class="toctree-l5"><a class="reference internal" href="relationships.html">Spring Data JPA Relationships</a></li>
 <li class="toctree-l5"><a class="reference internal" href="enum-mapping.html">Spring Data JPA Enum Mapping</a></li>
 <li class="toctree-l5"><a class="reference internal" href="caching.html">Spring Data JPA Caching in Detail</a></li>
 <li class="toctree-l5"><a class="reference internal" href="locking.html">Optimistic and Pessimistic Locking</a></li>
-<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem and Its Fix</a></li>
-<li class="toctree-l5"><a class="reference internal" href="transactions.html">Spring Boot Transactions with &#64;Transactional</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Transaction Isolation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="n1-problem.html">Hibernate N+1 Query Problem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="transactions.html">Transactions with &#64;Transactional</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Transaction Isolation Levels</a></li>
 <li class="toctree-l5"><a class="reference internal" href="transaction-propagation.html">Transaction Propagation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="native-queries.html">Native Queries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="specifications.html">Spring Data JPA Specifications</a></li>
+<li class="toctree-l5"><a class="reference internal" href="stored-procedure.html">Stored Procedure</a></li>
 </ul>
 </li>
 </ul>
@@ -103,13 +107,13 @@
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #007bff" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../../index.html">Revs Tech Notes</a>
+          <a href="../../../../../index.html">Revs Tech Handbook</a>
       </nav>
 
       <div class="wy-nav-content">
-        <div class="rst-content">
+        <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
@@ -117,25 +121,311 @@
           <li class="breadcrumb-item"><a href="../../index.html">Spring Framework</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Spring Data JPA</a></li>
           <li class="breadcrumb-item"><a href="../features.html">Spring Data JPA Features</a></li>
-      <li class="breadcrumb-item active">Transaction Isolation</li>
+      <li class="breadcrumb-item active">Transaction Isolation Levels</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../../_sources/docs/java/spring/data_jpa/features/transaction-isolation.rst.txt" rel="nofollow"> View page source</a>
       </li>
-  </ul>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="transactions.html" class="btn btn-neutral float-left" title="Transactions with @Transactional" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transaction-propagation.html" class="btn btn-neutral float-right" title="Transaction Propagation" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="transaction-isolation">
-<h1>Transaction Isolation<a class="headerlink" href="#transaction-isolation" title="Link to this heading"></a></h1>
+  <section id="transaction-isolation-levels">
+<h1>Transaction Isolation Levels<a class="headerlink" href="#transaction-isolation-levels" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p>In <strong>Spring Data JPA</strong>, transactions can be customized not only by propagation
+behavior but also by <strong>isolation levels</strong>.</p>
+<p>The <em>isolation level</em> determines how transaction integrity is visible and
+protected when multiple transactions access the same data concurrently.</p>
+<p>Spring provides these isolation levels via the <code class="docutils literal notranslate"><span class="pre">Isolation</span></code> enum, which maps
+directly to JDBC isolation levels.</p>
+</dd>
+<dt>Why Isolation Level Matters?</dt><dd><p>Isolation level defines how <strong>one transaction is isolated from others</strong> in
+terms of:
+- Reading uncommitted data
+- Repeatable reads
+- Phantom reads</p>
+<p>Choosing the correct isolation level is important for ensuring <strong>data
+consistency</strong> and <strong>performance</strong> in concurrent environments.</p>
+</dd>
+<dt>Available Isolation Levels:</dt><dd><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ_UNCOMMITTED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">READ_COMMITTED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REPEATABLE_READ</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SERIALIZABLE</span></code></p></li>
+</ol>
+<p>Each level provides different guarantees against common concurrency problems.</p>
+</dd>
+<dt>Concurrency Problems Overview:</dt><dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Problem</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dirty Read</p></td>
+<td><p>A transaction reads data written by another transaction that has not yet committed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Non-repeatable Read</p></td>
+<td><p>A transaction reads the same row twice and gets different data each time.</p></td>
+</tr>
+<tr class="row-even"><td><p>Phantom Read</p></td>
+<td><p>A transaction executes the same query twice and gets a different number of rows.</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<ol class="arabic">
+<li><dl>
+<dt>Isolation.DEFAULT</dt><dd><p><strong>Definition:</strong>
+Uses the default isolation level of the underlying database.</p>
+<p><strong>Use Case:</strong>
+Recommended when you trust the database defaults (e.g., most RDBMSs default to
+<code class="docutils literal notranslate"><span class="pre">READ_COMMITTED</span></code>).</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ProductService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateProductPrice</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Product</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">productRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">product</span><span class="p">.</span><span class="na">setPrice</span><span class="p">(</span><span class="n">price</span><span class="p">);</span>
+<span class="w">        </span><span class="n">productRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong>
+Spring delegates the isolation control to the database configuration.</p>
+</dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic">
+<li><dl>
+<dt>Isolation.READ_UNCOMMITTED</dt><dd><p><strong>Definition:</strong>
+Allows a transaction to read data that has been modified but not yet committed
+by another transaction.
+This is the lowest level of isolation and can cause <strong>dirty reads</strong>.</p>
+<p><strong>Use Case:</strong>
+Used in scenarios where <strong>maximum performance</strong> is needed and occasional dirty
+reads are acceptable.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">READ_UNCOMMITTED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getAllOrders</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Reading uncommitted data...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">orderRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong>
+If another transaction updates an order but hasn’t committed yet, this method
+may still see those uncommitted changes.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Isolation.READ_COMMITTED</dt><dd><p><strong>Definition:</strong>
+A transaction cannot read data that has not yet been committed by other
+transactions.
+Prevents <strong>dirty reads</strong> but allows <strong>non-repeatable reads</strong> and <strong>phantom reads</strong>.</p>
+<p><strong>Use Case:</strong>
+Default for most databases like PostgreSQL, Oracle, and SQL Server.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">READ_COMMITTED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Customer</span><span class="w"> </span><span class="nf">getCustomer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">READ_COMMITTED</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">updateCustomerName</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">newName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Customer</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">customerRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">customer</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">newName</span><span class="p">);</span>
+<span class="w">        </span><span class="n">customerRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">customer</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>This ensures no dirty reads occur — other transactions cannot see uncommitted data.</p></li>
+<li><p>However, two reads of the same row in the same transaction could yield different results if another transaction commits changes in between.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Isolation.REPEATABLE_READ:</dt><dd><p><strong>Definition:</strong>
+Prevents <strong>dirty reads</strong> and <strong>non-repeatable reads</strong>.
+However, <strong>phantom reads</strong> (new rows matching the query condition appearing
+between executions) can still occur.</p>
+<p><strong>Use Case:</strong>
+Ideal when transactions must see <strong>consistent data</strong> throughout execution.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">InventoryService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">REPEATABLE_READ</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">checkInventory</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">productId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Product</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">productRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">productId</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;First read: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="na">getStock</span><span class="p">());</span>
+
+<span class="w">        </span><span class="c1">// Simulate delay</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">        </span><span class="n">Product</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">productRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">productId</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Second read: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="na">getStock</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>Both reads return the same stock value, even if another transaction modifies it during the delay.</p></li>
+<li><p>This prevents non-repeatable reads but not phantom reads (new rows could still appear).</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Isolation.SERIALIZABLE</dt><dd><p><strong>Definition:</strong>
+The <strong>highest isolation level</strong> — transactions are executed serially, as if one
+after another.
+Prevents <strong>dirty reads</strong>, <strong>non-repeatable reads</strong>, and <strong>phantom reads</strong>, but
+at the cost of performance.</p>
+<p><strong>Use Case:</strong>
+Used when <strong>absolute consistency</strong> is required (e.g., financial transactions).</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BankService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Transactional</span><span class="p">(</span><span class="n">isolation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">SERIALIZABLE</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transferMoney</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">fromId</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">toId</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Account</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accountRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">fromId</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Account</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accountRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">toId</span><span class="p">).</span><span class="na">orElseThrow</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="p">.</span><span class="na">getBalance</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Insufficient funds&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">from</span><span class="p">.</span><span class="na">setBalance</span><span class="p">(</span><span class="n">from</span><span class="p">.</span><span class="na">getBalance</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
+<span class="w">        </span><span class="n">to</span><span class="p">.</span><span class="na">setBalance</span><span class="p">(</span><span class="n">to</span><span class="p">.</span><span class="na">getBalance</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">accountRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">from</span><span class="p">);</span>
+<span class="w">        </span><span class="n">accountRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SERIALIZABLE</span></code> ensures that transactions run one after another logically.</p></li>
+<li><p>It avoids all concurrency anomalies but can severely impact throughput due to locking and blocking.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ol>
+<dl>
+<dt>Comparison Table:</dt><dd><table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Transaction Isolation Comparison</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 29.4%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+<col style="width: 17.6%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Isolation Level</strong></p></th>
+<th class="head"><p><strong>Dirty Reads</strong></p></th>
+<th class="head"><p><strong>Non-Repeatable Reads</strong></p></th>
+<th class="head"><p><strong>Phantom Reads</strong></p></th>
+<th class="head"><p><strong>Performance</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>READ_UNCOMMITTED</p></td>
+<td><p>Possible</p></td>
+<td><p>Possible</p></td>
+<td><p>Possible</p></td>
+<td><p>High</p></td>
+</tr>
+<tr class="row-odd"><td><p>READ_COMMITTED</p></td>
+<td><p>Prevented</p></td>
+<td><p>Possible</p></td>
+<td><p>Possible</p></td>
+<td><p>Medium</p></td>
+</tr>
+<tr class="row-even"><td><p>REPEATABLE_READ</p></td>
+<td><p>Prevented</p></td>
+<td><p>Prevented</p></td>
+<td><p>Possible</p></td>
+<td><p>Low</p></td>
+</tr>
+<tr class="row-odd"><td><p>SERIALIZABLE</p></td>
+<td><p>Prevented</p></td>
+<td><p>Prevented</p></td>
+<td><p>Prevented</p></td>
+<td><p>Lowest</p></td>
+</tr>
+<tr class="row-even"><td><p>DEFAULT</p></td>
+<td><p>Depends on database default</p></td>
+<td><p>Depends on database default</p></td>
+<td><p>Depends on database default</p></td>
+<td><p>Depends on database default</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Conclusion:</dt><dd><p>Spring Data JPA allows fine-grained control of transaction <strong>isolation levels</strong>
+through the <code class="docutils literal notranslate"><span class="pre">&#64;Transactional</span></code> annotation.</p>
+<p>Choosing the right isolation level involves balancing <strong>data consistency</strong> and
+<strong>concurrency performance</strong>:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">READ_COMMITTED</span></code> for general cases (default in most systems).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">REPEATABLE_READ</span></code> for consistent read requirements.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">SERIALIZABLE</span></code> for critical financial or accounting transactions.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">READ_UNCOMMITTED</span></code> only for read-heavy, non-critical operations.</p></li>
+</ul>
+<p>By tuning isolation appropriately, developers can optimize both <strong>data safety</strong>
+and <strong>application performance</strong>.</p>
+</dd>
+<dt>Reference Links:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/a9z9x4bxmK4?si=QseREu8xaAViYPUd">Youtube Video by Java Techie</a></p></li>
+</ul>
+</dd>
+</dl>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="transactions.html" class="btn btn-neutral float-left" title="Spring Boot Transactions with @Transactional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="transactions.html" class="btn btn-neutral float-left" title="Transactions with @Transactional" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="transaction-propagation.html" class="btn btn-neutral float-right" title="Transaction Propagation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
