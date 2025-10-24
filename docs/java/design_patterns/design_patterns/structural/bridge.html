@@ -14,6 +14,7 @@
       <link rel="stylesheet" type="text/css" href="../../../../../_static/code-tabs.css?v=1bc26e2f" />
 
   
+    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/>
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="../../../../../_static/documentation_options.js?v=f2a433a1"></script>
@@ -37,6 +38,7 @@
           
           <a href="../../../../../index.html" class="icon icon-home">
             Revs Tech Handbook
+              <img src="../../../../../_static/revs-logo-h.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
@@ -104,18 +106,13 @@ you avoid a combinatorial explosion of subclasses.</p>
 </section>
 <section id="key-participants">
 <h2>Key Participants<a class="headerlink" href="#key-participants" title="Link to this heading"></a></h2>
-<ul>
+<ul class="simple">
 <li><p>Abstraction
 - Defines the abstraction’s interface and maintains a reference to an Implementor.</p></li>
 <li><p>RefinedAbstraction
 - Extends the Abstraction and uses the Implementor for concrete operations.</p></li>
 <li><p>Implementor
-- Defines the interface for implementation classes. This interface doesn’t need</p>
-<blockquote>
-<div><p>to mirror Abstraction’s interface exactly — they can be different, as long as
-Abstraction uses Implementor for work.</p>
-</div></blockquote>
-</li>
+- Defines the interface for implementation classes. This interface doesn’t need to mirror Abstraction’s interface exactly — they can be different, as long as Abstraction uses Implementor for work.</p></li>
 <li><p>ConcreteImplementor
 - Implements the Implementor interface.</p></li>
 </ul>

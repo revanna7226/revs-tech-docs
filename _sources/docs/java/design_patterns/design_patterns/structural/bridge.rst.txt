@@ -1,5 +1,5 @@
 Bridge Design Pattern — Detailed Explanation with Java Example
-=============================================================
+===============================================================
 
 Overview
 --------
@@ -21,9 +21,7 @@ Key Participants
 - RefinedAbstraction
   - Extends the Abstraction and uses the Implementor for concrete operations.
 - Implementor
-  - Defines the interface for implementation classes. This interface doesn't need
-    to mirror Abstraction's interface exactly — they can be different, as long as
-    Abstraction uses Implementor for work.
+  - Defines the interface for implementation classes. This interface doesn't need to mirror Abstraction's interface exactly — they can be different, as long as Abstraction uses Implementor for work.
 - ConcreteImplementor
   - Implements the Implementor interface.
 
