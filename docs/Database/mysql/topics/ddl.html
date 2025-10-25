@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DDL &mdash; Revs Tech Handbook 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="DCL" href="dcl.html" />
+    <link rel="prev" title="DML" href="dml.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Revs Tech Handbook
+              <img src="../../../../_static/revs-logo-h.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Database</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">MYSQL</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction to MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html">SQL Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dml.html">DML</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcl.html">DCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcl.html">TCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datatypes.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">MySQL Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupby.html">MySQL GROUP BY Clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subqueries.html">MySQL Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="joins.html">MySQL JOINS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="co-related-sq.html">Correlated Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="normalization.html">Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codds.html">Codd’s Rules for Relational Databases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Revs Tech Handbook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Database</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MYSQL</a></li>
+      <li class="breadcrumb-item active">DDL</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/database/mysql/topics/ddl.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="dml.html" class="btn btn-neutral float-left" title="DML" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dcl.html" class="btn btn-neutral float-right" title="DCL" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ddl">
+<h1>DDL<a class="headerlink" href="#ddl" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p><strong>DDL (Data Definition Language)</strong> in MySQL is used to define and manage all database objects such as databases, tables, views, indexes, and constraints.</p>
+<p>DDL statements <strong>define the structure</strong> of the database rather than manipulating the data inside it.
+Each DDL command causes an <strong>implicit COMMIT</strong> — meaning once executed, it cannot be rolled back.</p>
+</dd>
+<dt>Common DDL Commands:</dt><dd><p>The major MySQL DDL commands are:</p>
+<ul class="simple">
+<li><p><strong>CREATE</strong> – Create database objects.</p></li>
+<li><p><strong>ALTER</strong> – Modify the structure of existing objects.</p></li>
+<li><p><strong>DROP</strong> – Delete objects.</p></li>
+<li><p><strong>TRUNCATE</strong> – Remove all data from a table (structure remains).</p></li>
+<li><p><strong>RENAME</strong> – Change the name of a database object.</p></li>
+</ul>
+<p>Let’s explore each with examples.</p>
+</dd>
+</dl>
+<ol class="arabic">
+<li><dl>
+<dt>CREATE:</dt><dd><p>Used to create new databases or tables.</p>
+<p><strong>Example 1: Create a Database</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">company_db</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example 2: Create a Table</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">company_db</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">emp_id</span><span class="w">      </span><span class="nb">INT</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">first_name</span><span class="w">  </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">last_name</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">job_title</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">salary</span><span class="w">      </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+<span class="w">    </span><span class="n">hire_date</span><span class="w">   </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="k">CURRENT_DATE</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p><cite>AUTO_INCREMENT</cite> generates unique IDs automatically.</p></li>
+<li><p><cite>PRIMARY KEY</cite> uniquely identifies each record.</p></li>
+<li><p><cite>CHECK</cite> ensures data validity.</p></li>
+<li><p><cite>DEFAULT</cite> sets a default value.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example 3: Create a Table with Foreign Key</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">dept_id</span><span class="w">   </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">dept_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">emp_id</span><span class="w">     </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">emp_name</span><span class="w">   </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<span class="w">    </span><span class="n">dept_id</span><span class="w">    </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">dept_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">departments</span><span class="p">(</span><span class="n">dept_id</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>This establishes a <strong>one-to-many</strong> relationship between <cite>departments</cite> and <cite>employees</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>ALTER</dt><dd><p>Used to modify the structure of an existing table — such as adding, deleting, or renaming columns and constraints.</p>
+<p><strong>Example 1: Add a New Column</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 2: Modify an Existing Column</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 3: Rename a Column</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">job_title</span><span class="w"> </span><span class="n">designation</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 4: Add a Foreign Key</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_dept</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">dept_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">departments</span><span class="p">(</span><span class="n">dept_id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 5: Drop a Column</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>DROP</dt><dd><p>Used to permanently delete a database or table.
+<strong>Warning:</strong> This operation cannot be rolled back.</p>
+<p><strong>Example 1: Drop a Table</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example 2: Drop a Database</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">company_db</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example 3: Drop a Constraint</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">fk_dept</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>TRUNCATE:</dt><dd><p>Used to remove <strong>all data</strong> from a table while keeping the table structure intact.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>It’s faster than <cite>DELETE FROM employees;</cite></p></li>
+<li><p>Auto-increment counters are reset.</p></li>
+<li><p>Cannot be rolled back.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>RENAME</dt><dd><p>Used to change the name of a table or database.</p>
+<p><strong>Example 1: Rename a Table</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">RENAME</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">emp_master</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example 2: Rename a Database</strong> <em>(MySQL 8+ manual operation)</em></p>
+<p>To rename a database, export it, create a new one, and import data back.</p>
+<p><strong>Example Steps:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mysqldump<span class="w"> </span>old_db<span class="w"> </span>&gt;<span class="w"> </span>old_db.sql
+mysqladmin<span class="w"> </span>create<span class="w"> </span>new_db
+mysql<span class="w"> </span>new_db<span class="w"> </span>&lt;<span class="w"> </span>old_db.sql
+mysqladmin<span class="w"> </span>drop<span class="w"> </span>old_db
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>CREATE INDEX</dt><dd><p>Used to improve query performance by creating indexes on columns.</p>
+<p><strong>Example 1: Create a Single-Column Index</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_emp_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">employees</span><span class="p">(</span><span class="n">emp_name</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 2: Create a Composite Index</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_name_salary</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">employees</span><span class="p">(</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Example 3: Drop an Index</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_emp_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">employees</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>CREATE VIEW</dt><dd><p>A <strong>view</strong> is a virtual table based on a query result.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">high_salary_employees</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example to Query the View:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">high_salary_employees</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Example to Drop a View:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DROP</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">high_salary_employees</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+<p><strong>Summary of DDL Commands</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Command</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Rollback Possible?</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CREATE</p></td>
+<td><p>Creates database objects</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>ALTER</p></td>
+<td><p>Modifies structure of database objects</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>DROP</p></td>
+<td><p>Deletes objects permanently</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>TRUNCATE</p></td>
+<td><p>Deletes all data, retains structure</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>RENAME</p></td>
+<td><p>Changes the name of an object</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>CREATE INDEX</p></td>
+<td><p>Improves performance using indexes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>CREATE VIEW</p></td>
+<td><p>Creates a virtual table (view)</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Conclusion:</dt><dd><p>MySQL DDL provides the foundational commands for defining and managing database structures.
+These commands help in creating efficient and well-structured databases that ensure data integrity and optimized performance.</p>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dml.html" class="btn btn-neutral float-left" title="DML" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dcl.html" class="btn btn-neutral float-right" title="DCL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

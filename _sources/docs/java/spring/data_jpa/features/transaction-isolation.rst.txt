@@ -253,5 +253,7 @@ Conclusion:
    By tuning isolation appropriately, developers can optimize both **data safety**
    and **application performance**.
 
-Reference Links:
-   - `Youtube Video by Java Techie <https://youtu.be/a9z9x4bxmK4?si=QseREu8xaAViYPUd>`_
+**Reference Links:**
+
+.. youtube:: a9z9x4bxmK4?si=QseREu8xaAViYPUd
+   :width: 100%

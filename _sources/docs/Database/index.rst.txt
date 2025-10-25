@@ -5,7 +5,6 @@ Database
    :maxdepth: 10
    :caption: Contents
 
-   introduction
-   mysql/introduction
+   mysql/index
 
 

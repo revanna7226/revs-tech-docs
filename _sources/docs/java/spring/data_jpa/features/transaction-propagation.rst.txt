@@ -287,5 +287,8 @@ Conclusion:
     the right propagation type, you can balance **data consistency**, **performance**,
     and **business logic independence** effectively.
 
-Reference Links:
-    - `Youtube Video by Java Techie <https://youtu.be/NKuo8hyIwgQ?si=rpgm8Fe0Qd3-JZ8->`_
+**Reference Links:**
+
+.. youtube:: NKuo8hyIwgQ?si=rpgm8Fe0Qd3-JZ8-
+   :width: 100%
+
