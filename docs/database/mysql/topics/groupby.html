@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MySQL GROUP BY Clause &mdash; Revs Tech Handbook 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=049a239b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/code-tabs.css?v=1bc26e2f" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="MySQL Subqueries" href="subqueries.html" />
+    <link rel="prev" title="MySQL Functions" href="functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Revs Tech Handbook
+              <img src="../../../../_static/revs-logo-h.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cloud/index.html">Cloud</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Database</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">MYSQL</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction to MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constraints.html">SQL Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dml.html">DML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddl.html">DDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dcl.html">DCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tcl.html">TCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operators.html">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="datatypes.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">MySQL Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">MySQL GROUP BY Clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="subqueries.html">MySQL Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="joins.html">MySQL JOINS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="co-related-sq.html">Correlated Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="normalization.html">Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="codds.html">Codd’s Rules for Relational Databases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ide/index.html">IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../java/index.html">Java</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../golang/index.html">Golang</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../angular/index.html">Angular</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../webui/index.html">Web technologies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../aitools/index.html">AI Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../questions/index.html">Question Bank</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Revs Tech Handbook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Database</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">MYSQL</a></li>
+      <li class="breadcrumb-item active">MySQL GROUP BY Clause</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/database/mysql/topics/groupby.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="functions.html" class="btn btn-neutral float-left" title="MySQL Functions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="subqueries.html" class="btn btn-neutral float-right" title="MySQL Subqueries" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mysql-group-by-clause">
+<h1>MySQL GROUP BY Clause<a class="headerlink" href="#mysql-group-by-clause" title="Link to this heading"></a></h1>
+<dl>
+<dt>Introduction:</dt><dd><p>The <strong>GROUP BY</strong> clause in MySQL is used to <strong>group rows that have the same values</strong> in specified columns into <strong>summary rows</strong>, such as for calculating aggregates like <strong>COUNT(), SUM(), AVG(), MAX(), MIN()</strong>.</p>
+<p>It is commonly used in <strong>combination with aggregate functions</strong> to summarize data.</p>
+</dd>
+<dt>Syntax:</dt><dd><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">column1</span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">aggregate_function</span><span class="p">(</span><span class="k">column</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">conditions</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">column1</span><span class="p">,</span><span class="w"> </span><span class="n">column2</span><span class="p">,</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><cite>aggregate_function()</cite> can be one of: <cite>COUNT()</cite>, <cite>SUM()</cite>, <cite>AVG()</cite>, <cite>MAX()</cite>, <cite>MIN()</cite>.</p></li>
+<li><p>Columns listed in <cite>GROUP BY</cite> determine <strong>how the rows are grouped</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Examples:</p>
+<ol class="arabic">
+<li><dl>
+<dt>Group by Single Column:</dt><dd><p>Calculate the <strong>total salary per department</strong>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>All employees are grouped by <cite>department_id</cite>.</p></li>
+<li><p><cite>SUM(salary)</cite> calculates the total salary in each department.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Group by Multiple Columns</dt><dd><p>Calculate <strong>average salary per department per job_title</strong>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="n">job_title</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">avg_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="n">job_title</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Explanation:</strong></dt><dd><ul class="simple">
+<li><p>Rows are grouped by <cite>department_id</cite> <strong>and</strong> <cite>job_title</cite>.</p></li>
+<li><p><cite>AVG(salary)</cite> calculates the average salary within each group.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Using GROUP BY with COUNT()</dt><dd><p>Count the number of employees in each department:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emp_count</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Using GROUP BY with HAVING Clause</dt><dd><p>The <strong>HAVING</strong> clause filters groups after aggregation (unlike <cite>WHERE</cite>, which filters rows before aggregation).</p>
+<p>Example: Departments with total salary greater than 13000:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">13000</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Order Grouped Results</dt><dd><p>You can combine <strong>GROUP BY</strong> with <strong>ORDER BY</strong>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_salary</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_salary</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Groups are ordered by the calculated <cite>total_salary</cite> in descending order.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="simple">
+<dt>Notes</dt><dd><ul class="simple">
+<li><p>All selected columns that are <strong>not aggregated</strong> must be included in the <cite>GROUP BY</cite> clause.</p></li>
+<li><p>MySQL allows selecting non-aggregated columns <strong>without grouping</strong> if <cite>ONLY_FULL_GROUP_BY</cite> is disabled, but it may produce unpredictable results.</p></li>
+<li><p><cite>GROUP BY</cite> is often combined with <cite>HAVING</cite>, <cite>ORDER BY</cite>, and aggregate functions to generate meaningful reports.</p></li>
+</ul>
+</dd>
+<dt>Conclusion</dt><dd><ul class="simple">
+<li><p><cite>GROUP BY</cite> is used to <strong>aggregate data into groups</strong> based on column values.</p></li>
+<li><p>Commonly used with aggregate functions: <cite>COUNT()</cite>, <cite>SUM()</cite>, <cite>AVG()</cite>, <cite>MAX()</cite>, <cite>MIN()</cite>.</p></li>
+<li><p>Supports <strong>single or multiple columns</strong>, <cite>HAVING</cite> clause, and <cite>ORDER BY</cite> for sorted summaries.</p></li>
+<li><p>Essential for generating <strong>reports and statistical summaries</strong> in MySQL.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="functions.html" class="btn btn-neutral float-left" title="MySQL Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="subqueries.html" class="btn btn-neutral float-right" title="MySQL Subqueries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Revannaswamy N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
