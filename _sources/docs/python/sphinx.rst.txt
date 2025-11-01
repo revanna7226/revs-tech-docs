@@ -1,37 +1,75 @@
 Sphinx Setup
 ============
 
-1. Create a virtual environment and activate it.
-2. Install Sphinx, Sphinx Read the Docs extension and other extensions.
+#. Create a virtual environment and activate it.
+    .. code-block:: bash
+        
+        python3 -m venv sphinxenv
 
-.. code-block:: sh
+#. Create HTML documentation.
 
-    pip3 install sphinx
-    pip3 install sphinx_rtd_theme
-    pip3 install sphinx_code_tabs
-    pip3 install sphinx_copybutton
-    pip3 install sphinx-tabs
-    pip3 install recommonmark
-    pip3 install nbsphinx
-    pip3 install sphinx-markdown-tables
-    pip3 install pandoc
-    pip3 install sphinx-reredirects
-    pip3 install sphinxcontrib.asciinema
-    pip3 install sphinxemoji
-    pip3 install sphinx-autobuild
-    pip3 install sphinx-multiversion
-    pip3 install rst2pdf
+    .. tabs::
 
-1. Create HTML documentation.
+        .. tab:: iOS and Unix based Systems
 
-.. code-block:: bash
+            .. code-block::
 
-    # iOS and Unix based Systems
-    make html
+                source sphinxenv/bin/activate
 
-    # Windows
-    .\make.bat html
+        .. tab:: Windows
+
+            .. code-block::
+
+                .\sphinxenv\Scripts\activate
+
+#. Create Sphinx Site 
+
+    .. code-block:: sh
+
+        sphinx-quickstart
 
 
+#. Install Sphinx, Sphinx Read the Docs extension and other extensions.
+  .. code-block:: sh
+    :caption: requirements.txt
+
+    sphinx
+    sphinx_rtd_theme
+    sphinx_code_tabs
+    sphinx_copybutton
+    sphinx-tabs
+    recommonmark
+    nbsphinx
+    sphinx-markdown-tables
+    pandoc
+    sphinx-reredirects
+    sphinxcontrib.asciinema
+    sphinxemoji
+    sphinx-autobuild
+    sphinx-multiversion
+    rst2pdf
+
+#. Install Libs 
+  .. code-block:: sh
+
+    pip install -r requirements.txt
+
+#. Create HTML documentation.
+  .. tabs::
+
+    .. tab:: iOS and Unix based Systems
+
+        .. code-block::
+
+          make html
+
+    .. tab:: Windows
+
+        .. code-block::
+
+          .\make.bat html
+    
+#. Choose the theme for your convinience from below website.
+  - `Sphinx Themes <https://sphinx-themes.org/>`_
 
 
