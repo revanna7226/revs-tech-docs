@@ -10,4 +10,4 @@ Question Bank
    scenario-based
    db-questions
    design_patterns
-   programming
+   coding/index

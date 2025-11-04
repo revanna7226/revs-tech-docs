@@ -1,7 +1,5 @@
-RxJs
------   
-Interview Questions
-====================
+RxJs Interview Questions
+========================
 
 #. **Q: What is RxJs?**
 

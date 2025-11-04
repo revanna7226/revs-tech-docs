@@ -19,5 +19,6 @@ Revs Notes
    docs/aitools/index
    docs/udemy/index
    docs/questions/index
+   docs/mdcheetsheet
 
 

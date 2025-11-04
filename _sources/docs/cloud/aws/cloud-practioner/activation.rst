@@ -1,5 +1,5 @@
 AWS Account Activation Troubleshooting
-==================
+======================================
 
 Ensuring your AWS Account is activated (please read)
 

@@ -15,7 +15,9 @@ Java DSA + LeetCode
     - `Community Link <https://academind.com/community/>`_
 
 .. toctree::
-  :maxdepth: 10
+  :maxdepth: 1
   :caption: Contents
 
   topics/introduction
+  topics/bigo
+  topics/linkedlist

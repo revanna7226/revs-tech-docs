@@ -242,16 +242,19 @@ performance:
 Angular:
 
 performance:
-#. How do you debug the page response time?
-#. How do you handle and render in UI when 10,000 records are returned from an API call?
-#. What is the approach to analyse the response time of APIs and improve the performance?
-#. How to load large amounts of data in the UI?
-#. As a web developer, how do you optimize your site’s loading time?
-#. How can you reduce page loading time?
-#. How to reduce the JS files loaded for a page?
-Security
-#. How do you restrict input of vulnerable special characters in the screen?
-#. How do you validate and avoid vulnerable special characters in the REST controller layer?
-#. How do you encrypt the data when you call the APIs?
-#. What is CORS? How do you handle CORS errors? [This can be asked with a scenario-based question instead of a direct one]
-#. How do you sanitize your application's form input fields to prevent XSS attacks?
+
+    #. How do you debug the page response time?
+    #. How do you handle and render in UI when 10,000 records are returned from an API call?
+    #. What is the approach to analyse the response time of APIs and improve the performance?
+    #. How to load large amounts of data in the UI?
+    #. As a web developer, how do you optimize your site’s loading time?
+    #. How can you reduce page loading time?
+    #. How to reduce the JS files loaded for a page?
+
+Security:
+
+    #. How do you restrict input of vulnerable special characters in the screen?
+    #. How do you validate and avoid vulnerable special characters in the REST controller layer?
+    #. How do you encrypt the data when you call the APIs?
+    #. What is CORS? How do you handle CORS errors? [This can be asked with a scenario-based question instead of a direct one]
+    #. How do you sanitize your application's form input fields to prevent XSS attacks?

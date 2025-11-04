@@ -1,5 +1,5 @@
 Advanced Chart Topics
-=========================
+============================
 
 #. Adding Dependencies to Charts:
 

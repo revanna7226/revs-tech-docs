@@ -1,5 +1,5 @@
-Git & GitHub
-============
+Git & GitHub - The Practical Guide
+==================================
 
 .. list-table:: Course Details
    :widths: 25 25 25 25
