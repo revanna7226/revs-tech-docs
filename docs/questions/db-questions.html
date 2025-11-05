@@ -368,8 +368,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Question Bank</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="hr-questions.html">General Questions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="questions-bank.html">Questions Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="questions-bank.html">Java Questions</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="scenario-based.html">Scenario based Questions</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Database Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
@@ -487,19 +489,82 @@ document.write(`
                   
   <section id="database-questions">
 <h1>Database Questions<a class="headerlink" href="#database-questions" title="Link to this heading">#</a></h1>
-<ol class="arabic simple">
-<li><p>Difference between Delete, Truncate and Drop.</p></li>
+<ol class="arabic">
+<li><p>Difference between Delete, Truncate and Drop.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature / Aspect</p></th>
+<th class="head"><p>DELETE</p></th>
+<th class="head"><p>TRUNCATE</p></th>
+<th class="head"><p>DROP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Purpose</strong></p></td>
+<td><p>Removes specific rows from a table</p></td>
+<td><p>Removes all rows from a table</p></td>
+<td><p>Deletes the entire table structure</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Data Removal</strong></p></td>
+<td><p>Row by row</p></td>
+<td><p>All rows at once (no condition allowed)</p></td>
+<td><p>Entire table data and structure</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>WHERE Clause Support</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+<td><p>Not applicable</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Rollback (Transaction Safe)</strong></p></td>
+<td><p>Yes, can be rolled back (if within transaction)</p></td>
+<td><p>Yes (in some DBs), but depends on DB engine</p></td>
+<td><p>No, cannot be rolled back</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Speed</strong></p></td>
+<td><p>Slower (logs each deleted row)</p></td>
+<td><p>Faster (minimal logging)</p></td>
+<td><p>Fastest (removes definition entirely)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Affects Table Structure</strong></p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>Yes (removes structure)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Triggers Execution</strong></p></td>
+<td><p>Yes</p></td>
+<td><p>No (in most DBs)</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Resets Auto Increment Counter</strong></p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes (since table is removed)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Used With Foreign Key Constraints</strong></p></td>
+<td><p>Can delete rows with proper constraints</p></td>
+<td><p>Usually restricted if referenced</p></td>
+<td><p>Fails if referenced by another table</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Memory Space Freed</strong></p></td>
+<td><p>Frees only deleted rows’ space</p></td>
+<td><p>Frees all table data space</p></td>
+<td><p>Frees entire table’s allocated space</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Example</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span> <span class="pre">emp</span> <span class="pre">WHERE</span> <span class="pre">id=101;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TRUNCATE</span> <span class="pre">TABLE</span> <span class="pre">emp;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DROP</span> <span class="pre">TABLE</span> <span class="pre">emp;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
 <li><p>What is DDL, DML and TCL? Difference between DDL and DML.</p></li>
 <li><p>What are the different types of errors you came across developing your application?</p></li>
-<li><dl class="simple">
-<dt>We have 2 tables: EMPLOYEE(EMP_ID, EMP_NAME, EMP_SAL, DEPT_ID) and DEPT(DEPT_ID, DEPT_NAME)</dt><dd><ol class="loweralpha simple">
-<li><p>We want to increase salary 10% for all the employees who belong to HR dept. Write a query for the same.</p></li>
-<li><p>Write a query that gives count of employees for each dept.</p></li>
-<li><p>Write a query that gives the name of the dept that has the maximum employee count.</p></li>
-</ol>
-</dd>
-</dl>
-</li>
+<li><p>We have 2 tables: EMPLOYEE(EMP_ID, EMP_NAME, EMP_SAL, DEPT_ID) and DEPT(DEPT_ID, DEPT_NAME)
+a) We want to increase salary 10% for all the employees who belong to HR dept. Write a query for the same.<br />
+b) Write a query that gives count of employees for each dept.<br />
+c) Write a query that gives the name of the dept that has the maximum employee count.</p></li>
 <li><p>Write a simple stored procedure.</p></li>
 <li><p>How to create empty tables with the same structure as another table?</p></li>
 <li><p>Suppose you have one employee table. We need to find out all employees whose first name is exactly 4 characters long.</p></li>
@@ -538,6 +603,26 @@ document.write(`
 <li><p>What are the performance measures you want to take to keep your database healthy?</p></li>
 <li><p>Did you work on data archival mechanism? How did you design it and how does the design work? Explain.</p></li>
 <li><p>Did you work on any batch framework? How did you design it? Explain.</p></li>
+<li><p>How to get a latest salary date of an employee from
+database when we have two tables emp, salary.</p>
+<ul class="simple">
+<li><p>emp -&gt; empid, name, dept</p></li>
+<li><p>sal -&gt; salid, empid, salary, date</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">latest_salary_date</span>
+<span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="n">e</span>
+<span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">empid</span>
+<span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you want latest salary date including amount</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">latest_salary_date</span>
+<span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="n">e</span>
+<span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">empid</span>
+<span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="nb">date</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">sal</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">empid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">empid</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
 </ol>
 </section>
 

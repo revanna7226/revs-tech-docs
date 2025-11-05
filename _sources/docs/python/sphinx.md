@@ -90,4 +90,22 @@
 - [{book}theme](https://sphinx-book-theme.readthedocs.io/en/stable/tutorials/get-started.html)
 - [MyST - Markedly Structured Text - Parser](https://myst-parser.readthedocs.io/en/latest/index.html)
 - [Sphinx Themes Gallery](https://sphinx-themes.org/)
+- [Format Markdown Table](https://tabletomarkdown.com/format-markdown-table/)
   :::
+
+Here’s your content correctly formatted as a **Markdown table** 👇
+
+---
+
+## ✅ Difference Between Checked and Unchecked Exceptions in Java
+
+| **Criteria**              | **Checked Exceptions**                                                                               | **Unchecked Exceptions**                                                                                    |
+| ------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Definition**            | Exceptions that are **checked at compile-time** by the Java compiler.                                | Exceptions that are **not checked at compile-time**, they occur at **runtime**.                             |
+| **Superclass**            | Subclasses of `Exception` _(excluding `RuntimeException`)_                                           | Subclasses of `RuntimeException`                                                                            |
+| **Compile-Time Checking** | Must be either **handled using `try-catch`** or **declared using `throws`** in the method signature. | Compiler does **not force** you to handle or declare them.                                                  |
+| **Occurrence**            | Generally caused by **external factors** (e.g., file not found, network errors).                     | Usually caused by **programming mistakes** (e.g., null pointer, division by zero).                          |
+| **Examples**              | `IOException`, `SQLException`, `FileNotFoundException`, `ClassNotFoundException`                     | `NullPointerException`, `ArithmeticException`, `ArrayIndexOutOfBoundsException`, `IllegalArgumentException` |
+| **Handling Requirement**  | **Mandatory** to handle or declare.                                                                  | **Optional** to handle.                                                                                     |
+
+---

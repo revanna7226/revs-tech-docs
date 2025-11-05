@@ -368,8 +368,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Question Bank</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../hr-questions.html">General Questions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../questions-bank.html">Questions Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../questions-bank.html">Java Questions</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../scenario-based.html">Scenario based Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../db-questions.html">Database Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../design_patterns.html">Design Patterns</a></li>
@@ -491,6 +493,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-title">Problem Title</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permutations">Permutations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">Combinations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-streams-concat-streams-union-of-two-lists">Join Streams/Concat Streams/Union of Two Lists</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-only-don-t-modify">Copy Only - Don’t Modify</a><ul class="visible nav section-nav flex-column">
@@ -960,6 +963,39 @@ C
 </div>
 </div>
 </div>
+</section>
+<hr class="docutils" />
+<section id="join-streams-concat-streams-union-of-two-lists">
+<h2>Join Streams/Concat Streams/Union of Two Lists<a class="headerlink" href="#join-streams-concat-streams-union-of-two-lists" title="Link to this heading">#</a></h2>
+<div class="attention admonition">
+<p class="admonition-title">Problem Statement</p>
+<p>problem statements</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-14">
+Code</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UnionOfTwoLists</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">union</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stream</span><span class="p">.</span><span class="na">concat</span><span class="p">(</span><span class="n">list1</span><span class="p">.</span><span class="na">stream</span><span class="p">(),</span><span class="w"> </span><span class="n">list2</span><span class="p">.</span><span class="na">stream</span><span class="p">()).</span><span class="na">distinct</span><span class="p">().</span><span class="na">sorted</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">reverseOrder</span><span class="p">()).</span><span class="na">toList</span><span class="p">();</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">union</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-15">
+Output</label><div class="sd-tab-content docutils">
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[8, 7, 6, 5, 4, 3, 2, 1]
+</pre></div>
+</div>
+</div>
+</div>
 <hr class="docutils" />
 <p>Add Here</p>
 </section>
@@ -974,15 +1010,15 @@ C
 <p>problem statements</p>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-14">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-16">
 Code</label><div class="sd-tab-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">paste</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="n">here</span>
 </pre></div>
 </div>
 </div>
-<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-15">
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-17">
 Output</label><div class="sd-tab-content docutils">
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Output goes here
 </pre></div>
@@ -1045,6 +1081,7 @@ Output</label><div class="sd-tab-content docutils">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-title">Problem Title</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#permutations">Permutations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combinations">Combinations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#join-streams-concat-streams-union-of-two-lists">Join Streams/Concat Streams/Union of Two Lists</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#copy-only-don-t-modify">Copy Only - Don’t Modify</a><ul class="visible nav section-nav flex-column">

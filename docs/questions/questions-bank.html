@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Questions Bank &#8212; Revs Tech Handbook 1.0 documentation</title>
+    <title>Java Questions &#8212; Revs Tech Handbook 1.0 documentation</title>
   
   
   
@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Scenario based Questions" href="scenario-based.html" />
-    <link rel="prev" title="General Questions" href="hr-questions.html" />
+    <link rel="prev" title="HR questions" href="hr-questions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -368,8 +368,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Question Bank</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="hr-questions.html">General Questions</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Questions Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hr-questions.html">HR questions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Java Questions</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="scenario-based.html">Scenario based Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="db-questions.html">Database Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="design_patterns.html">Design Patterns</a></li>
@@ -460,7 +462,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -471,11 +475,53 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Questions Bank</h1>
+    <h1>Java Questions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Java Questions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-java">Core Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-you-use-an-abstract-class-instead-of-an-interface">When would you use an abstract class instead of an interface?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-difference-between-a-checked-and-unchecked-exceptions">What is the difference between a checked and unchecked exceptions?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-use-an-unchecked-exception">When would use an unchecked exception?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-object-s-hashcode-and-equals-contract">Describe Object’s hashCode and equals contract.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-java-collections-hierarchy">Describe Java Collections hierarchy.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-comparable-and-comparator">Difference between Comparable and Comparator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-difference-between-hashtable-and-hashmap">What is the difference between Hashtable and HashMap?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-how-classloader-works">Describe how ClassLoader works.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-most-important-new-apis-introduced-by-java-8">What are the most important new APIs introduced by Java 8?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stream">What is a Stream?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oops-and-data-structures">OOPs and Data Structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-con-currency">Java Con-currency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-tools-and-frameworks">Java Tools and Frameworks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jvm">JVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-unit-testing">Java Unit Testing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-design-concepts">Basic Design Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microservice">Microservice</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#git">GIT</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">performance</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#angular">Angular</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Security</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -485,10 +531,497 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="questions-bank">
-<h1>Questions Bank<a class="headerlink" href="#questions-bank" title="Link to this heading">#</a></h1>
-<dl class="simple">
-<dt>OOPs and Data Structures:</dt><dd><ol class="arabic simple">
+  <section id="java-questions">
+<h1>Java Questions<a class="headerlink" href="#java-questions" title="Link to this heading">#</a></h1>
+<section id="core-java">
+<h2>Core Java<a class="headerlink" href="#core-java" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Describe Java access modifiers.</p></li>
+<li><p>What is the difference between package private and protected scope?</p></li>
+<li><p>How do you prevent a class from being extended?</p></li>
+<li><p>What is the difference between an abstract class and an interface?</p></li>
+</ol>
+<section id="when-would-you-use-an-abstract-class-instead-of-an-interface">
+<h3>When would you use an abstract class instead of an interface?<a class="headerlink" href="#when-would-you-use-an-abstract-class-instead-of-an-interface" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>Abstract Class</strong></p></th>
+<th class="head"><p><strong>Interface</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Purpose</strong></p></td>
+<td><p>Used when classes share a <strong>common base behavior</strong> or state</p></td>
+<td><p>Used to define a <strong>contract</strong> or capability that can be applied to any class</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Keyword</strong></p></td>
+<td><p>Declared using <code class="docutils literal notranslate"><span class="pre">abstract</span></code> keyword</p></td>
+<td><p>Declared using <code class="docutils literal notranslate"><span class="pre">interface</span></code> keyword</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Method Implementation</strong></p></td>
+<td><p>Can have both <strong>abstract</strong> and <strong>non-abstract</strong> (implemented) methods</p></td>
+<td><p>Before Java 8 – only abstract methods; from Java 8 onward – can have <strong>default</strong> and <strong>static</strong> methods</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>State (Fields)</strong></p></td>
+<td><p>Can have <strong>instance variables</strong>, constants, and static fields</p></td>
+<td><p>Can only have <strong>public static final</strong> constants</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Constructors</strong></p></td>
+<td><p>Can have constructors</p></td>
+<td><p>Cannot have constructors</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Access Modifiers</strong></p></td>
+<td><p>Methods can have any access modifier (<code class="docutils literal notranslate"><span class="pre">public</span></code>, <code class="docutils literal notranslate"><span class="pre">protected</span></code>, <code class="docutils literal notranslate"><span class="pre">private</span></code>)</p></td>
+<td><p>All methods are <strong>public</strong> by default</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Multiple Inheritance</strong></p></td>
+<td><p>A class can extend <strong>only one</strong> abstract class</p></td>
+<td><p>A class can implement <strong>multiple</strong> interfaces</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>When to Use</strong></p></td>
+<td><p>When you want to share <strong>common code or state</strong> among related classes</p></td>
+<td><p>When you want to define a <strong>contract or capability</strong> that can be shared across <strong>unrelated classes</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Example Use Case</strong></p></td>
+<td><p>Base class <code class="docutils literal notranslate"><span class="pre">Shape</span></code> with shared fields like <code class="docutils literal notranslate"><span class="pre">color</span></code> and method <code class="docutils literal notranslate"><span class="pre">area()</span></code></p></td>
+<td><p>Interface <code class="docutils literal notranslate"><span class="pre">Drawable</span></code> or <code class="docutils literal notranslate"><span class="pre">Serializable</span></code> that defines behavior without implementation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Introduced Default Methods (Java 8+)</strong></p></td>
+<td><p>Already supported concrete methods</p></td>
+<td><p>Introduced <code class="docutils literal notranslate"><span class="pre">default</span></code> and <code class="docutils literal notranslate"><span class="pre">static</span></code> methods for partial implementation</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Performance</strong></p></td>
+<td><p>Slightly faster – supports direct inheritance</p></td>
+<td><p>Requires indirection due to multiple implementations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Supports Variables (Stateful)</strong></p></td>
+<td><p>Yes, can maintain instance state</p></td>
+<td><p>No, stateless (except constants)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>✅ Use an Abstract Class when:</p>
+<ul class="simple">
+<li><p>You want to share code between closely related classes.</p></li>
+<li><p>You need to define common state (fields) or constructors.</p></li>
+<li><p>You want to provide base functionality that subclasses can reuse or override.</p></li>
+<li><p>You expect subclasses to have a common identity (“is-a” relationship).</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Animal</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">makeSound</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">eat</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; is eating.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Dog</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">makeSound</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Woof!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>✅ Use an Interface when:</p>
+<ul class="simple">
+<li><p>You want to define a contract or capability that can be shared across unrelated classes.</p></li>
+<li><p>You want multiple inheritance of type (one class can implement many interfaces).</p></li>
+<li><p>You don’t need shared state — only method signatures or default behaviors.</p></li>
+</ul>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Flyable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Bird</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Flyable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Bird is flying!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Airplane</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Flyable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Airplane is flying!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="what-is-the-difference-between-a-checked-and-unchecked-exceptions">
+<h3>What is the difference between a checked and unchecked exceptions?<a class="headerlink" href="#what-is-the-difference-between-a-checked-and-unchecked-exceptions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>Checked Exceptions</strong></p></th>
+<th class="head"><p><strong>Unchecked Exceptions</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Definition</strong></p></td>
+<td><p>Exceptions that are <strong>checked at compile-time</strong> by the Java compiler.</p></td>
+<td><p>Exceptions that are <strong>not checked at compile-time</strong>, they occur at <strong>runtime</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Superclass</strong></p></td>
+<td><p>Subclasses of <code class="docutils literal notranslate"><span class="pre">Exception</span></code> <em>(excluding <code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code>)</em></p></td>
+<td><p>Subclasses of <code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Compile-Time Checking</strong></p></td>
+<td><p>Must be either <strong>handled using <code class="docutils literal notranslate"><span class="pre">try-catch</span></code></strong> or <strong>declared using <code class="docutils literal notranslate"><span class="pre">throws</span></code></strong> in the method signature.</p></td>
+<td><p>Compiler does <strong>not force</strong> you to handle or declare them.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Occurrence</strong></p></td>
+<td><p>Generally caused by <strong>external factors</strong> (e.g., file not found, network errors).</p></td>
+<td><p>Usually caused by <strong>programming mistakes</strong> (e.g., null pointer, division by zero).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Examples</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IOException</span></code>, <code class="docutils literal notranslate"><span class="pre">SQLException</span></code>, <code class="docutils literal notranslate"><span class="pre">FileNotFoundException</span></code>, <code class="docutils literal notranslate"><span class="pre">ClassNotFoundException</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code>, <code class="docutils literal notranslate"><span class="pre">ArithmeticException</span></code>, <code class="docutils literal notranslate"><span class="pre">ArrayIndexOutOfBoundsException</span></code>, <code class="docutils literal notranslate"><span class="pre">IllegalArgumentException</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Handling Requirement</strong></p></td>
+<td><p><strong>Mandatory</strong> to handle or declare.</p></td>
+<td><p><strong>Optional</strong> to handle.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="when-would-use-an-unchecked-exception">
+<h3>When would use an unchecked exception?<a class="headerlink" href="#when-would-use-an-unchecked-exception" title="Link to this heading">#</a></h3>
+<p>You should use an unchecked exception (i.e., a subclass of RuntimeException) when the error is caused by a programming mistake that can and should be prevented through better code logic — not something the caller is expected to recover from.</p>
+<p>Example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">BankAccount</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">balance</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Amount cannot be negative&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">balance</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RuntimeException</span><span class="p">(</span><span class="s">&quot;Insufficient funds&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">balance</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">amount</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here, both exceptions are unchecked.</p></li>
+<li><p>They represent programming or input logic errors, not conditions that can be “handled” meaningfully by the caller.</p></li>
+</ul>
+</section>
+<section id="describe-object-s-hashcode-and-equals-contract">
+<h3>Describe Object’s hashCode and equals contract.<a class="headerlink" href="#describe-object-s-hashcode-and-equals-contract" title="Link to this heading">#</a></h3>
+<p>In Java, every class inherits two important methods from the Object class:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">hashCode</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>These two methods work together and must obey a specific contract to ensure consistent behavior — especially when objects are stored in hash-based collections like <code class="docutils literal notranslate"><span class="pre">HashMap</span></code>, <code class="docutils literal notranslate"><span class="pre">HashSet</span></code>, or <code class="docutils literal notranslate"><span class="pre">Hashtable</span></code>.</p>
+<p><strong>The equals() Contract:</strong>
+The equals() method defines how two objects are considered equal.</p>
+<p>It must satisfy the following five conditions:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Property</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Reflexive</strong></p></td>
+<td><p>For any object <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">x.equals(x)</span></code> must be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Symmetric</strong></p></td>
+<td><p>For any objects <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>, if <code class="docutils literal notranslate"><span class="pre">x.equals(y)</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code>, then <code class="docutils literal notranslate"><span class="pre">y.equals(x)</span></code> must also be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Transitive</strong></p></td>
+<td><p>For any objects <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>, if <code class="docutils literal notranslate"><span class="pre">x.equals(y)</span></code> and <code class="docutils literal notranslate"><span class="pre">y.equals(z)</span></code> are <code class="docutils literal notranslate"><span class="pre">true</span></code>, then <code class="docutils literal notranslate"><span class="pre">x.equals(z)</span></code> must also be <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Consistent</strong></p></td>
+<td><p>Repeated calls to <code class="docutils literal notranslate"><span class="pre">x.equals(y)</span></code> must consistently return the same result (unless objects change).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Non-null</strong></p></td>
+<td><p>For any non-null reference <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">x.equals(null)</span></code> must return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>The hashCode() Contract:</strong>
+The hashCode() method returns an integer hash value for the object.
+It must obey the following rules:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Rule</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Consistent with equals</strong></p></td>
+<td><p>If two objects are <em>equal</em> according to <code class="docutils literal notranslate"><span class="pre">equals()</span></code>, they <strong>must</strong> have the same <code class="docutils literal notranslate"><span class="pre">hashCode()</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Not required to be unique</strong></p></td>
+<td><p>If two objects are <em>not equal</em>, they <strong>can</strong> have the same hash code (but it’s better if they don’t — for performance).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stable</strong></p></td>
+<td><p>The hash code must remain the same as long as the object’s state (used in <code class="docutils literal notranslate"><span class="pre">equals</span></code>) does not change.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hash-based collections (like HashSet, HashMap) use the hash code to find a bucket, and then use equals() to check equality.</p>
+<p>If the contract is violated:</p>
+<ul class="simple">
+<li><p>Equal objects may end up in different buckets, causing lookup failures.</p></li>
+<li><p>Collections may lose elements or behave unpredictably.</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Objects</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Employee</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Employee</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">o</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">Employee</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Employee</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Objects</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">hashCode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Objects</span><span class="p">.</span><span class="na">hash</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p>vTwo Employee objects with the same id and name are equal.</p></li>
+<li><p>They also produce the same hashCode(), keeping the contract valid.</p></li>
+</ul>
+</section>
+<section id="describe-java-collections-hierarchy">
+<h3>Describe Java Collections hierarchy.<a class="headerlink" href="#describe-java-collections-hierarchy" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="#../java/basics/collections/introduction#java-collections-interfaces"><span class="xref myst">Java Collections Framework</span></a></p>
+<ol class="arabic simple">
+<li><p>What is the difference between a Set and a List?</p></li>
+<li><p>What is the difference between a Set and a Map?</p></li>
+<li><p>How do you sort an array?</p></li>
+<li><p>How do you sort a List?</p></li>
+</ol>
+</section>
+<section id="difference-between-comparable-and-comparator">
+<h3>Difference between Comparable and Comparator<a class="headerlink" href="#difference-between-comparable-and-comparator" title="Link to this heading">#</a></h3>
+<p>Both <strong><code class="docutils literal notranslate"><span class="pre">Comparable</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">Comparator</span></code></strong> are interfaces in Java used for sorting objects.<br />
+They belong to different packages and serve slightly different purposes:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Comparable</span></code></strong> → Defines <strong>natural ordering</strong> inside the class itself.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Comparator</span></code></strong> → Defines <strong>custom or multiple sorting logics</strong> outside the class.</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>Comparable</strong></p></th>
+<th class="head"><p><strong>Comparator</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Package</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.lang</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Method</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">compareTo(Object</span> <span class="pre">o)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">compare(Object</span> <span class="pre">o1,</span> <span class="pre">Object</span> <span class="pre">o2)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Sorting Logic Location</strong></p></td>
+<td><p>Defined <em>inside</em> the class being sorted.</p></td>
+<td><p>Defined <em>outside</em> the class (separate comparator).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Used For</strong></p></td>
+<td><p>Natural (default) sorting order.</p></td>
+<td><p>Custom or multiple sorting orders.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Affects Original Class</strong></p></td>
+<td><p>Modifies the class by implementing the interface.</p></td>
+<td><p>Keeps the original class unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Number of Sorting Sequences</strong></p></td>
+<td><p>Only one sorting logic per class.</p></td>
+<td><p>Multiple sorting logics can be implemented.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Example Implementations</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">Integer</span></code>, <code class="docutils literal notranslate"><span class="pre">Date</span></code> implement Comparable.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Collections.sort(list,</span> <span class="pre">comparator)</span></code> uses Comparator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Java 8+ Enhancements</strong></p></td>
+<td><p>N/A</p></td>
+<td><p>Can use Lambda expressions and <code class="docutils literal notranslate"><span class="pre">thenComparing()</span></code> for chaining.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li><p>When would you use a Comparator instead of implementing Comparable? (to sort a Collection or an Array).</p></li>
+<li><p>What is the difference between Vector and ArrayList?</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>ArrayList</strong></p></th>
+<th class="head"><p><strong>Vector</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Package</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Synchronization</strong></p></td>
+<td><p>Not synchronized (⚡ faster).</p></td>
+<td><p>Synchronized (🧵 thread-safe).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Thread Safety</strong></p></td>
+<td><p>Not thread-safe (needs external synchronization).</p></td>
+<td><p>Thread-safe (methods are synchronized).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>Faster, as no synchronization overhead.</p></td>
+<td><p>Slower, due to synchronization on every method.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Growth Factor</strong></p></td>
+<td><p>Increases size by <strong>50%</strong> when full.</p></td>
+<td><p>Increases size by <strong>100%</strong> (doubles capacity).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Legacy</strong></p></td>
+<td><p>Introduced in Java 1.2 (part of Collections Framework).</p></td>
+<td><p>Legacy class from Java 1.0 (retained for backward compatibility).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Iteration</strong></p></td>
+<td><p>Uses <strong>Iterator</strong> (fail-fast).</p></td>
+<td><p>Uses <strong>Enumeration</strong> (not fail-fast) and <strong>Iterator</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Fail-Fast Behavior</strong></p></td>
+<td><p>Yes — throws <code class="docutils literal notranslate"><span class="pre">ConcurrentModificationException</span></code>.</p></td>
+<td><p>No — Enumeration is <strong>not fail-fast</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Preferred Usage</strong></p></td>
+<td><p>Recommended for modern, single-threaded applications.</p></td>
+<td><p>Rarely used — only when thread-safety is required without external synchronization.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="what-is-the-difference-between-hashtable-and-hashmap">
+<h3>What is the difference between Hashtable and HashMap?<a class="headerlink" href="#what-is-the-difference-between-hashtable-and-hashmap" title="Link to this heading">#</a></h3>
+<p>Added in Map Page</p>
+</section>
+<section id="describe-how-classloader-works">
+<h3>Describe how ClassLoader works.<a class="headerlink" href="#describe-how-classloader-works" title="Link to this heading">#</a></h3>
+<p>In Java, <strong>ClassLoader</strong> is a part of the <strong>Java Runtime Environment (JRE)</strong> that dynamically loads classes into the <strong>Java Virtual Machine (JVM)</strong> during runtime.</p>
+<p>When you run a Java program, classes are <strong>not loaded all at once</strong>.<br />
+Instead, they are <strong>loaded on demand</strong> by the ClassLoader when the JVM needs them.</p>
+<p><strong>How ClassLoader Works</strong></p>
+<ol class="arabic simple">
+<li><p><strong>When a class is needed</strong>, the JVM asks the ClassLoader to load it.</p></li>
+<li><p>The ClassLoader checks whether the class is <strong>already loaded</strong>.</p></li>
+<li><p>If not, it follows the <strong>delegation model</strong>:</p>
+<ul class="simple">
+<li><p>The <strong>current ClassLoader</strong> delegates the loading request to its <strong>parent</strong>.</p></li>
+<li><p>This continues up to the <strong>Bootstrap ClassLoader</strong>.</p></li>
+<li><p>If the parent cannot find the class, the <strong>current loader</strong> attempts to load it.</p></li>
+</ul>
+</li>
+<li><p>Once loaded, the class is stored in the JVM’s <strong>method area</strong> (a part of the memory).</p></li>
+<li><p>The class is then used for execution.</p></li>
+</ol>
+<p><strong>ClassLoader Hierarchy (Delegation Model)</strong></p>
+<ul class="simple">
+<li><p>Bootstrap ClassLoader
+(Loads <strong>core Java classes</strong> from the <code class="docutils literal notranslate"><span class="pre">rt.jar</span></code> or Java modules (<code class="docutils literal notranslate"><span class="pre">java.base</span></code>).)
+↓</p></li>
+<li><p>Extension (Platform) ClassLoader
+(Loads classes from the <strong>java extensions</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">lib/ext</span></code> directory or <code class="docutils literal notranslate"><span class="pre">java.ext.dirs</span></code> system property).)
+↓</p></li>
+<li><p>Application (System) ClassLoader
+(Loads classes from the <strong>classpath</strong>)
+↓</p></li>
+<li><p>Custom ClassLoader (if any)
+(You can create your own ClassLoader by extending <code class="docutils literal notranslate"><span class="pre">ClassLoader</span></code> and overriding the <code class="docutils literal notranslate"><span class="pre">findClass()</span></code> method.)</p></li>
+</ul>
+</section>
+<section id="what-are-the-most-important-new-apis-introduced-by-java-8">
+<h3>What are the most important new APIs introduced by Java 8?<a class="headerlink" href="#what-are-the-most-important-new-apis-introduced-by-java-8" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-a-stream">
+<h3>What is a Stream?<a class="headerlink" href="#what-is-a-stream" title="Link to this heading">#</a></h3>
+<p>A <strong>Stream</strong> in Java is a <strong>sequence of data elements</strong> that supports <strong>functional-style operations</strong> to process collections (like <code class="docutils literal notranslate"><span class="pre">List</span></code>, <code class="docutils literal notranslate"><span class="pre">Set</span></code>, <code class="docutils literal notranslate"><span class="pre">Map</span></code>, or arrays) efficiently.</p>
+<p><strong>Key Characteristics of Streams</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Feature</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Declarative</strong></p></td>
+<td><p>Focuses on <em>what</em> to do rather than <em>how</em> to do it.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Functional</strong></p></td>
+<td><p>Supports operations like <code class="docutils literal notranslate"><span class="pre">map</span></code>, <code class="docutils literal notranslate"><span class="pre">filter</span></code>, <code class="docutils literal notranslate"><span class="pre">reduce</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Non-Storage</strong></p></td>
+<td><p>Streams don’t store data; they operate on existing collections.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Lazy Evaluation</strong></p></td>
+<td><p>Intermediate operations are lazy — executed only when a terminal operation is invoked.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Parallel Execution</strong></p></td>
+<td><p>Can easily run in parallel using <code class="docutils literal notranslate"><span class="pre">parallelStream()</span></code> for faster performance on large data.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="arabic simple">
+<li><p>What is a Lambda expression?</p></li>
+<li><p>What is a MethodHandle?</p></li>
+<li><p>When would you use Optional? Provide an example.</p></li>
+<li><p>How do you reference a constructor using a MethodHandle?</p></li>
+<li><p>How does Java implements Generics? Why?</p></li>
+<li><p>Did you use Reflection API? Provide an example.</p></li>
+<li><p>Can you describe Producer Extends Consumer Super principle when designing an API involving generics?</p></li>
+<li><p>How is HashMap implemented internally? How does it behave?</p></li>
+<li><p>How is ConcurrentHashMap implemented internally? How does it behave?</p></li>
+<li><p>What is ArrayList backed by?</p></li>
+<li><p>How do ArrayList and LinkedList behave when adding an element in the middle of them?</p></li>
+</ol>
+</section>
+</section>
+<section id="oops-and-data-structures">
+<h2>OOPs and Data Structures<a class="headerlink" href="#oops-and-data-structures" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is the difference between a class and an object?</p></li>
 <li><p>What is the difference between overloading and overriding a method?</p></li>
 <li><p>What is the difference between composition and aggregation?</p></li>
@@ -511,42 +1044,10 @@ document.write(`
 <li><p>What is the difference between strong and weak typing?</p></li>
 <li><p>Describe covariance and contravariance in OOP.</p></li>
 </ol>
-</dd>
-<dt>Core Java:</dt><dd><ol class="arabic simple">
-<li><p>Describe Java access modifiers.</p></li>
-<li><p>What is the difference between package private and protected scope?</p></li>
-<li><p>How do you prevent a class from being extended?</p></li>
-<li><p>What is the difference between an abstract class and an interface?</p></li>
-<li><p>When would you use an abstract class instead of an interface?</p></li>
-<li><p>What is the difference between a checked and unchecked exceptions?</p></li>
-<li><p>When would use an unchecked exception?</p></li>
-<li><p>Describe Object’s hashCode and equals contract.</p></li>
-<li><p>Describe Java Collections hierarchy.</p></li>
-<li><p>What is the difference between a Set and a List?</p></li>
-<li><p>What is the difference between a Set and a Map?</p></li>
-<li><p>How do you sort an array?</p></li>
-<li><p>How do you sort a List?</p></li>
-<li><p>What is a Comparator?</p></li>
-<li><p>When would you use a Comparator instead of implementing Comparable? (to sort a Collection or an Array).</p></li>
-<li><p>What is the difference between Vector and ArrayList?</p></li>
-<li><p>What is the difference between Hashtable and HashMap?</p></li>
-<li><p>Describe how ClassLoader works.</p></li>
-<li><p>What are the most important new APIs introduced by Java 8?</p></li>
-<li><p>What is a Stream?</p></li>
-<li><p>What is a Lambda expression?</p></li>
-<li><p>What is a MethodHandle?</p></li>
-<li><p>When would you use Optional? Provide an example.</p></li>
-<li><p>How do you reference a constructor using a MethodHandle?</p></li>
-<li><p>How does Java implements Generics? Why?</p></li>
-<li><p>Did you use Reflection API? Provide an example.</p></li>
-<li><p>Can you describe Producer Extends Consumer Super principle when designing an API involving generics?</p></li>
-<li><p>How is HashMap implemented internally? How does it behave?</p></li>
-<li><p>How is ConcurrentHashMap implemented internally? How does it behave?</p></li>
-<li><p>What is ArrayList backed by?</p></li>
-<li><p>How do ArrayList and LinkedList behave when adding an element in the middle of them?</p></li>
-</ol>
-</dd>
-<dt>Java Con-currency:</dt><dd><ol class="arabic simple">
+</section>
+<section id="java-con-currency">
+<h2>Java Con-currency<a class="headerlink" href="#java-con-currency" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is the difference between process and thread?</p></li>
 <li><p>Describe synchronize keyword. Provide an example.</p></li>
 <li><p>Describe volatile keyword. Provide an example.</p></li>
@@ -572,11 +1073,10 @@ document.write(`
 <li><p>Describe the Actor concurrency model.</p></li>
 <li><p>Where can you use syncronized? What does the syncronize lock in each case?</p></li>
 </ol>
-</dd>
-</dl>
-<p>Java Tools and Frameworks:</p>
-<blockquote>
-<div><ol class="arabic simple">
+</section>
+<section id="java-tools-and-frameworks">
+<h2>Java Tools and Frameworks:<a class="headerlink" href="#java-tools-and-frameworks" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is your favourite Java framework?</p></li>
 <li><p>Describe the pros and cons of your favourite Java framework.</p></li>
 <li><p>What is ORM?</p></li>
@@ -590,9 +1090,10 @@ document.write(`
 <li><p>JDBC, JPA, JTA, Servlets, JSP specific questions.</p></li>
 <li><p>How would you build a microservice?</p></li>
 </ol>
-</div></blockquote>
-<dl class="simple">
-<dt>JVM:</dt><dd><ol class="arabic simple">
+</section>
+<section id="jvm">
+<h2>JVM<a class="headerlink" href="#jvm" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Describe how the garbage collector works.</p></li>
 <li><p>Describe JVM heap structure.</p></li>
 <li><p>What garbage collector implementations are provided by JVM?</p></li>
@@ -604,8 +1105,10 @@ document.write(`
 <li><p>Describe how tiered compilation works in JVM.</p></li>
 <li><p>What is the difference between ‘-client’ and ‘-server’ JVM parameters?</p></li>
 </ol>
-</dd>
-<dt>Java Unit Testing:</dt><dd><ol class="arabic simple">
+</section>
+<section id="java-unit-testing">
+<h2>Java Unit Testing:<a class="headerlink" href="#java-unit-testing" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What unit testing frameworks did you use?</p></li>
 <li><p>Which unit testing framework is your favourite and why?</p></li>
 <li><p>What is a unit test?</p></li>
@@ -618,8 +1121,10 @@ document.write(`
 <li><p>What is the difference between mocks and stubs?</p></li>
 <li><p>Difference between integration testing and unit testing? How would you implement each?</p></li>
 </ol>
-</dd>
-<dt>Java Springboot:</dt><dd><ol class="arabic simple">
+</section>
+<section id="java-springboot">
+<h2>Java Springboot<a class="headerlink" href="#java-springboot" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is Spring Boot?</p></li>
 <li><p>What are the advantages of Spring Boot?</p></li>
 <li><p>What are the features of Spring Boot?</p></li>
@@ -641,8 +1146,10 @@ document.write(`
 <li><p>How to create Spring Boot application using Spring Starter Project Wizard?</p></li>
 <li><p>Spring Vs Spring Boot?</p></li>
 </ol>
-</dd>
-<dt>Basic Design Concepts:</dt><dd><ol class="arabic simple">
+</section>
+<section id="basic-design-concepts">
+<h2>Basic Design Concepts<a class="headerlink" href="#basic-design-concepts" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Describe Singleton pattern and provide an implementation.</p></li>
 <li><p>Describe your favourite design pattern and provide an usage example.</p></li>
 <li><p>Describe SOLID design principles.</p></li>
@@ -661,8 +1168,10 @@ document.write(`
 <li><p>How to redesign monolithic application?</p></li>
 <li><p>Explain the difference between fault tolerance and fault resilience.</p></li>
 </ol>
-</dd>
-<dt>Microservice:</dt><dd><ol class="arabic simple">
+</section>
+<section id="microservice">
+<h2>Microservice<a class="headerlink" href="#microservice" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is the difference between Monolith vs Microservices? When do you opt for Monolith vs Microservices?</p></li>
 <li><p>What is the purpose of Docker?</p></li>
 <li><p>Why is Docker recommended for Microservices?</p></li>
@@ -692,8 +1201,11 @@ document.write(`
 <li><p>What are the REST principles you are following in your project?</p></li>
 <li><p>Suppose you have developed a microservice API which has hit count 2000/s and every time this API uses a third-party API for data retrieval. Now your license for the third-party API permits hits 1000/s. How will you handle this scenario in terms of latency?</p></li>
 </ol>
-</dd>
-<dt>GIT:</dt><dd><ol class="arabic simple">
+</section>
+</section>
+<section id="git">
+<h1>GIT<a class="headerlink" href="#git" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
 <li><p>What is a branch?</p></li>
 <li><p>How can you create a branch?</p></li>
 <li><p>What is the difference between git pull and git fetch?</p></li>
@@ -714,11 +1226,9 @@ document.write(`
 <li><p>How can you check what parents a merge commit has?</p></li>
 <li><p>What are git hooks, how can they be used, and for what?</p></li>
 </ol>
-</dd>
-</dl>
-<p>Security:</p>
-<blockquote>
-<div><ol class="arabic simple">
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What are the different things to consider regarding security of a web application?</p></li>
 <li><p>What are the important things to consider regarding user authentication and authorization?</p></li>
 <li><p>What are the important factors to consider when exposing an application to the Internet?</p></li>
@@ -730,10 +1240,10 @@ document.write(`
 <li><p>What OAuth-related libraries and frameworks have you used?</p></li>
 <li><p>What is JWT and how is it structured?</p></li>
 </ol>
-</div></blockquote>
-<p>performance:</p>
-<blockquote>
-<div><ol class="arabic simple">
+</section>
+<section id="performance">
+<h2>performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>What is the approach to analyse the response time of APIs and improve the performance?</p></li>
 <li><p>How do we monitor the server for performance, memory usage and network traffic?</p></li>
 <li><p>What is a concurrent user? How do we test with concurrent users to mimic the production usage?</p></li>
@@ -741,11 +1251,13 @@ document.write(`
 <li><p>Why would it be more secure to store sensitive data (such as a password, social security number, etc.) in a character array rather than in a String?</p></li>
 <li><p>Compare the sleep() and wait() methods in Java, including when and why you would use one vs. the other.</p></li>
 </ol>
-</div></blockquote>
-<p>Angular:</p>
-<p>performance:</p>
-<blockquote>
-<div><ol class="arabic simple">
+</section>
+</section>
+<section id="angular">
+<h1>Angular<a class="headerlink" href="#angular" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>performance<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>How do you debug the page response time?</p></li>
 <li><p>How do you handle and render in UI when 10,000 records are returned from an API call?</p></li>
 <li><p>What is the approach to analyse the response time of APIs and improve the performance?</p></li>
@@ -754,17 +1266,17 @@ document.write(`
 <li><p>How can you reduce page loading time?</p></li>
 <li><p>How to reduce the JS files loaded for a page?</p></li>
 </ol>
-</div></blockquote>
-<p>Security:</p>
-<blockquote>
-<div><ol class="arabic simple">
+</section>
+<section id="id2">
+<h2>Security<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>How do you restrict input of vulnerable special characters in the screen?</p></li>
 <li><p>How do you validate and avoid vulnerable special characters in the REST controller layer?</p></li>
 <li><p>How do you encrypt the data when you call the APIs?</p></li>
 <li><p>What is CORS? How do you handle CORS errors? [This can be asked with a scenario-based question instead of a direct one]</p></li>
 <li><p>How do you sanitize your application’s form input fields to prevent XSS attacks?</p></li>
 </ol>
-</div></blockquote>
+</section>
 </section>
 
 
@@ -784,7 +1296,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">General Questions</p>
+        <p class="prev-next-title">HR questions</p>
       </div>
     </a>
     <a class="right-next"
@@ -802,6 +1314,55 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Java Questions</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-java">Core Java</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-you-use-an-abstract-class-instead-of-an-interface">When would you use an abstract class instead of an interface?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-difference-between-a-checked-and-unchecked-exceptions">What is the difference between a checked and unchecked exceptions?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-would-use-an-unchecked-exception">When would use an unchecked exception?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-object-s-hashcode-and-equals-contract">Describe Object’s hashCode and equals contract.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-java-collections-hierarchy">Describe Java Collections hierarchy.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-comparable-and-comparator">Difference between Comparable and Comparator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-the-difference-between-hashtable-and-hashmap">What is the difference between Hashtable and HashMap?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#describe-how-classloader-works">Describe how ClassLoader works.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-most-important-new-apis-introduced-by-java-8">What are the most important new APIs introduced by Java 8?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-stream">What is a Stream?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oops-and-data-structures">OOPs and Data Structures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-con-currency">Java Con-currency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-tools-and-frameworks">Java Tools and Frameworks:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jvm">JVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-unit-testing">Java Unit Testing:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-design-concepts">Basic Design Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microservice">Microservice</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#git">GIT</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">performance</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#angular">Angular</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">performance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Security</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

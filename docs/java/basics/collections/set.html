@@ -368,8 +368,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../questions/index.html">Question Bank</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../questions/hr-questions.html">General Questions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../questions/questions-bank.html">Questions Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/questions-bank.html">Java Questions</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/scenario-based.html">Scenario based Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/db-questions.html">Database Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/design_patterns.html">Design Patterns</a></li>
@@ -460,7 +462,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -476,6 +480,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-hashset-linkedhashset-and-treeset">Difference Between HashSet, LinkedHashSet and TreeSet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-list-and-set">Difference between List and Set</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -500,6 +513,107 @@ document.write(`
 <li><p>Sets can be implemented using different classes like HashSet, LinkedHashSet, and TreeSet, each with its own characteristics regarding ordering and performance.</p></li>
 <li><p>Sets can be used in various applications like removing duplicates from a collection, membership testing, and implementing mathematical sets.</p></li>
 </ul>
+<section id="difference-between-hashset-linkedhashset-and-treeset">
+<h2>Difference Between HashSet, LinkedHashSet and TreeSet<a class="headerlink" href="#difference-between-hashset-linkedhashset-and-treeset" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>HashSet</strong></p></th>
+<th class="head"><p><strong>LinkedHashSet</strong></p></th>
+<th class="head"><p><strong>TreeSet</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Ordering</strong></p></td>
+<td><p>No guaranteed order of elements.</p></td>
+<td><p>Maintains insertion order.</p></td>
+<td><p>Maintains elements in <strong>sorted (natural or custom)</strong> order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Underlying Data Structure</strong></p></td>
+<td><p>Uses a <strong>HashMap</strong> internally.</p></td>
+<td><p>Uses a <strong>LinkedHashMap</strong> internally.</p></td>
+<td><p>Uses a <strong>TreeMap</strong> (Red-Black tree) internally.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Performance (Time Complexity)</strong></p></td>
+<td><p>O(1) for add, remove, contains (on average).</p></td>
+<td><p>O(1) for add, remove, contains (on average).</p></td>
+<td><p>O(log n) for add, remove, contains.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Null Elements</strong></p></td>
+<td><p>Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element.</p></td>
+<td><p>Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> element.</p></td>
+<td><p>Does <strong>not</strong> allow <code class="docutils literal notranslate"><span class="pre">null</span></code> (throws <code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Order Preservation</strong></p></td>
+<td><p>❌ Not preserved.</p></td>
+<td><p>✅ Preserves insertion order.</p></td>
+<td><p>✅ Preserves sorted order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Sorting</strong></p></td>
+<td><p>❌ Not sorted.</p></td>
+<td><p>❌ Not sorted.</p></td>
+<td><p>✅ Sorted automatically.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Use Case</strong></p></td>
+<td><p>When you need a fast, unordered collection of unique elements.</p></td>
+<td><p>When you need insertion order and uniqueness.</p></td>
+<td><p>When you need elements sorted in natural or custom order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Example</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashSet&lt;String&gt;</span> <span class="pre">set</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">HashSet&lt;&gt;();</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LinkedHashSet&lt;String&gt;</span> <span class="pre">set</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">LinkedHashSet&lt;&gt;();</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TreeSet&lt;String&gt;</span> <span class="pre">set</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">TreeSet&lt;&gt;();</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="difference-between-list-and-set">
+<h2>Difference between List and Set<a class="headerlink" href="#difference-between-list-and-set" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>List</strong></p></th>
+<th class="head"><p><strong>Set</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Definition</strong></p></td>
+<td><p>An ordered collection that allows duplicate elements.</p></td>
+<td><p>An unordered collection that does not allow duplicate elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Order of Elements</strong></p></td>
+<td><p>Maintains insertion order.</p></td>
+<td><p>Does not guarantee order (except in specific implementations like <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code> or <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Duplicates</strong></p></td>
+<td><p>Allows duplicate values.</p></td>
+<td><p>Does not allow duplicates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Indexing</strong></p></td>
+<td><p>Elements can be accessed by index (e.g., <code class="docutils literal notranslate"><span class="pre">list.get(0)</span></code>).</p></td>
+<td><p>No index-based access.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Null Values</strong></p></td>
+<td><p>Can contain multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values.</p></td>
+<td><p>Can contain at most one <code class="docutils literal notranslate"><span class="pre">null</span></code> value (depends on implementation).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Common Implementations</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ArrayList</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedList</span></code>, <code class="docutils literal notranslate"><span class="pre">Vector</span></code>, <code class="docutils literal notranslate"><span class="pre">Stack</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashSet</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code>, <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Performance</strong></p></td>
+<td><p>Faster for positional access and iteration.</p></td>
+<td><p>Faster for search, insertion, and deletion (especially <code class="docutils literal notranslate"><span class="pre">HashSet</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Use Case</strong></p></td>
+<td><p>When order and duplicates matter.</p></td>
+<td><p>When uniqueness of elements matters.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
 
@@ -537,6 +651,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-hashset-linkedhashset-and-treeset">Difference Between HashSet, LinkedHashSet and TreeSet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-list-and-set">Difference between List and Set</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

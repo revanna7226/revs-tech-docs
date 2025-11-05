@@ -473,6 +473,42 @@ C
 
 ---
 
+## Join Streams/Concat Streams/Union of Two Lists
+
+:::{admonition} Problem Statement
+:class: attention
+problem statements
+:::
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+public class UnionOfTwoLists {
+
+    public static void main(String[] args) {
+        List<Integer> list1 = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> list2 = Arrays.asList(4, 5, 6, 7, 8);
+
+        List<Integer> union = Stream.concat(list1.stream(), list2.stream()).distinct().sorted(Comparator.reverseOrder()).toList();
+        System.out.println(union);
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[8, 7, 6, 5, 4, 3, 2, 1]
+
+```
+
+:::
+::::
+
+---
+
 Add Here
 
 ---

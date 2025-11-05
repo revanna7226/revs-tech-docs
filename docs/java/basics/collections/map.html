@@ -368,8 +368,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../questions/index.html">Question Bank</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../questions/hr-questions.html">General Questions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../questions/questions-bank.html">Questions Bank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/questions-bank.html">Java Questions</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/scenario-based.html">Scenario based Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/db-questions.html">Database Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../questions/design_patterns.html">Design Patterns</a></li>
@@ -460,7 +462,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -476,6 +480,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-hashtable-and-hashmap">Difference Between Hashtable and HashMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-set-and-map-in-java">Difference Between Set and Map in Java</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -493,6 +506,118 @@ document.write(`
 <li><p>TreeMap</p></li>
 <li><p>ConcurrentHashmap</p></li>
 </ul>
+<section id="difference-between-hashtable-and-hashmap">
+<h2>Difference Between Hashtable and HashMap<a class="headerlink" href="#difference-between-hashtable-and-hashmap" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>HashMap</strong></p></th>
+<th class="head"><p><strong>Hashtable</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Package</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Synchronization</strong></p></td>
+<td><p>Not synchronized (⚡ faster, not thread-safe).</p></td>
+<td><p>Synchronized (🧵 thread-safe).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Thread Safety</strong></p></td>
+<td><p>Not thread-safe (requires external synchronization).</p></td>
+<td><p>Thread-safe (all methods are synchronized).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>Faster (no synchronization overhead).</p></td>
+<td><p>Slower (due to synchronization).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Null Keys/Values</strong></p></td>
+<td><p>Allows one <code class="docutils literal notranslate"><span class="pre">null</span></code> key and multiple <code class="docutils literal notranslate"><span class="pre">null</span></code> values.</p></td>
+<td><p>❌ Does <strong>not</strong> allow <code class="docutils literal notranslate"><span class="pre">null</span></code> keys or values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Legacy Status</strong></p></td>
+<td><p>Introduced in Java 1.2 (modern).</p></td>
+<td><p>Legacy class from Java 1.0 (retained for backward compatibility).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Iterator Type</strong></p></td>
+<td><p>Uses <strong>Iterator</strong> (fail-fast).</p></td>
+<td><p>Uses <strong>Enumeration</strong> (not fail-fast).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Fail-Fast Behavior</strong></p></td>
+<td><p>Yes — throws <code class="docutils literal notranslate"><span class="pre">ConcurrentModificationException</span></code>.</p></td>
+<td><p>No — Enumeration is not fail-fast.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Order</strong></p></td>
+<td><p>Does not maintain insertion order.</p></td>
+<td><p>Does not maintain insertion order.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Alternative for Thread Safety</strong></p></td>
+<td><p>Use <code class="docutils literal notranslate"><span class="pre">Collections.synchronizedMap(new</span> <span class="pre">HashMap&lt;&gt;())</span></code> or <code class="docutils literal notranslate"><span class="pre">ConcurrentHashMap</span></code>.</p></td>
+<td><p>Thread-safe by default, but outdated.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Preferred Usage</strong></p></td>
+<td><p>Modern, non-threaded applications.</p></td>
+<td><p>Legacy or when old codebase requires it.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="difference-between-set-and-map-in-java">
+<h2>Difference Between Set and Map in Java<a class="headerlink" href="#difference-between-set-and-map-in-java" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
+<th class="head"><p><strong>Set</strong></p></th>
+<th class="head"><p><strong>Map</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Definition</strong></p></td>
+<td><p>A collection that contains <strong>only unique elements</strong>.</p></td>
+<td><p>A collection of <strong>key-value pairs</strong> where each key is unique.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Package</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util.Set</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">java.util.Map</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Storage Structure</strong></p></td>
+<td><p>Stores only <strong>values (elements)</strong>.</p></td>
+<td><p>Stores <strong>key-value pairs (entries)</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Uniqueness</strong></p></td>
+<td><p>No duplicate elements are allowed.</p></td>
+<td><p>Duplicate <strong>keys</strong> are not allowed, but <strong>values</strong> can be duplicated.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Access Mechanism</strong></p></td>
+<td><p>Accessed directly by element (value).</p></td>
+<td><p>Accessed using a <strong>key</strong> to get the corresponding <strong>value</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Null Handling</strong></p></td>
+<td><p>Can contain at most <strong>one null element</strong> (depends on implementation).</p></td>
+<td><p>Can contain <strong>one null key</strong> and <strong>multiple null values</strong> (in <code class="docutils literal notranslate"><span class="pre">HashMap</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Common Implementations</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashSet</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code>, <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HashMap</span></code>, <code class="docutils literal notranslate"><span class="pre">LinkedHashMap</span></code>, <code class="docutils literal notranslate"><span class="pre">TreeMap</span></code>, <code class="docutils literal notranslate"><span class="pre">Hashtable</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Ordering</strong></p></td>
+<td><p>Unordered (unless using <code class="docutils literal notranslate"><span class="pre">LinkedHashSet</span></code> or <code class="docutils literal notranslate"><span class="pre">TreeSet</span></code>).</p></td>
+<td><p>Unordered (unless using <code class="docutils literal notranslate"><span class="pre">LinkedHashMap</span></code> or <code class="docutils literal notranslate"><span class="pre">TreeMap</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Usage</strong></p></td>
+<td><p>When you only need to store <strong>unique elements</strong>.</p></td>
+<td><p>When you need to store <strong>key-value associations</strong> for quick lookups.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Example</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span> <span class="pre">names</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">HashSet&lt;&gt;();</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Map&lt;Integer,</span> <span class="pre">String&gt;</span> <span class="pre">studentMap</span> <span class="pre">=</span> <span class="pre">new</span> <span class="pre">HashMap&lt;&gt;();</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 </section>
 
 
@@ -530,6 +655,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-hashtable-and-hashmap">Difference Between Hashtable and HashMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-set-and-map-in-java">Difference Between Set and Map in Java</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
