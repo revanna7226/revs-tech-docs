@@ -6,4 +6,5 @@ Coding Excercise
    :caption: Contents:
 
    streams
+   snippet
    programming

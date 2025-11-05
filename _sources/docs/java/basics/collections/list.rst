@@ -22,6 +22,8 @@ ArrayList
    in the Java Collection Framework. Unlike arrays, the size of an 
    ``ArrayList`` grows dynamically as elements are added or removed.
 
+   Internally, ArrayList is implemented using a resizable array.
+
 .. topic:: Key Features
 
   - Implements the ``List`` interface.
@@ -31,7 +33,7 @@ ArrayList
   - Allows **null elements**.
   - Provides **random access** (like arrays).
   - Not synchronized (use ``Collections.synchronizedList`` for thread-safety).
-  - Default capacity is **10**, grows automatically when needed. NewCapacity = (OldCapacity * 3)/2 + 1.
+  - Default capacity is **10**, grows automatically when needed. newCapacity=oldCapacity+(oldCapacity≫1).
 
 .. topic:: Hierarchy
 

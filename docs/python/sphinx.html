@@ -378,6 +378,7 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="../questions/coding/index.html">Coding Excercise</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../questions/coding/streams.html">Coding Problems on Streams</a></li>
 
+<li class="toctree-l3"><a class="reference internal" href="../questions/coding/snippet.html">Analyze the Output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../questions/coding/programming.html">Coding Problems</a></li>
 </ul>
 </details></li>
@@ -462,9 +463,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -480,14 +479,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-checked-and-unchecked-exceptions-in-java">✅ Difference Between Checked and Unchecked Exceptions in Java</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -585,45 +576,6 @@ Windows</label><div class="sd-tab-content docutils">
 </div>
 <p>Here’s your content correctly formatted as a <strong>Markdown table</strong> 👇</p>
 <hr class="docutils" />
-<section id="difference-between-checked-and-unchecked-exceptions-in-java">
-<h2>✅ Difference Between Checked and Unchecked Exceptions in Java<a class="headerlink" href="#difference-between-checked-and-unchecked-exceptions-in-java" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Criteria</strong></p></th>
-<th class="head"><p><strong>Checked Exceptions</strong></p></th>
-<th class="head"><p><strong>Unchecked Exceptions</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Definition</strong></p></td>
-<td><p>Exceptions that are <strong>checked at compile-time</strong> by the Java compiler.</p></td>
-<td><p>Exceptions that are <strong>not checked at compile-time</strong>, they occur at <strong>runtime</strong>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Superclass</strong></p></td>
-<td><p>Subclasses of <code class="docutils literal notranslate"><span class="pre">Exception</span></code> <em>(excluding <code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code>)</em></p></td>
-<td><p>Subclasses of <code class="docutils literal notranslate"><span class="pre">RuntimeException</span></code></p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Compile-Time Checking</strong></p></td>
-<td><p>Must be either <strong>handled using <code class="docutils literal notranslate"><span class="pre">try-catch</span></code></strong> or <strong>declared using <code class="docutils literal notranslate"><span class="pre">throws</span></code></strong> in the method signature.</p></td>
-<td><p>Compiler does <strong>not force</strong> you to handle or declare them.</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Occurrence</strong></p></td>
-<td><p>Generally caused by <strong>external factors</strong> (e.g., file not found, network errors).</p></td>
-<td><p>Usually caused by <strong>programming mistakes</strong> (e.g., null pointer, division by zero).</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Examples</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">IOException</span></code>, <code class="docutils literal notranslate"><span class="pre">SQLException</span></code>, <code class="docutils literal notranslate"><span class="pre">FileNotFoundException</span></code>, <code class="docutils literal notranslate"><span class="pre">ClassNotFoundException</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code>, <code class="docutils literal notranslate"><span class="pre">ArithmeticException</span></code>, <code class="docutils literal notranslate"><span class="pre">ArrayIndexOutOfBoundsException</span></code>, <code class="docutils literal notranslate"><span class="pre">IllegalArgumentException</span></code></p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Handling Requirement</strong></p></td>
-<td><p><strong>Mandatory</strong> to handle or declare.</p></td>
-<td><p><strong>Optional</strong> to handle.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<hr class="docutils" />
-</section>
 </section>
 
 
@@ -661,21 +613,6 @@ Windows</label><div class="sd-tab-content docutils">
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#difference-between-checked-and-unchecked-exceptions-in-java">✅ Difference Between Checked and Unchecked Exceptions in Java</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -378,6 +378,7 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../questions/coding/index.html">Coding Excercise</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/streams.html">Coding Problems on Streams</a></li>
 
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/snippet.html">Analyze the Output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/programming.html">Coding Problems</a></li>
 </ul>
 </details></li>
@@ -462,7 +463,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -478,6 +481,24 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-joins">Types of Joins</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">1. INNER JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join-left-outer-join">2. LEFT JOIN (LEFT OUTER JOIN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join-right-outer-join">3. RIGHT JOIN (RIGHT OUTER JOIN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-outer-join">4. FULL OUTER JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">5. CROSS JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-join">6. SELF JOIN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -489,11 +510,14 @@ document.write(`
                   
   <section id="mysql-joins">
 <h1>MySQL JOINS<a class="headerlink" href="#mysql-joins" title="Link to this heading">#</a></h1>
-<dl class="simple">
-<dt>Introduction</dt><dd><p>A <strong>JOIN</strong> in MySQL is used to combine rows from <strong>two or more tables</strong> based on a related column between them.
-Joins allow querying data across multiple tables efficiently.</p>
-</dd>
-<dt>Types of Joins</dt><dd><p>MySQL supports several types of joins:</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>A <strong>JOIN</strong> in MySQL is used to combine rows from <strong>two or more tables</strong> based on a related column between them.</p>
+<p>Joins allow querying data across multiple tables efficiently.</p>
+</section>
+<section id="types-of-joins">
+<h2>Types of Joins<a class="headerlink" href="#types-of-joins" title="Link to this heading">#</a></h2>
+<p>MySQL supports several types of joins:</p>
 <ol class="arabic simple">
 <li><p><strong>INNER JOIN</strong></p></li>
 <li><p><strong>LEFT JOIN (LEFT OUTER JOIN)</strong></p></li>
@@ -502,23 +526,21 @@ Joins allow querying data across multiple tables efficiently.</p>
 <li><p><strong>CROSS JOIN</strong></p></li>
 <li><p><strong>SELF JOIN</strong></p></li>
 </ol>
-</dd>
-</dl>
-<ol class="arabic">
-<li><dl>
-<dt>INNER JOIN</dt><dd><p><strong>Description:</strong>
-Returns rows that have matching values in both tables.</p>
-<p><strong>Syntax:</strong></p>
+<section id="inner-join">
+<h3>1. INNER JOIN<a class="headerlink" href="#inner-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong> Returns rows that have matching values in both tables.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Syntax</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columns</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span>
 <span class="k">ON</span><span class="w"> </span><span class="n">table1</span><span class="p">.</span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table2</span><span class="p">.</span><span class="k">column</span><span class="p">;</span>
 </pre></div>
 </div>
-<p><strong>Example:</strong></p>
-<p>Suppose we have two tables:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="id1">
-<caption><span class="caption-text">Employees</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+</div>
+<p><strong>Example:</strong> Suppose we have two tables:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id2">
+<caption><span class="caption-text">Employees</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 50.0%" />
@@ -546,8 +568,8 @@ Returns rows that have matching values in both tables.</p>
 </tbody>
 </table>
 </div>
-<div class="pst-scrollable-table-container"><table class="table" id="id2">
-<caption><span class="caption-text">Departments</span><a class="headerlink" href="#id2" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="id3">
+<caption><span class="caption-text">Departments</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 66.7%" />
@@ -577,8 +599,8 @@ Returns rows that have matching values in both tables.</p>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
-<div class="pst-scrollable-table-container"><table class="table" id="id3">
-<caption><span class="caption-text">Employee Department Join</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="id4">
+<caption><span class="caption-text">Employee Department Join</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -601,20 +623,20 @@ Returns rows that have matching values in both tables.</p>
 </tbody>
 </table>
 </div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>LEFT JOIN (LEFT OUTER JOIN)</dt><dd><p><strong>Description:</strong>
-Returns <strong>all rows from the left table</strong>, and the matched rows from the right table.
+</section>
+<section id="left-join-left-outer-join">
+<h3>2. LEFT JOIN (LEFT OUTER JOIN)<a class="headerlink" href="#left-join-left-outer-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong> Returns <strong>all rows from the left table</strong>, and the matched rows from the right table.
 If there is no match, the result is <strong>NULL</strong> on the right side.</p>
-<p><strong>Syntax:</strong></p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Syntax</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columns</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
 <span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span>
 <span class="k">ON</span><span class="w"> </span><span class="n">table1</span><span class="p">.</span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table2</span><span class="p">.</span><span class="k">column</span><span class="p">;</span>
 </pre></div>
 </div>
+</div>
 <p><strong>Example:</strong></p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
@@ -622,23 +644,26 @@ If there is no match, the result is <strong>NULL</strong> on the right side.</p>
 <span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>If an employee belongs to a department not in <cite>departments</cite>, <cite>dept_name</cite> will be <cite>NULL</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>RIGHT JOIN (RIGHT OUTER JOIN)</dt><dd><p><strong>Description:</strong>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If an employee belongs to a department not in <code class="docutils literal notranslate"><span class="pre">departments</span></code>, <code class="docutils literal notranslate"><span class="pre">dept_name</span></code> will be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+</div>
+</section>
+<section id="right-join-right-outer-join">
+<h3>3. RIGHT JOIN (RIGHT OUTER JOIN)<a class="headerlink" href="#right-join-right-outer-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong>
 Returns <strong>all rows from the right table</strong>, and the matched rows from the left table.
 If there is no match, the result is <strong>NULL</strong> on the left side.</p>
 <p><strong>Syntax:</strong></p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Syntax</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columns</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
 <span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span>
 <span class="k">ON</span><span class="w"> </span><span class="n">table1</span><span class="p">.</span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">table2</span><span class="p">.</span><span class="k">column</span><span class="p">;</span>
 </pre></div>
 </div>
+</div>
 <p><strong>Example:</strong></p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
@@ -646,68 +671,67 @@ If there is no match, the result is <strong>NULL</strong> on the left side.</p>
 <span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Departments without employees will still appear with <cite>NULL</cite> for <cite>emp_name</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>FULL OUTER JOIN</dt><dd><p><strong>Description:</strong>
-Returns <strong>all rows from both tables</strong>, with <cite>NULL</cite> where there is no match.</p>
-<ul class="simple">
-<li><p><strong>MySQL does not support FULL OUTER JOIN directly</strong>, but it can be simulated using <cite>UNION</cite> of LEFT and RIGHT JOIN.</p></li>
-</ul>
-<p><strong>Example:</strong></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
-<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span>
-<span class="k">UNION</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
-<span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
-</pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Departments without employees will still appear with <code class="docutils literal notranslate"><span class="pre">NULL</span></code> for <code class="docutils literal notranslate"><span class="pre">emp_name</span></code>.</p>
 </div>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>CROSS JOIN</dt><dd><p><strong>Description:</strong>
-Returns the <strong>Cartesian product</strong> of two tables — every row from the first table combined with every row from the second table.</p>
-<p><strong>Syntax:</strong></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">columns</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
-<span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span><span class="p">;</span>
-</pre></div>
+</section>
+<section id="full-outer-join">
+<h3>4. FULL OUTER JOIN<a class="headerlink" href="#full-outer-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong> Returns <strong>all rows from both tables</strong>, with <code class="docutils literal notranslate"><span class="pre">NULL</span></code> where there is no match.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>MySQL does not support FULL OUTER JOIN directly</strong>, but it can be simulated using <code class="docutils literal notranslate"><span class="pre">UNION</span></code> of LEFT and RIGHT JOIN.</p>
 </div>
 <p><strong>Example:</strong></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
-<span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
+<span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span>
+<span class="w">    </span><span class="k">UNION</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
+<span class="w">    </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">dept_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_id</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Total rows = <cite>number of rows in employees * number of rows in departments</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl>
-<dt>SELF JOIN</dt><dd><p><strong>Description:</strong>
+</section>
+<section id="cross-join">
+<h3>5. CROSS JOIN<a class="headerlink" href="#cross-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong> Returns the <strong>Cartesian product</strong> of two tables — every row from the first table combined with every row from the second table.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Syntax</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">columns</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span>
+<span class="w">    </span><span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">table2</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Example:</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">dept_name</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e</span>
+<span class="w">    </span><span class="k">CROSS</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Total rows = <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows</span> <span class="pre">in</span> <span class="pre">employees</span> <span class="pre">*</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">rows</span> <span class="pre">in</span> <span class="pre">departments</span></code>.</p>
+</div>
+</section>
+<section id="self-join">
+<h3>6. SELF JOIN<a class="headerlink" href="#self-join" title="Link to this heading">#</a></h3>
+<p><strong>Description:</strong>
 A <strong>self join</strong> is when a table is joined with itself.
 It is useful to compare rows within the same table.</p>
-<p><strong>Syntax:</strong></p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">column1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">column2</span>
 <span class="k">FROM</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">b</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="k">column</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><strong>Example:</strong></p>
-<p>Suppose <cite>employees</cite> table has a <cite>manager_id</cite> column referring to <cite>emp_id</cite>:</p>
-<div class="pst-scrollable-table-container"><table class="table" id="id4">
-<caption><span class="caption-text">Employees with Manager</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<p>Suppose <code class="docutils literal notranslate"><span class="pre">employees</span></code> table has a <code class="docutils literal notranslate"><span class="pre">manager_id</span></code> column referring to <code class="docutils literal notranslate"><span class="pre">emp_id</span></code>:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="id8">
+<caption><span class="caption-text">Employees with Manager</span><a class="headerlink" href="#id8" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 40.0%" />
@@ -740,15 +764,15 @@ It is useful to compare rows within the same table.</p>
 </tbody>
 </table>
 </div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">emp_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">emp_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Manager</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e1</span>
-<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e2</span>
-<span class="k">ON</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">manager_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">emp_id</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">emp_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">emp_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Manager</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e1</span>
+<span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e2</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">manager_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">emp_id</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><strong>Output:</strong></p>
-<div class="pst-scrollable-table-container"><table class="table" id="id5">
-<caption><span class="caption-text">Employee and Manager</span><a class="headerlink" href="#id5" title="Link to this table">#</a></caption>
+<div class="pst-scrollable-table-container"><table class="table" id="id9">
+<caption><span class="caption-text">Employee and Manager</span><a class="headerlink" href="#id9" title="Link to this table">#</a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -771,12 +795,11 @@ It is useful to compare rows within the same table.</p>
 </tbody>
 </table>
 </div>
-</dd>
-</dl>
-</li>
-</ol>
-<dl class="simple">
-<dt>Conclusion</dt><dd><ul class="simple">
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<ul class="simple">
 <li><p><strong>INNER JOIN</strong> → Only matching rows from both tables.</p></li>
 <li><p><strong>LEFT JOIN</strong> → All rows from left table, matched rows from right.</p></li>
 <li><p><strong>RIGHT JOIN</strong> → All rows from right table, matched rows from left.</p></li>
@@ -785,8 +808,7 @@ It is useful to compare rows within the same table.</p>
 <li><p><strong>SELF JOIN</strong> → Table joined with itself for hierarchical or comparative data.</p></li>
 <li><p>JOINS are essential for querying <strong>related data</strong> efficiently across multiple tables.</p></li>
 </ul>
-</dd>
-</dl>
+</section>
 </section>
 
 
@@ -824,6 +846,31 @@ It is useful to compare rows within the same table.</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-joins">Types of Joins</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-join">1. INNER JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#left-join-left-outer-join">2. LEFT JOIN (LEFT OUTER JOIN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#right-join-right-outer-join">3. RIGHT JOIN (RIGHT OUTER JOIN)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-outer-join">4. FULL OUTER JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-join">5. CROSS JOIN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-join">6. SELF JOIN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

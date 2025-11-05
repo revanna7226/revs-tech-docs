@@ -378,6 +378,7 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../questions/coding/index.html">Coding Excercise</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/streams.html">Coding Problems on Streams</a></li>
 
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/snippet.html">Analyze the Output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/programming.html">Coding Problems</a></li>
 </ul>
 </details></li>
@@ -522,6 +523,7 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> is a resizable array implementation of the <code class="docutils literal notranslate"><span class="pre">List</span></code> interface
 in the Java Collection Framework. Unlike arrays, the size of an
 <code class="docutils literal notranslate"><span class="pre">ArrayList</span></code> grows dynamically as elements are added or removed.</p>
+<p>Internally, ArrayList is implemented using a resizable array.</p>
 </aside>
 <aside class="topic">
 <p class="topic-title">Key Features</p>
@@ -533,7 +535,7 @@ in the Java Collection Framework. Unlike arrays, the size of an
 <li><p>Allows <strong>null elements</strong>.</p></li>
 <li><p>Provides <strong>random access</strong> (like arrays).</p></li>
 <li><p>Not synchronized (use <code class="docutils literal notranslate"><span class="pre">Collections.synchronizedList</span></code> for thread-safety).</p></li>
-<li><p>Default capacity is <strong>10</strong>, grows automatically when needed. NewCapacity = (OldCapacity * 3)/2 + 1.</p></li>
+<li><p>Default capacity is <strong>10</strong>, grows automatically when needed. newCapacity=oldCapacity+(oldCapacity≫1).</p></li>
 </ul>
 </aside>
 <aside class="topic">
