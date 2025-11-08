@@ -47,6 +47,10 @@
    sphinxemoji
    sphinx-autobuild
    sphinx-multiversion
+   sphinx-design
+   sphinx-book-theme
+   myst-parser
+   sphinxcontrib.youtube
    ```
 
 1. Install the libraries

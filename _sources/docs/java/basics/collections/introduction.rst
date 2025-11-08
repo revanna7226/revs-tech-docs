@@ -156,16 +156,13 @@ Map Interfaces and Classes
 - Map (key–value pairs, no duplicate keys)
   
   - HashMap
-    
     - LinkedHashMap
   - Hashtable
   - TreeMap
   - WeakHashMap
   - IdentityHashMap
   - ConcurrentHashMap
-
 - SortedMap (sub-interface of Map)
-  
   - TreeMap
 
 Collections vs Map in Java

@@ -1,9 +1,11 @@
 # Map Interface
 
-- HashMap
-- LinkedHashMap
-- TreeMap
-- ConcurrentHashmap
+- [HashMap](map/hashmap.md)
+- [LinkedHashMap](map/linkedhashmap.md)
+- [TreeMap](map/treemap.md)
+- [EnumMap](map/enummap.md)
+- [ConcurrentHashmap](map/concurrenthashmap.md)
+- [Hashtable](map/hashtable.md)
 
 ## Difference Between Hashtable and HashMap
 
