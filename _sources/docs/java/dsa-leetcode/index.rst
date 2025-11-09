@@ -21,3 +21,4 @@ Java DSA + LeetCode
   topics/introduction
   topics/bigo
   topics/linkedlist
+  topics/doublyll

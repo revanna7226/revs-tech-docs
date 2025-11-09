@@ -266,6 +266,8 @@ This is the **optimal and most common approach** used in LeetCode problems.
    - ``fast`` moves two steps at a time.
    - When ``fast`` reaches the end, ``slow`` will be at the **middle**.
 
+**Code Implementation:**
+
 .. code-block:: java
 
     public Node findMiddleNode() {
@@ -286,6 +288,8 @@ Approach 2: Using Length Count (Less Efficient)
 Another approach is:
    1. Traverse the list once to count the number of nodes.
    2. Traverse again up to ``length / 2`` and return that node.   
+
+**Code Implementation:**
 
 .. code-block:: java
 
@@ -336,6 +340,8 @@ Also known as the **Tortoise and Hare Algorithm**.
        - **fast** (hare): moves **2 steps** at a time.
    - If there is a **loop**, both pointers will eventually **meet** inside the loop.
    - If ``fast`` or ``fast.next`` becomes ``null``, then there is **no loop**.    
+
+**Code Implementation:**
 
 .. code-block:: java
 
@@ -389,6 +395,8 @@ Algorithm Steps:
    3. Move both ``slow`` and ``fast`` **one step at a time** until ``fast`` reaches ``null``.
    4. When ``fast == null``, ``slow`` points to the **Kth node from the end**.
 
+**Code Implementation:**
+
 .. code-block:: java
 
     public static Node findKthFromEnd(Node head, int k) {
@@ -423,3 +431,322 @@ Approach 2: Using Length (Simpler, Less Efficient)
 **Time Complexity:** ``O(2n)``  
 **Space Complexity:** ``O(1)``    
 
+Remove Duplicates
+********************************************
+
+You are given a singly linked list that contains integer values, where some of these values may be duplicated.
+
+Note: this linked list class does NOT have a tail which will make this method easier to implement.
+
+Steps:
+    - Your task is to implement a method called ``removeDuplicates()`` within the LinkedList class that removes all duplicate values from the list.
+    - Your method should not create a new list, but rather modify the existing list in-place, preserving the relative order of the nodes.
+    - You can implement the ``removeDuplicates()`` method in two different ways:
+        - Using a Set (HashSet) - This approach will have a time complexity of O(n), where n is the number of nodes in the linked list. You are allowed to use the provided Set data structure in your implementation.
+        - Without using a Set - This approach will have a time complexity of O(n^2), where n is the number of nodes in the linked list. You are not allowed to use any additional data structures for this implementation.
+
+Here is the method signature you need to implement:
+
+.. code-block:: java
+
+    public void removeDuplicates() {
+        // Your implementation goes here
+    }
+
+Example:
+    - **Input:** LinkedList: 1 -> 2 -> 3 -> 1 -> 4 -> 2 -> 5
+    - **Output:** LinkedList: 1 -> 2 -> 3 -> 4 -> 5
+
+✅ 1. Using a Set (O(n) time, O(n) space)
+------------------------------------------
+Explanation
+    - We traverse the list once, maintaining a HashSet<Integer> to track which values we’ve seen.
+    - If a node’s value is already in the set, we remove it by adjusting the previous node’s next pointer.
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public void removeDuplicates() {
+        if (head == null) return;
+
+        Set<Integer> seen = new HashSet<>();
+        Node current = head;
+        Node prev = null;
+
+        while (current != null) {
+            if (seen.contains(current.data)) {
+                // Duplicate found → skip current node
+                prev.next = current.next;
+            } else {
+                seen.add(current.data);
+                prev = current;
+            }
+            current = current.next;
+        }
+    }    
+
+🚫 2. Without using a Set (O(n²) time, O(1) space)
+---------------------------------------------------
+
+Explanation:
+    We use two pointers:
+        - current traverses each node,
+        - runner checks all subsequent nodes for duplicates and removes them inline.    
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public void removeDuplicates() {
+        Node current = head;
+
+        while (current != null) {
+            Node runner = current;
+            while (runner.next != null) {
+                if (runner.next.data == current.data) {
+                    // Remove duplicate
+                    runner.next = runner.next.next;
+                } else {
+                    runner = runner.next;
+                }
+            }
+            current = current.next;
+        }
+    }
+
+Binary to Decimal
+********************************************
+
+Problem Statement:
+    You have a linked list where each node represents a binary digit (0 or 1). The goal of the binaryToDecimal function is to convert this binary number, represented by the linked list, into its decimal equivalent.
+
+    .. code-block:: java
+
+        // Function Signature:
+        public int binaryToDecimal()
+
+How Binary to Decimal Conversion Works:
+    In binary-to-decimal conversion, each position of a binary number corresponds to a specific power of 2, starting from the rightmost digit.
+
+    - The rightmost digit is multiplied by 2^0 (which equals 1).
+    - The next digit to the left is multiplied by 2^1 (which equals 2).
+    - The digit after that is multiplied by 2^2 (which equals 4). ... and so on.    
+
+To find the decimal representation:
+    - Multiply each binary digit by its corresponding power of 2 value.
+    - Sum up all these products.
+
+Example Execution with Binary 101:
+    - Start with num = 0.
+    - Process 1 (from the head of the linked list): num = 0 * 2 + 1 = 1
+    - Process 0: num = 1 * 2 + 0 = 2
+    - Process 1: num = 2 * 2 + 1 = 5
+    - Return num, which is 5.
+
+Steps Involved in the Function:
+    - A variable num is initialized to 0, which will store our computed decimal number.
+    - Starting from the head of the linked list (the leftmost binary digit), iterate through each node until the end.
+    - For every node, double the current value of num (this is analogous to shifting in binary representation). Then, add the binary digit of the current node.
+    - Move to the next node and repeat until you've visited all nodes.
+    - Return the value in num, which now represents the decimal value of the binary number in the linked list.
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public int binaryToDecimal() {
+        int decimal = 0;
+        Node current = head;
+        
+        while(current != null) {
+            decimal = decimal * 2 + current.value;
+            current = current.next;
+        }
+        return decimal;
+    } 
+
+Partion List
+******************
+
+Problem Statement:
+    Given a value x you need to rearrange the linked list such that all nodes with a value less than x come before all nodes with a value greater than or equal to x.
+    Additionally, the relative order of nodes in both partitions should remain unchanged.
+
+Constraints:
+    - The solution should traverse the linked list at most once.
+    - The solution should not create a new linked list.
+
+**Approach:**
+We'll use two dummy pointers to rearrange the nodes in place:
+    - ``beforeStart`` and ``beforeEnd`` → track the “less than x” sublist
+    - ``afterStart`` and ``afterEnd`` → track the “greater than or equal to x” sublist
+
+As we traverse the list once, we'll:
+    - Detach each node from the main list.
+    - Append it to the correct partition (before or after).
+    - After traversal, connect both partitions.
+
+No new nodes are created — only pointers are rearranged.
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public void partitionList(int x) {
+        if (head == null) return;
+
+        Node beforeStart = null, beforeEnd = null;
+        Node afterStart = null, afterEnd = null;
+        Node current = head;
+
+        while (current != null) {
+            Node nextNode = current.next; // Save next
+            current.next = null;          // Detach current
+
+            if (current.value < x) {
+                // Add to before list
+                if (beforeStart == null) {
+                    beforeStart = current;
+                    beforeEnd = beforeStart;
+                } else {
+                    beforeEnd.next = current;
+                    beforeEnd = current;
+                }
+            } else {
+                // Add to after list
+                if (afterStart == null) {
+                    afterStart = current;
+                    afterEnd = afterStart;
+                } else {
+                    afterEnd.next = current;
+                    afterEnd = current;
+                }
+            }
+
+            current = nextNode;
+        }
+
+        // If there are no elements less than x
+        if (beforeStart == null) {
+            head = afterStart;
+            return;
+        }
+
+        // Merge before list and after list
+        beforeEnd.next = afterStart;
+        head = beforeStart;
+    }      
+
+
+Reverse Between
+********************************************
+
+Problem Statement:
+    Given the head of a singly linked list and two integers left and right
+    where left <= right, reverse the nodes of the list from position left 
+    to position right, and return the reversed list.
+
+Example: 
+    - **Input:** LinkedList: 1 -> 2 -> 3 -> 4 -> 5, left = 2, right = 4
+    - **Output:** LinkedList: 1 -> 4 -> 3 -> 2 -> 5
+
+Approach:
+    - Traverse until you reach the node just before position left (let's call it prevLeft).
+    - Reverse the sublist from left to right.
+    - Connect the reversed part back into the list.
+
+    We'll use pointer manipulation:
+        - ``prevLeft`` — node before the sublist
+        - ``start`` — first node in the sublist
+        - ``then`` — node following start (used to reverse links iteratively)
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public void reverseBetween(int left, int right) {
+        if (head == null || left == right) return;
+
+        Node dummy = new Node(0);   // Dummy node before head
+        dummy.next = head;
+        Node prev = dummy;
+
+        // Step 1: Move prev to one node before 'left'
+        for (int i = 0; i < left - 1; i++) {
+            prev = prev.next;
+        }
+
+        // Step 2: Start reversing sublist
+        Node start = prev.next;      // First node in the sublist
+        Node then = start.next;      // Node to be reversed next
+
+        // Reverse from left to right
+        for (int i = 0; i < right - left; i++) {
+            start.next = then.next;
+            then.next = prev.next;
+            prev.next = then;
+            then = start.next;
+        }
+
+        // Step 3: Update head if reversed from position 1
+        head = dummy.next;
+    }    
+
+Swap Nodes in Pairs
+********************************************
+
+Problem Statement:
+    Given a linked list, swap every two adjacent nodes and return its head.
+
+Example:
+    - **Input:** LinkedList: 1 -> 2 -> 3 -> 4
+    - **Output:** LinkedList: 2 -> 1 -> 4 -> 3
+
+Approach:   
+We'll solve this iteratively and also show a recursive version.
+
+**✅ Iterative Solution**
+
+1. Use a ``dummy`` node before the ``head`` to simplify edge cases.
+
+2. Keep track of three pointers:
+    - ``prev`` — node before the current pair
+    - ``first`` — first node of the pair
+    - ``second`` — second node of the pair
+
+3. Swap ``first`` and ``second`` by adjusting links:
+    .. code-block:: java
+
+        prev.next = second
+        first.next = second.next
+        second.next = first
+
+4. Move ``prev`` two steps forward for the next pair.
+
+**Code Implementation:**
+
+.. code-block:: java
+
+    public void swapPairs(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+
+        while (head != null && head.next != null) {
+            ListNode first = head;
+            ListNode second = head.next;
+
+            // Swapping
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            // Move pointers
+            prev = first;
+            head = first.next;
+        }
+
+        return dummy.next;
+    }    

@@ -52,7 +52,7 @@
     <link rel="icon" href="../../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Golang" href="../../../golang/index.html" />
+    <link rel="next" title="Doubly Linked List" href="doublyll.html" />
     <link rel="prev" title="Big O Notation in Java: Explained" href="bigo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -333,6 +333,7 @@
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bigo.html">Big O Notation in Java: Explained</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doublyll.html">Doubly Linked List</a></li>
 </ul>
 </details></li>
 </ul>
@@ -508,6 +509,15 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-2-using-length-simpler-less-efficient">Approach 2: Using Length (Simpler, Less Efficient)</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicates">Remove Duplicates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-set-o-n-time-o-n-space">✅ 1. Using a Set (O(n) time, O(n) space)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#without-using-a-set-o-n2-time-o-1-space">🚫 2. Without using a Set (O(n²) time, O(1) space)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-to-decimal">Binary to Decimal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partion-list">Partion List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-between">Reverse Between</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-nodes-in-pairs">Swap Nodes in Pairs</a></li>
 </ul>
 </li>
 </ul>
@@ -786,6 +796,7 @@ Output: 4
 </ul>
 </dd>
 </dl>
+<p><strong>Code Implementation:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">findMiddleNode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 <span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
@@ -809,6 +820,7 @@ Output: 4
 </ol>
 </dd>
 </dl>
+<p><strong>Code Implementation:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">findMiddleNode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">pointerNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -866,6 +878,7 @@ Output: false
 </ul>
 </dd>
 </dl>
+<p><strong>Code Implementation:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">hasLoop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">slow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
 <span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">fast</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
@@ -922,6 +935,7 @@ Explanation:
 </ol>
 </dd>
 </dl>
+<p><strong>Code Implementation:</strong></p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">findKthFromEnd</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
 
@@ -957,6 +971,351 @@ Explanation:
 <strong>Space Complexity:</strong> <code class="docutils literal notranslate"><span class="pre">O(1)</span></code></p>
 </section>
 </section>
+<section id="remove-duplicates">
+<h3>Remove Duplicates<a class="headerlink" href="#remove-duplicates" title="Link to this heading">#</a></h3>
+<p>You are given a singly linked list that contains integer values, where some of these values may be duplicated.</p>
+<p>Note: this linked list class does NOT have a tail which will make this method easier to implement.</p>
+<dl class="simple">
+<dt>Steps:</dt><dd><ul class="simple">
+<li><p>Your task is to implement a method called <code class="docutils literal notranslate"><span class="pre">removeDuplicates()</span></code> within the LinkedList class that removes all duplicate values from the list.</p></li>
+<li><p>Your method should not create a new list, but rather modify the existing list in-place, preserving the relative order of the nodes.</p></li>
+<li><dl class="simple">
+<dt>You can implement the <code class="docutils literal notranslate"><span class="pre">removeDuplicates()</span></code> method in two different ways:</dt><dd><ul>
+<li><p>Using a Set (HashSet) - This approach will have a time complexity of O(n), where n is the number of nodes in the linked list. You are allowed to use the provided Set data structure in your implementation.</p></li>
+<li><p>Without using a Set - This approach will have a time complexity of O(n^2), where n is the number of nodes in the linked list. You are not allowed to use any additional data structures for this implementation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Here is the method signature you need to implement:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">removeDuplicates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Your implementation goes here</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Example:</dt><dd><ul class="simple">
+<li><p><strong>Input:</strong> LinkedList: 1 -&gt; 2 -&gt; 3 -&gt; 1 -&gt; 4 -&gt; 2 -&gt; 5</p></li>
+<li><p><strong>Output:</strong> LinkedList: 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5</p></li>
+</ul>
+</dd>
+</dl>
+<section id="using-a-set-o-n-time-o-n-space">
+<h4>✅ 1. Using a Set (O(n) time, O(n) space)<a class="headerlink" href="#using-a-set-o-n-time-o-n-space" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>Explanation</dt><dd><ul class="simple">
+<li><p>We traverse the list once, maintaining a HashSet&lt;Integer&gt; to track which values we’ve seen.</p></li>
+<li><p>If a node’s value is already in the set, we remove it by adjusting the previous node’s next pointer.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">removeDuplicates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">seen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">seen</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">data</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Duplicate found → skip current node</span>
+<span class="w">            </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">seen</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">data</span><span class="p">);</span>
+<span class="w">            </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="without-using-a-set-o-n2-time-o-1-space">
+<h4>🚫 2. Without using a Set (O(n²) time, O(1) space)<a class="headerlink" href="#without-using-a-set-o-n2-time-o-1-space" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>Explanation:</dt><dd><dl class="simple">
+<dt>We use two pointers:</dt><dd><ul class="simple">
+<li><p>current traverses each node,</p></li>
+<li><p>runner checks all subsequent nodes for duplicates and removes them inline.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">removeDuplicates</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">runner</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">runner</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Remove duplicate</span>
+<span class="w">                </span><span class="n">runner</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runner</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">runner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">runner</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="binary-to-decimal">
+<h3>Binary to Decimal<a class="headerlink" href="#binary-to-decimal" title="Link to this heading">#</a></h3>
+<dl>
+<dt>Problem Statement:</dt><dd><p>You have a linked list where each node represents a binary digit (0 or 1). The goal of the binaryToDecimal function is to convert this binary number, represented by the linked list, into its decimal equivalent.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Function Signature:</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">binaryToDecimal</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+<dt>How Binary to Decimal Conversion Works:</dt><dd><p>In binary-to-decimal conversion, each position of a binary number corresponds to a specific power of 2, starting from the rightmost digit.</p>
+<ul class="simple">
+<li><p>The rightmost digit is multiplied by 2^0 (which equals 1).</p></li>
+<li><p>The next digit to the left is multiplied by 2^1 (which equals 2).</p></li>
+<li><p>The digit after that is multiplied by 2^2 (which equals 4). … and so on.</p></li>
+</ul>
+</dd>
+<dt>To find the decimal representation:</dt><dd><ul class="simple">
+<li><p>Multiply each binary digit by its corresponding power of 2 value.</p></li>
+<li><p>Sum up all these products.</p></li>
+</ul>
+</dd>
+<dt>Example Execution with Binary 101:</dt><dd><ul class="simple">
+<li><p>Start with num = 0.</p></li>
+<li><p>Process 1 (from the head of the linked list): num = 0 * 2 + 1 = 1</p></li>
+<li><p>Process 0: num = 1 * 2 + 0 = 2</p></li>
+<li><p>Process 1: num = 2 * 2 + 1 = 5</p></li>
+<li><p>Return num, which is 5.</p></li>
+</ul>
+</dd>
+<dt>Steps Involved in the Function:</dt><dd><ul class="simple">
+<li><p>A variable num is initialized to 0, which will store our computed decimal number.</p></li>
+<li><p>Starting from the head of the linked list (the leftmost binary digit), iterate through each node until the end.</p></li>
+<li><p>For every node, double the current value of num (this is analogous to shifting in binary representation). Then, add the binary digit of the current node.</p></li>
+<li><p>Move to the next node and repeat until you’ve visited all nodes.</p></li>
+<li><p>Return the value in num, which now represents the decimal value of the binary number in the linked list.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">binaryToDecimal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">decimal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decimal</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+<span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">decimal</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="partion-list">
+<h3>Partion List<a class="headerlink" href="#partion-list" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>Problem Statement:</dt><dd><p>Given a value x you need to rearrange the linked list such that all nodes with a value less than x come before all nodes with a value greater than or equal to x.
+Additionally, the relative order of nodes in both partitions should remain unchanged.</p>
+</dd>
+<dt>Constraints:</dt><dd><ul class="simple">
+<li><p>The solution should traverse the linked list at most once.</p></li>
+<li><p>The solution should not create a new linked list.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Approach:</strong>
+We’ll use two dummy pointers to rearrange the nodes in place:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">beforeStart</span></code> and <code class="docutils literal notranslate"><span class="pre">beforeEnd</span></code> → track the “less than x” sublist</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">afterStart</span></code> and <code class="docutils literal notranslate"><span class="pre">afterEnd</span></code> → track the “greater than or equal to x” sublist</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>As we traverse the list once, we’ll:</dt><dd><ul class="simple">
+<li><p>Detach each node from the main list.</p></li>
+<li><p>Append it to the correct partition (before or after).</p></li>
+<li><p>After traversal, connect both partitions.</p></li>
+</ul>
+</dd>
+</dl>
+<p>No new nodes are created — only pointers are rearranged.</p>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">partitionList</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">beforeStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">beforeEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">afterStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">afterEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">nextNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"> </span><span class="c1">// Save next</span>
+<span class="w">        </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">          </span><span class="c1">// Detach current</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Add to before list</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">beforeStart</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">beforeStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="n">beforeEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beforeStart</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">beforeEnd</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="n">beforeEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Add to after list</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">afterStart</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">afterStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="n">afterEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">afterStart</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">afterEnd</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="n">afterEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextNode</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// If there are no elements less than x</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">beforeStart</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">afterStart</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Merge before list and after list</span>
+<span class="w">    </span><span class="n">beforeEnd</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">afterStart</span><span class="p">;</span>
+<span class="w">    </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beforeStart</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reverse-between">
+<h3>Reverse Between<a class="headerlink" href="#reverse-between" title="Link to this heading">#</a></h3>
+<dl>
+<dt>Problem Statement:</dt><dd><p>Given the head of a singly linked list and two integers left and right
+where left &lt;= right, reverse the nodes of the list from position left
+to position right, and return the reversed list.</p>
+</dd>
+<dt>Example:</dt><dd><ul class="simple">
+<li><p><strong>Input:</strong> LinkedList: 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5, left = 2, right = 4</p></li>
+<li><p><strong>Output:</strong> LinkedList: 1 -&gt; 4 -&gt; 3 -&gt; 2 -&gt; 5</p></li>
+</ul>
+</dd>
+<dt>Approach:</dt><dd><ul class="simple">
+<li><p>Traverse until you reach the node just before position left (let’s call it prevLeft).</p></li>
+<li><p>Reverse the sublist from left to right.</p></li>
+<li><p>Connect the reversed part back into the list.</p></li>
+</ul>
+<dl class="simple">
+<dt>We’ll use pointer manipulation:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prevLeft</span></code> — node before the sublist</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code> — first node in the sublist</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">then</span></code> — node following start (used to reverse links iteratively)</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reverseBetween</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">   </span><span class="c1">// Dummy node before head</span>
+<span class="w">    </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Step 1: Move prev to one node before &#39;left&#39;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Step 2: Start reversing sublist</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w">      </span><span class="c1">// First node in the sublist</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="n">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w">      </span><span class="c1">// Node to be reversed next</span>
+
+<span class="w">    </span><span class="c1">// Reverse from left to right</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">start</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">then</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">then</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">then</span><span class="p">;</span>
+<span class="w">        </span><span class="n">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Step 3: Update head if reversed from position 1</span>
+<span class="w">    </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="swap-nodes-in-pairs">
+<h3>Swap Nodes in Pairs<a class="headerlink" href="#swap-nodes-in-pairs" title="Link to this heading">#</a></h3>
+<dl class="simple">
+<dt>Problem Statement:</dt><dd><p>Given a linked list, swap every two adjacent nodes and return its head.</p>
+</dd>
+<dt>Example:</dt><dd><ul class="simple">
+<li><p><strong>Input:</strong> LinkedList: 1 -&gt; 2 -&gt; 3 -&gt; 4</p></li>
+<li><p><strong>Output:</strong> LinkedList: 2 -&gt; 1 -&gt; 4 -&gt; 3</p></li>
+</ul>
+</dd>
+</dl>
+<p>Approach:
+We’ll solve this iteratively and also show a recursive version.</p>
+<p><strong>✅ Iterative Solution</strong></p>
+<ol class="arabic">
+<li><p>Use a <code class="docutils literal notranslate"><span class="pre">dummy</span></code> node before the <code class="docutils literal notranslate"><span class="pre">head</span></code> to simplify edge cases.</p></li>
+<li><dl class="simple">
+<dt>Keep track of three pointers:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prev</span></code> — node before the current pair</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span></code> — first node of the pair</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">second</span></code> — second node of the pair</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Swap <code class="docutils literal notranslate"><span class="pre">first</span></code> and <code class="docutils literal notranslate"><span class="pre">second</span></code> by adjusting links:</dt><dd><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span>
+<span class="n">first</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span><span class="p">.</span><span class="na">next</span>
+<span class="n">second</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>Move <code class="docutils literal notranslate"><span class="pre">prev</span></code> two steps forward for the next pair.</p></li>
+</ol>
+<p><strong>Code Implementation:</strong></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">swapPairs</span><span class="p">(</span><span class="n">ListNode</span><span class="w"> </span><span class="n">head</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ListNode</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ListNode</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">ListNode</span><span class="w"> </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ListNode</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ListNode</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Swapping</span>
+<span class="w">        </span><span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="w">        </span><span class="n">first</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">        </span><span class="n">second</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// Move pointers</span>
+<span class="w">        </span><span class="n">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">        </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -981,11 +1340,11 @@ Explanation:
       </div>
     </a>
     <a class="right-next"
-       href="../../../golang/index.html"
+       href="doublyll.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Golang</p>
+        <p class="prev-next-title">Doubly Linked List</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1026,6 +1385,15 @@ Explanation:
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-2-using-length-simpler-less-efficient">Approach 2: Using Length (Simpler, Less Efficient)</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-duplicates">Remove Duplicates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-set-o-n-time-o-n-space">✅ 1. Using a Set (O(n) time, O(n) space)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#without-using-a-set-o-n2-time-o-1-space">🚫 2. Without using a Set (O(n²) time, O(1) space)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-to-decimal">Binary to Decimal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partion-list">Partion List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-between">Reverse Between</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-nodes-in-pairs">Swap Nodes in Pairs</a></li>
 </ul>
 </li>
 </ul>
