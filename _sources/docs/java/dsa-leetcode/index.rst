@@ -22,3 +22,7 @@ Java DSA + LeetCode
   topics/bigo
   topics/linkedlist
   topics/doublyll
+  topics/stack
+  topics/queue
+  topics/binarytree
+  topics/hashtable

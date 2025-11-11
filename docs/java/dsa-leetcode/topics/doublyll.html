@@ -52,7 +52,7 @@
     <link rel="icon" href="../../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Golang" href="../../../golang/index.html" />
+    <link rel="next" title="Stack" href="stack.html" />
     <link rel="prev" title="Linked List" href="linkedlist.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -334,6 +334,19 @@
 <li class="toctree-l3"><a class="reference internal" href="bigo.html">Big O Notation in Java: Explained</a></li>
 <li class="toctree-l3"><a class="reference internal" href="linkedlist.html">Linked List</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Doubly Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stack.html">Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="queue.html">Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="binarytree.html">Binary Tree</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="hashtable.html">HashTable</a></li>
 </ul>
 </details></li>
 </ul>
@@ -494,8 +507,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interview-leetcode-questions">Interview / LeetCode Questions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome-checker">Palindrome Checker</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-dll">Reverse DLL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-palindrome-checker">DLL Palindrome Checker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-reverse">DLL Reverse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-partitioned">DLL Partitioned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-reverse-between-todo">DLL Reverse Between <code class="docutils literal notranslate"><span class="pre">TODO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-swap-nodes-in-pairs-todo">DLL Swap Nodes in Pairs <code class="docutils literal notranslate"><span class="pre">TODO</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -817,8 +833,8 @@ document.write(`
 </section>
 <section id="interview-leetcode-questions">
 <h2>Interview / LeetCode Questions<a class="headerlink" href="#interview-leetcode-questions" title="Link to this heading">#</a></h2>
-<section id="palindrome-checker">
-<h3>Palindrome Checker<a class="headerlink" href="#palindrome-checker" title="Link to this heading">#</a></h3>
+<section id="dll-palindrome-checker">
+<h3>DLL Palindrome Checker<a class="headerlink" href="#dll-palindrome-checker" title="Link to this heading">#</a></h3>
 <p><strong>Problem Statement:</strong></p>
 <ul class="simple">
 <li><p>Write a method to determine whether a given doubly linked list reads the same forwards and backwards.</p></li>
@@ -852,8 +868,8 @@ Return Type: <code class="docutils literal notranslate"><span class="pre">boolea
 </pre></div>
 </div>
 </section>
-<section id="reverse-dll">
-<h3>Reverse DLL<a class="headerlink" href="#reverse-dll" title="Link to this heading">#</a></h3>
+<section id="dll-reverse">
+<h3>DLL Reverse<a class="headerlink" href="#dll-reverse" title="Link to this heading">#</a></h3>
 <p><strong>Problem Statement:</strong>
 Implement a method called reverse() that reverses the order of the nodes in the list.
 This method should reverse the order of the nodes in the list by manipulating the pointers of each node, not by swapping the values within the nodes.</p>
@@ -895,6 +911,73 @@ Consider the following doubly linked list:</p>
 </pre></div>
 </div>
 </section>
+<section id="dll-partitioned">
+<h3>DLL Partitioned<a class="headerlink" href="#dll-partitioned" title="Link to this heading">#</a></h3>
+<p><strong>Problem Statement:</strong></p>
+<p>Write a method called partitionList that rearranges the nodes in a doubly linked list so that all nodes with values less than a given number x come before nodes greater than or equal to x.</p>
+<p>This must be done by relinking the existing nodes (not by creating new ones). The method should update both .next and .prev pointers correctly.</p>
+<p>The relative order of nodes within each partition must be preserved.</p>
+<p><strong>📌 Example Inputs and Outputs:</strong></p>
+<p>Input: 3 &lt;-&gt; 8 &lt;-&gt; 5 &lt;-&gt; 10 &lt;-&gt; 2 &lt;-&gt; 1, x = 5
+Output: 3 &lt;-&gt; 2 &lt;-&gt; 1 &lt;-&gt; 8 &lt;-&gt; 5 &lt;-&gt; 10</p>
+<p>Input: 1 &lt;-&gt; 2 &lt;-&gt; 3, x = 5
+Output: 1 &lt;-&gt; 2 &lt;-&gt; 3</p>
+<p>Input: 6 &lt;-&gt; 7 &lt;-&gt; 8, x = 5
+Output: 6 &lt;-&gt; 7 &lt;-&gt; 8</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">// Method to partition the list</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">partitionList</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">head</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">head</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">lessHead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">lessTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">greaterHead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">greaterTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">head</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">nextNode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"> </span><span class="c1">// save next node</span>
+<span class="w">            </span><span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">            </span><span class="n">current</span><span class="p">.</span><span class="na">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// append to less list</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lessHead</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">lessHead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lessTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">lessTail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">current</span><span class="p">.</span><span class="na">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lessTail</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">lessTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// append to greater or equal list</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">greaterHead</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">greaterHead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greaterTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">greaterTail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">current</span><span class="p">.</span><span class="na">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greaterTail</span><span class="p">;</span>
+<span class="w">                    </span><span class="n">greaterTail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextNode</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Combine the two lists</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lessTail</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lessHead</span><span class="p">;</span>
+<span class="w">            </span><span class="n">lessTail</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greaterHead</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">greaterHead</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="n">greaterHead</span><span class="p">.</span><span class="na">prev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lessTail</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// less list is empty</span>
+<span class="w">            </span><span class="n">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">greaterHead</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="dll-reverse-between-todo">
+<h3>DLL Reverse Between <code class="docutils literal notranslate"><span class="pre">TODO</span></code><a class="headerlink" href="#dll-reverse-between-todo" title="Link to this heading">#</a></h3>
+</section>
+<section id="dll-swap-nodes-in-pairs-todo">
+<h3>DLL Swap Nodes in Pairs <code class="docutils literal notranslate"><span class="pre">TODO</span></code><a class="headerlink" href="#dll-swap-nodes-in-pairs-todo" title="Link to this heading">#</a></h3>
+</section>
 </section>
 </section>
 
@@ -919,11 +1002,11 @@ Consider the following doubly linked list:</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../../golang/index.html"
+       href="stack.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Golang</p>
+        <p class="prev-next-title">Stack</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -949,8 +1032,11 @@ Consider the following doubly linked list:</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interview-leetcode-questions">Interview / LeetCode Questions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#palindrome-checker">Palindrome Checker</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reverse-dll">Reverse DLL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-palindrome-checker">DLL Palindrome Checker</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-reverse">DLL Reverse</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-partitioned">DLL Partitioned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-reverse-between-todo">DLL Reverse Between <code class="docutils literal notranslate"><span class="pre">TODO</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dll-swap-nodes-in-pairs-todo">DLL Swap Nodes in Pairs <code class="docutils literal notranslate"><span class="pre">TODO</span></code></a></li>
 </ul>
 </li>
 </ul>

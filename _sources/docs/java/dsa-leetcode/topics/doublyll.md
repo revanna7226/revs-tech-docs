@@ -259,7 +259,7 @@ Here’s a detailed summary of all the **methods implemented** in your `DoublyLi
 
 ## Interview / LeetCode Questions
 
-### Palindrome Checker
+### DLL Palindrome Checker
 
 **Problem Statement:**
 
@@ -296,7 +296,7 @@ Return Type: `boolean`
     }
 ```
 
-### Reverse DLL
+### DLL Reverse
 
 **Problem Statement:**
 Implement a method called reverse() that reverses the order of the nodes in the list.
@@ -344,3 +344,76 @@ After calling reverse(), the list should be:
         tail = temp;
     }
 ```
+
+### DLL Partitioned
+
+**Problem Statement:**
+
+Write a method called partitionList that rearranges the nodes in a doubly linked list so that all nodes with values less than a given number x come before nodes greater than or equal to x.
+
+This must be done by relinking the existing nodes (not by creating new ones). The method should update both .next and .prev pointers correctly.
+
+The relative order of nodes within each partition must be preserved.
+
+**📌 Example Inputs and Outputs:**
+
+Input: 3 <-> 8 <-> 5 <-> 10 <-> 2 <-> 1, x = 5
+Output: 3 <-> 2 <-> 1 <-> 8 <-> 5 <-> 10
+
+Input: 1 <-> 2 <-> 3, x = 5
+Output: 1 <-> 2 <-> 3
+
+Input: 6 <-> 7 <-> 8, x = 5
+Output: 6 <-> 7 <-> 8
+
+```java
+    // Method to partition the list
+    public void partitionList(int x) {
+
+        if (head == null || head.next == null) return;
+
+        Node lessHead = null, lessTail = null;
+        Node greaterHead = null, greaterTail = null;
+        Node current = head;
+
+        while (current != null) {
+            Node nextNode = current.next; // save next node
+            current.next = null;
+            current.prev = null;
+
+            if (current.value < x) {
+                // append to less list
+                if (lessHead == null) {
+                    lessHead = lessTail = current;
+                } else {
+                    lessTail.next = current;
+                    current.prev = lessTail;
+                    lessTail = current;
+                }
+            } else {
+                // append to greater or equal list
+                if (greaterHead == null) {
+                    greaterHead = greaterTail = current;
+                } else {
+                    greaterTail.next = current;
+                    current.prev = greaterTail;
+                    greaterTail = current;
+                }
+            }
+            current = nextNode;
+        }
+
+        // Combine the two lists
+        if (lessTail != null) {
+            head = lessHead;
+            lessTail.next = greaterHead;
+            if (greaterHead != null) greaterHead.prev = lessTail;
+        } else { // less list is empty
+            head = greaterHead;
+        }
+    }
+```
+
+### DLL Reverse Between `TODO`
+
+### DLL Swap Nodes in Pairs `TODO`
