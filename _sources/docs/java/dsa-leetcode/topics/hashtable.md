@@ -145,7 +145,114 @@ ConcurrentHashMap<K, V>
 ## 👨🏻‍💻 **9. Custom HashTable Implementation**
 
 ```java
+package com.revs;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomHashTable {
+    private Node[] dataMap;
+    private int size;
+
+    class Node {
+        String key;
+        int value;
+        Node next;
+
+        Node(String key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    CustomHashTable(int size) {
+        this.size = size;
+        this.dataMap = new Node[size];
+    }
+
+    CustomHashTable() {
+        this(7);
+    }
+
+    // 1
+    private int hash(String key) {
+        int hash = 0;
+        char[] keyChars = key.toCharArray();
+
+        for (int i = 0; i < keyChars.length; i++) {
+            int asciiValue = keyChars[i];
+            hash = (hash + asciiValue * 23) % size;
+        }
+        return hash;
+    }
+
+    // 2
+    public void set(String key, int value) {
+        int index = hash(key);
+
+        Node newNode = new Node(key, value);
+
+        if(dataMap[index] == null) {
+            dataMap[index] = newNode;
+        } else {
+            Node temp = dataMap[index];
+            while(temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    // 3
+    public int get(String key) {
+        int index = hash(key);
+        Node temp = dataMap[index];
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                return temp.value;
+            }
+            temp = temp.next;
+        }
+        return 0;
+    }
+
+    // 4
+    public List<String> keys() {
+        List<String> keys = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Node temp = dataMap[i];
+
+            while(temp != null) {
+                keys.add(temp.key);
+                temp = temp.next;
+            }
+        }
+        return keys;
+    }
+
+    public void printTable() {
+        for (int i = 0; i < dataMap.length; i++) {
+            System.out.println(i + ":");
+            Node temp = dataMap[i];
+            while (temp != null) {
+                System.out.println("   {" + temp.key + "= " + temp.value + "}");
+                temp = temp.next;
+            }
+        }
+    }
+
+    public static void main( String[] args ) {
+
+        CustomHashTable table = new CustomHashTable();
+        table.set("A", 32);
+        table.set("B", 25);
+        table.set("C", 17);
+        table.set("D", 15);
+        table.printTable();
+
+    }
+
+}
 ```
 
 ## 💻 **10. Example: Hashtable for Counting Frequencies**
