@@ -22,6 +22,7 @@ docs/mdcheetsheet
 ```
 
 :::{seealso}
-[Revannaswamy N | Profile](https://revanna7226.github.io)
-[GitHub Pages | Handbook](https://revanna7226.github.io)
-:::
+
+- [Revannaswamy N | Profile](https://revanna7226.github.io)
+- [GitHub Pages | Handbook](https://revanna7226.github.io/revs-tech-docs/)
+  :::
