@@ -509,6 +509,638 @@ public class UnionOfTwoLists {
 
 ---
 
+## Given a list of integers, find all numbers divisible by 3 and 5
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+public static void main( String[] args ) {
+    List<Integer> integerList = IntStream.rangeClosed(0,50)
+        .filter(num -> num % 3 == 0 && num % 5 == 0)
+        .boxed()
+        .toList();
+    System.out.println(integerList);
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[0, 15, 30, 45]
+```
+
+:::
+::::
+
+---
+
+## Given a list of strings, remove all empty or null values.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+public static void main( String[] args ) {
+    List<String> strings = Arrays.asList("Java", "", null, "Spring", " ", "Boot", null, "Streams");
+
+    List<String> filtered = strings.stream()
+        .filter(Objects::nonNull)
+        .map(String::trim)
+        .filter(str -> !str.isEmpty())
+        .toList();
+
+    System.out.println(filtered);
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[Java, Spring, Boot, Streams]
+```
+
+:::
+::::
+
+---
+
+## Given a list of integers, create a list of their squares without duplicates.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 2, 5, 3, 6, 4);
+        List<Integer> squared = numbers.stream()
+            .distinct()
+            .map(num -> num * num)
+            .toList();
+        System.out.println(squared);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[4, 9, 16, 25, 36]
+
+```
+
+:::
+::::
+
+---
+
+## Find all words in a list whose length > 5
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<String> words = Arrays.asList("Spring", "Boot", "Microservices", "Java", "Stream", "Programming");
+
+        List<String> wordsFiltered = words.stream()
+            .filter(str -> str.length() > 5)
+            .toList();
+
+        System.out.println(wordsFiltered);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[Spring, Microservices, Stream, Programming]
+
+```
+
+:::
+::::
+
+---
+
+## Print Prime NUmbers from 1 to 100
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+
+        List<Integer> primeNumbers = IntStream.rangeClosed(1, 50)
+                .boxed()
+                .filter(App::isPrime)
+                .toList();
+        System.out.println(primeNumbers);
+    }
+
+    private static boolean isPrime(Integer value) {
+        if (value <= 1) return false;
+        return IntStream.rangeClosed(2, (int) Math.sqrt(value))
+            .boxed()
+            .noneMatch(num -> value % num == 0);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+
+```
+
+:::
+::::
+
+---
+
+## Given a list of names, print those ending with “a”
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+
+        List<String> names = Arrays.asList("Anita", "Ravi", "Suma", "Kiran", "Lata", "Meena", "Rahul");
+        List<String> endsWithA = names.stream()
+            .filter(str -> str.endsWith("a") || str.endsWith("A"))
+            .toList();
+
+        System.out.println(endsWithA);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[Anita, Suma, Lata, Meena]
+
+```
+
+:::
+::::
+
+---
+
+## Given a list of integers, return a new list containing only odd numbers multiplied by 2.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        List<Integer> oddNumSquared = numbers.stream()
+            .filter(num -> num % 2 != 0)
+            .map(num -> num * 2)
+            .toList();
+
+        System.out.println(oddNumSquared);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[2, 6, 10, 14, 18]
+
+```
+
+:::
+::::
+
+---
+
+## Convert a list of names to title case (e.g., “john” → “John”).
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<String> names = Arrays.asList("john", "ALICE", "robert", "sOPHIA", "mike");
+        List<String> titleCaseNames = names.stream()
+            .map(str -> str.substring(0, 1).toUpperCase().concat(str.substring(1).toLowerCase()))
+            .toList();
+        System.out.println(titleCaseNames);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+[John, Alice, Robert, Sophia, Mike]
+
+```
+
+:::
+::::
+
+---
+
+## Compute the product of all elements in a list.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 5);
+
+        Integer product = numbers.stream()
+            .reduce(1, (num1, num2) -> num1 * num2);
+        System.out.println(product);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+120
+```
+
+:::
+::::
+
+---
+
+## Find the minimum number in a list.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<Integer> numbers = Arrays.asList(10, 3, 45, 7, 2, 19);
+
+        Optional<Integer> minNumnber = numbers.stream()
+            .min(Integer::compareTo);
+        minNumnber.ifPresent(System.out::println);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+2
+```
+
+:::
+::::
+
+---
+
+## Find the sum of all even numbers.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        Integer sum = IntStream.rangeClosed(0, 50)
+            .boxed()
+            .filter(num -> num % 2 == 0)
+            .reduce(0, Integer::sum);
+
+        System.out.println(sum.intValue());
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+650
+```
+
+:::
+::::
+
+---
+
+## Find the average of all squares of a list of numbers.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+
+        double asDouble = numbers.stream()
+            .mapToInt(n -> n * n)
+            .average().orElse(0.0);
+
+        System.out.println(asDouble);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+13.5
+```
+
+:::
+::::
+
+---
+
+## Count how many numbers are greater than 100.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<Integer> numbers = Arrays.asList(50, 120, 300, 99, 101, 200, 45);
+
+        double count = numbers.stream()
+                .filter(num -> num > 100)
+                    .count();
+
+        System.out.println(count);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+4
+```
+
+:::
+::::
+
+---
+
+## Find the longest string in a list.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+    public static void main( String[] args ) {
+        List<String> words = Arrays.asList("Java", "SpringBoot", "Microservices", "API", "Stream");
+
+        String longestString = words.stream()
+            .filter(Objects::nonNull)
+            .map(String::trim)
+            .reduce(words.get(0), (s1, s2) -> s1.length() > s2.length() ? s1 : s2);
+
+        System.out.println(longestString);
+    }
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+Microservices
+```
+
+:::
+::::
+
+---
+
+## Group a list of Employee objects by department name.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+record Employee(int id, String name, double sal, String dept){}
+
+public class App
+{
+    public static void main( String[] args ) {
+        List<Employee> employees = List.of(
+            new Employee(1,"Revs", 120, "IT"),
+            new Employee(2, "Anjali", 450, "SALES"),
+            new Employee(3, "Sanjana", 451, "IT")
+                                          );
+
+        Map<String, Long> empCountByDept = employees.stream()
+            .collect(Collectors.groupingBy(Employee::dept, Collectors.counting()));
+
+        System.out.println(empCountByDept);
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+{IT=2, SALES=1}
+```
+
+:::
+::::
+
+---
+
+## For each department, compute average salary.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+record Employee(int id, String name, double sal, String dept){}
+
+public class App
+{
+    public static void main( String[] args ) {
+        List<Employee> employees = List.of(
+            new Employee(1,"Revs", 1000, "IT"),
+            new Employee(2, "Anjali", 1000, "SALES"),
+            new Employee(3, "Sanjana", 5000, "IT"),
+            new Employee(4, "Manu", 3000, "SALES")
+                                          );
+
+        Map<String, Double> empCountByDept = employees.stream()
+            .collect(Collectors.groupingBy(
+                Employee::dept,
+                Collectors.averagingDouble(Employee::sal)));
+
+        System.out.println(empCountByDept);
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+{IT=3000.0, SALES=2000.0}
+```
+
+:::
+::::
+
+---
+
+## Count employees in each age group (e.g., <30, 30-50, >50).
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+record Employee(int id, String name, int age, double sal, String dept){}
+
+public class App
+{
+    public static void main( String[] args ) {
+        List<Employee> employees = List.of(
+            new Employee(1,"Revs", 32, 1000, "IT"),
+            new Employee(2, "Anjali", 17, 1000, "SALES"),
+            new Employee(3, "Sanjana", 14, 5000, "IT"),
+            new Employee(4, "Manu", 8,3000, "SALES"),
+            new Employee(5, "Savi", 35, 2000, "SALES")
+                                          );
+
+        Map<String, Long> empCountByDept = employees.stream()
+            .collect(Collectors.groupingBy(
+                e -> getAgeGroup(e.age()),
+                Collectors.counting()
+        ));
+        System.out.println(empCountByDept);
+    }
+
+    private static String getAgeGroup(int age) {
+        String ageGroup;
+
+        if (age < 10) {
+            ageGroup = "Under 10";
+        } else if (age < 20) {
+            ageGroup = "Under 20";
+        } else {
+            ageGroup = "Under 30";
+        }
+        return ageGroup;
+
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+{Under 30=2, Under 10=1, Under 20=2}
+```
+
+:::
+::::
+
+---
+
+## Partition employees based on whether they are permanent or contract.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+record Employee(int id, String name, int age, double sal, String dept, boolean isPermanent){}
+
+public class App
+{
+    public static void main( String[] args ) {
+        List<Employee> employees = List.of(
+            new Employee(1,"Revs", 32, 1000, "IT", true),
+            new Employee(2, "Anjali", 17, 1000, "SALES", false),
+            new Employee(3, "Sanjana", 14, 5000, "IT", true),
+            new Employee(4, "Manu", 8,3000, "SALES", false),
+            new Employee(5, "Savi", 35, 2000, "SALES", false)
+        );
+
+        Map<Boolean, List<Employee>> permanentEmps = employees.stream()
+            .collect(Collectors.partitioningBy(Employee::isPermanent, Collectors.toList()));
+
+        System.out.println("Permanent Employees: ");
+        permanentEmps.get(true).forEach(employee -> System.out.println(" - " + employee.name()));
+
+        System.out.println("Contract Employees: ");
+        permanentEmps.get(false).forEach(employee -> System.out.println(" - " + employee.name()));
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+Permanent Employees:
+ - Revs
+ - Sanjana
+Contract Employees:
+ - Anjali
+ - Manu
+ - Savi
+
+```
+
+:::
+::::
+
+---
+
+## Given a list of lists of integers, flatten and find the sum of all numbers.
+
+::::{tab-set}
+:::{tab-item} Code
+
+```java
+public class FlattenAndSum {
+    public static void main(String[] args) {
+        List<List<Integer>> numbers = List.of(
+            Arrays.asList(1, 2, 3),
+            Arrays.asList(4, 5),
+            Arrays.asList(6, 7, 8, 9)
+        );
+
+        // Flatten and find the sum of all numbers
+        int totalSum = numbers.stream()
+                .flatMap(List::stream)   // flatten list of lists
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        System.out.println("Sum of all numbers = " + totalSum);
+    }
+}
+```
+
+:::
+:::{tab-item} Output
+
+```{code-block} text
+Sum of all numbers = 45
+```
+
+:::
+::::
+
+---
+
 Add Here
 
 ---
@@ -534,7 +1166,6 @@ paste your code here
 
 ```{code-block} text
 Output goes here
-
 ```
 
 :::

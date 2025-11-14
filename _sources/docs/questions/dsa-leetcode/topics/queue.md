@@ -167,7 +167,7 @@ You can implement a queue manually using an **array** or **linked list**:
 
 ### Using Linked List:
 
-````{code-block} java
+```{code-block} java
 :caption: Custom Queue Implementation using Linked List
 
 package com.revs;
@@ -243,6 +243,7 @@ public class CustomQueue {
     }
 
 }
+```
 
 ```{code-block} java
 :caption: Main Class
@@ -262,7 +263,7 @@ public class App
     }
 }
 
-````
+```
 
 | Method               | Description                                              |
 | -------------------- | -------------------------------------------------------- |

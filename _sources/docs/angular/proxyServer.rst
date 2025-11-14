@@ -31,16 +31,17 @@ Configure proxy configuration in “serve” section of `angular.json` file.
 
 .. code-block:: javascript
 
-    “serve”: {
-        “builder”: “@angular-devkit/build-angular:dev-server”,
-        “options”: {
-            “browserTarget”: “proxy-for-angular:build”,
-            “proxyConfig”: “proxy.conf.js”,
-            “port”: 4200
+    "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "options": {
+            "browserTarget": "proxy-for-angular:build",
+            "proxyConfig": "proxy.conf.js",
+            "port": 4200
         },
-        “configurations”: {
-            “production”: {
-                “browserTarget”: “proxy-for-angular:build:production”
-            },
-        ...
+        "configurations": {
+            "production": {
+            "browserTarget": "proxy-for-angular:build:production"
+            }
+        }
     }
+

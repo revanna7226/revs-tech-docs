@@ -1,3 +1,6 @@
+:numbered:
+:maxdepth: 2
+
 # Java Questions
 
 ## Core Java
@@ -200,7 +203,7 @@ Here:
 
 ### Describe Java Collections hierarchy.
 
-[Java Collections Framework](../java/basics/collections/introduction#java-collections-interfaces)
+[Java Collections Framework](../java/basics/collections/introduction)
 
 1. What is the difference between a Set and a List?
 2. What is the difference between a Set and a Map?
@@ -400,26 +403,322 @@ A **Stream** in Java is a **sequence of data elements** that supports **function
 
 ## Java Springboot
 
-1. What is Spring Boot?
-1. What are the advantages of Spring Boot?
-1. What are the features of Spring Boot?
-1. How to create Spring Boot application using Maven?
-1. How to create Spring Boot project using Spring Initializer?
-1. How to create Spring Boot project using boot CLI?
-1. How to create simple Spring Boot application?
-1. What are the Spring Boot Annotations?
-1. What is Spring Boot dependency management?
-1. What are the Spring Boot properties?
-1. What are the Spring Boot Starters?
-1. What is Spring Boot Actuator?
-1. What is thymeleaf?
-1. How to use thymeleaf?
-1. How to connect Spring Boot to the database using JPA?
-1. How to connect Spring Boot application to database using JDBC?
-1. What is @RestController annotation in Spring Boot?
-1. What is @RequestMapping annotation in Spring Boot?
-1. How to create Spring Boot application using Spring Starter Project Wizard?
-1. Spring Vs Spring Boot?
+### What are the advantages of Spring Boot?
+
+### What is Spring Boot?
+
+### What are the features of Spring Boot?
+
+### How to create Spring Boot application using Maven?
+
+### How to create Spring Boot project using Spring Initializer?
+
+### How to create Spring Boot project using boot CLI?
+
+### How to create simple Spring Boot application?
+
+### What are the Spring Boot Annotations?
+
+### What is Spring Boot dependency management?
+
+### What are the Spring Boot properties?
+
+### What are the Spring Boot Starters?
+
+### What is Spring Boot Actuator?
+
+### What is thymeleaf?
+
+### How to use thymeleaf?
+
+### How to connect Spring Boot to the database using JPA?
+
+### How to connect Spring Boot application to database using JDBC?
+
+### What is @RestController annotation in Spring Boot?
+
+### What is @RequestMapping annotation in Spring Boot?
+
+### How to create Spring Boot application using Spring Starter Project Wizard?
+
+### 20. Spring Vs Spring Boot?
+
+| Framework            | Description                                                                                                                                                          |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Spring Framework** | A **comprehensive Java framework** providing the core features for building enterprise-grade Java applications — dependency injection (IoC), AOP, transactions, etc. |
+| **Spring Boot**      | A **layer built on top of Spring Framework** that simplifies configuration, setup, and deployment by providing defaults, auto-configuration, and embedded servers.   |
+
+So, **Spring Boot = Spring + Opinionated Configuration + Auto Setup**
+
+---
+
+**Key Differences**
+
+| Feature                   | **Spring**                                         | **Spring Boot**                                                        |
+| ------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| **Setup**                 | Manual — lots of XML or Java-based config required | Auto-configuration — minimal setup                                     |
+| **Configuration Style**   | XML / JavaConfig                                   | Pure Java + annotations                                                |
+| **Dependency Management** | You specify versions manually                      | Uses **Spring Boot Starter POMs** to manage dependencies automatically |
+| **Server Setup**          | Needs an external server (Tomcat, Jetty, etc.)     | Comes with an **embedded server** (Tomcat, Jetty, Undertow)            |
+| **Deployment**            | Create a WAR and deploy to server                  | Run directly using `java -jar`                                         |
+| **Auto Configuration**    | ❌ No                                              | ✅ Yes — via `@EnableAutoConfiguration`                                |
+| **Actuator / Metrics**    | ❌ Manual setup                                    | ✅ Comes with `spring-boot-starter-actuator`                           |
+| **Spring Initializer**    | ❌ Not available                                   | ✅ Provides `start.spring.io` for instant project setup                |
+| **Use Case**              | Flexible enterprise framework                      | Rapid application development                                          |
+
+---
+
+### 21. How Auto-configuration works in Spring Boot?
+
+In simple terms: Spring Boot auto-configuration tries to “guess” and set up sensible defaults for your Spring application **based on what’s on the classpath**, what beans you have already defined, what properties you have configured — so that you don’t have to wire everything manually.
+
+For example: if you have `spring-boot-starter-web` on the classpath, but you haven’t defined your own `DispatcherServlet` or `WebMvcConfigurer`, Spring Boot will create them for you.
+
+**1. Activation — how auto-configuration is triggered**
+
+Here are the main steps when your Spring Boot application starts:
+
+1. You annotate your main class with `@SpringBootApplication`, which is a meta-annotation including `@EnableAutoConfiguration`.
+2. Spring Boot bootstraps the `SpringApplication`, creates an `ApplicationContext`, environment, etc.
+3. As part of startup, Spring Boot triggers its auto‐configuration mechanism — it loads a list of auto‐configuration candidate classes and then processes them under conditional checks.
+4. For each candidate configuration class, Spring Boot evaluates a set of `@Conditional*` annotations (like `@ConditionalOnClass`, `@ConditionalOnMissingBean`, `@ConditionalOnProperty`, etc.) to decide whether to apply that auto-configuration.
+5. If the conditions pass, the configuration class is imported (as a `@Configuration`) and its beans are registered.
+
+Thus, auto-configuration is opt-in (via `@EnableAutoConfiguration`) though in practice `@SpringBootApplication` makes this automatic.
+
+**2. How Spring Boot finds the auto-configuration classes internally**
+
+This is a key part of the “magic”.
+
+- In older versions of Spring Boot, auto-configuration classes were listed in `META-INF/spring.factories`.
+- In more recent versions (from ~2.7 onward, and into 3.x) Spring Boot uses a file `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` which lists all the auto-configuration classes.
+- When your app starts, Spring Boot uses the `ImportCandidates` mechanism to load that list and treat each listed class as a potential auto-configuration class.
+- The auto-config classes themselves are annotated with `@AutoConfiguration` (or meta‐annotated) (which itself is a `@Configuration` with `proxyBeanMethods=false`).
+- The candidate classes are filtered by conditions (class‐path, bean presence, etc) **before** creating the full configuration.
+
+In effect:
+
+> Your “starters” bring in dependencies, which bring in auto-configuration module(s) that list all the configuration classes in that metadata file. Spring Boot picks them up automatically.
+
+---
+
+**3. The conditional mechanism — when auto-configuration actually applies**
+
+Auto-config classes rarely always apply; they are gated by conditions so as not to interfere or override your explicit configuration. Here are the typical patterns:
+
+- `@ConditionalOnClass(X.class)`: only apply if class X is on the classpath. (E.g., if `javax.servlet.Servlet` is present, then web auto-configuration may kick in.) ([learnitweb.com][5])
+- `@ConditionalOnMissingBean(SomeBean.class)`: only apply if you haven't already declared your own bean of that type. This allows you to override auto-configured beans by simply declaring your own in your configuration. ([learnitweb.com][5])
+- `@ConditionalOnProperty(prefix = "...", name = "...", havingValue = "...", matchIfMissing = ...)`: only apply if a certain property has a certain value (or is missing).
+- `@ConditionalOnResource`, `@ConditionalOnWebApplication`, etc: other context/condition types. ([docs.enterprise.spring.io][6])
+- Ordering/precedence annotations: `@AutoConfigureBefore`, `@AutoConfigureAfter`, `@AutoConfigureOrder` allow auto-config classes to specify ordering relative to each other. ([Home][3])
+
+Because of these conditions, auto-configuration is “safe” — i.e., if you define your own beans or exclude certain dependencies, the auto-configuration backs off.
+
+---
+
+**4. Execution flow in more detail**
+
+Here’s a more step-by-step flow of what happens internally when you run a Spring Boot application:
+
+1. You call `SpringApplication.run(...)`.
+2. `SpringApplication` prepares the `Environment` (property sources, profiles), creates an `ApplicationContext`.
+3. The `@SpringBootApplication` triggers component scanning, configuration, and enables auto-configuration.
+4. Spring Boot reads the auto-configuration metadata (the `AutoConfiguration.imports` file) to build the list of candidates.
+5. It performs a “condition evaluation” phase: for each candidate auto-config class, it checks all its `@Conditional*` annotations (via `ConditionEvaluationReport`) to decide whether to include it. (This evaluation is also logged if you run with `--debug` or `logging.level.org.springframework.boot.autoconfigure=DEBUG`). ([Home][7])
+6. The ones that pass the conditions are “imported” into the context (via `@Import`). In effect, each becomes a `@Configuration` class.
+7. Within those configuration classes, `@Bean` methods or `@Import` of further internal configuration classes run, registering beans. Because `proxyBeanMethods=false` typical for auto-config, less overhead for CGLIB proxies.
+8. Because many auto-config beans are conditional on missing beans, etc., they will only register if you haven’t configured something explicitly.
+9. After beans are registered, normal Spring context refresh happens (post-processors, etc).
+10. The application context is up and running with a mix of your explicit beans + auto-configured beans.
+
+---
+
+**5. Customising / Overriding auto-configuration**
+
+Because auto-configuration is designed to back off, you can customise behaviour:
+
+- If you declare your own bean of the same type (or bean name) that an auto-config would create, it will usually skip creating its default.
+- You can exclude specific auto-configuration classes using `@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class, … })` or via property `spring.autoconfigure.exclude=...`. ([Home][7])
+- You can also create your own auto-configuration classes (for your own library) by using `@AutoConfiguration`, listing them in the `AutoConfiguration.imports` file, using `@Conditional*` annotations. ([docs.enterprise.spring.io][6])
+
+---
+
+**6. Example code snippet**
+
+Here’s a very simplified example of how an auto-configuration class might look:
+
+```java
+package com.example.autoconfig;
+
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
+
+@AutoConfiguration
+@ConditionalOnClass(name = "com.example.SomeLibrary")
+public class SomeLibraryAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SomeService someService() {
+        return new SomeServiceImpl();
+    }
+
+    // ... more beans ...
+}
+```
+
+In this example:
+
+- `@AutoConfiguration` marks the class as an auto-config candidate.
+- `@ConditionalOnClass` ensures this config only kicks in if `com.example.SomeLibrary` is present.
+- `@ConditionalOnMissingBean` ensures that if the application already defined a `SomeService` bean, this default bean won’t be created.
+
+You would then ensure that `SomeLibraryAutoConfiguration` is listed in `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` so that Spring Boot picks it up.
+
+---
+
+**7. What’s new / changed in Spring Boot 3.x (including 3.5) ?**
+
+While the core mechanisms have remained consistent, some newer refinements worth noting:
+
+- The `@AutoConfiguration` annotation (and the `AutoConfiguration.imports` file) are more strongly emphasised in recent versions.
+- The `proxyBeanMethods=false` default in these configuration classes (via `@Configuration(proxyBeanMethods=false)`) helps to reduce overhead for auto-configs (as they’re usually self-contained).
+- More fine-grained conditional annotations and better tooling around condition evaluation reporting, making it easier to trace why an auto-config did or did not apply (`ConditionEvaluationReport`).
+- Improved modularisation of auto-configuration modules so that smaller dependencies lead to fewer unused auto-config classes being evaluated.
+
+### 22. How @Autowired works in Spring Boot?
+
+`@Autowired` tells Spring:
+
+> “Find a suitable bean from the ApplicationContext that matches this field/constructor/setter parameter type, and inject it automatically.”
+
+Internally, autowiring is handled by a **BeanPostProcessor** called:
+
+> 🧠 `AutowiredAnnotationBeanPostProcessor`
+
+This class is registered automatically by the Spring container during context initialization.
+
+Here’s what happens step-by-step under the hood:
+
+---
+
+**Step 1: Bean definition scanning**
+
+During the **component scan**, Spring:
+
+- Reads your classpath.
+- Finds classes annotated with `@Component`, `@Service`, `@Repository`, `@Controller`, etc.
+- Registers them as **BeanDefinitions** inside the **ApplicationContext**.
+
+👉 At this point, no objects are created yet — only metadata is stored.
+
+---
+
+**Step 2: Context creates beans**
+
+When Spring starts creating beans (usually via `DefaultListableBeanFactory`):
+
+1. It instantiates each bean (via constructors or factory methods).
+2. Before the bean is fully initialized, **BeanPostProcessors** are triggered.
+
+One of these is `AutowiredAnnotationBeanPostProcessor`.
+
+---
+
+**Step 3: `AutowiredAnnotationBeanPostProcessor` kicks in**
+
+This processor inspects each bean’s class using reflection.
+
+For every field, method, or constructor:
+
+- If it finds `@Autowired` (or `@Value`, `@Inject`, etc.), it registers an **injection point**.
+- It records what dependency is required (the type, qualifiers, optional flag, etc.).
+
+---
+
+**Step 4: Dependency resolution**
+
+When the processor sees an `@Autowired` field like:
+
+```java
+@Autowired
+private PaymentService paymentService;
+```
+
+It calls the **BeanFactory’s `resolveDependency()`** method:
+
+```java
+beanFactory.resolveDependency(DependencyDescriptor, String requestingBeanName)
+```
+
+This method:
+
+1. Looks for a matching bean in the context by type.
+2. If multiple candidates exist, it checks:
+
+   - `@Primary`
+   - `@Qualifier`
+   - Bean name
+   - Generic types (for `List<SomeType>`, `Map<String, SomeType>`, etc.)
+
+3. If exactly one match is found → inject it.
+4. If none → throw `NoSuchBeanDefinitionException`.
+5. If multiple and ambiguous → throw `NoUniqueBeanDefinitionException`.
+
+---
+
+**Step 5: Injection (Reflection-based)**
+
+Once the dependency is resolved, Spring uses **reflection** to inject it:
+
+- **Field injection:** Uses `ReflectionUtils.setField()`
+- **Setter injection:** Invokes the setter method
+- **Constructor injection:** Injects during bean creation
+
+For example:
+
+```java
+ReflectionUtils.makeAccessible(field);
+ReflectionUtils.setField(field, beanInstance, dependencyInstance);
+```
+
+---
+
+**Step 6: Bean lifecycle continues**
+
+After dependency injection:
+
+- Other `BeanPostProcessors` (like `@PostConstruct`, `InitializingBean`, etc.) run.
+- The fully-initialized bean is stored in the **ApplicationContext** singleton cache.
+
+---
+
+Constructor Injection (Preferred in Spring Boot 3.5)
+
+In Spring Boot 3+, **constructor-based injection** is now preferred because it:
+
+- Makes dependencies `final` (immutable)
+- Supports easier testing
+- Avoids reflection overhead
+
+Example:
+
+```java
+@Service
+public class OrderService {
+
+    private final PaymentService paymentService;
+
+    @Autowired // can be omitted since Boot 3.5 infers automatically
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+}
+```
+
+💡 Spring will automatically detect that this constructor requires a `PaymentService` and inject it — even if `@Autowired` is not present (since only one constructor exists).
 
 ## Basic Design Concepts
 

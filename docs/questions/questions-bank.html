@@ -329,26 +329,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../java/testing/jmeter.html">Apache JMeter</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../java/dsa-leetcode/index.html">Java DSA + LeetCode</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/introduction.html">Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/bigo.html">Big O Notation in Java: Explained</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/linkedlist.html">Linked List</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/doublyll.html">Doubly Linked List</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/stack.html">Stack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/queue.html">Queue</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/binarytree.html">Binary Tree</a></li>
-
-
-
-
-
-
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="../java/dsa-leetcode/topics/hashtable.html">HashTable</a></li>
-</ul>
-</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../golang/index.html">Golang</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -395,6 +375,18 @@
 
 <li class="toctree-l3"><a class="reference internal" href="coding/snippet.html">Analyze the Output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="coding/programming.html">Coding Problems</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="dsa-leetcode/index.html">Java DSA + LeetCode</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/bigo.html">Big O Notation in Java: Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/linkedlist.html">Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/doublyll.html">Doubly Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/stack.html">Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/queue.html">Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/binarytree.html">Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/hashtable.html">HashTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dsa-leetcode/topics/basicsort.html">Basic Sorts</a></li>
 </ul>
 </details></li>
 </ul>
@@ -520,7 +512,31 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-tools-and-frameworks">Java Tools and Frameworks:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jvm">JVM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-unit-testing">Java Unit Testing:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-advantages-of-spring-boot">What are the advantages of Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot">What is Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-features-of-spring-boot">What are the features of Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-application-using-maven">How to create Spring Boot application using Maven?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-project-using-spring-initializer">How to create Spring Boot project using Spring Initializer?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-project-using-boot-cli">How to create Spring Boot project using boot CLI?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-simple-spring-boot-application">How to create simple Spring Boot application?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-annotations">What are the Spring Boot Annotations?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot-dependency-management">What is Spring Boot dependency management?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-properties">What are the Spring Boot properties?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-starters">What are the Spring Boot Starters?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot-actuator">What is Spring Boot Actuator?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-thymeleaf">What is thymeleaf?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-thymeleaf">How to use thymeleaf?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-connect-spring-boot-to-the-database-using-jpa">How to connect Spring Boot to the database using JPA?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-connect-spring-boot-application-to-database-using-jdbc">How to connect Spring Boot application to database using JDBC?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-restcontroller-annotation-in-spring-boot">What is @RestController annotation in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-requestmapping-annotation-in-spring-boot">What is @RequestMapping annotation in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-application-using-spring-starter-project-wizard">How to create Spring Boot application using Spring Starter Project Wizard?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-vs-spring-boot">20. Spring Vs Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-auto-configuration-works-in-spring-boot">21. How Auto-configuration works in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-autowired-works-in-spring-boot">22. How @Autowired works in Spring Boot?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-design-concepts">Basic Design Concepts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microservice">Microservice</a></li>
 </ul>
@@ -547,7 +563,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="java-questions">
+  <p>:numbered:
+:maxdepth: 2</p>
+<section id="java-questions">
 <h1>Java Questions<a class="headerlink" href="#java-questions" title="Link to this heading">#</a></h1>
 <section id="core-java">
 <h2>Core Java<a class="headerlink" href="#core-java" title="Link to this heading">#</a></h2>
@@ -839,7 +857,7 @@ It must obey the following rules:</p>
 </section>
 <section id="describe-java-collections-hierarchy">
 <h3>Describe Java Collections hierarchy.<a class="headerlink" href="#describe-java-collections-hierarchy" title="Link to this heading">#</a></h3>
-<p><a class="reference internal" href="#../java/basics/collections/introduction#java-collections-interfaces"><span class="xref myst">Java Collections Framework</span></a></p>
+<p><a class="reference internal" href="../java/basics/collections/introduction.html"><span class="doc std std-doc">Java Collections Framework</span></a></p>
 <ol class="arabic simple">
 <li><p>What is the difference between a Set and a List?</p></li>
 <li><p>What is the difference between a Set and a Map?</p></li>
@@ -1140,28 +1158,341 @@ Instead, they are <strong>loaded on demand</strong> by the ClassLoader when the 
 </section>
 <section id="java-springboot">
 <h2>Java Springboot<a class="headerlink" href="#java-springboot" title="Link to this heading">#</a></h2>
+<section id="what-are-the-advantages-of-spring-boot">
+<h3>What are the advantages of Spring Boot?<a class="headerlink" href="#what-are-the-advantages-of-spring-boot" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-spring-boot">
+<h3>What is Spring Boot?<a class="headerlink" href="#what-is-spring-boot" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-are-the-features-of-spring-boot">
+<h3>What are the features of Spring Boot?<a class="headerlink" href="#what-are-the-features-of-spring-boot" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-create-spring-boot-application-using-maven">
+<h3>How to create Spring Boot application using Maven?<a class="headerlink" href="#how-to-create-spring-boot-application-using-maven" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-create-spring-boot-project-using-spring-initializer">
+<h3>How to create Spring Boot project using Spring Initializer?<a class="headerlink" href="#how-to-create-spring-boot-project-using-spring-initializer" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-create-spring-boot-project-using-boot-cli">
+<h3>How to create Spring Boot project using boot CLI?<a class="headerlink" href="#how-to-create-spring-boot-project-using-boot-cli" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-create-simple-spring-boot-application">
+<h3>How to create simple Spring Boot application?<a class="headerlink" href="#how-to-create-simple-spring-boot-application" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-are-the-spring-boot-annotations">
+<h3>What are the Spring Boot Annotations?<a class="headerlink" href="#what-are-the-spring-boot-annotations" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-spring-boot-dependency-management">
+<h3>What is Spring Boot dependency management?<a class="headerlink" href="#what-is-spring-boot-dependency-management" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-are-the-spring-boot-properties">
+<h3>What are the Spring Boot properties?<a class="headerlink" href="#what-are-the-spring-boot-properties" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-are-the-spring-boot-starters">
+<h3>What are the Spring Boot Starters?<a class="headerlink" href="#what-are-the-spring-boot-starters" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-spring-boot-actuator">
+<h3>What is Spring Boot Actuator?<a class="headerlink" href="#what-is-spring-boot-actuator" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-thymeleaf">
+<h3>What is thymeleaf?<a class="headerlink" href="#what-is-thymeleaf" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-use-thymeleaf">
+<h3>How to use thymeleaf?<a class="headerlink" href="#how-to-use-thymeleaf" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-connect-spring-boot-to-the-database-using-jpa">
+<h3>How to connect Spring Boot to the database using JPA?<a class="headerlink" href="#how-to-connect-spring-boot-to-the-database-using-jpa" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-connect-spring-boot-application-to-database-using-jdbc">
+<h3>How to connect Spring Boot application to database using JDBC?<a class="headerlink" href="#how-to-connect-spring-boot-application-to-database-using-jdbc" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-restcontroller-annotation-in-spring-boot">
+<h3>What is &#64;RestController annotation in Spring Boot?<a class="headerlink" href="#what-is-restcontroller-annotation-in-spring-boot" title="Link to this heading">#</a></h3>
+</section>
+<section id="what-is-requestmapping-annotation-in-spring-boot">
+<h3>What is &#64;RequestMapping annotation in Spring Boot?<a class="headerlink" href="#what-is-requestmapping-annotation-in-spring-boot" title="Link to this heading">#</a></h3>
+</section>
+<section id="how-to-create-spring-boot-application-using-spring-starter-project-wizard">
+<h3>How to create Spring Boot application using Spring Starter Project Wizard?<a class="headerlink" href="#how-to-create-spring-boot-application-using-spring-starter-project-wizard" title="Link to this heading">#</a></h3>
+</section>
+<section id="spring-vs-spring-boot">
+<h3>20. Spring Vs Spring Boot?<a class="headerlink" href="#spring-vs-spring-boot" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Framework</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Spring Framework</strong></p></td>
+<td><p>A <strong>comprehensive Java framework</strong> providing the core features for building enterprise-grade Java applications — dependency injection (IoC), AOP, transactions, etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Spring Boot</strong></p></td>
+<td><p>A <strong>layer built on top of Spring Framework</strong> that simplifies configuration, setup, and deployment by providing defaults, auto-configuration, and embedded servers.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So, <strong>Spring Boot = Spring + Opinionated Configuration + Auto Setup</strong></p>
+<hr class="docutils" />
+<p><strong>Key Differences</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p><strong>Spring</strong></p></th>
+<th class="head"><p><strong>Spring Boot</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Setup</strong></p></td>
+<td><p>Manual — lots of XML or Java-based config required</p></td>
+<td><p>Auto-configuration — minimal setup</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Configuration Style</strong></p></td>
+<td><p>XML / JavaConfig</p></td>
+<td><p>Pure Java + annotations</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dependency Management</strong></p></td>
+<td><p>You specify versions manually</p></td>
+<td><p>Uses <strong>Spring Boot Starter POMs</strong> to manage dependencies automatically</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Server Setup</strong></p></td>
+<td><p>Needs an external server (Tomcat, Jetty, etc.)</p></td>
+<td><p>Comes with an <strong>embedded server</strong> (Tomcat, Jetty, Undertow)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Deployment</strong></p></td>
+<td><p>Create a WAR and deploy to server</p></td>
+<td><p>Run directly using <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-jar</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Auto Configuration</strong></p></td>
+<td><p>❌ No</p></td>
+<td><p>✅ Yes — via <code class="docutils literal notranslate"><span class="pre">&#64;EnableAutoConfiguration</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Actuator / Metrics</strong></p></td>
+<td><p>❌ Manual setup</p></td>
+<td><p>✅ Comes with <code class="docutils literal notranslate"><span class="pre">spring-boot-starter-actuator</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Spring Initializer</strong></p></td>
+<td><p>❌ Not available</p></td>
+<td><p>✅ Provides <code class="docutils literal notranslate"><span class="pre">start.spring.io</span></code> for instant project setup</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Use Case</strong></p></td>
+<td><p>Flexible enterprise framework</p></td>
+<td><p>Rapid application development</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="how-auto-configuration-works-in-spring-boot">
+<h3>21. How Auto-configuration works in Spring Boot?<a class="headerlink" href="#how-auto-configuration-works-in-spring-boot" title="Link to this heading">#</a></h3>
+<p>In simple terms: Spring Boot auto-configuration tries to “guess” and set up sensible defaults for your Spring application <strong>based on what’s on the classpath</strong>, what beans you have already defined, what properties you have configured — so that you don’t have to wire everything manually.</p>
+<p>For example: if you have <code class="docutils literal notranslate"><span class="pre">spring-boot-starter-web</span></code> on the classpath, but you haven’t defined your own <code class="docutils literal notranslate"><span class="pre">DispatcherServlet</span></code> or <code class="docutils literal notranslate"><span class="pre">WebMvcConfigurer</span></code>, Spring Boot will create them for you.</p>
+<p><strong>1. Activation — how auto-configuration is triggered</strong></p>
+<p>Here are the main steps when your Spring Boot application starts:</p>
 <ol class="arabic simple">
-<li><p>What is Spring Boot?</p></li>
-<li><p>What are the advantages of Spring Boot?</p></li>
-<li><p>What are the features of Spring Boot?</p></li>
-<li><p>How to create Spring Boot application using Maven?</p></li>
-<li><p>How to create Spring Boot project using Spring Initializer?</p></li>
-<li><p>How to create Spring Boot project using boot CLI?</p></li>
-<li><p>How to create simple Spring Boot application?</p></li>
-<li><p>What are the Spring Boot Annotations?</p></li>
-<li><p>What is Spring Boot dependency management?</p></li>
-<li><p>What are the Spring Boot properties?</p></li>
-<li><p>What are the Spring Boot Starters?</p></li>
-<li><p>What is Spring Boot Actuator?</p></li>
-<li><p>What is thymeleaf?</p></li>
-<li><p>How to use thymeleaf?</p></li>
-<li><p>How to connect Spring Boot to the database using JPA?</p></li>
-<li><p>How to connect Spring Boot application to database using JDBC?</p></li>
-<li><p>What is &#64;RestController annotation in Spring Boot?</p></li>
-<li><p>What is &#64;RequestMapping annotation in Spring Boot?</p></li>
-<li><p>How to create Spring Boot application using Spring Starter Project Wizard?</p></li>
-<li><p>Spring Vs Spring Boot?</p></li>
+<li><p>You annotate your main class with <code class="docutils literal notranslate"><span class="pre">&#64;SpringBootApplication</span></code>, which is a meta-annotation including <code class="docutils literal notranslate"><span class="pre">&#64;EnableAutoConfiguration</span></code>.</p></li>
+<li><p>Spring Boot bootstraps the <code class="docutils literal notranslate"><span class="pre">SpringApplication</span></code>, creates an <code class="docutils literal notranslate"><span class="pre">ApplicationContext</span></code>, environment, etc.</p></li>
+<li><p>As part of startup, Spring Boot triggers its auto‐configuration mechanism — it loads a list of auto‐configuration candidate classes and then processes them under conditional checks.</p></li>
+<li><p>For each candidate configuration class, Spring Boot evaluates a set of <code class="docutils literal notranslate"><span class="pre">&#64;Conditional*</span></code> annotations (like <code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnClass</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnMissingBean</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnProperty</span></code>, etc.) to decide whether to apply that auto-configuration.</p></li>
+<li><p>If the conditions pass, the configuration class is imported (as a <code class="docutils literal notranslate"><span class="pre">&#64;Configuration</span></code>) and its beans are registered.</p></li>
 </ol>
+<p>Thus, auto-configuration is opt-in (via <code class="docutils literal notranslate"><span class="pre">&#64;EnableAutoConfiguration</span></code>) though in practice <code class="docutils literal notranslate"><span class="pre">&#64;SpringBootApplication</span></code> makes this automatic.</p>
+<p><strong>2. How Spring Boot finds the auto-configuration classes internally</strong></p>
+<p>This is a key part of the “magic”.</p>
+<ul class="simple">
+<li><p>In older versions of Spring Boot, auto-configuration classes were listed in <code class="docutils literal notranslate"><span class="pre">META-INF/spring.factories</span></code>.</p></li>
+<li><p>In more recent versions (from ~2.7 onward, and into 3.x) Spring Boot uses a file <code class="docutils literal notranslate"><span class="pre">META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</span></code> which lists all the auto-configuration classes.</p></li>
+<li><p>When your app starts, Spring Boot uses the <code class="docutils literal notranslate"><span class="pre">ImportCandidates</span></code> mechanism to load that list and treat each listed class as a potential auto-configuration class.</p></li>
+<li><p>The auto-config classes themselves are annotated with <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfiguration</span></code> (or meta‐annotated) (which itself is a <code class="docutils literal notranslate"><span class="pre">&#64;Configuration</span></code> with <code class="docutils literal notranslate"><span class="pre">proxyBeanMethods=false</span></code>).</p></li>
+<li><p>The candidate classes are filtered by conditions (class‐path, bean presence, etc) <strong>before</strong> creating the full configuration.</p></li>
+</ul>
+<p>In effect:</p>
+<blockquote>
+<div><p>Your “starters” bring in dependencies, which bring in auto-configuration module(s) that list all the configuration classes in that metadata file. Spring Boot picks them up automatically.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>3. The conditional mechanism — when auto-configuration actually applies</strong></p>
+<p>Auto-config classes rarely always apply; they are gated by conditions so as not to interfere or override your explicit configuration. Here are the typical patterns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnClass(X.class)</span></code>: only apply if class X is on the classpath. (E.g., if <code class="docutils literal notranslate"><span class="pre">javax.servlet.Servlet</span></code> is present, then web auto-configuration may kick in.) ([learnitweb.com][5])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnMissingBean(SomeBean.class)</span></code>: only apply if you haven’t already declared your own bean of that type. This allows you to override auto-configured beans by simply declaring your own in your configuration. ([learnitweb.com][5])</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnProperty(prefix</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;,</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;,</span> <span class="pre">havingValue</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;,</span> <span class="pre">matchIfMissing</span> <span class="pre">=</span> <span class="pre">...)</span></code>: only apply if a certain property has a certain value (or is missing).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnResource</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnWebApplication</span></code>, etc: other context/condition types. ([docs.enterprise.spring.io][6])</p></li>
+<li><p>Ordering/precedence annotations: <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfigureBefore</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfigureAfter</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfigureOrder</span></code> allow auto-config classes to specify ordering relative to each other. ([Home][3])</p></li>
+</ul>
+<p>Because of these conditions, auto-configuration is “safe” — i.e., if you define your own beans or exclude certain dependencies, the auto-configuration backs off.</p>
+<hr class="docutils" />
+<p><strong>4. Execution flow in more detail</strong></p>
+<p>Here’s a more step-by-step flow of what happens internally when you run a Spring Boot application:</p>
+<ol class="arabic simple">
+<li><p>You call <code class="docutils literal notranslate"><span class="pre">SpringApplication.run(...)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SpringApplication</span></code> prepares the <code class="docutils literal notranslate"><span class="pre">Environment</span></code> (property sources, profiles), creates an <code class="docutils literal notranslate"><span class="pre">ApplicationContext</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;SpringBootApplication</span></code> triggers component scanning, configuration, and enables auto-configuration.</p></li>
+<li><p>Spring Boot reads the auto-configuration metadata (the <code class="docutils literal notranslate"><span class="pre">AutoConfiguration.imports</span></code> file) to build the list of candidates.</p></li>
+<li><p>It performs a “condition evaluation” phase: for each candidate auto-config class, it checks all its <code class="docutils literal notranslate"><span class="pre">&#64;Conditional*</span></code> annotations (via <code class="docutils literal notranslate"><span class="pre">ConditionEvaluationReport</span></code>) to decide whether to include it. (This evaluation is also logged if you run with <code class="docutils literal notranslate"><span class="pre">--debug</span></code> or <code class="docutils literal notranslate"><span class="pre">logging.level.org.springframework.boot.autoconfigure=DEBUG</span></code>). ([Home][7])</p></li>
+<li><p>The ones that pass the conditions are “imported” into the context (via <code class="docutils literal notranslate"><span class="pre">&#64;Import</span></code>). In effect, each becomes a <code class="docutils literal notranslate"><span class="pre">&#64;Configuration</span></code> class.</p></li>
+<li><p>Within those configuration classes, <code class="docutils literal notranslate"><span class="pre">&#64;Bean</span></code> methods or <code class="docutils literal notranslate"><span class="pre">&#64;Import</span></code> of further internal configuration classes run, registering beans. Because <code class="docutils literal notranslate"><span class="pre">proxyBeanMethods=false</span></code> typical for auto-config, less overhead for CGLIB proxies.</p></li>
+<li><p>Because many auto-config beans are conditional on missing beans, etc., they will only register if you haven’t configured something explicitly.</p></li>
+<li><p>After beans are registered, normal Spring context refresh happens (post-processors, etc).</p></li>
+<li><p>The application context is up and running with a mix of your explicit beans + auto-configured beans.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>5. Customising / Overriding auto-configuration</strong></p>
+<p>Because auto-configuration is designed to back off, you can customise behaviour:</p>
+<ul class="simple">
+<li><p>If you declare your own bean of the same type (or bean name) that an auto-config would create, it will usually skip creating its default.</p></li>
+<li><p>You can exclude specific auto-configuration classes using <code class="docutils literal notranslate"><span class="pre">&#64;SpringBootApplication(exclude</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">DataSourceAutoConfiguration.class,</span> <span class="pre">…</span> <span class="pre">})</span></code> or via property <code class="docutils literal notranslate"><span class="pre">spring.autoconfigure.exclude=...</span></code>. ([Home][7])</p></li>
+<li><p>You can also create your own auto-configuration classes (for your own library) by using <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfiguration</span></code>, listing them in the <code class="docutils literal notranslate"><span class="pre">AutoConfiguration.imports</span></code> file, using <code class="docutils literal notranslate"><span class="pre">&#64;Conditional*</span></code> annotations. ([docs.enterprise.spring.io][6])</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>6. Example code snippet</strong></p>
+<p>Here’s a very simplified example of how an auto-configuration class might look:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.autoconfig</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.autoconfigure.AutoConfiguration</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.autoconfigure.condition.ConditionalOnClass</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.context.annotation.Bean</span><span class="p">;</span>
+
+<span class="nd">@AutoConfiguration</span>
+<span class="nd">@ConditionalOnClass</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;com.example.SomeLibrary&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SomeLibraryAutoConfiguration</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="nd">@ConditionalOnMissingBean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SomeService</span><span class="w"> </span><span class="nf">someService</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SomeServiceImpl</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// ... more beans ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;AutoConfiguration</span></code> marks the class as an auto-config candidate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnClass</span></code> ensures this config only kicks in if <code class="docutils literal notranslate"><span class="pre">com.example.SomeLibrary</span></code> is present.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ConditionalOnMissingBean</span></code> ensures that if the application already defined a <code class="docutils literal notranslate"><span class="pre">SomeService</span></code> bean, this default bean won’t be created.</p></li>
+</ul>
+<p>You would then ensure that <code class="docutils literal notranslate"><span class="pre">SomeLibraryAutoConfiguration</span></code> is listed in <code class="docutils literal notranslate"><span class="pre">META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</span></code> so that Spring Boot picks it up.</p>
+<hr class="docutils" />
+<p><strong>7. What’s new / changed in Spring Boot 3.x (including 3.5) ?</strong></p>
+<p>While the core mechanisms have remained consistent, some newer refinements worth noting:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfiguration</span></code> annotation (and the <code class="docutils literal notranslate"><span class="pre">AutoConfiguration.imports</span></code> file) are more strongly emphasised in recent versions.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">proxyBeanMethods=false</span></code> default in these configuration classes (via <code class="docutils literal notranslate"><span class="pre">&#64;Configuration(proxyBeanMethods=false)</span></code>) helps to reduce overhead for auto-configs (as they’re usually self-contained).</p></li>
+<li><p>More fine-grained conditional annotations and better tooling around condition evaluation reporting, making it easier to trace why an auto-config did or did not apply (<code class="docutils literal notranslate"><span class="pre">ConditionEvaluationReport</span></code>).</p></li>
+<li><p>Improved modularisation of auto-configuration modules so that smaller dependencies lead to fewer unused auto-config classes being evaluated.</p></li>
+</ul>
+</section>
+<section id="how-autowired-works-in-spring-boot">
+<h3>22. How &#64;Autowired works in Spring Boot?<a class="headerlink" href="#how-autowired-works-in-spring-boot" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;Autowired</span></code> tells Spring:</p>
+<blockquote>
+<div><p>“Find a suitable bean from the ApplicationContext that matches this field/constructor/setter parameter type, and inject it automatically.”</p>
+</div></blockquote>
+<p>Internally, autowiring is handled by a <strong>BeanPostProcessor</strong> called:</p>
+<blockquote>
+<div><p>🧠 <code class="docutils literal notranslate"><span class="pre">AutowiredAnnotationBeanPostProcessor</span></code></p>
+</div></blockquote>
+<p>This class is registered automatically by the Spring container during context initialization.</p>
+<p>Here’s what happens step-by-step under the hood:</p>
+<hr class="docutils" />
+<p><strong>Step 1: Bean definition scanning</strong></p>
+<p>During the <strong>component scan</strong>, Spring:</p>
+<ul class="simple">
+<li><p>Reads your classpath.</p></li>
+<li><p>Finds classes annotated with <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;Service</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;Repository</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code>, etc.</p></li>
+<li><p>Registers them as <strong>BeanDefinitions</strong> inside the <strong>ApplicationContext</strong>.</p></li>
+</ul>
+<p>👉 At this point, no objects are created yet — only metadata is stored.</p>
+<hr class="docutils" />
+<p><strong>Step 2: Context creates beans</strong></p>
+<p>When Spring starts creating beans (usually via <code class="docutils literal notranslate"><span class="pre">DefaultListableBeanFactory</span></code>):</p>
+<ol class="arabic simple">
+<li><p>It instantiates each bean (via constructors or factory methods).</p></li>
+<li><p>Before the bean is fully initialized, <strong>BeanPostProcessors</strong> are triggered.</p></li>
+</ol>
+<p>One of these is <code class="docutils literal notranslate"><span class="pre">AutowiredAnnotationBeanPostProcessor</span></code>.</p>
+<hr class="docutils" />
+<p><strong>Step 3: <code class="docutils literal notranslate"><span class="pre">AutowiredAnnotationBeanPostProcessor</span></code> kicks in</strong></p>
+<p>This processor inspects each bean’s class using reflection.</p>
+<p>For every field, method, or constructor:</p>
+<ul class="simple">
+<li><p>If it finds <code class="docutils literal notranslate"><span class="pre">&#64;Autowired</span></code> (or <code class="docutils literal notranslate"><span class="pre">&#64;Value</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;Inject</span></code>, etc.), it registers an <strong>injection point</strong>.</p></li>
+<li><p>It records what dependency is required (the type, qualifiers, optional flag, etc.).</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Step 4: Dependency resolution</strong></p>
+<p>When the processor sees an <code class="docutils literal notranslate"><span class="pre">&#64;Autowired</span></code> field like:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">PaymentService</span><span class="w"> </span><span class="n">paymentService</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>It calls the <strong>BeanFactory’s <code class="docutils literal notranslate"><span class="pre">resolveDependency()</span></code></strong> method:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">beanFactory</span><span class="p">.</span><span class="na">resolveDependency</span><span class="p">(</span><span class="n">DependencyDescriptor</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">requestingBeanName</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method:</p>
+<ol class="arabic simple">
+<li><p>Looks for a matching bean in the context by type.</p></li>
+<li><p>If multiple candidates exist, it checks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;Primary</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;Qualifier</span></code></p></li>
+<li><p>Bean name</p></li>
+<li><p>Generic types (for <code class="docutils literal notranslate"><span class="pre">List&lt;SomeType&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">Map&lt;String,</span> <span class="pre">SomeType&gt;</span></code>, etc.)</p></li>
+</ul>
+</li>
+<li><p>If exactly one match is found → inject it.</p></li>
+<li><p>If none → throw <code class="docutils literal notranslate"><span class="pre">NoSuchBeanDefinitionException</span></code>.</p></li>
+<li><p>If multiple and ambiguous → throw <code class="docutils literal notranslate"><span class="pre">NoUniqueBeanDefinitionException</span></code>.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Step 5: Injection (Reflection-based)</strong></p>
+<p>Once the dependency is resolved, Spring uses <strong>reflection</strong> to inject it:</p>
+<ul class="simple">
+<li><p><strong>Field injection:</strong> Uses <code class="docutils literal notranslate"><span class="pre">ReflectionUtils.setField()</span></code></p></li>
+<li><p><strong>Setter injection:</strong> Invokes the setter method</p></li>
+<li><p><strong>Constructor injection:</strong> Injects during bean creation</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ReflectionUtils</span><span class="p">.</span><span class="na">makeAccessible</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
+<span class="n">ReflectionUtils</span><span class="p">.</span><span class="na">setField</span><span class="p">(</span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">beanInstance</span><span class="p">,</span><span class="w"> </span><span class="n">dependencyInstance</span><span class="p">);</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Step 6: Bean lifecycle continues</strong></p>
+<p>After dependency injection:</p>
+<ul class="simple">
+<li><p>Other <code class="docutils literal notranslate"><span class="pre">BeanPostProcessors</span></code> (like <code class="docutils literal notranslate"><span class="pre">&#64;PostConstruct</span></code>, <code class="docutils literal notranslate"><span class="pre">InitializingBean</span></code>, etc.) run.</p></li>
+<li><p>The fully-initialized bean is stored in the <strong>ApplicationContext</strong> singleton cache.</p></li>
+</ul>
+<hr class="docutils" />
+<p>Constructor Injection (Preferred in Spring Boot 3.5)</p>
+<p>In Spring Boot 3+, <strong>constructor-based injection</strong> is now preferred because it:</p>
+<ul class="simple">
+<li><p>Makes dependencies <code class="docutils literal notranslate"><span class="pre">final</span></code> (immutable)</p></li>
+<li><p>Supports easier testing</p></li>
+<li><p>Avoids reflection overhead</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PaymentService</span><span class="w"> </span><span class="n">paymentService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span><span class="w"> </span><span class="c1">// can be omitted since Boot 3.5 infers automatically</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">OrderService</span><span class="p">(</span><span class="n">PaymentService</span><span class="w"> </span><span class="n">paymentService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">paymentService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paymentService</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>💡 Spring will automatically detect that this constructor requires a <code class="docutils literal notranslate"><span class="pre">PaymentService</span></code> and inject it — even if <code class="docutils literal notranslate"><span class="pre">&#64;Autowired</span></code> is not present (since only one constructor exists).</p>
+</section>
 </section>
 <section id="basic-design-concepts">
 <h2>Basic Design Concepts<a class="headerlink" href="#basic-design-concepts" title="Link to this heading">#</a></h2>
@@ -1359,7 +1690,31 @@ Instead, they are <strong>loaded on demand</strong> by the ClassLoader when the 
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-tools-and-frameworks">Java Tools and Frameworks:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jvm">JVM</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-unit-testing">Java Unit Testing:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#java-springboot">Java Springboot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-advantages-of-spring-boot">What are the advantages of Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot">What is Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-features-of-spring-boot">What are the features of Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-application-using-maven">How to create Spring Boot application using Maven?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-project-using-spring-initializer">How to create Spring Boot project using Spring Initializer?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-project-using-boot-cli">How to create Spring Boot project using boot CLI?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-simple-spring-boot-application">How to create simple Spring Boot application?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-annotations">What are the Spring Boot Annotations?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot-dependency-management">What is Spring Boot dependency management?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-properties">What are the Spring Boot properties?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-are-the-spring-boot-starters">What are the Spring Boot Starters?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-spring-boot-actuator">What is Spring Boot Actuator?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-thymeleaf">What is thymeleaf?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-thymeleaf">How to use thymeleaf?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-connect-spring-boot-to-the-database-using-jpa">How to connect Spring Boot to the database using JPA?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-connect-spring-boot-application-to-database-using-jdbc">How to connect Spring Boot application to database using JDBC?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-restcontroller-annotation-in-spring-boot">What is @RestController annotation in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-requestmapping-annotation-in-spring-boot">What is @RequestMapping annotation in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-create-spring-boot-application-using-spring-starter-project-wizard">How to create Spring Boot application using Spring Starter Project Wizard?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-vs-spring-boot">20. Spring Vs Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-auto-configuration-works-in-spring-boot">21. How Auto-configuration works in Spring Boot?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-autowired-works-in-spring-boot">22. How @Autowired works in Spring Boot?</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-design-concepts">Basic Design Concepts</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microservice">Microservice</a></li>
 </ul>

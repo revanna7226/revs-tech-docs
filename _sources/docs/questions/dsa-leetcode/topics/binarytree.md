@@ -20,13 +20,19 @@ Important properties:
 
 ```java
 public class BinaryTree {
-    static class Node {
-        int val;
-        Node left, right;
-        Node(int v) { val = v; left = right = null; }
-    }
 
     Node root;
+
+    static class Node {
+        int val;
+
+        Node left, right;
+
+        Node(int v) {
+            val = v;
+            left = right = null;
+        }
+    }
 
     public BinaryTree() { root = null; }
 }
@@ -36,7 +42,7 @@ public class BinaryTree {
 
 ## 3) Traversals
 
-### Recursive traversals (Preorder, Inorder, Postorder)
+### Depth First Search (DFS) traversals (Preorder, Inorder, Postorder)
 
 ```java
 // Preorder: root, left, right
@@ -81,22 +87,34 @@ void inorderIterative(Node root) {
 }
 ```
 
-### Level-order (Breadth-first using queue)
+### Breadth First Search (BFS) - Level-order
 
 ```java
 import java.util.Queue;
 import java.util.LinkedList;
 
-void levelOrder(Node root) {
-    if (root == null) return;
-    Queue<Node> q = new LinkedList<>();
-    q.offer(root);
-    while (!q.isEmpty()) {
-        Node n = q.poll();
-        System.out.print(n.val + " ");
-        if (n.left != null) q.offer(n.left);
-        if (n.right != null) q.offer(n.right);
+public List<Integer> BFS() {
+    if(root == null) return List.of();
+    Node currentNode = root;
+    Queue<Node> queue = new LinkedList<>();
+    ArrayList<Integer> result = new ArrayList<>();
+
+    queue.add(currentNode);
+
+    while(!queue.isEmpty()) {
+        currentNode = queue.remove();
+        result.add(currentNode.val);
+
+        if(currentNode.left != null) {
+            queue.add(currentNode.left);
+        }
+        if(currentNode.right != null) {
+            queue.add(currentNode.right);
+        }
     }
+
+    return result;
+
 }
 ```
 
@@ -177,16 +195,46 @@ public class BST {
         return null;
     }
 
+    private Node rSearch(Node node, int val) {
+        if (node == null || node.val == val) return node;
+        return (val < node.val) ? rSearch(node.left, val) : rSearch(node.right, val);
+    }
+
+    public Node rSearch(int val) {
+        return rSearch(root, val);
+    }
+
+    private Node rInsert(Node node, int val) {
+        if (node == null) return new Node(val);
+        if (value == node.value) return node;
+        if (val < node.val) {
+            node.left = rInsert(node.left, val);
+        } else {
+            node.right = rInsert(node.right, val);
+        }
+        return node;
+    }
+
+    public void rInsert(int val) {
+        root = rInsert(root, val);
+    }
+
     // Delete (recursive) - handles 3 cases
     public Node delete(Node node, int key) {
         if (node == null) return null;
-        if (key < node.val) node.left = delete(node.left, key);
-        else if (key > node.val) node.right = delete(node.right, key);
-        else {
+        if (key < node.val) {
+            node.left = delete(node.left, key);
+        } else if (key > node.val) {
+            node.right = delete(node.right, key);
+        } else {
             // found node to delete
-            if (node.left == null) return node.right;
-            else if (node.right == null) return node.left;
-            else {
+            if (node.left == null && node.right == null) {
+                return null;
+            } else if (node.left == null) {
+                return node.right;
+            } else if (node.right == null) {
+                return node.left;
+            } else {
                 // two children: replace with inorder successor (smallest in right subtree)
                 Node succ = minValue(node.right);
                 node.val = succ.val;
@@ -198,7 +246,9 @@ public class BST {
 
     private Node minValue(Node node) {
         Node cur = node;
-        while (cur.left != null) cur = cur.left;
+        while (cur.left != null) {
+            cur = cur.left;
+        }
         return cur;
     }
 }
@@ -212,6 +262,53 @@ tree.insert(50);
 tree.insert(30);
 tree.insert(70);
 tree.root = tree.delete(tree.root, 50); // delete root
+```
+
+---
+
+## 6) Interview Questions/LeetCode Questions
+
+### 1. BST: Convert Sorted Array to Balanced BST
+
+```java
+    private Node sortedArrayToBST(int[] nums, int left, int right) {
+        if(left > right) return null;
+
+        int mid = left + (right - left)/2;
+        Node parentNode = new Node(nums[mid]);
+
+        parentNode.left = sortedArrayToBST(nums, left, mid-1);
+        parentNode.right = sortedArrayToBST(nums, mid+1, right);
+
+        return parentNode;
+    }
+
+    public Node sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums, 0, nums.length-1);
+    }
+
+```
+
+### 2. BST: Invert Binary Tree
+
+```java
+    private Node invertTree(Node node) {
+        if(node == null) {
+            return node;
+        }
+
+        Node leftTree = node.left;
+
+        node.left = invertTree(node.right);
+        node.right = invertTree(leftTree);
+
+        return node;
+    }
+
+    public Node invertTree() {
+        return invertTree(root);
+    }
+
 ```
 
 ---
