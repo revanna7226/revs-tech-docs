@@ -15,3 +15,4 @@ Cloud
    helm/index
    jenkins/index
    kafka/index
+   rabbitmq/index

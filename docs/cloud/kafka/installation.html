@@ -52,6 +52,8 @@
     <link rel="icon" href="../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" />
+    <link rel="prev" title="Apache Kafka" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -114,8 +116,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -164,13 +164,13 @@
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topics</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../python/index.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python/installation.html">Python Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/sphinx.html">Sphinx Setup</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Cloud</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Cloud</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../git/index.html">Git &amp; GitHub - The Practical Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../git/installation.html">Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../git/operations.html">Git Operations</a></li>
@@ -217,8 +217,21 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="index.html">Apache Kafka</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="index.html">Apache Kafka</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../rabbitmq/index.html">RabbitMQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/projects.html">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange.html">Exchange in RabbitMQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-direct.html">Direct Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-fanout.html">Fanout Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-topic.html">Topic Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-headers.html">Headers Exchange</a></li>
 </ul>
 </details></li>
 </ul>
@@ -242,6 +255,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../database/mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
 </ul>
 </details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/mongodb/index.html">Mongo DB</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -342,6 +356,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../angular/index.html">Angular</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../angular/lifecyclehooks.html">Lifecycle Hooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/proxyServer.html">Proxy Server Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/rxjs.html">RxJs Interview Questions</a></li>
 </ul>
@@ -497,6 +512,29 @@ document.write(`
                   
   <section id="commands-to-install-and-run-zookeeper-kafka-broker">
 <h1>Commands to Install and Run Zookeeper/Kafka Broker<a class="headerlink" href="#commands-to-install-and-run-zookeeper-kafka-broker" title="Link to this heading">#</a></h1>
+<ol class="arabic">
+<li><p>Download Apache Kafka binary file from <a class="reference external" href="https://kafka.apache.org/downloads">Official Page</a>.</p></li>
+<li><p>Extract the binary file into your local machine.</p></li>
+<li><p>Execute the following command inside the root directory to run Zookeeper.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>bin/zookeeper-server-start.sh<span class="w"> </span>config/zookeeper.properties
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Zookeeper will up and running on 0.0.0.0:2181.</p>
+</div>
+</li>
+<li><p>Execute the below command to start Kafka Server.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh<span class="w"> </span>bin/kafka-server-start.sh<span class="w"> </span>config/server.properties
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Kafka Server will up and running on revs.localdomain:9092.</p>
+</div>
+</li>
+<li><p>Create a topic.</p></li>
+</ol>
 </section>
 
 
@@ -510,6 +548,24 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Apache Kafka</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

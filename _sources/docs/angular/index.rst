@@ -6,5 +6,6 @@ Angular
    :caption: Contents
 
    installation
+   lifecyclehooks
    proxyServer
    rxjs

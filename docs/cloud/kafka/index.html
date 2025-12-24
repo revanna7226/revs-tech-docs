@@ -52,7 +52,7 @@
     <link rel="icon" href="../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Introduction" href="introduction.html" />
+    <link rel="next" title="Commands to Install and Run Zookeeper/Kafka Broker" href="installation.html" />
     <link rel="prev" title="Jenkins" href="../jenkins/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -218,7 +218,20 @@
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../jenkins/index.html">Jenkins</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Apache Kafka</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="introduction.html">Introduction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../rabbitmq/index.html">RabbitMQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/projects.html">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange.html">Exchange in RabbitMQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-direct.html">Direct Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-fanout.html">Fanout Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-topic.html">Topic Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rabbitmq/docs/exchange-headers.html">Headers Exchange</a></li>
 </ul>
 </details></li>
 </ul>
@@ -242,6 +255,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../database/mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
 </ul>
 </details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../database/mongodb/index.html">Mongo DB</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -342,6 +356,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../angular/index.html">Angular</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../angular/lifecyclehooks.html">Lifecycle Hooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/proxyServer.html">Proxy Server Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../angular/rxjs.html">RxJs Interview Questions</a></li>
 </ul>
@@ -470,7 +485,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -486,6 +503,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-overview">Course Overview</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -500,14 +525,16 @@ document.write(`
 <div class="pst-scrollable-table-container"><table class="table" id="id1">
 <caption><span class="caption-text">Course Details</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
 <colgroup>
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
-<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Udemy Course</p></th>
 <th class="head"><p>Instructor</p></th>
+<th class="head"><p>Course Source Code</p></th>
 <th class="head"><p>Github</p></th>
 <th class="head"><p>Discord</p></th>
 </tr>
@@ -515,6 +542,7 @@ document.write(`
 <tbody>
 <tr class="row-even"><td><p><a class="reference external" href="https://www.udemy.com/course/apache-kafka-for-developers-using-springboot">Apache Kafka for Developers using Spring Boot[LatestEdition]</a></p></td>
 <td><p><a class="reference external" href="https://cognizant.udemy.com/user/dilipsundarraj2/">Pragmatic Code School</a></p></td>
+<td><p><a class="reference external" href="https://github.com/dilipsundarraj1/kafka-for-developers-using-spring-boot-v2/tree/main">Course Source Code</a></p></td>
 <td><p><a class="reference external" href="https://github.com/revanna7226/udemy-git-course">My Github Repo</a></p></td>
 <td><p><a class="reference external" href="https://academind.com/community/">Community Link</a></p></td>
 </tr>
@@ -524,9 +552,14 @@ document.write(`
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 </ul>
 </div>
+<section id="course-overview">
+<h2>Course Overview<a class="headerlink" href="#course-overview" title="Link to this heading">#</a></h2>
+<iframe src="_static/EPF_TransferApplication.pdf" width="100%" height="100%">
+</iframe><embed src="_static/pdf/kafka/kafka-using-spring-boot-v2.pdf" width="100%" height="800px" type="application/pdf"/><iframe src="_static/kafka-using-spring-boot-v2.pdf" width="100%" height="650px"></iframe></section>
 </section>
 
 
@@ -550,11 +583,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="introduction.html"
+       href="installation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title">Commands to Install and Run Zookeeper/Kafka Broker</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -564,6 +597,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-overview">Course Overview</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

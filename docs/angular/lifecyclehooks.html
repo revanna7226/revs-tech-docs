@@ -1,0 +1,1795 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lifecycle Hooks &#8212; Revs Tech Handbook 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=aafd0e32" />
+    <link rel="stylesheet" type="text/css" href="../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/angular/lifecyclehooks';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Proxy Server Configuration" href="proxyServer.html" />
+    <link rel="prev" title="Setting up Angular on Local Machine" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/revs-logo-h.png" class="logo__image only-light" alt="Revs Tech Handbook 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/revs-logo-h.png" class="logo__image only-dark" alt="Revs Tech Handbook 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/index.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/installation.html">Python Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sphinx.html">Sphinx Setup</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cloud/index.html">Cloud</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/git/index.html">Git &amp; GitHub - The Practical Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/operations.html">Git Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/github.html">Github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/github-deepdive.html">GitHub Collaboration and Contribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/assignment.html">Git Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/git/reference.html">References</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/ms/index.html">Microservices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/ms/introduction.html">Microservices</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/aws/index.html">AWS Certifications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../cloud/aws/cloud-practioner/index.html">Ultimate AWS Certified Cloud Practitioner CLF-C02 2025</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cloud/aws/cloud-practioner/activation.html">AWS Account Activation Troubleshooting</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/k8s/index.html">Kubernetes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/k8s/introduction.html">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/k8s/configs.html">Installation and Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/k8s/dashboard-web.html">Kubernetes Dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/k8s/components_commands.html">K8s Componets and Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/k8s/components.html">K8s commands:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/docker/index.html">Dockers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/docker/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/docker/commands.html">Docker Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/docker/tasks.html">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/docker/docker-compose.html">Docker Compose</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/helm/index.html">Helm Charts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/commands.html">Helm Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/advanced-commands.html">Advanced Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/create-charts.html">Create Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/templates.html">Templates Deep Dive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/helm/repository.html">Repository</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../cloud/jenkins/index.html">Jenkins</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/kafka/index.html">Apache Kafka</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/kafka/installation.html">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/kafka/introduction.html">Introduction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/rabbitmq/index.html">RabbitMQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/projects.html">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange.html">Exchange in RabbitMQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-direct.html">Direct Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-fanout.html">Fanout Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-topic.html">Topic Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-headers.html">Headers Exchange</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../database/index.html">Database</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../database/mysql/index.html">MYSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/introduction.html">Introduction to MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/constraints.html">SQL Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/dml.html">DML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/ddl.html">DDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/dcl.html">DCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/tcl.html">TCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/operators.html">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/datatypes.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/functions.html">MySQL Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/groupby.html">MySQL GROUP BY Clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/subqueries.html">MySQL Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/joins.html">MySQL JOINS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/co-related-sq.html">Correlated Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/normalization.html">Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/mongodb/index.html">Mongo DB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ide/vscode.html">Visual Studio Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../java/index.html">Java</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../java/introduction.html">Java Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/basics/index.html">Core Java Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/basics/collections/introduction.html">Collections</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../java/basics/collections/list.html">List Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/basics/collections/set.html">Set Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/basics/collections/map.html">Map Interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/java8/index.html">Java 8</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/java8/streams.html">Stream API in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java8/common_stream_ops.html">Common Stream Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java8/optional.html">Optional in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java8/functional_interface.html">Functional Interfaces in Java</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/java9/index.html">Java 9</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/java9/interface_private_methods.html">Private Methods in Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java9/try_with_resources.html">Try with Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java9/diamond_operator_enhancements.html">Diamond Operator Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/java9/safe_varargs_annotion.html">Safe Varargs Annotion Enhancements</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/java9plus/index.html">Java Features 9+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../java/maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/design_patterns/index.html">Java Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../java/design_patterns/introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/solid_principles/srp.html">1. Single Responsibility Principle - SRP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/solid_principles/ocp.html">2. Open-Closed Principle - OSP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/solid_principles/lsp.html">3. Linkov Substitution Principle - LSP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/solid_principles/isp.html">4. Interface Segregation Principle - ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/solid_principles/dip.html">5. Dependency Inversion Principle - DIP</a></li>
+</ul>
+</details></li>
+
+<li class="toctree-l3 has-children"><a class="reference internal" href="../java/design_patterns/design_patterns/creational/index.html">Creational Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/design_patterns/creational/builder.html">Builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/design_patterns/creational/factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/design_patterns/creational/prototype.html">Prototype</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/design_patterns/creational/singleton.html">Singleton Design Pattern in Java</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../java/design_patterns/design_patterns/structural/index.html">Structural Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../java/design_patterns/design_patterns/structural/adapter.html">When to use</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/spring/index.html">Spring Framework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../java/spring/data_jpa/index.html">Spring Data JPA</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../java/spring/data_jpa/in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java/spring/data_jpa/features.html">Spring Data JPA Features</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/spring/security/index.html">Spring Security</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../java/spring/spring-boot/index.html">Spring Boot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../java/spring/spring-boot/features/swagger.html">Swagger/OpenAPI Documentation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/reactive_programming/introduction.html">1. Reactive Programming in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../java/reactive_programming/project_reactor.html">2. What is Project Reactor?</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../java/testing/index.html">Java Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../java/testing/jmeter.html">Apache JMeter</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../golang/index.html">Golang</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../golang/introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang/cards.html">Cards Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang/testing.html">Testing in go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang/structs.html">Struct in Go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang/maps.html">Maps in Go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../golang/interface.html">Interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Angular</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Lifecycle Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proxyServer.html">Proxy Server Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rxjs.html">RxJs Interview Questions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../node/index.html">Node.js</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../webui/index.html">Web technologies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../webui/css/index.html">Cascading style sheets (CSS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../webui/css/introduction.html">Introduction to CSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../webui/css/resources.html">Useful Resources &amp; Links</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../aitools/index.html">AI Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aitools/introduction.html">Agentic AI Coding Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aitools/cline.html">Cline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aitools/geminicodeassist.html">Gemini Code Assist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aitools/githubcopilot.html">GitHub Copilot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../questions/index.html">Question Bank</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../questions/hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../questions/questions-bank.html">Java Questions</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../questions/scenario-based.html">Scenario based Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../questions/db-questions.html">Database Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../questions/design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../questions/coding/index.html">Coding Excercise</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../questions/coding/streams.html">Coding Problems on Streams</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../questions/coding/snippet.html">Analyze the Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/coding/programming.html">Coding Problems</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../questions/dsa-leetcode/index.html">Java DSA + LeetCode</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/bigo.html">Big O Notation in Java: Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/linkedlist.html">Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/doublyll.html">Doubly Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/stack.html">Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/queue.html">Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/binarytree.html">Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/hashtable.html">HashTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../questions/dsa-leetcode/topics/basicsort.html">Basic Sorts</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../mdcheetsheet.html">Markdown Cheetsheet</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lifecycle Hooks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-angular-lifecycle-hooks">🔥 <strong>List of Angular Lifecycle Hooks</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngonchanges">🟦 <strong>1. ngOnChanges()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signature">Signature:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-does-ngonchanges-run">When Does ngOnChanges Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-ngonchanges-example">Basic ngOnChanges Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-component"><strong>Parent Component</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#child-component"><strong>Child Component</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-example-in-console">Output Example in Console:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">🟦 <strong>2. ngOnInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-ngoninit">How to Use ngOnInit()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax">Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ngoninit-instead-of-constructor">Why <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> Instead of Constructor?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor">Constructor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ngOnInit()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-why-it-matters">Example of why it matters:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-ngoninit-to-fetch-api-data">Example: Using ngOnInit() to Fetch API Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngdocheck">🟦 <strong>3. ngDoCheck()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-angular-need-ngdocheck">Why Does Angular Need ngDoCheck()?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-ngdocheck"><strong>When to Use ngDoCheck()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-cases">Example use cases:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-detect-deep-changes-inside-array-mutation">Example: Detect Deep Changes Inside Array (Mutation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-will-not-detect-this">Angular will NOT detect this:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-working-example">Full Working Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-component-ts">parent.component.ts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#child-component-ts">child.component.ts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens">What happens?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngaftercontentinit">🟦 <strong>4. ngAfterContentInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-does-it-run">When Does It Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-it">Why Do We Need It?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-example-with-contentchild">Basic Example with @ContentChild</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-output">Console Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngaftercontentchecked">🟦 <strong>5. ngAfterContentChecked()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imp-what-does-projected-content-mean">IMP: What does “Projected Content” mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-logging-each-time-content-is-checked">Example - Logging Each Time Content Is Checked</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-contentchild">Example - Using @ContentChild</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngafterviewinit">🟦 <strong>6. ngAfterViewInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points">📌 Important Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example-accessing-a-dom-element">Simple Example — Accessing a DOM Element</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-accessing-child-component-methods">Example 2 — Accessing Child Component Methods</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-viewchildren">Example 3 — Using ViewChildren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngafterviewchecked">🟦 <strong>7. ngAfterViewChecked()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">When Does It Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important Notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-1-basic-usage-of-ngafterviewchecked">Ex 1: Basic Usage of <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-2-using-viewchild-to-inspect-the-dom">Ex 2: Using <code class="docutils literal notranslate"><span class="pre">@ViewChild</span></code> to Inspect the DOM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-3-detecting-changes-in-child-components">Ex 3: Detecting Changes in Child Components</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-4-the-mistake-that-causes-infinite-loops">Ex 4: The Mistake That Causes Infinite Loops</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why">Why?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correct-pattern-using-settimeout">Correct Pattern (Using setTimeout)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngondestroy">🟦 <strong>8. ngOnDestroy()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-ngondestroy-important">Why is ngOnDestroy() Important?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">📝 <strong>Key Takeaways</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-hook-call-order-complete">🔄 <strong>Lifecycle Hook Call Order (Complete)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table">🎯 Summary Table</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="lifecycle-hooks">
+<h1>Lifecycle Hooks<a class="headerlink" href="#lifecycle-hooks" title="Link to this heading">#</a></h1>
+<p>In Angular, components and directives go through a lifecycle from creation → rendering → updating → destruction.
+Angular provides <strong>lifecycle hook methods</strong> so you can run custom logic at specific moments.</p>
+<hr class="docutils" />
+<section id="list-of-angular-lifecycle-hooks">
+<h2>🔥 <strong>List of Angular Lifecycle Hooks</strong><a class="headerlink" href="#list-of-angular-lifecycle-hooks" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hook</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>When It Runs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>ngOnChanges</strong></p></td>
+<td><p>Respond to input property changes</p></td>
+<td><p>When <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> values change (including first change)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngOnInit</strong></p></td>
+<td><p>Initialization logic</p></td>
+<td><p>Once after the first <code class="docutils literal notranslate"><span class="pre">ngOnChanges</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngDoCheck</strong></p></td>
+<td><p>Custom change-detection logic</p></td>
+<td><p>During every CD cycle</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngAfterContentInit</strong></p></td>
+<td><p>After <code class="docutils literal notranslate"><span class="pre">ng-content</span></code> is projected</p></td>
+<td><p>Once after first projection</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngAfterContentChecked</strong></p></td>
+<td><p>After projected content is checked</p></td>
+<td><p>Runs after <em>every</em> check</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngAfterViewInit</strong></p></td>
+<td><p>View is initialized</p></td>
+<td><p>Once after component’s view + child views render</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngAfterViewChecked</strong></p></td>
+<td><p>After the view is checked</p></td>
+<td><p>Runs after every check</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngOnDestroy</strong></p></td>
+<td><p>Cleanup</p></td>
+<td><p>Just before component is destroyed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ngonchanges">
+<h2>🟦 <strong>1. ngOnChanges()</strong><a class="headerlink" href="#ngonchanges" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngOnChanges()</span></code> is an Angular lifecycle hook that runs <strong>whenever an &#64;Input() property of a component or directive changes</strong>.</p>
+<p>It gives you:</p>
+<ul class="simple">
+<li><p>Old value</p></li>
+<li><p>New value</p></li>
+<li><p>Whether it’s the <strong>first change</strong></p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">SimpleChanges</span></code> object describing all changed inputs</p></li>
+</ul>
+<section id="signature">
+<h3>Signature:<a class="headerlink" href="#signature" title="Link to this heading">#</a></h3>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="nx">ngOnChanges</span><span class="p">(</span><span class="nx">changes</span><span class="o">:</span><span class="w"> </span><span class="kt">SimpleChanges</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="when-does-ngonchanges-run">
+<h3>When Does ngOnChanges Run?<a class="headerlink" href="#when-does-ngonchanges-run" title="Link to this heading">#</a></h3>
+<p>It runs:</p>
+<ol class="arabic simple">
+<li><p><strong>Before ngOnInit</strong> (first time)</p></li>
+<li><p><strong>Every time any &#64;Input() value changes</strong></p></li>
+<li><p><strong>Even when the parent triggers change detection</strong>
+(new reference for objects/arrays triggers changes)</p></li>
+</ol>
+<p>It <strong>does NOT run</strong> if:</p>
+<ul class="simple">
+<li><p>The &#64;Input value is mutated <strong>without changing the reference</strong>
+(e.g., pushing into same array)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="basic-ngonchanges-example">
+<h3>Basic ngOnChanges Example<a class="headerlink" href="#basic-ngonchanges-example" title="Link to this heading">#</a></h3>
+<section id="parent-component">
+<h4><strong>Parent Component</strong><a class="headerlink" href="#parent-component" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-parent&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;button (click)=&quot;count++&quot;&gt;Increase&lt;/button&gt;</span>
+<span class="sb">    &lt;app-child [counter]=&quot;count&quot;&gt;&lt;/app-child&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ParentComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="child-component">
+<h4><strong>Child Component</strong><a class="headerlink" href="#child-component" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="p">,</span><span class="w"> </span><span class="nx">OnChanges</span><span class="p">,</span><span class="w"> </span><span class="nx">SimpleChanges</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-child&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;Counter: {{ counter }}&lt;/p&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnChanges</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">counter</span><span class="o">!:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngOnChanges</span><span class="p">(</span><span class="nx">changes</span><span class="o">:</span><span class="w"> </span><span class="kt">SimpleChanges</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="ow">void</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngOnChanges called&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">changes</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="output-example-in-console">
+<h4>Output Example in Console:<a class="headerlink" href="#output-example-in-console" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="n">counter</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">currentValue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">previousValue</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">firstChange</span><span class="p">:</span> <span class="n">false</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngoninit">
+<h2>🟦 <strong>2. ngOnInit()</strong><a class="headerlink" href="#ngoninit" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> is a lifecycle hook provided by Angular through the <code class="docutils literal notranslate"><span class="pre">OnInit</span></code> interface.</p>
+<p>It is invoked <strong>once</strong>, after Angular:</p>
+<ol class="arabic simple">
+<li><p>Creates the component</p></li>
+<li><p>Sets all <code class="docutils literal notranslate"><span class="pre">&#64;Input()</span></code> properties</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">ngOnChanges()</span></code> for the first time</p></li>
+</ol>
+<p>This makes <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> the best place for:</p>
+<ul class="simple">
+<li><p>Initializing component variables</p></li>
+<li><p>Making API calls</p></li>
+<li><p>Fetching data from services</p></li>
+<li><p>Setting default values</p></li>
+<li><p>Writing startup logic</p></li>
+</ul>
+<hr class="docutils" />
+<section id="how-to-use-ngoninit">
+<h3>How to Use ngOnInit()<a class="headerlink" href="#how-to-use-ngoninit" title="Link to this heading">#</a></h3>
+<p>A component uses it by implementing the <code class="docutils literal notranslate"><span class="pre">OnInit</span></code> interface and writing a method called <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code>.</p>
+</section>
+<section id="syntax">
+<h3>Syntax<a class="headerlink" href="#syntax" title="Link to this heading">#</a></h3>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">MyComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// initialization logic here</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="why-ngoninit-instead-of-constructor">
+<h3>Why <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> Instead of Constructor?<a class="headerlink" href="#why-ngoninit-instead-of-constructor" title="Link to this heading">#</a></h3>
+<section id="constructor">
+<h4>Constructor<a class="headerlink" href="#constructor" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Used for dependency injection (services)</p></li>
+<li><p>Should NOT contain Angular logic</p></li>
+<li><p>Called BEFORE Angular binds inputs</p></li>
+</ul>
+</section>
+<section id="id1">
+<h4>ngOnInit()<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Safe place to run initialization logic</p></li>
+<li><p>Runs AFTER Angular inputs are ready</p></li>
+</ul>
+</section>
+<section id="example-of-why-it-matters">
+<h4>Example of why it matters:<a class="headerlink" href="#example-of-why-it-matters" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Constructor:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">inputValue</span><span class="p">);</span><span class="w"> </span><span class="c1">// ❌ undefined</span>
+<span class="p">}</span>
+
+<span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngOnInit:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">inputValue</span><span class="p">);</span><span class="w"> </span><span class="c1">// ✅ has correct value</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="example-using-ngoninit-to-fetch-api-data">
+<h3>Example: Using ngOnInit() to Fetch API Data<a class="headerlink" href="#example-using-ngoninit-to-fetch-api-data" title="Link to this heading">#</a></h3>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">UserService</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../services/user.service&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-users&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;div *ngFor=&quot;let u of users&quot;&gt;{{ u.name }}&lt;/div&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">UsersComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">users</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">(</span><span class="k">private</span><span class="w"> </span><span class="nx">userService</span><span class="o">:</span><span class="w"> </span><span class="kt">UserService</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">  </span><span class="nx">ngOnInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">userService</span><span class="p">.</span><span class="nx">getUsers</span><span class="p">().</span><span class="nx">subscribe</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Why in ngOnInit?</strong></p>
+<ul class="simple">
+<li><p>Inputs and services are available</p></li>
+<li><p>Safe time to make HTTP calls</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngdocheck">
+<h2>🟦 <strong>3. ngDoCheck()</strong><a class="headerlink" href="#ngdocheck" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngDoCheck()</span></code> is a lifecycle hook that Angular calls <strong>on every change detection cycle</strong>.</p>
+<p>This means:</p>
+<p>✔ It runs <strong>very frequently</strong>
+✔ It is triggered even if nothing changed
+✔ It allows <strong>custom change detection</strong> logic beyond what Angular detects by default</p>
+<hr class="docutils" />
+<section id="why-does-angular-need-ngdocheck">
+<h3>Why Does Angular Need ngDoCheck()?<a class="headerlink" href="#why-does-angular-need-ngdocheck" title="Link to this heading">#</a></h3>
+<p>Angular normally uses <strong>default change detection</strong>, which automatically detects changes in:</p>
+<ul class="simple">
+<li><p>Primitive values (<code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>)</p></li>
+<li><p>Object <strong>reference</strong> changes (but NOT deep property changes)</p></li>
+<li><p>Template expression changes</p></li>
+<li><p>&#64;Input() binding reference changes</p></li>
+</ul>
+<p>But Angular <strong>does NOT</strong> detect:</p>
+<ul class="simple">
+<li><p>Mutation inside an object or array</p></li>
+<li><p>Replacing items inside an array</p></li>
+<li><p>Updating a property inside a nested object</p></li>
+</ul>
+<p>❗For these cases, you use <strong>ngDoCheck()</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="when-to-use-ngdocheck">
+<h3><strong>When to Use ngDoCheck()</strong><a class="headerlink" href="#when-to-use-ngdocheck" title="Link to this heading">#</a></h3>
+<p>Use it when you need to detect changes that Angular does <strong>not</strong> detect automatically:</p>
+<section id="example-use-cases">
+<h4>Example use cases:<a class="headerlink" href="#example-use-cases" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Detecting <strong>deep changes</strong> inside objects/arrays</p></li>
+<li><p>Performance optimizations</p></li>
+<li><p>Custom form validation logic</p></li>
+<li><p>Detect uncontrolled data changes from 3rd party APIs</p></li>
+<li><p>Detect changes without relying on &#64;Input() reference updates</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="example-detect-deep-changes-inside-array-mutation">
+<h3>Example: Detect Deep Changes Inside Array (Mutation)<a class="headerlink" href="#example-detect-deep-changes-inside-array-mutation" title="Link to this heading">#</a></h3>
+<p>Angular <strong>won’t detect</strong> that array values changed because reference stayed same.</p>
+<section id="angular-will-not-detect-this">
+<h4>Angular will NOT detect this:<a class="headerlink" href="#angular-will-not-detect-this" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;New item&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>But <code class="docutils literal notranslate"><span class="pre">ngDoCheck()</span></code> can.</p>
+</section>
+</section>
+<section id="full-working-example">
+<h3>Full Working Example<a class="headerlink" href="#full-working-example" title="Link to this heading">#</a></h3>
+<section id="parent-component-ts">
+<h4>parent.component.ts<a class="headerlink" href="#parent-component-ts" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-parent&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;button (click)=&quot;addItem()&quot;&gt;Add Item&lt;/button&gt;</span>
+<span class="sb">    &lt;app-child [items]=&quot;items&quot;&gt;&lt;/app-child&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ParentComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;B&quot;</span><span class="p">];</span>
+
+<span class="w">  </span><span class="nx">addItem</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// reference not changed → Angular does not detect</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="child-component-ts">
+<h4>child.component.ts<a class="headerlink" href="#child-component-ts" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">DoCheck</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-child&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;Items: {{ items | json }}&lt;/p&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">DoCheck</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">items</span><span class="o">!:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">previousLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngDoCheck</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">previousLength</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Array changed:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">);</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">previousLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="what-happens">
+<h3>What happens?<a class="headerlink" href="#what-happens" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Parent mutates array (<code class="docutils literal notranslate"><span class="pre">push</span></code>)</p></li>
+<li><p>Angular does NOT trigger <code class="docutils literal notranslate"><span class="pre">ngOnChanges</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ngDoCheck()</span></code> still detects the change manually</p></li>
+<li><p>Now you can implement custom logic</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngaftercontentinit">
+<h2>🟦 <strong>4. ngAfterContentInit()</strong><a class="headerlink" href="#ngaftercontentinit" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterContentInit()</span></code> is a lifecycle hook from the <strong>AfterContentInit</strong> interface.</p>
+<p>It is called <strong>exactly once</strong> after Angular <strong>projects external content</strong> (i.e., content passed between component tags using <code class="docutils literal notranslate"><span class="pre">&lt;ng-content&gt;</span></code>) into the component.</p>
+<hr class="docutils" />
+<section id="when-does-it-run">
+<h3>When Does It Run?<a class="headerlink" href="#when-does-it-run" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterContentInit()</span></code> runs:</p>
+<ul class="simple">
+<li><p>After Angular inserts projected content into the component’s view</p></li>
+<li><p>Before <code class="docutils literal notranslate"><span class="pre">ngAfterContentChecked()</span></code></p></li>
+<li><p>Only one time in the component lifecycle</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="why-do-we-need-it">
+<h3>Why Do We Need It?<a class="headerlink" href="#why-do-we-need-it" title="Link to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">ngAfterContentInit()</span></code> when you want to:</p>
+<ul class="simple">
+<li><p>Access or modify projected content</p></li>
+<li><p>Read child elements projected from parent</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">&#64;ContentChild</span></code> or <code class="docutils literal notranslate"><span class="pre">&#64;ContentChildren</span></code></p></li>
+<li><p>Perform initialization dependent on projected elements</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterContentInit()</span></code> lets you interact with this projected content.</p>
+</section>
+<hr class="docutils" />
+<section id="basic-example-with-contentchild">
+<h3>Basic Example with &#64;ContentChild<a class="headerlink" href="#basic-example-with-contentchild" title="Link to this heading">#</a></h3>
+<p><strong>Parent HTML</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-wrapper</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="err">#</span><span class="na">paraRef</span><span class="p">&gt;</span>This is projected content<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">app-wrapper</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Child Component Template (<code class="docutils literal notranslate"><span class="pre">wrapper.component.html</span></code>)</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">ng-content</span><span class="p">&gt;&lt;/</span><span class="nt">ng-content</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Child Component TS (<code class="docutils literal notranslate"><span class="pre">wrapper.component.ts</span></code>)</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Component</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ContentChild</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ElementRef</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">AfterContentInit</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-wrapper&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./wrapper.component.html&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">WrapperComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterContentInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@ContentChild</span><span class="p">(</span><span class="s2">&quot;paraRef&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">projectedPara</span><span class="o">!:</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterContentInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngAfterContentInit called&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span>
+<span class="w">      </span><span class="s2">&quot;Projected Content:&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">projectedPara</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">textContent</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="console-output">
+<h3>Console Output<a class="headerlink" href="#console-output" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngAfterContentInit</span> <span class="n">called</span>
+<span class="n">Projected</span> <span class="n">Content</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">projected</span> <span class="n">content</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngaftercontentchecked">
+<h2>🟦 <strong>5. ngAfterContentChecked()</strong><a class="headerlink" href="#ngaftercontentchecked" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterContentChecked()</span></code> is an Angular lifecycle hook that runs:</p>
+<ul class="simple">
+<li><p>After Angular checks the projected content inside a component(i.e., anything passed between <code class="docutils literal notranslate"><span class="pre">&lt;ng-content&gt;&lt;/ng-content&gt;</span></code> tags)</p></li>
+<li><p>It runs on <strong>every change detection cycle</strong>, not just once.</p></li>
+<li><p>It is often used to:</p>
+<ul>
+<li><p>Detect changes in <strong>content projected from parent</strong></p></li>
+<li><p>Perform operations after content is updated</p></li>
+<li><p>Debug parent → child content interactions</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<section id="imp-what-does-projected-content-mean">
+<h3>IMP: What does “Projected Content” mean?<a class="headerlink" href="#imp-what-does-projected-content-mean" title="Link to this heading">#</a></h3>
+<p>If you have:
+<strong>Parent View</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-card</span><span class="p">&gt;</span>
+  <span class="cm">&lt;!-- This is projected content --&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="err">#</span><span class="na">desc</span><span class="p">&gt;</span>Description text<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">app-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Then inside <code class="docutils literal notranslate"><span class="pre">app-card</span></code>, there is:
+<strong>Child View</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ng-content</span><span class="p">&gt;&lt;/</span><span class="nt">ng-content</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>That <code class="docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code> is <strong>projected content</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="example-logging-each-time-content-is-checked">
+<h3>Example - Logging Each Time Content Is Checked<a class="headerlink" href="#example-logging-each-time-content-is-checked" title="Link to this heading">#</a></h3>
+<p><strong><code class="docutils literal notranslate"><span class="pre">card.component.ts</span></code></strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">AfterContentChecked</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-card&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;h3&gt;Card Component&lt;/h3&gt;</span>
+<span class="sb">    &lt;ng-content&gt;&lt;/ng-content&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CardComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterContentChecked</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">ngAfterContentChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngAfterContentChecked - projected content checked.&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">parent.component.html</span></code></strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-card</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is projected content!<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">app-card</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Output (console)</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngAfterContentChecked</span> <span class="o">-</span> <span class="n">projected</span> <span class="n">content</span> <span class="n">checked</span><span class="o">.</span>
+<span class="n">ngAfterContentChecked</span> <span class="o">-</span> <span class="n">projected</span> <span class="n">content</span> <span class="n">checked</span><span class="o">.</span>
+<span class="n">ngAfterContentChecked</span> <span class="o">-</span> <span class="n">projected</span> <span class="n">content</span> <span class="n">checked</span><span class="o">.</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>It runs <strong>many times</strong> (every time Angular runs change detection).</p>
+</section>
+<hr class="docutils" />
+<section id="example-using-contentchild">
+<h3>Example - Using &#64;ContentChild<a class="headerlink" href="#example-using-contentchild" title="Link to this heading">#</a></h3>
+<p>Track projected content changes.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">card.component.ts</span></code></strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Component</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ContentChild</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ElementRef</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">AfterContentChecked</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-card&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;div class=&quot;card&quot;&gt;</span>
+<span class="sb">      &lt;ng-content&gt;&lt;/ng-content&gt;</span>
+<span class="sb">    &lt;/div&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CardComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterContentChecked</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@ContentChild</span><span class="p">(</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">description</span><span class="o">!:</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterContentChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Content:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">description</span><span class="o">?</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">textContent</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>** <code class="docutils literal notranslate"><span class="pre">parent.component.html</span></code>**</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">app-card</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="err">#</span><span class="na">desc</span><span class="p">&gt;</span>{{ message }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">app-card</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">button</span> <span class="err">(</span><span class="na">click</span><span class="err">)=&quot;</span><span class="na">update</span><span class="err">()&quot;</span><span class="p">&gt;</span>Update Content<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">parent.component.ts</span></code></strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello Angular&quot;</span><span class="p">;</span>
+
+<span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Updated description!&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Result</strong></p>
+<p>Every time the message updates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Content: Updated description!
+Content: Updated description!
+...
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngafterviewinit">
+<h2>🟦 <strong>6. ngAfterViewInit()</strong><a class="headerlink" href="#ngafterviewinit" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterViewInit()</span></code> is an Angular lifecycle hook that runs <strong>once</strong> after:</p>
+<p>✔ The component’s view (template) is fully initialized
+✔ All child components &amp; directives in the view are also initialized
+✔ All <code class="docutils literal notranslate"><span class="pre">&#64;ViewChild()</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;ViewChildren()</span></code> references are available</p>
+<hr class="docutils" />
+<section id="important-points">
+<h3>📌 Important Points<a class="headerlink" href="#important-points" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Runs Only Once: It is called <strong>after the first rendering</strong> of the view.</p></li>
+<li><p>Safe place to access DOM:</p></li>
+</ul>
+<p>You can finally interact with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;ViewChild()</span></code> DOM elements</p></li>
+<li><p>Child components</p></li>
+<li><p>Template-driven forms</p></li>
+<li><p>Material components</p></li>
+<li><p>Charts and JS libraries (Leaflet, Chart.js, etc.)</p></li>
+</ul>
+<p>Why not use ngOnInit?</p>
+<p><code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> runs before child views are created →
+so <code class="docutils literal notranslate"><span class="pre">&#64;ViewChild()</span></code> will be <strong>undefined</strong> inside <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<section id="simple-example-accessing-a-dom-element">
+<h4>Simple Example — Accessing a DOM Element<a class="headerlink" href="#simple-example-accessing-a-dom-element" title="Link to this heading">#</a></h4>
+<p><strong>HTML</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h2</span> <span class="err">#</span><span class="na">heading</span><span class="p">&gt;</span>Angular Lifecycle Hook Demo<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Component</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">AfterViewInit</span><span class="p">,</span><span class="w"> </span><span class="nx">ViewChild</span><span class="p">,</span><span class="w"> </span><span class="nx">ElementRef</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-demo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./demo.component.html&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DemoComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@ViewChild</span><span class="p">(</span><span class="s2">&quot;heading&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">heading</span><span class="o">!:</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngAfterViewInit called&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Heading Element:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">heading</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">heading</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;blue&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What happens?</p>
+<ul class="simple">
+<li><p>You can now read or modify DOM safely.</p></li>
+<li><p>ViewChild has a value ONLY after this hook.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-2-accessing-child-component-methods">
+<h4>Example 2 — Accessing Child Component Methods<a class="headerlink" href="#example-2-accessing-child-component-methods" title="Link to this heading">#</a></h4>
+<p><strong>child.component.ts</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-child&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;Child Component Loaded&lt;/p&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hello from Child Component&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>parent.component.ts</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">AfterViewInit</span><span class="p">,</span><span class="w"> </span><span class="nx">ViewChild</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;../child/child.component&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-parent&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;app-child&gt;&lt;/app-child&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ParentComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@ViewChild</span><span class="p">(</span><span class="nx">ChildComponent</span><span class="p">)</span><span class="w"> </span><span class="nx">child</span><span class="o">!:</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">child</span><span class="p">.</span><span class="nx">sayHello</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>✔ Parent can safely call child methods
+✔ Parent → Child interaction must happen here</p>
+</section>
+<hr class="docutils" />
+<section id="example-3-using-viewchildren">
+<h4>Example 3 — Using ViewChildren<a class="headerlink" href="#example-3-using-viewchildren" title="Link to this heading">#</a></h4>
+<p><strong>HTML</strong></p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">li</span> <span class="err">#</span><span class="na">items</span> <span class="err">*</span><span class="na">ngFor</span><span class="o">=</span><span class="s">&quot;let item of numbers&quot;</span><span class="p">&gt;</span>{{ item }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Component</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Component</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">AfterViewInit</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">QueryList</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ViewChildren</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ElementRef</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-list&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">templateUrl</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;./list.component.html&quot;</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ListComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewInit</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="mf">30</span><span class="p">];</span>
+
+<span class="w">  </span><span class="kd">@ViewChildren</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">items</span><span class="o">!:</span><span class="w"> </span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">ElementRef</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewInit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">el</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#f2f2f2&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Element </span><span class="si">${</span><span class="nx">i</span><span class="si">}</span><span class="sb"> initialized:`</span><span class="p">,</span><span class="w"> </span><span class="nx">el</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>✔ Access multiple DOM nodes
+✔ Runs once after all items render</p>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ngafterviewchecked">
+<h2>🟦 <strong>7. ngAfterViewChecked()</strong><a class="headerlink" href="#ngafterviewchecked" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code> is a lifecycle hook in Angular that is called: After Angular has checked the component’s view and all child views.</p>
+<p>This includes:</p>
+<ul class="simple">
+<li><p>The component’s template</p></li>
+<li><p>All child component templates</p></li>
+<li><p>Runs <strong>after every change detection cycle</strong></p></li>
+</ul>
+<hr class="docutils" />
+<section id="id2">
+<h3>When Does It Run?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>It runs:</p>
+<ul class="simple">
+<li><p>On initial render</p></li>
+<li><p>On every update (property change, event, async call, etc.)</p></li>
+<li><p>Many times during the lifecycle (frequently!)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="important-notes">
+<h3>Important Notes<a class="headerlink" href="#important-notes" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>It can be triggered <strong>multiple times per second</strong> → use sparingly.</p></li>
+<li><p>Never update data-bound properties here. Doing so causes an infinite loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ExpressionChangedAfterItHasBeenCheckedError</span>
+</pre></div>
+</div>
+</li>
+<li><p>Best used to:</p>
+<ul class="simple">
+<li><p>Detect view changes</p></li>
+<li><p>Read/update DOM elements (in a non-mutating way)</p></li>
+<li><p>Integrate third-party UI libraries</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="ex-1-basic-usage-of-ngafterviewchecked">
+<h4>Ex 1: Basic Usage of <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code><a class="headerlink" href="#ex-1-basic-usage-of-ngafterviewchecked" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">AfterViewChecked</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-demo&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;h2&gt;{{ title }}&lt;/h2&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">DemoComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewChecked</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Angular View Checked Demo&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;ngAfterViewChecked() - View was checked&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Output (in console)</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngAfterViewChecked</span><span class="p">()</span> <span class="o">-</span> <span class="n">View</span> <span class="n">was</span> <span class="n">checked</span>
+<span class="n">ngAfterViewChecked</span><span class="p">()</span> <span class="o">-</span> <span class="n">View</span> <span class="n">was</span> <span class="n">checked</span>
+<span class="n">ngAfterViewChecked</span><span class="p">()</span> <span class="o">-</span> <span class="n">View</span> <span class="n">was</span> <span class="n">checked</span>
+</pre></div>
+</div>
+<p>This happens every time change detection runs.</p>
+</section>
+<hr class="docutils" />
+<section id="ex-2-using-viewchild-to-inspect-the-dom">
+<h4>Ex 2: Using <code class="docutils literal notranslate"><span class="pre">&#64;ViewChild</span></code> to Inspect the DOM<a class="headerlink" href="#ex-2-using-viewchild-to-inspect-the-dom" title="Link to this heading">#</a></h4>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">Component</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">AfterViewChecked</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ViewChild</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">ElementRef</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-check-view&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;input #myInput [(ngModel)]=&quot;name&quot; /&gt;</span>
+<span class="sb">    &lt;p&gt;You typed: {{ name }}&lt;/p&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">CheckViewComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewChecked</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@ViewChild</span><span class="p">(</span><span class="s2">&quot;myInput&quot;</span><span class="p">)</span><span class="w"> </span><span class="nx">inputRef</span><span class="o">!:</span><span class="w"> </span><span class="nx">ElementRef</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Input value:&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">inputRef</span><span class="p">.</span><span class="nx">nativeElement</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What this shows:</p>
+<ul class="simple">
+<li><p>You can safely access DOM values <strong>after every view update</strong>.</p></li>
+<li><p>No DOM data can be trusted before this hook.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ex-3-detecting-changes-in-child-components">
+<h4>Ex 3: Detecting Changes in Child Components<a class="headerlink" href="#ex-3-detecting-changes-in-child-components" title="Link to this heading">#</a></h4>
+<p>Parent Component:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-parent&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`</span>
+<span class="sb">    &lt;h3&gt;Counter: {{ counter }}&lt;/h3&gt;</span>
+<span class="sb">    &lt;app-child [value]=&quot;counter&quot;&gt;&lt;/app-child&gt;</span>
+<span class="sb">    &lt;button (click)=&quot;increment()&quot;&gt;Increment&lt;/button&gt;</span>
+<span class="sb">  `</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ParentComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">increment</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Child Component:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">Input</span><span class="p">,</span><span class="w"> </span><span class="nx">AfterViewChecked</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-child&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;Child Value: {{ value }}&lt;/p&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">ChildComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">AfterViewChecked</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">@Input</span><span class="p">()</span><span class="w"> </span><span class="nx">value</span><span class="o">!:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nx">ngAfterViewChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Child view checked. value =&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong>
+Every time the parent updates the value, Angular checks the child view → trigger <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="ex-4-the-mistake-that-causes-infinite-loops">
+<h4>Ex 4: The Mistake That Causes Infinite Loops<a class="headerlink" href="#ex-4-the-mistake-that-causes-infinite-loops" title="Link to this heading">#</a></h4>
+<p>❌ <strong>This is wrong and causes errors:</strong></p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="nx">ngAfterViewChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;New Title&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// ❌ BAD</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This will cause:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ExpressionChangedAfterItHasBeenCheckedError</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="why">
+<h3>Why?<a class="headerlink" href="#why" title="Link to this heading">#</a></h3>
+<p>Because <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code> runs after Angular finishes checking the view.
+Updating a bound property requires rechecking → infinite loop → error.</p>
+</section>
+<hr class="docutils" />
+<section id="correct-pattern-using-settimeout">
+<h3>Correct Pattern (Using setTimeout)<a class="headerlink" href="#correct-pattern-using-settimeout" title="Link to this heading">#</a></h3>
+<p>If you want to change DOM or data AFTER the cycle:</p>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="nx">ngAfterViewChecked</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Updated Title&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// ✔ SAFE</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">setTimeout()</span></code> defers the update to the next tick, preventing the infinite loop.</p>
+</section>
+</section>
+<section id="ngondestroy">
+<h2>🟦 <strong>8. ngOnDestroy()</strong><a class="headerlink" href="#ngondestroy" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ngOnDestroy()</span></code> is a lifecycle hook that Angular calls <strong>just before a component, directive, or pipe is destroyed</strong>.</p>
+<p>This happens when:</p>
+<ul class="simple">
+<li><p>The user navigates away from the component</p></li>
+<li><p>The component is removed from DOM</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*ngIf</span></code> condition turns false</p></li>
+<li><p>A parent component is destroyed</p></li>
+</ul>
+<p>You use <code class="docutils literal notranslate"><span class="pre">ngOnDestroy()</span></code> to perform <strong>cleanup</strong> such as:</p>
+<p>✔ Unsubscribing from Observables
+✔ Clearing intervals, timeouts
+✔ Removing event listeners
+✔ Stopping timers
+✔ Closing WebSocket connections
+✔ Cancelling ongoing API calls</p>
+<hr class="docutils" />
+<section id="why-is-ngondestroy-important">
+<h3>Why is ngOnDestroy() Important?<a class="headerlink" href="#why-is-ngondestroy-important" title="Link to this heading">#</a></h3>
+<p>Because components stay in memory until destroyed.</p>
+<p>If you don’t do cleanup:</p>
+<p>❌ You get <strong>memory leaks</strong>
+❌ Background timers keep running
+❌ WebSockets keep listening
+❌ API subscriptions continue even after moving away</p>
+<p><code class="docutils literal notranslate"><span class="pre">ngOnDestroy()</span></code> prevents all these issues.</p>
+</section>
+<hr class="docutils" />
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="highlight-ts notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Component</span><span class="p">,</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@angular/core&quot;</span><span class="p">;</span>
+
+<span class="kd">@Component</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">selector</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;app-timer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">template</span><span class="o">:</span><span class="w"> </span><span class="sb">`&lt;p&gt;{{ seconds }}&lt;/p&gt;`</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">TimerComponent</span><span class="w"> </span><span class="k">implements</span><span class="w"> </span><span class="nx">OnDestroy</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">interval</span><span class="o">:</span><span class="w"> </span><span class="kt">any</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="nx">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">setInterval</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="p">.</span><span class="nx">seconds</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nx">ngOnDestroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Component destroyed.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">interval</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="key-takeaways">
+<h3>📝 <strong>Key Takeaways</strong><a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Purpose</strong></p></td>
+<td><p>Cleanup before component destruction</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>When it runs</strong></p></td>
+<td><p>Navigation, *ngIf false, parent destroyed</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Main usage</strong></p></td>
+<td><p>Unsubscribe, remove listeners, clear intervals</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Prevents</strong></p></td>
+<td><p>Memory leaks, unwanted background processes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+<hr class="docutils" />
+<section id="lifecycle-hook-call-order-complete">
+<h2>🔄 <strong>Lifecycle Hook Call Order (Complete)</strong><a class="headerlink" href="#lifecycle-hook-call-order-complete" title="Link to this heading">#</a></h2>
+<p>Typical order when component is created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">ngOnChanges</span><span class="p">()</span>
+<span class="mf">2.</span> <span class="n">ngOnInit</span><span class="p">()</span>
+<span class="mf">3.</span> <span class="n">ngDoCheck</span><span class="p">()</span>
+<span class="mf">4.</span> <span class="n">ngAfterContentInit</span><span class="p">()</span>
+<span class="mf">5.</span> <span class="n">ngAfterContentChecked</span><span class="p">()</span>
+<span class="mf">6.</span> <span class="n">ngAfterViewInit</span><span class="p">()</span>
+<span class="mf">7.</span> <span class="n">ngAfterViewChecked</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>During updates (change detection):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">ngOnChanges</span><span class="p">()</span> <span class="p">(</span><span class="k">if</span> <span class="nd">@Input</span> <span class="n">changed</span><span class="p">)</span>
+<span class="mf">2.</span> <span class="n">ngDoCheck</span><span class="p">()</span>
+<span class="mf">3.</span> <span class="n">ngAfterContentChecked</span><span class="p">()</span>
+<span class="mf">4.</span> <span class="n">ngAfterViewChecked</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Before removal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ngOnDestroy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="summary-table">
+<h2>🎯 Summary Table<a class="headerlink" href="#summary-table" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hook</p></th>
+<th class="head"><p>Frequency</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>ngOnChanges</strong></p></td>
+<td><p>Many</p></td>
+<td><p>Respond to &#64;Input() changes</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngOnInit</strong></p></td>
+<td><p>Once</p></td>
+<td><p>Initialization (API calls)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngDoCheck</strong></p></td>
+<td><p>Many</p></td>
+<td><p>Custom change detection</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngAfterContentInit</strong></p></td>
+<td><p>Once</p></td>
+<td><p>After ng-content projection</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngAfterContentChecked</strong></p></td>
+<td><p>Many</p></td>
+<td><p>Check projected content</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngAfterViewInit</strong></p></td>
+<td><p>Once</p></td>
+<td><p>View initialization</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>ngAfterViewChecked</strong></p></td>
+<td><p>Many</p></td>
+<td><p>View update checks</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ngOnDestroy</strong></p></td>
+<td><p>Once</p></td>
+<td><p>Cleanup</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="installation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Setting up Angular on Local Machine</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="proxyServer.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Proxy Server Configuration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-angular-lifecycle-hooks">🔥 <strong>List of Angular Lifecycle Hooks</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngonchanges">🟦 <strong>1. ngOnChanges()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signature">Signature:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-does-ngonchanges-run">When Does ngOnChanges Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-ngonchanges-example">Basic ngOnChanges Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-component"><strong>Parent Component</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#child-component"><strong>Child Component</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#output-example-in-console">Output Example in Console:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngoninit">🟦 <strong>2. ngOnInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-use-ngoninit">How to Use ngOnInit()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntax">Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-ngoninit-instead-of-constructor">Why <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> Instead of Constructor?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#constructor">Constructor</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ngOnInit()</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-why-it-matters">Example of why it matters:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-ngoninit-to-fetch-api-data">Example: Using ngOnInit() to Fetch API Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngdocheck">🟦 <strong>3. ngDoCheck()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-does-angular-need-ngdocheck">Why Does Angular Need ngDoCheck()?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-ngdocheck"><strong>When to Use ngDoCheck()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-cases">Example use cases:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-detect-deep-changes-inside-array-mutation">Example: Detect Deep Changes Inside Array (Mutation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-will-not-detect-this">Angular will NOT detect this:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-working-example">Full Working Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parent-component-ts">parent.component.ts</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#child-component-ts">child.component.ts</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens">What happens?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngaftercontentinit">🟦 <strong>4. ngAfterContentInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-does-it-run">When Does It Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-need-it">Why Do We Need It?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-example-with-contentchild">Basic Example with @ContentChild</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#console-output">Console Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngaftercontentchecked">🟦 <strong>5. ngAfterContentChecked()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imp-what-does-projected-content-mean">IMP: What does “Projected Content” mean?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-logging-each-time-content-is-checked">Example - Logging Each Time Content Is Checked</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-contentchild">Example - Using @ContentChild</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngafterviewinit">🟦 <strong>6. ngAfterViewInit()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-points">📌 Important Points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-example-accessing-a-dom-element">Simple Example — Accessing a DOM Element</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-accessing-child-component-methods">Example 2 — Accessing Child Component Methods</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-using-viewchildren">Example 3 — Using ViewChildren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngafterviewchecked">🟦 <strong>7. ngAfterViewChecked()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">When Does It Run?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important Notes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-1-basic-usage-of-ngafterviewchecked">Ex 1: Basic Usage of <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-2-using-viewchild-to-inspect-the-dom">Ex 2: Using <code class="docutils literal notranslate"><span class="pre">@ViewChild</span></code> to Inspect the DOM</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-3-detecting-changes-in-child-components">Ex 3: Detecting Changes in Child Components</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ex-4-the-mistake-that-causes-infinite-loops">Ex 4: The Mistake That Causes Infinite Loops</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why">Why?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correct-pattern-using-settimeout">Correct Pattern (Using setTimeout)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ngondestroy">🟦 <strong>8. ngOnDestroy()</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-ngondestroy-important">Why is ngOnDestroy() Important?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">📝 <strong>Key Takeaways</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lifecycle-hook-call-order-complete">🔄 <strong>Lifecycle Hook Call Order (Complete)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-table">🎯 Summary Table</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Revannaswamy N
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Revannaswamy N.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

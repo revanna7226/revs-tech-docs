@@ -1,0 +1,1038 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Direct Exchange &#8212; Revs Tech Handbook 1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=aafd0e32" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/code-tabs.css?v=1bc26e2f" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=a681ed88"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../../_static/code-tabs.js?v=c983d12e"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/cloud/rabbitmq/docs/exchange-direct';</script>
+    <link rel="icon" href="../../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Fanout Exchange" href="exchange-fanout.html" />
+    <link rel="prev" title="Exchange in RabbitMQ" href="exchange.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../_static/revs-logo-h.png" class="logo__image only-light" alt="Revs Tech Handbook 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../../../_static/revs-logo-h.png" class="logo__image only-dark" alt="Revs Tech Handbook 1.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../python/index.html">Python</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../python/installation.html">Python Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../python/sphinx.html">Sphinx Setup</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../index.html">Cloud</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../git/index.html">Git &amp; GitHub - The Practical Guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../git/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/operations.html">Git Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/github.html">Github</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/github-deepdive.html">GitHub Collaboration and Contribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/assignment.html">Git Assignments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../git/reference.html">References</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ms/index.html">Microservices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ms/introduction.html">Microservices</a></li>
+
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../aws/index.html">AWS Certifications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../aws/cloud-practioner/index.html">Ultimate AWS Certified Cloud Practitioner CLF-C02 2025</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../aws/cloud-practioner/activation.html">AWS Account Activation Troubleshooting</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../k8s/index.html">Kubernetes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../k8s/introduction.html">Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../k8s/configs.html">Installation and Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../k8s/dashboard-web.html">Kubernetes Dashboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../k8s/components_commands.html">K8s Componets and Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../k8s/components.html">K8s commands:</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../docker/index.html">Dockers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../docker/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docker/commands.html">Docker Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docker/tasks.html">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../docker/docker-compose.html">Docker Compose</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../helm/index.html">Helm Charts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/commands.html">Helm Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/advanced-commands.html">Advanced Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/create-charts.html">Create Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/templates.html">Templates Deep Dive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../helm/repository.html">Repository</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jenkins/index.html">Jenkins</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../kafka/index.html">Apache Kafka</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../kafka/installation.html">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../kafka/introduction.html">Introduction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../index.html">RabbitMQ</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="projects.html">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exchange.html">Exchange in RabbitMQ</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Direct Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="exchange-fanout.html">Fanout Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="exchange-topic.html">Topic Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exchange-headers.html">Headers Exchange</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../database/index.html">Database</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../database/mysql/index.html">MYSQL</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/introduction.html">Introduction to MySQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/constraints.html">SQL Constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/dml.html">DML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/ddl.html">DDL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/dcl.html">DCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/tcl.html">TCL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/operators.html">Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/datatypes.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/functions.html">MySQL Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/groupby.html">MySQL GROUP BY Clause</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/subqueries.html">MySQL Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/joins.html">MySQL JOINS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/co-related-sq.html">Correlated Subqueries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/normalization.html">Normalization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../database/mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../database/mongodb/index.html">Mongo DB</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ide/vscode.html">Visual Studio Code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../java/index.html">Java</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../java/introduction.html">Java Introduction</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/basics/index.html">Core Java Concepts</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/basics/collections/introduction.html">Collections</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../java/basics/collections/list.html">List Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/basics/collections/set.html">Set Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/basics/collections/map.html">Map Interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/java8/index.html">Java 8</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java8/streams.html">Stream API in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java8/common_stream_ops.html">Common Stream Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java8/optional.html">Optional in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java8/functional_interface.html">Functional Interfaces in Java</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/java9/index.html">Java 9</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java9/interface_private_methods.html">Private Methods in Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java9/try_with_resources.html">Try with Resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java9/diamond_operator_enhancements.html">Diamond Operator Enhancements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/java9/safe_varargs_annotion.html">Safe Varargs Annotion Enhancements</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java/java9plus/index.html">Java Features 9+</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../java/maven/index.html">Apache Maven</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/design_patterns/index.html">Java Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../java/design_patterns/introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/solid_principles/srp.html">1. Single Responsibility Principle - SRP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/solid_principles/ocp.html">2. Open-Closed Principle - OSP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/solid_principles/lsp.html">3. Linkov Substitution Principle - LSP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/solid_principles/isp.html">4. Interface Segregation Principle - ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/solid_principles/dip.html">5. Dependency Inversion Principle - DIP</a></li>
+</ul>
+</details></li>
+
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../java/design_patterns/design_patterns/creational/index.html">Creational Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/design_patterns/creational/builder.html">Builder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/design_patterns/creational/factory.html">Factory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/design_patterns/creational/prototype.html">Prototype</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/design_patterns/creational/singleton.html">Singleton Design Pattern in Java</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../java/design_patterns/design_patterns/structural/index.html">Structural Design Patterns</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/design_patterns/design_patterns/structural/adapter.html">When to use</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/spring/index.html">Spring Framework</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../java/spring/data_jpa/index.html">Spring Data JPA</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/spring/data_jpa/in28Minutes/index.html">UdemyCourse in28Minutes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/spring/data_jpa/features.html">Spring Data JPA Features</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/spring/security/index.html">Spring Security</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../java/spring/spring-boot/index.html">Spring Boot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../java/spring/spring-boot/features/swagger.html">Swagger/OpenAPI Documentation</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/reactive_programming/index.html">Reactive Programming in Modern Java using Project Reactor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/reactive_programming/introduction.html">1. Reactive Programming in Java</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/reactive_programming/project_reactor.html">2. What is Project Reactor?</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../java/testing/index.html">Java Testing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../java/testing/jmeter.html">Apache JMeter</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../golang/index.html">Golang</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/introduction.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/cards.html">Cards Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/testing.html">Testing in go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/structs.html">Struct in Go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/maps.html">Maps in Go</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../golang/interface.html">Interface</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../angular/index.html">Angular</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../angular/installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../angular/lifecyclehooks.html">Lifecycle Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../angular/proxyServer.html">Proxy Server Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../angular/rxjs.html">RxJs Interview Questions</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../node/index.html">Node.js</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../webui/index.html">Web technologies</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../webui/css/index.html">Cascading style sheets (CSS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../webui/css/introduction.html">Introduction to CSS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../webui/css/resources.html">Useful Resources &amp; Links</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../aitools/index.html">AI Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../aitools/introduction.html">Agentic AI Coding Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../aitools/cline.html">Cline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../aitools/geminicodeassist.html">Gemini Code Assist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../aitools/githubcopilot.html">GitHub Copilot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../questions/index.html">Question Bank</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/hr-questions.html">HR questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/questions-bank.html">Java Questions</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/scenario-based.html">Scenario based Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/db-questions.html">Database Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../questions/design_patterns.html">Design Patterns</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../questions/coding/index.html">Coding Excercise</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/streams.html">Coding Problems on Streams</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/snippet.html">Analyze the Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/coding/programming.html">Coding Problems</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../questions/dsa-leetcode/index.html">Java DSA + LeetCode</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/introduction.html">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/bigo.html">Big O Notation in Java: Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/linkedlist.html">Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/doublyll.html">Doubly Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/stack.html">Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/queue.html">Queue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/binarytree.html">Binary Tree</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/hashtable.html">HashTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../questions/dsa-leetcode/topics/basicsort.html">Basic Sorts</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../mdcheetsheet.html">Markdown Cheetsheet</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Direct Exchange</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Direct Exchange</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-direct-exchange">1. What is a Direct Exchange?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-characteristics">Key Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-refresher-context">2. Core Concepts Refresher (Context)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-direct-exchange-works-flow">3. How Direct Exchange Works (Flow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-cases">4. Example Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">Common Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-exchange-vs-others-quick-comparison">5. Direct Exchange vs Others (Quick Comparison)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-boot-rabbitmq-direct-exchange">Spring Boot + RabbitMQ (Direct Exchange)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maven-dependencies">6. Maven Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-properties">7. Application Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rabbitmq-configuration-direct-exchange">8. RabbitMQ Configuration (Direct Exchange)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exchange-queues-bindings">Exchange, Queues, Bindings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-producer-publisher">9. Message Producer (Publisher)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-consumers-listeners">10. Message Consumers (Listeners)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-consumer">Create Order Consumer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-order-consumer">Cancel Order Consumer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rest-controller-to-test">11. REST Controller to Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-at-runtime">12. What Happens at Runtime?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes-interview-production">13. Important Notes (Interview + Production)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">✔ Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">❌ Common Mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-you-use-direct-exchange">14. When Should You Use Direct Exchange?</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="direct-exchange">
+<h1>Direct Exchange<a class="headerlink" href="#direct-exchange" title="Link to this heading">#</a></h1>
+<p><img alt="Image" src="https://www.tutlane.com/images/rabbitmq/rabbitmq_direct_exchange_process_flow_diagram.PNG" /></p>
+<hr class="docutils" />
+<section id="what-is-a-direct-exchange">
+<h2>1. What is a Direct Exchange?<a class="headerlink" href="#what-is-a-direct-exchange" title="Link to this heading">#</a></h2>
+<p>A <strong>Direct Exchange</strong> routes messages to queues <strong>based on an exact match between the message’s routing key and the queue’s binding key</strong>.</p>
+<blockquote>
+<div><p><strong>Rule:</strong> &gt; <code class="docutils literal notranslate"><span class="pre">routingKey</span> <span class="pre">==</span> <span class="pre">bindingKey</span></code> → message is delivered
+otherwise → message is ignored (or dead-lettered if configured)</p>
+</div></blockquote>
+<section id="key-characteristics">
+<h3>Key Characteristics<a class="headerlink" href="#key-characteristics" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Exchange type:</strong> <code class="docutils literal notranslate"><span class="pre">direct</span></code></p></li>
+<li><p><strong>Routing:</strong> Exact match</p></li>
+<li><p><strong>Use case:</strong> Deterministic routing (command-based, severity-based, event-type-based)</p></li>
+<li><p><strong>One-to-one or one-to-many:</strong></p>
+<ul>
+<li><p>One routing key → one queue</p></li>
+<li><p>Same binding key → multiple queues (fan-out-like but controlled)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="core-concepts-refresher-context">
+<h2>2. Core Concepts Refresher (Context)<a class="headerlink" href="#core-concepts-refresher-context" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exchange</p></td>
+<td><p>Receives messages from producers</p></td>
+</tr>
+<tr class="row-odd"><td><p>Queue</p></td>
+<td><p>Stores messages for consumers</p></td>
+</tr>
+<tr class="row-even"><td><p>Routing Key</p></td>
+<td><p>String set by producer</p></td>
+</tr>
+<tr class="row-odd"><td><p>Binding Key</p></td>
+<td><p>String used when binding queue to exchange</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="how-direct-exchange-works-flow">
+<h2>3. How Direct Exchange Works (Flow)<a class="headerlink" href="#how-direct-exchange-works-flow" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Producer sends message to <strong>Direct Exchange</strong> with a routing key</p></li>
+<li><p>Exchange compares routing key with all bindings</p></li>
+<li><p>If <strong>exact match found</strong>, message goes to that queue</p></li>
+<li><p>If <strong>no match</strong>, message is dropped (unless DLX is configured)</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="example-use-cases">
+<h2>4. Example Use Cases<a class="headerlink" href="#example-use-cases" title="Link to this heading">#</a></h2>
+<section id="common-patterns">
+<h3>Common Patterns<a class="headerlink" href="#common-patterns" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Log Level Routing</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">info</span></code> → infoQueue</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code> → errorQueue</p></li>
+</ul>
+</li>
+<li><p><strong>Command Processing</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">order.create</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order.cancel</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Microservice Event Routing</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">payment.success</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">payment.failed</span></code></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="direct-exchange-vs-others-quick-comparison">
+<h2>5. Direct Exchange vs Others (Quick Comparison)<a class="headerlink" href="#direct-exchange-vs-others-quick-comparison" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Exchange</p></th>
+<th class="head"><p>Routing Logic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Direct</p></td>
+<td><p>Exact match</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fanout</p></td>
+<td><p>Broadcast</p></td>
+</tr>
+<tr class="row-even"><td><p>Topic</p></td>
+<td><p>Pattern match (<code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Headers</p></td>
+<td><p>Header attributes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="spring-boot-rabbitmq-direct-exchange">
+<h1>Spring Boot + RabbitMQ (Direct Exchange)<a class="headerlink" href="#spring-boot-rabbitmq-direct-exchange" title="Link to this heading">#</a></h1>
+<p>Below is a <strong>production-style setup</strong> using Spring Boot + Spring AMQP.</p>
+<hr class="docutils" />
+<section id="maven-dependencies">
+<h2>6. Maven Dependencies<a class="headerlink" href="#maven-dependencies" title="Link to this heading">#</a></h2>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+<span class="w">    </span><span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+<span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-amqp<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="application-properties">
+<h2>7. Application Properties<a class="headerlink" href="#application-properties" title="Link to this heading">#</a></h2>
+<div class="highlight-properties notranslate"><div class="highlight"><pre><span></span><span class="na">spring.rabbitmq.host</span><span class="o">=</span><span class="s">localhost</span>
+<span class="na">spring.rabbitmq.port</span><span class="o">=</span><span class="s">5672</span>
+<span class="na">spring.rabbitmq.username</span><span class="o">=</span><span class="s">guest</span>
+<span class="na">spring.rabbitmq.password</span><span class="o">=</span><span class="s">guest</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="rabbitmq-configuration-direct-exchange">
+<h2>8. RabbitMQ Configuration (Direct Exchange)<a class="headerlink" href="#rabbitmq-configuration-direct-exchange" title="Link to this heading">#</a></h2>
+<section id="exchange-queues-bindings">
+<h3>Exchange, Queues, Bindings<a class="headerlink" href="#exchange-queues-bindings" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RabbitMQConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">DIRECT_EXCHANGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.direct.exchange&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ORDER_CREATE_QUEUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.create.queue&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ORDER_CANCEL_QUEUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.cancel.queue&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ORDER_CREATE_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.create&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">ORDER_CANCEL_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.cancel&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DirectExchange</span><span class="w"> </span><span class="nf">directExchange</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DirectExchange</span><span class="p">(</span><span class="n">DIRECT_EXCHANGE</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="nf">orderCreateQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="p">(</span><span class="n">ORDER_CREATE_QUEUE</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="nf">orderCancelQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="p">(</span><span class="n">ORDER_CANCEL_QUEUE</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Binding</span><span class="w"> </span><span class="nf">createBinding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">BindingBuilder</span>
+<span class="w">                </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">orderCreateQueue</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">to</span><span class="p">(</span><span class="n">directExchange</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">ORDER_CREATE_KEY</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Binding</span><span class="w"> </span><span class="nf">cancelBinding</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">BindingBuilder</span>
+<span class="w">                </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">orderCancelQueue</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">to</span><span class="p">(</span><span class="n">directExchange</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">with</span><span class="p">(</span><span class="n">ORDER_CANCEL_KEY</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="message-producer-publisher">
+<h2>9. Message Producer (Publisher)<a class="headerlink" href="#message-producer-publisher" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderProducer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">RabbitTemplate</span><span class="w"> </span><span class="n">rabbitTemplate</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">OrderProducer</span><span class="p">(</span><span class="n">RabbitTemplate</span><span class="w"> </span><span class="n">rabbitTemplate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">rabbitTemplate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rabbitTemplate</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendCreateOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span>
+<span class="w">                </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">DIRECT_EXCHANGE</span><span class="p">,</span>
+<span class="w">                </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">ORDER_CREATE_KEY</span><span class="p">,</span>
+<span class="w">                </span><span class="n">message</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendCancelOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span>
+<span class="w">                </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">DIRECT_EXCHANGE</span><span class="p">,</span>
+<span class="w">                </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">ORDER_CANCEL_KEY</span><span class="p">,</span>
+<span class="w">                </span><span class="n">message</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="message-consumers-listeners">
+<h2>10. Message Consumers (Listeners)<a class="headerlink" href="#message-consumers-listeners" title="Link to this heading">#</a></h2>
+<section id="create-order-consumer">
+<h3>Create Order Consumer<a class="headerlink" href="#create-order-consumer" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderCreateConsumer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">ORDER_CREATE_QUEUE</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handleCreateOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Create Order Received: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="cancel-order-consumer">
+<h3>Cancel Order Consumer<a class="headerlink" href="#cancel-order-consumer" title="Link to this heading">#</a></h3>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderCancelConsumer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RabbitMQConfig</span><span class="p">.</span><span class="na">ORDER_CANCEL_QUEUE</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">handleCancelOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Cancel Order Received: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rest-controller-to-test">
+<h2>11. REST Controller to Test<a class="headerlink" href="#rest-controller-to-test" title="Link to this heading">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/orders&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OrderController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">OrderProducer</span><span class="w"> </span><span class="n">producer</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">OrderController</span><span class="p">(</span><span class="n">OrderProducer</span><span class="w"> </span><span class="n">producer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">producer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">producer</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/create&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">createOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">producer</span><span class="p">.</span><span class="na">sendCreateOrder</span><span class="p">(</span><span class="s">&quot;Order Created Successfully&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Create Order Message Sent&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/cancel&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">cancelOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">producer</span><span class="p">.</span><span class="na">sendCancelOrder</span><span class="p">(</span><span class="s">&quot;Order Cancelled Successfully&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Cancel Order Message Sent&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="what-happens-at-runtime">
+<h2>12. What Happens at Runtime?<a class="headerlink" href="#what-happens-at-runtime" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Routing Key</p></th>
+<th class="head"><p>Delivered To</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">order.create</span></code></p></td>
+<td><p>order.create.queue</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">order.cancel</span></code></p></td>
+<td><p>order.cancel.queue</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">order.update</span></code></p></td>
+<td><p>❌ dropped (no binding)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="important-notes-interview-production">
+<h2>13. Important Notes (Interview + Production)<a class="headerlink" href="#important-notes-interview-production" title="Link to this heading">#</a></h2>
+<section id="best-practices">
+<h3>✔ Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Use <strong>Direct Exchange</strong> for <strong>command-style routing</strong></p></li>
+<li><p>Use <strong>durable queues</strong> for reliability</p></li>
+<li><p>Configure <strong>DLQ (Dead Letter Exchange)</strong> for unmatched or failed messages</p></li>
+<li><p>Keep routing keys <strong>explicit and meaningful</strong></p></li>
+</ul>
+</section>
+<section id="common-mistakes">
+<h3>❌ Common Mistakes<a class="headerlink" href="#common-mistakes" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Expecting wildcard routing (use <strong>Topic Exchange</strong> instead)</p></li>
+<li><p>Forgetting bindings</p></li>
+<li><p>Typos in routing keys</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="when-should-you-use-direct-exchange">
+<h2>14. When Should You Use Direct Exchange?<a class="headerlink" href="#when-should-you-use-direct-exchange" title="Link to this heading">#</a></h2>
+<p>✅ Use Direct Exchange when:</p>
+<ul class="simple">
+<li><p>You need <strong>exact routing</strong></p></li>
+<li><p>Message type is known</p></li>
+<li><p>Clear producer → consumer contract exists</p></li>
+</ul>
+<p>❌ Avoid when:</p>
+<ul class="simple">
+<li><p>You need pattern-based routing</p></li>
+<li><p>You want broadcast behavior</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="exchange.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exchange in RabbitMQ</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="exchange-fanout.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fanout Exchange</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Direct Exchange</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-direct-exchange">1. What is a Direct Exchange?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-characteristics">Key Characteristics</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts-refresher-context">2. Core Concepts Refresher (Context)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-direct-exchange-works-flow">3. How Direct Exchange Works (Flow)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-use-cases">4. Example Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-patterns">Common Patterns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-exchange-vs-others-quick-comparison">5. Direct Exchange vs Others (Quick Comparison)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spring-boot-rabbitmq-direct-exchange">Spring Boot + RabbitMQ (Direct Exchange)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maven-dependencies">6. Maven Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-properties">7. Application Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rabbitmq-configuration-direct-exchange">8. RabbitMQ Configuration (Direct Exchange)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exchange-queues-bindings">Exchange, Queues, Bindings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-producer-publisher">9. Message Producer (Publisher)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#message-consumers-listeners">10. Message Consumers (Listeners)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-consumer">Create Order Consumer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-order-consumer">Cancel Order Consumer</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rest-controller-to-test">11. REST Controller to Test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-at-runtime">12. What Happens at Runtime?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes-interview-production">13. Important Notes (Interview + Production)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">✔ Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-mistakes">❌ Common Mistakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-should-you-use-direct-exchange">14. When Should You Use Direct Exchange?</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Revannaswamy N
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Revannaswamy N.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

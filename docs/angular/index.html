@@ -218,7 +218,20 @@
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../cloud/jenkins/index.html">Jenkins</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/kafka/index.html">Apache Kafka</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/kafka/installation.html">Commands to Install and Run Zookeeper/Kafka Broker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../cloud/kafka/introduction.html">Introduction</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../cloud/rabbitmq/index.html">RabbitMQ</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/installation.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/projects.html">Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange.html">Exchange in RabbitMQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-direct.html">Direct Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-fanout.html">Fanout Exchange</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-topic.html">Topic Exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../cloud/rabbitmq/docs/exchange-headers.html">Headers Exchange</a></li>
 </ul>
 </details></li>
 </ul>
@@ -242,6 +255,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../database/mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
 </ul>
 </details></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/mongodb/index.html">Mongo DB</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -342,6 +356,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Angular</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html">Lifecycle Hooks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proxyServer.html">Proxy Server Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rxjs.html">RxJs Interview Questions</a></li>
 </ul>
@@ -501,6 +516,96 @@ document.write(`
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Setting up Angular on Local Machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lifecyclehooks.html">Lifecycle Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#list-of-angular-lifecycle-hooks">🔥 <strong>List of Angular Lifecycle Hooks</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngonchanges">🟦 <strong>1. ngOnChanges()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#signature">Signature:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#when-does-ngonchanges-run">When Does ngOnChanges Run?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#basic-ngonchanges-example">Basic ngOnChanges Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#parent-component"><strong>Parent Component</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#child-component"><strong>Child Component</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#output-example-in-console">Output Example in Console:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngoninit">🟦 <strong>2. ngOnInit()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#how-to-use-ngoninit">How to Use ngOnInit()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#syntax">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#why-ngoninit-instead-of-constructor">Why <code class="docutils literal notranslate"><span class="pre">ngOnInit()</span></code> Instead of Constructor?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#constructor">Constructor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#id1">ngOnInit()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#example-of-why-it-matters">Example of why it matters:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#example-using-ngoninit-to-fetch-api-data">Example: Using ngOnInit() to Fetch API Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngdocheck">🟦 <strong>3. ngDoCheck()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#why-does-angular-need-ngdocheck">Why Does Angular Need ngDoCheck()?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#when-to-use-ngdocheck"><strong>When to Use ngDoCheck()</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#example-use-cases">Example use cases:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#example-detect-deep-changes-inside-array-mutation">Example: Detect Deep Changes Inside Array (Mutation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#angular-will-not-detect-this">Angular will NOT detect this:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#full-working-example">Full Working Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#parent-component-ts">parent.component.ts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#child-component-ts">child.component.ts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#what-happens">What happens?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngaftercontentinit">🟦 <strong>4. ngAfterContentInit()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#when-does-it-run">When Does It Run?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#why-do-we-need-it">Why Do We Need It?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#basic-example-with-contentchild">Basic Example with &#64;ContentChild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#console-output">Console Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngaftercontentchecked">🟦 <strong>5. ngAfterContentChecked()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#imp-what-does-projected-content-mean">IMP: What does “Projected Content” mean?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#example-logging-each-time-content-is-checked">Example - Logging Each Time Content Is Checked</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#example-using-contentchild">Example - Using &#64;ContentChild</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngafterviewinit">🟦 <strong>6. ngAfterViewInit()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#important-points">📌 Important Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#simple-example-accessing-a-dom-element">Simple Example — Accessing a DOM Element</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#example-2-accessing-child-component-methods">Example 2 — Accessing Child Component Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#example-3-using-viewchildren">Example 3 — Using ViewChildren</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngafterviewchecked">🟦 <strong>7. ngAfterViewChecked()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#id2">When Does It Run?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#important-notes">Important Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#id3">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#ex-1-basic-usage-of-ngafterviewchecked">Ex 1: Basic Usage of <code class="docutils literal notranslate"><span class="pre">ngAfterViewChecked()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#ex-2-using-viewchild-to-inspect-the-dom">Ex 2: Using <code class="docutils literal notranslate"><span class="pre">&#64;ViewChild</span></code> to Inspect the DOM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#ex-3-detecting-changes-in-child-components">Ex 3: Detecting Changes in Child Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lifecyclehooks.html#ex-4-the-mistake-that-causes-infinite-loops">Ex 4: The Mistake That Causes Infinite Loops</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#why">Why?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#correct-pattern-using-settimeout">Correct Pattern (Using setTimeout)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#ngondestroy">🟦 <strong>8. ngOnDestroy()</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#why-is-ngondestroy-important">Why is ngOnDestroy() Important?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#example">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lifecyclehooks.html#key-takeaways">📝 <strong>Key Takeaways</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#lifecycle-hook-call-order-complete">🔄 <strong>Lifecycle Hook Call Order (Complete)</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lifecyclehooks.html#summary-table">🎯 Summary Table</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="proxyServer.html">Proxy Server Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="proxyServer.html#usecases">Usecases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="proxyServer.html#proxy-configuration">Proxy Configuration</a></li>
