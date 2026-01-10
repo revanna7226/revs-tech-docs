@@ -52,7 +52,7 @@
     <link rel="icon" href="../../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="IDEs" href="../../ide/index.html" />
+    <link rel="next" title="CRUD Operations" href="docs/crud.html" />
     <link rel="prev" title="Codd’s Rules for Relational Databases" href="../mysql/topics/codds.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -255,7 +255,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../mysql/topics/codds.html">Codd’s Rules for Relational Databases</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mongo DB</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Mongo DB</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="docs/crud.html">CRUD Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docs/schemaAndRelation.html">Data Types, Schema and Relations</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../ide/index.html">IDEs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -511,6 +515,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commands-to-interact-with-mongodb-from-mongodb-shell">Commands to interact with MongoDB from MongoDB Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting-your-database">Resetting Your Database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-resources-links">Useful Resources &amp; Links</a></li>
 </ul>
             </nav>
         </div>
@@ -524,6 +529,8 @@ document.write(`
                   
   <section id="mongo-db">
 <h1>Mongo DB<a class="headerlink" href="#mongo-db" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+</div>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -582,9 +589,19 @@ db.products.insertOne<span class="o">({</span><span class="s2">&quot;pName&quot;
 </section>
 <section id="resetting-your-database">
 <h2>Resetting Your Database<a class="headerlink" href="#resetting-your-database" title="Link to this heading">#</a></h2>
-<p>Important: We will regularly start with a clean database server (i.e. all data was purged) in this course.</p>
-<p>To get rid of your data, you can simply load the database you want to get rid of (use databaseName) and then execute db.dropDatabase().</p>
-<p>Similarly, you could get rid of a single collection in a database via db.myCollection.drop().</p>
+<p>To get rid of your data, you can simply load the database you want to get rid of (use databaseName) and then execute</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>db.dropDatabase<span class="o">()</span>.
+</pre></div>
+</div>
+<p>Similarly, you could get rid of a single collection in a database via</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>db.myCollection.drop<span class="o">()</span>.
+</pre></div>
+</div>
+</section>
+<section id="useful-resources-links">
+<h2>Useful Resources &amp; Links<a class="headerlink" href="#useful-resources-links" title="Link to this heading">#</a></h2>
+<p>Learn more about the MongoDB Drivers: https://docs.mongodb.com/ecosystem/drivers/</p>
+<p>Dive into the official Getting Started Docs: https://docs.mongodb.com/manual/tutorial/getting-started/</p>
 </section>
 </section>
 
@@ -609,11 +626,11 @@ db.products.insertOne<span class="o">({</span><span class="s2">&quot;pName&quot;
       </div>
     </a>
     <a class="right-next"
-       href="../../ide/index.html"
+       href="docs/crud.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">IDEs</p>
+        <p class="prev-next-title">CRUD Operations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -636,6 +653,7 @@ db.products.insertOne<span class="o">({</span><span class="s2">&quot;pName&quot;
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#commands-to-interact-with-mongodb-from-mongodb-shell">Commands to interact with MongoDB from MongoDB Shell</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting-your-database">Resetting Your Database</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-resources-links">Useful Resources &amp; Links</a></li>
 </ul>
   </nav></div>
 

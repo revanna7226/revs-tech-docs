@@ -25,4 +25,5 @@ docs/mdcheetsheet
 
 - [Revannaswamy N | Profile](https://revanna7226.github.io)
 - [GitHub Pages | Handbook](https://revanna7226.github.io/revs-tech-docs/)
+- [Pure Couple | YouTube](https://youtube.com/@pure-couple?si=LOqXjbVEzsJ7R2sA)
   :::

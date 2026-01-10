@@ -44,3 +44,8 @@ volumes:
 networks:
   rabbitmq_network:
 ```
+
+Udemy Course:
+
+- [Course Link](https://www.udemy.com/course/rabbitmq-in-practice)
+- [GitHub Link](https://github.com/bigdotsoftware/RabbitMQ-In-Practice)

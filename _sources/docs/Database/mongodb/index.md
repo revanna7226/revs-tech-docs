@@ -1,5 +1,15 @@
 # Mongo DB
 
+```{toctree}
+:maxdepth: 4
+:hidden:
+:caption: Topics
+
+docs/installation
+docs/crud
+docs/schemaAndRelation
+```
+
 ## Installation
 
 1. Download .msi file from https://www.mongodb.com/try/download/community
@@ -58,8 +68,20 @@ db.products.find().pretty()
 
 ## Resetting Your Database
 
-Important: We will regularly start with a clean database server (i.e. all data was purged) in this course.
+To get rid of your data, you can simply load the database you want to get rid of (use databaseName) and then execute
 
-To get rid of your data, you can simply load the database you want to get rid of (use databaseName) and then execute db.dropDatabase().
+```bash
+db.dropDatabase().
+```
 
-Similarly, you could get rid of a single collection in a database via db.myCollection.drop().
+Similarly, you could get rid of a single collection in a database via
+
+```bash
+db.myCollection.drop().
+```
+
+## Useful Resources & Links
+
+Learn more about the MongoDB Drivers: https://docs.mongodb.com/ecosystem/drivers/
+
+Dive into the official Getting Started Docs: https://docs.mongodb.com/manual/tutorial/getting-started/
