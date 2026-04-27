@@ -1,21 +1,34 @@
-Visual Studio Code
-========================
-Visual Studio Code (VSCode) is a powerful and versatile code editor that supports a wide range of programming languages and tools. It is particularly popular among developers for its rich feature set, including debugging capabilities, intelligent code completion, and extensive plugin support.
+# Visual Studio Code
 
-Extensions for Angular Development
-----------------------------------
-#. Angular Language Service by Angular
+# Theme
 
-   - Provides a rich editing experience for Angular templates, including code completion, error checking, and navigation.
-   - Helps developers write Angular applications more efficiently.
+Ctrl + Shift + P -> Select theme
 
-#. Angular Snippets (Version 13) by John Papa
+## Plug-ins
 
-   - Offers a collection of useful code snippets for Angular development.
-   - Speeds up the coding process by providing quick access to common Angular constructs.
+| Plugin                                     | Comments |
+| ------------------------------------------ | -------- |
+| Angular Language Service by Angular        |          |
+| Angular Snippets (Version 13) by John Papa |          |
+| Prettier                                   |          |
+| CodeSpell Checker                          |          |
+| ESLint                                     |          |
+| Live Server                                |          |
+| Error Lens                                 |          |
+| Material Icon Theme                        |          |
+| Auto Rename Tag                            |          |
+| Peacock                                    |          |
+| AutoOpen Markdown Preview                  |          |
+| Markdown All in One                        |          |
+| .run Code Runner                           |          |
+| GitHub Copilot                             |          |
+| YAML                                       |          |
+| Git Lenses                                 |          |
+| GitHistory                                 |          |
+| GitGraph                                   |          |
 
-Extensions for Java Development
---------------------------------
+## Extensions for Java Development
+
 1. Language Support for Java(TM) by Red Hat
 
    - Provides language support for Java(TM) by Red Hat.
@@ -31,13 +44,13 @@ Extensions for Java Development
 3. Debugger for Java by Microsoft
 
    - A powerful debugger that allows you to set breakpoints, inspect variables, and step through code.
-  
+
    - Supports remote debugging and is essential for troubleshooting Java applications.A
 
 4. Test Runner for Java by Microsoft
 
    - Provides support for running and debugging JUnit or TestNG tests.
-  
+
    - Integrates with the Java Test Runner extension to enhance testing capabilities.A
 
 5. Project Manager for Java by Microsoft
@@ -54,7 +67,7 @@ Extensions for Java Development
 
    - Provides support for creating Spring Boot applications using Spring Initializr.
 
-   - Simplifies the setup of Spring projects and integrates with the Spring Boot framework. 
+   - Simplifies the setup of Spring projects and integrates with the Spring Boot framework.
 
 8. Spring Boot Dashboard by Microsoft
 
@@ -67,5 +80,3 @@ Extensions for Java Development
    - Enhances the development experience for Spring Boot applications.
 
    - Includes features like live reload, application configuration, and more.
-
-10. 

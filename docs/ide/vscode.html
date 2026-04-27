@@ -49,7 +49,7 @@
     <script src="../../_static/code-tabs.js?v=c983d12e"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/ide/vscode';</script>
-    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="icon" href="../../_static/favicon3.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Java" href="../java/index.html" />
@@ -145,8 +145,8 @@
       
     
     
-    <img src="../../_static/revs-logo-h.png" class="logo__image only-light" alt="Revs Tech Handbook 1.0 documentation - Home"/>
-    <script>document.write(`<img src="../../_static/revs-logo-h.png" class="logo__image only-dark" alt="Revs Tech Handbook 1.0 documentation - Home"/>`);</script>
+    <img src="../../_static/revs-logo-h3.png" class="logo__image only-light" alt="Revs Tech Handbook 1.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/revs-logo-h3.png" class="logo__image only-dark" alt="Revs Tech Handbook 1.0 documentation - Home"/>`);</script>
   
   
 </a></div>
@@ -264,6 +264,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">IDEs</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Visual Studio Code</a></li>
+
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../java/index.html">Java</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -374,11 +375,22 @@
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../aitools/index.html">AI Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../aitools/introduction.html">Agentic AI Coding Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aitools/cline.html">Cline</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aitools/geminicodeassist.html">Gemini Code Assist</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../aitools/githubcopilot.html">GitHub Copilot</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../genai/index.html">Gen AI</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../genai/prompt-engineering/index.html">Prompt Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../genai/prompt-engineering/introduction.html">Introduction to Prompt Engineering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../genai/prompt-engineering/techniques.html">Prompt Techniques</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../genai/aitools/index.html">Gen AI Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../genai/aitools/introduction.html">Agentic AI Coding Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../genai/aitools/cline.html">Cline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../genai/aitools/geminicodeassist.html">Gemini Code Assist</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../genai/aitools/github-copilot/index.html">GitHub Copilot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../genai/aitools/github-copilot/introduction.html">GitHub Copilot</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../questions/index.html">Question Bank</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -512,9 +524,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-for-angular-development">Extensions for Angular Development</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Visual Studio Code</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theme">Theme</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plug-ins">Plug-ins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-for-java-development">Extensions for Java Development</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -527,23 +544,76 @@ document.write(`
                   
   <section id="visual-studio-code">
 <h1>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Link to this heading">#</a></h1>
-<p>Visual Studio Code (VSCode) is a powerful and versatile code editor that supports a wide range of programming languages and tools. It is particularly popular among developers for its rich feature set, including debugging capabilities, intelligent code completion, and extensive plugin support.</p>
-<section id="extensions-for-angular-development">
-<h2>Extensions for Angular Development<a class="headerlink" href="#extensions-for-angular-development" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Angular Language Service by Angular</p>
-<ul class="simple">
-<li><p>Provides a rich editing experience for Angular templates, including code completion, error checking, and navigation.</p></li>
-<li><p>Helps developers write Angular applications more efficiently.</p></li>
-</ul>
-</li>
-<li><p>Angular Snippets (Version 13) by John Papa</p>
-<ul class="simple">
-<li><p>Offers a collection of useful code snippets for Angular development.</p></li>
-<li><p>Speeds up the coding process by providing quick access to common Angular constructs.</p></li>
-</ul>
-</li>
-</ol>
+</section>
+<section id="theme">
+<h1>Theme<a class="headerlink" href="#theme" title="Link to this heading">#</a></h1>
+<p>Ctrl + Shift + P -&gt; Select theme</p>
+<section id="plug-ins">
+<h2>Plug-ins<a class="headerlink" href="#plug-ins" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Plugin</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Angular Language Service by Angular</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Angular Snippets (Version 13) by John Papa</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Prettier</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>CodeSpell Checker</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>ESLint</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Live Server</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Error Lens</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Material Icon Theme</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Auto Rename Tag</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Peacock</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>AutoOpen Markdown Preview</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Markdown All in One</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>.run Code Runner</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GitHub Copilot</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>YAML</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Git Lenses</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>GitHistory</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>GitGraph</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="extensions-for-java-development">
 <h2>Extensions for Java Development<a class="headerlink" href="#extensions-for-java-development" title="Link to this heading">#</a></h2>
@@ -601,7 +671,6 @@ document.write(`
 <li><p>Includes features like live reload, application configuration, and more.</p></li>
 </ul>
 </li>
-<li></li>
 </ol>
 </section>
 </section>
@@ -651,9 +720,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-for-angular-development">Extensions for Angular Development</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Visual Studio Code</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#theme">Theme</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plug-ins">Plug-ins</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-for-java-development">Extensions for Java Development</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

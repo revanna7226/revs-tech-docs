@@ -1,5 +1,5 @@
-AI Tools
-========
+Gen AI Tools
+============
 
 .. toctree::
    :maxdepth: 10
@@ -8,4 +8,4 @@ AI Tools
    introduction
    cline
    geminicodeassist
-   githubcopilot
+   github-copilot/index
