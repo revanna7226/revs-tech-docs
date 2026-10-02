@@ -9,3 +9,4 @@ Gen AI Tools
    cline
    geminicodeassist
    github-copilot/index
+   claude-code/index

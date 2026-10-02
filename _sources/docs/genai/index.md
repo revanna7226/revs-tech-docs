@@ -7,4 +7,5 @@
 
 prompt-engineering/index
 aitools/index
+genai-notes/ai-ml
 ```

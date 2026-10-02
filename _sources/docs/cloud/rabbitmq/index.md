@@ -12,6 +12,8 @@ docs/exchange-direct
 docs/exchange-fanout
 docs/exchange-topic
 docs/exchange-headers
+docs/qna
+
 
 ```
 

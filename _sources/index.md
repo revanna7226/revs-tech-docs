@@ -19,6 +19,8 @@ docs/genai/index
 docs/udemy/index
 docs/questions/index
 docs/mdcheetsheet
+docs/youtube/index
+docs/eBooks/index
 ```
 
 :::{seealso}

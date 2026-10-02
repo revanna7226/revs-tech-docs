@@ -12,7 +12,7 @@
    rabbitmq-plugins enable rabbitmq_management
    ```
 
-6. Run `rabbitmq-server.bat` batch file.
+6. Run `rabbitmq-server.bat` batch file in sbin folder.
 7. Access RabbitMQ Web UI on [http://localhost:15672](http://localhost:15672).
    - Username: guest
    - Password: guest
